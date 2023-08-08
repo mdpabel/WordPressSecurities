@@ -4,11 +4,6 @@ import Hero from "./Hero";
 import ServiceSelection from "./ServiceSelection";
 import PricingTables from "./PricingTables";
 
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useUser } from "@/stores/user";
-import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
-
 interface IPage {
   searchParams: {
     type: "subscription" | "instant";
@@ -16,29 +11,13 @@ interface IPage {
 }
 
 const page = async ({ searchParams }: IPage) => {
-  const supabase = createServerComponentClient({
-    cookies,
-  });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (session) {
-    useUser.setState({
-      email: session?.user?.email,
-      isLoggedIn: true,
-      userId: session?.user?.id,
-    });
-  }
-
   return (
     <ComponentWrapper>
-      <ClientSideStateInitializer
+      {/* <ClientSideStateInitializer
         email={session?.user?.email ?? ""}
         isLoggedIn={!!session?.user}
         userId={session?.user.id ?? ""}
-      />
+      /> */}
       <Hero />
       <ServiceSelection />
       <PricingTables type={searchParams?.type ?? "subscription"} />

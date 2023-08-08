@@ -83,7 +83,6 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-
             {isLoggedIn ? (
               <li>
                 <Link
