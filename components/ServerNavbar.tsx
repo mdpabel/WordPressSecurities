@@ -5,6 +5,8 @@ import ClientSideStateInitializer from "@/components/ClientSideStateInitializer"
 
 import Navbar from "./Navbar";
 
+export const dynamic = "force-dynamic";
+
 const ServerNavbar = async () => {
   const supabase = createServerComponentClient({
     cookies,
