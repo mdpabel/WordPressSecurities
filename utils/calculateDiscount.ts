@@ -4,7 +4,6 @@ export function calculatePercentageDiscount(
   b: number,
   m: number,
 ) {
-  console.log(a, n, b, m);
   const costPerMonth3Months = a / n;
   const costPerMonth12Months = b / m;
 
