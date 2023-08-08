@@ -1,10 +1,6 @@
 "use client";
 import Button from "@/components/Button";
-import {
-  createClientComponentClient,
-  createServerComponentClient,
-} from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 const Dashboard = () => {
   const supabase = createClientComponentClient();
