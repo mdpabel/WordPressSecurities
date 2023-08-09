@@ -1,12 +1,12 @@
 import React from "react";
 import TopBar from "./TopBar";
-import ServerNavbar from "./ServerNavbar";
+import Navbar from "./Navbar";
 
 const Header = () => {
   return (
     <>
       <TopBar />
-      <ServerNavbar />
+      <Navbar />
     </>
   );
 };
