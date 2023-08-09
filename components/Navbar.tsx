@@ -5,6 +5,7 @@ import ComponentWrapper from "./ComponentWrapper";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import { get } from "http";
 
 const navItems = [
   {
@@ -34,27 +35,8 @@ const navItems = [
   },
 ];
 
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useUser } from "@/stores/user";
-import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
-
 const Navbar = async () => {
-  const supabase = createServerComponentClient({
-    cookies,
-  });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (session) {
-    useUser.setState({
-      email: session?.user?.email,
-      isLoggedIn: true,
-      userId: session?.user?.id,
-    });
-  }
+  const session = false;
 
   return (
     <ComponentWrapper className="relative bg_primary">
