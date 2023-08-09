@@ -5,8 +5,6 @@ import {
   createRouteHandlerClient,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
-import { useUser } from "@/stores/user";
-import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
 
 export const GET = async (req: NextRequest) => {
   const supabase = createRouteHandlerClient({

@@ -13,11 +13,6 @@ interface IPage {
 const page = async ({ searchParams }: IPage) => {
   return (
     <ComponentWrapper>
-      {/* <ClientSideStateInitializer
-        email={session?.user?.email ?? ""}
-        isLoggedIn={!!session?.user}
-        userId={session?.user.id ?? ""}
-      /> */}
       <Hero />
       <ServiceSelection />
       <PricingTables type={searchParams?.type ?? "subscription"} />
