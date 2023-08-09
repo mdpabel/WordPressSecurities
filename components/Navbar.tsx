@@ -60,7 +60,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="relative bg_primary">
+    <div className="relative bg_primary hello">
       <ComponentWrapper>
         <nav ref={ref} className="flex items-center justify-between py-4">
           {/* <Link href='/' className='text-xl font-bold md:text-2xl'>
