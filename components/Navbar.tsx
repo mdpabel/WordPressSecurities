@@ -5,7 +5,6 @@ import ComponentWrapper from "./ComponentWrapper";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { get } from "http";
 
 const navItems = [
   {
