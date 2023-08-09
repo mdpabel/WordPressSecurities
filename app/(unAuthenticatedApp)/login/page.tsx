@@ -37,11 +37,11 @@ const Login = async () => {
       email: email as string,
       password: password as string,
     });
+
     signInResponse.data = res.data;
     signInResponse.error = res.error;
 
-    if (res.data) {
-      // await sleep(400);
+    if (res.data?.session?.user) {
       redirect("/dashboard");
     }
   };

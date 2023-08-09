@@ -13,7 +13,6 @@ const publicRoutes = [
 ];
 
 export async function middleware(req: NextRequest) {
-  console.log("CALLED");
   const pathName = req.nextUrl.pathname;
   const res = NextResponse.next();
   const supabase = createMiddlewareClient<Database>({ req, res });
