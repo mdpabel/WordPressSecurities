@@ -45,7 +45,7 @@ const SubscribeButton = ({ planId }: { planId: string }) => {
     setLoading(true);
     const data = await client(`/api/subscription/${planId}`);
     const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
     );
 
     stripe?.redirectToCheckout({

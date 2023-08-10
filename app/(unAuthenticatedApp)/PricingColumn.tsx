@@ -85,7 +85,7 @@ export const PricingColumn = ({
       />
       <ul role="list" className="mb-8 space-y-4 text-left">
         {allFeatures.map((service, index) => (
-          <li key={index} className="flex items-center space-x-3">
+          <li key={service} className="flex items-center space-x-3">
             <TickIcon />
             <span>{service}</span>
           </li>
