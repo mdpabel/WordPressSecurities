@@ -1,7 +1,7 @@
 import ComponentWrapper from "@/components/ComponentWrapper";
 import React from "react";
 import Hero from "./Hero";
-import ServiceSelection from "./ServiceSelection";
+import ServiceCarousel from "./ServiceCarousel";
 import PricingTables from "./PricingTables";
 
 import { cookies } from "next/headers";
@@ -40,7 +40,7 @@ const page = async ({ searchParams }: IPage) => {
         userId={session?.user.id ?? ""}
       /> */}
       <Hero />
-      <ServiceSelection />
+      <ServiceCarousel />
       <PricingTables type={searchParams?.type ?? "subscription"} />
     </ComponentWrapper>
   );
