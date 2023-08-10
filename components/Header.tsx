@@ -2,11 +2,11 @@ import React from "react";
 import TopBar from "./TopBar";
 import Navbar from "./Navbar";
 
-const Header = () => {
+const Header = ({ dashboard }: { dashboard?: boolean }) => {
   return (
     <>
       <TopBar />
-      <Navbar />
+      <Navbar dashboard={dashboard} />
     </>
   );
 };

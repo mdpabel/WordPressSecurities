@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef, use } from "react";
-import { BarIcon, CrossIcon } from "@/components/icons";
+import { BarIcon, CrossIcon, SidebarToggleIcon } from "@/components/icons";
 import Link from "next/link";
 import ComponentWrapper from "./ComponentWrapper";
 import Button from "./Button";
@@ -12,6 +12,7 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { useAsync } from "@/hooks/useAsync";
 import { useUser } from "@/stores/user";
+import { useSidebar } from "@/stores/sidebar";
 
 const navItems = [
   {
@@ -41,11 +42,12 @@ const navItems = [
   },
 ];
 
-const Navbar = () => {
+const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
   const { isLoggedIn } = useUser();
   const pathName = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
+  const { isOpen, setIsOpen } = useSidebar();
 
   useEffect(() => {
     const event = (e: any) => {
@@ -60,13 +62,24 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="relative bg_primary hello">
+    <div className="relative bg_primary">
       <ComponentWrapper>
         <nav ref={ref} className="flex items-center justify-between py-4">
-          {/* <Link href='/' className='text-xl font-bold md:text-2xl'>
-            WPSecurities.
-          </Link> */}
-          <Logo />
+          <div className="flex">
+            {dashboard && (
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                data-drawer-target="logo-sidebar"
+                data-drawer-toggle="logo-sidebar"
+                aria-controls="logo-sidebar"
+                type="button"
+                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              >
+                <SidebarToggleIcon />
+              </button>
+            )}
+            <Logo />
+          </div>
           <ul className="items-center hidden space-x-8 lg:flex">
             {navItems.map((item) => (
               <li key={item.id}>
@@ -118,7 +131,7 @@ const Navbar = () => {
             type="link"
             outline={true}
             href="/emergency"
-            className="flex md:px-8 py-1 md:py-1"
+            className="hidden md:flex md:px-8 py-1 md:py-1"
           >
             Emergency Repair
           </Button>

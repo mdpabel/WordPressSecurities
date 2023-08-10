@@ -4,7 +4,6 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Button from "@/components/Button";
 import { useUser } from "@/stores/user";
 import { client } from "@/utils/client";
-import { useAsync } from "@/hooks/useAsync";
 import { loadStripe } from "@stripe/stripe-js";
 import Spinner from "@/components/Spinner";
 
@@ -45,7 +44,7 @@ const SubscribeButton = ({ planId }: { planId: string }) => {
     setLoading(true);
     const data = await client(`/api/subscription/${planId}`);
     const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
     );
 
     stripe?.redirectToCheckout({

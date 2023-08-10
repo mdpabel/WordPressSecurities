@@ -1,6 +1,5 @@
 "use client";
 import { useUser } from "@/stores/user";
-import React from "react";
 
 const ClientSideStateInitializer = ({
   email,

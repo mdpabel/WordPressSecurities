@@ -10,14 +10,14 @@ const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <Button
+      {/* <Button
         onClick={() => {
           supabase.auth.signOut();
           router.refresh();
         }}
       >
         Logout
-      </Button>
+      </Button> */}
     </div>
   );
 };
