@@ -1,6 +1,13 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { DashBoardIcon } from "./icons";
+import {
+  BookIcon,
+  DashBoardIcon,
+  LogoutIcon,
+  SubScriptionIcon,
+  SupportInboxIcon,
+  UserIcon,
+} from "./icons";
 import Link from "next/link";
 import { useSidebar } from "@/stores/sidebar";
 import { clsx } from "clsx";
@@ -39,27 +46,27 @@ const sidebarItems = [
   },
   {
     id: 2,
-    Icon: DashBoardIcon,
+    Icon: SubScriptionIcon,
     label: "Manage Subscriptions",
     link: "/manage-subscriptions",
   },
 
   {
     id: 4,
-    Icon: DashBoardIcon,
+    Icon: BookIcon,
     label: "Security Reports",
     link: "/security-reports",
   },
   {
     id: 5,
-    Icon: DashBoardIcon,
+    Icon: SupportInboxIcon,
     label: "Customer Support",
     link: "/customer-support",
   },
 
   {
     id: 6,
-    Icon: DashBoardIcon,
+    Icon: UserIcon,
     label: "Manage Account",
     link: "/manage-account",
   },
@@ -102,7 +109,7 @@ const Sidebar = () => {
         <div className="pt-10">
           <li className="p-2 border-t border-t-gray-600 list-none">
             <button className="flex items-center text-gray-900 hover:bg-gray-100 ">
-              <DashBoardIcon />
+              <LogoutIcon />
               <span className="ml-3">Logout</span>
             </button>
           </li>
