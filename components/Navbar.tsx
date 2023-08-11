@@ -48,6 +48,41 @@ const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
   const { isOpen, setIsOpen } = useSidebar();
+  console.log(
+    `%c
+      %cWelcome to WordPress Securities Console%c
+      %c---------------------------------------%c
+
+      %c$ wpsec scan%c
+      %cScanning for vulnerabilities...%c
+
+      %c$ wpsec firewall enable%c
+      %cFirewall enabled successfully.%c
+
+      %c$ wpsec audit --full-report%c
+      %cGenerating full security audit report...%c
+
+      %c$ wpsec logout%c
+      %cLogged out.%c
+      `,
+    "color: #00ff00; font-size: 18px;",
+    "color: #ffffff; font-size: 16px;",
+    "color: inherit; font-size: inherit;",
+    "color: #00ff00; font-size: 14px;",
+    "color: inherit; font-size: inherit;",
+    "color: #00ff00; font-size: 14px;",
+    "color: inherit; font-size: inherit;",
+    "color: inherit; font-size: inherit;",
+    "color: #00ff00; font-size: 14px;",
+    "color: inherit; font-size: inherit;",
+    "color: #00ff00; font-size: 14px;",
+    "color: inherit; font-size: inherit;",
+    "color: inherit; font-size: inherit;",
+    "color: #00ff00; font-size: 14px;",
+    "color: inherit; font-size: inherit;",
+    "color: #00ff00; font-size: 14px;",
+    "color: inherit; font-size: inherit;"
+  );
 
   useEffect(() => {
     const event = (e: any) => {
@@ -78,7 +113,9 @@ const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
                 <SidebarToggleIcon />
               </button>
             )}
-            <Logo />
+            <div onClick={() => setOpen(false)}>
+              <Logo />
+            </div>
           </div>
           <ul className="items-center hidden space-x-8 lg:flex">
             {navItems.map((item) => (
@@ -156,7 +193,7 @@ const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
           }}
           className="block w-full md:hidden shadow"
         >
-          <ul className="md:w-[90%] mx-auto  lg:px-0 absolute right-0 z-50 flex flex-col w-full px-4 mt-4 bg-gray-100 rounded-lg lg:hidden top-10">
+          <ul className="md:w-[90%] mx-auto pb-5 lg:px-0 absolute right-0 z-50 flex flex-col w-full px-4 mt-4 bg-gray-100 rounded-lg lg:hidden top-10">
             {navItems.map((item) => (
               <li
                 key={item.id}
@@ -194,6 +231,16 @@ const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
                 </Link>
               </li>
             )}
+
+            <li onClick={() => setOpen(false)} className="border-b">
+              <Link
+                prefetch
+                className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 "
+                href="/emergency"
+              >
+                Emergency Repair
+              </Link>
+            </li>
           </ul>
         </div>
       </ComponentWrapper>

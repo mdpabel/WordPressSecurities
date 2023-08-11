@@ -1,6 +1,8 @@
 import { stripe } from "@/utils/stripe";
 import { getServiceSupabase } from "@/utils/supabase";
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 let data = {};
 
@@ -31,7 +33,9 @@ export const POST = async (req: NextRequest) => {
     email: body.record.email,
   });
 
-  const supabase = getServiceSupabase();
+  const supabase = createRouteHandlerClient({
+    cookies,
+  });
 
   await supabase
     .from("profile")
@@ -39,6 +43,13 @@ export const POST = async (req: NextRequest) => {
       stripe_customer: customer?.id,
     })
     .eq("id", body.record.id);
+
+  await supabase
+    .from("subscriptions")
+    .update({
+      stripe_customer: customer?.id,
+    })
+    .eq("user_id", body.record.id);
 
   return NextResponse.json(
     {

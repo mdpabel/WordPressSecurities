@@ -1,3 +1,4 @@
+import ComponentWrapper from "@/components/ComponentWrapper";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
@@ -9,14 +10,14 @@ export default async function UnAuthenticatedAppLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="">
+    <div className="bg_primary">
       <Header dashboard={true} />
-      <div className="flex">
+      <ComponentWrapper className="flex">
         <Sidebar />
         <section className="p-4 -ml-64 md:ml-0 min-h-[80vh] flex-1">
           {children}
         </section>
-      </div>
+      </ComponentWrapper>
       <Footer />
     </div>
   );

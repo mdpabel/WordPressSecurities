@@ -1,52 +1,52 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
-type StatusTypes = 'IDLE' | 'PENDING' | 'ERROR' | 'SUCCESS';
+type StatusTypes = "IDLE" | "PENDING" | "ERROR" | "SUCCESS";
 
 export const useAsync = <T>() => {
-  const [status, setStatus] = useState<StatusTypes>('IDLE');
+  const [status, setStatus] = useState<StatusTypes>("IDLE");
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<T | null>(null);
 
   const run = useCallback((promise: Promise<T>) => {
-    setStatus('PENDING');
+    setStatus("PENDING");
     if (!promise || !promise.then) {
       throw new Error(
-        `The argument passed to useAsync().run must be a promise.`,
+        `The argument passed to useAsync().run must be a promise.`
       );
     }
 
     promise
       .then((data) => {
         setData(data);
-        setStatus('SUCCESS');
+        setStatus("SUCCESS");
       })
       .catch(({ data }) => {
         setError(data);
-        setStatus('ERROR');
+        setStatus("ERROR");
       });
   }, []);
 
   const setValue = useCallback(
-    (val : any) => {
+    (val: any) => {
       setData(val);
     },
-    [setData],
+    [setData]
   );
 
   const setErrorMessage = useCallback(
-    (error : any) => {
+    (error: any) => {
       setError(error);
     },
-    [setError],
+    [setError]
   );
 
   return {
-    isSuccess: status === 'SUCCESS',
-    isError: status === 'ERROR',
-    isLoading: status === 'PENDING' || status === "IDLE",
-    isIdle: status === 'IDLE',
+    isSuccess: status === "SUCCESS",
+    isError: status === "ERROR",
+    isLoading: status === "PENDING",
+    isIdle: status === "IDLE",
     data: data as any,
     error,
     status,

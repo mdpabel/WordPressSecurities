@@ -31,8 +31,6 @@ export default async function RootLayout({
     userId: session?.user?.id,
   });
 
-  console.log(useUser.getState().email);
-
   return (
     <html className="scroll-smooth" suppressHydrationWarning={true} lang="en">
       <body className={playfair.className}>

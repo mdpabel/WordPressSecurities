@@ -73,7 +73,7 @@ const SubscribeButton = ({ planId }: { planId: string }) => {
           type="link"
           outline={true}
         >
-          Create account
+          Get started
         </Button>
       )}
 
