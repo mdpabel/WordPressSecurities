@@ -5,7 +5,6 @@ import ServiceCarousel from "./ServiceCarousel";
 import PricingTables from "./PricingTables";
 
 import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useUser } from "@/stores/user";
 import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
 
@@ -16,29 +15,10 @@ interface IPage {
 }
 
 const page = async ({ searchParams }: IPage) => {
-  // const supabase = createServerComponentClient({
-  //   cookies,
-  // });
-
-  // const {
-  //   data: { session },
-  // } = await supabase.auth.getSession();
-
-  // if (session) {
-  //   useUser.setState({
-  //     email: session?.user?.email,
-  //     isLoggedIn: true,
-  //     userId: session?.user?.id,
-  //   });
-  // }
+  console.log(useUser.getState().email, useUser.getState().isLoggedIn);
 
   return (
     <ComponentWrapper>
-      {/* <ClientSideStateInitializer
-        email={session?.user?.email ?? ""}
-        isLoggedIn={!!session?.user}
-        userId={session?.user.id ?? ""}
-      /> */}
       <Hero />
       <ServiceCarousel />
       <PricingTables type={searchParams?.type ?? "subscription"} />

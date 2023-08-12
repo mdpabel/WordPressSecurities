@@ -3,12 +3,32 @@ import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { cookies } from "next/headers";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-import { getServiceSupabase } from "@/utils/supabase";
+import prisma from "@/db/mongo";
+import Stripe from "stripe";
+import { currentUser } from "@clerk/nextjs";
 
 export const POST = async (req: NextRequest) => {
+  const user = await currentUser();
   const sig = headers().get("stripe-signature") as string;
   const reqString = await req.text();
-  const signingSecrete = process.env.STRIPE_WEBHOOKS_SIGNING_SECRETE;
+  const signingSecrete = process.env.STRIPE_WEBHOOKS_SIGNING_SECRETE!;
+
+  const profile = await prisma.user.findFirst({
+    where: {
+      clerkId: user?.id,
+    },
+  });
+
+  if (!profile) {
+    return NextResponse.json(
+      {
+        message: "You are not authorized to access this endpoint",
+      },
+      {
+        status: 401,
+      }
+    );
+  }
 
   let event;
 
@@ -21,36 +41,41 @@ export const POST = async (req: NextRequest) => {
     });
   }
 
-  const supabase = getServiceSupabase();
-
   // Handle the event
   switch (event.type) {
     case "customer.subscription.created":
-      const customerSubscriptionCreated = event.data.object;
-      const res = await supabase
-        .from("profile")
-        .update({
-          is_subscribed: true,
-          interval:
-            "" +
-            customerSubscriptionCreated.plan.interval_count +
-            " " +
-            "" +
-            customerSubscriptionCreated.plan.interval,
-        })
-        .eq("stripe_customer", customerSubscriptionCreated.customer);
+      const customerSubscriptionCreated: any = event.data.object;
 
-      console.log(customerSubscriptionCreated);
+      await prisma.subscription.create({
+        data: {
+          price_id: customerSubscriptionCreated.plan.id,
+          cancellation_date: null,
+          subscription_id: customerSubscriptionCreated.id,
+          subscription_status: customerSubscriptionCreated.plan.active
+            ? "active"
+            : "cancelled",
+          interval_count: customerSubscriptionCreated.plan.interval_count,
+          interval: customerSubscriptionCreated.plan.interval,
+          amount: customerSubscriptionCreated.plan.amount,
+          current_period_end: new Date(
+            customerSubscriptionCreated.current_period_end * 1000
+          ),
+          current_period_start: new Date(
+            customerSubscriptionCreated.current_period_start * 1000
+          ),
+          userId: profile.id,
+        },
+      });
+
       break;
     case "customer.subscription.deleted":
       const customerSubscriptionDeleted = event.data.object;
-      // Then define and call a function to handle the event customer.subscription.deleted
+      console.log(customerSubscriptionDeleted);
       break;
     case "customer.subscription.updated":
       const customerSubscriptionUpdated = event.data.object;
-      // Then define and call a function to handle the event customer.subscription.updated
+      console.log(customerSubscriptionUpdated);
       break;
-    // ... handle other event types
     default:
       console.log(`Unhandled event type ${event.type}`);
   }

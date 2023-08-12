@@ -1,7 +1,5 @@
-import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
-import { NextResponse } from "next/server";
-
-import type { NextRequest } from "next/server";
+import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
+import { useUser } from "./stores/user";
 
 const publicRoutes = [
   "/",
@@ -10,38 +8,19 @@ const publicRoutes = [
   "/login",
   "/register",
   "/about",
+  "/api/stripe/webhooks",
 ];
 
-export async function middleware(req: NextRequest) {
-  const pathName = req.nextUrl.pathname;
-  const res = NextResponse.next();
-  const supabase = createMiddlewareClient<Database>({ req, res });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  // if user is signed in and the current path is / redirect the user to /account
-  if (session && (pathName === "/login" || pathName === "/register")) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
-  }
-
-  // if user is not signed in and the current path is not public routes
-  if (!session && !publicRoutes.includes(pathName)) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-
-  return res;
-}
+export default authMiddleware({
+  publicRoutes: publicRoutes,
+  afterAuth: (auth, req) => {
+    // console.log(auth);
+    if (!auth.userId && !auth.isPublicRoute) {
+      return redirectToSignIn({ returnBackUrl: req.url });
+    }
+  },
+});
 
 export const config = {
-  matcher: [
-    "/dashboard",
-    "/login",
-    "/register",
-    "/manage-subscriptions",
-    "/customer-support",
-    "/manage-account",
-    "/security-reports",
-  ],
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };

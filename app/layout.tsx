@@ -1,12 +1,9 @@
 import "../styles/globals.css";
 import { Playfair_Display } from "next/font/google";
 import { Metadata } from "next";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import { ClerkProvider, auth } from "@clerk/nextjs";
 import { useUser } from "@/stores/user";
 import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
-
-export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "WordPress Securites | Your Source for WordPress Security",
@@ -19,30 +16,25 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createServerComponentClient({ cookies });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const { userId } = auth();
 
   useUser.setState({
-    email: session?.user?.email,
-    isLoggedIn: !!session,
-    userId: session?.user?.id,
+    isLoggedIn: !!userId,
   });
 
   return (
-    <html className="scroll-smooth" suppressHydrationWarning={true} lang="en">
-      <body className={playfair.className}>
-        <main className="">
+    <ClerkProvider>
+      <html className="scroll-smooth" suppressHydrationWarning={true} lang="en">
+        <body className={playfair.className}>
+          <main className="">{children}</main>
           <ClientSideStateInitializer
-            email={session?.user?.email ?? ""}
-            isLoggedIn={!!session}
-            userId={session?.user?.id ?? ""}
+            isLoggedIn={!!userId}
+            email=""
+            stripeCustomer=""
+            userId={userId ?? ""}
           />
-          {children}
-        </main>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

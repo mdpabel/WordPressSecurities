@@ -4,8 +4,8 @@ import Link from "next/link";
 import React from "react";
 import AuthButton from "./AuthButton";
 import Alert from "./Alert";
-import { SRRegister } from "@/app/(unAuthenticatedApp)/register/page";
-import { SRLogin } from "@/app/(unAuthenticatedApp)/login/page";
+import { SRRegister } from "@/app/(unAuthenticatedApp)/register/old-page";
+import { SRLogin } from "@/app/(unAuthenticatedApp)/login/old-page";
 
 interface IInput {
   label: string;

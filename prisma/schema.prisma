@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clerkId         String         @unique
+  is_subscribed   Boolean        @default(false)
+  interval        String?
+  stripe_customer String
+  Subscription    Subscription[]
+}
+
+model Subscription {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+
+  cancellation_date    DateTime?
+  subscription_id      String
+  subscription_status  String
+  interval_count       Int
+  interval             String
+  amount               Float
+  current_period_end   DateTime
+  current_period_start DateTime
+  website_url          String?
+  price_id             String
+}

@@ -6,10 +6,7 @@ import ComponentWrapper from "./ComponentWrapper";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import {
-  Session,
-  createClientComponentClient,
-} from "@supabase/auth-helpers-nextjs";
+
 import { useAsync } from "@/hooks/useAsync";
 import { useUser } from "@/stores/user";
 import { useSidebar } from "@/stores/sidebar";
@@ -48,41 +45,6 @@ const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
   const { isOpen, setIsOpen } = useSidebar();
-  console.log(
-    `%c
-      %cWelcome to WordPress Securities Console%c
-      %c---------------------------------------%c
-
-      %c$ wpsec scan%c
-      %cScanning for vulnerabilities...%c
-
-      %c$ wpsec firewall enable%c
-      %cFirewall enabled successfully.%c
-
-      %c$ wpsec audit --full-report%c
-      %cGenerating full security audit report...%c
-
-      %c$ wpsec logout%c
-      %cLogged out.%c
-      `,
-    "color: #00ff00; font-size: 18px;",
-    "color: #ffffff; font-size: 16px;",
-    "color: inherit; font-size: inherit;",
-    "color: #00ff00; font-size: 14px;",
-    "color: inherit; font-size: inherit;",
-    "color: #00ff00; font-size: 14px;",
-    "color: inherit; font-size: inherit;",
-    "color: inherit; font-size: inherit;",
-    "color: #00ff00; font-size: 14px;",
-    "color: inherit; font-size: inherit;",
-    "color: #00ff00; font-size: 14px;",
-    "color: inherit; font-size: inherit;",
-    "color: inherit; font-size: inherit;",
-    "color: #00ff00; font-size: 14px;",
-    "color: inherit; font-size: inherit;",
-    "color: #00ff00; font-size: 14px;",
-    "color: inherit; font-size: inherit;"
-  );
 
   useEffect(() => {
     const event = (e: any) => {
@@ -108,7 +70,7 @@ const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
                 data-drawer-toggle="logo-sidebar"
                 aria-controls="logo-sidebar"
                 type="button"
-                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
               >
                 <SidebarToggleIcon />
               </button>
@@ -168,7 +130,7 @@ const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
             type="link"
             outline={true}
             href="/emergency"
-            className="hidden md:flex md:px-8 py-1 md:py-1"
+            className="hidden lg:flex md:px-8 py-1 md:py-1"
           >
             Emergency Repair
           </Button>

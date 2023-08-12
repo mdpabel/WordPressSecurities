@@ -5,16 +5,20 @@ const ClientSideStateInitializer = ({
   email,
   userId,
   isLoggedIn,
+  stripeCustomer,
 }: {
   email: string;
   userId: string;
   isLoggedIn: boolean;
+  stripeCustomer: string;
 }) => {
   useUser.setState({
     email,
     userId,
     isLoggedIn,
+    stripeCustomer,
   });
+
   return null;
 };
 

@@ -1,17 +1,19 @@
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { stripe } from "@/utils/stripe";
+import prisma from "@/db/mongo";
+import { currentUser } from "@clerk/nextjs";
 
 export const GET = async (req: NextRequest, context: any) => {
   try {
+    const user = await currentUser();
     const { params } = context;
-    const supabase = createRouteHandlerClient<Database>({ cookies });
 
-    const { data: profile } = await supabase
-      .from("profile")
-      .select("*")
-      .single();
+    const profile = await prisma.user.findFirst({
+      where: {
+        clerkId: user?.id,
+      },
+    });
 
     if (!profile) {
       return NextResponse.json(
@@ -26,8 +28,8 @@ export const GET = async (req: NextRequest, context: any) => {
     }
 
     const checkoutSession = await stripe.checkout.sessions.create({
-      success_url: process.env.SITE_URL + "/payment-status?status=success",
-      cancel_url: process.env.SITE_URL + "/payment-status?status=cancel",
+      success_url: process.env.SITE_URL + "/payment-success",
+      cancel_url: process.env.SITE_URL + "/payment-cancelled",
       payment_method_types: ["card"],
       mode: "subscription",
       customer: profile?.stripe_customer as string,

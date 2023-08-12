@@ -1,7 +1,23 @@
 import React from "react";
 import SubTitle from "../SubTitle";
+import { Subscription } from "@prisma/client";
+import { formateDate } from "@/utils/formateDate";
+import SubscriptionButtons from "./SubscriptionButtons";
 
-const Subscription = () => {
+const Subscription = ({ subscription }: { subscription: Subscription }) => {
+  const interval = subscription.interval_count + " " + subscription.interval;
+  const packageName =
+    interval === "1 year"
+      ? "Annual"
+      : interval === "3 month"
+      ? "Quarterly"
+      : "Half annual";
+
+  const price =
+    packageName === "Annual" ? 99 : packageName === "Quarterly" ? 39 : 59;
+
+  const formateExpiredDate = formateDate(subscription.current_period_end);
+
   return (
     <div
       style={{
@@ -10,17 +26,13 @@ const Subscription = () => {
       className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center justify-between p-4 md:p-8 rounded shadow"
     >
       <div className="space-y-2">
-        <SubTitle>Quarterly</SubTitle>
+        <SubTitle>{packageName}</SubTitle>
         <h3>
-          Expires on August 23, 2023 | 39 USD | https://mdpabel.com |
+          Expires on {formateExpiredDate} | {price} USD | https://mdpabel.com |
           <span className="text-green-500 font-bold"> Active</span>
         </h3>
       </div>
-      <div>
-        <button className="bg-gray-600 text-gray-50 px-6 py-2 rounded">
-          Manage
-        </button>
-      </div>
+      <SubscriptionButtons subscription_id={subscription.subscription_id} />
     </div>
   );
 };

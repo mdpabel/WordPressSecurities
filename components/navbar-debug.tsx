@@ -6,10 +6,7 @@ import ComponentWrapper from "./ComponentWrapper";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import {
-  Session,
-  createClientComponentClient,
-} from "@supabase/auth-helpers-nextjs";
+
 import { useAsync } from "@/hooks/useAsync";
 import { useUser } from "@/stores/user";
 

@@ -1,5 +1,3 @@
-import Button from "@/components/Button";
-import { TickIcon } from "@/components/icons";
 import { calculatePercentageDiscount } from "@/utils/calculateDiscount";
 import { productFeatures, services } from "@/utils/pricingData";
 import { stripe } from "@/utils/stripe";

@@ -11,10 +11,10 @@ import {
 import Link from "next/link";
 import { useSidebar } from "@/stores/sidebar";
 import { clsx } from "clsx";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useAsync } from "@/hooks/useAsync";
 import Spinner from "./Spinner";
 import { redirect } from "next/navigation";
+import { SignOutButton } from "@clerk/nextjs";
 
 const SideBarItem = ({
   Icon,
@@ -94,11 +94,6 @@ const Sidebar = () => {
   }, []);
 
   // LOGOUT
-  const handleLogout = () => {
-    const supabase = createClientComponentClient<Database>();
-
-    run(supabase.auth.signOut());
-  };
 
   useEffect(() => {
     if (isSuccess) {
@@ -111,7 +106,7 @@ const Sidebar = () => {
       ref={ref}
       id="logo-sidebar"
       className={clsx({
-        "left-0 z-40 w-64 h-screen pt-10 transition-transform  bg_primary border-r border-gray-400 sm:translate-x-0 ":
+        "left-0 z-40 w-64 h-screen pt-10 transition-transform  bg_primary border-r border-gray-400 md:translate-x-0 ":
           true,
         "-translate-x-full": !isOpen,
       })}
@@ -126,15 +121,14 @@ const Sidebar = () => {
 
         <div className="pt-10">
           <li className="p-2 border-t border-t-gray-600 list-none">
-            <button
-              onClick={handleLogout}
-              className="flex items-center text-gray-900 hover:bg-gray-100 "
-            >
-              <LogoutIcon />
-              <span className="ml-3 flex space-x-2">
-                Logout {isLoading && <Spinner />}
-              </span>
-            </button>
+            <SignOutButton>
+              <button className="flex items-center text-gray-900 hover:bg-gray-100 ">
+                <LogoutIcon />
+                <span className="ml-3 flex space-x-2">
+                  Logout {isLoading && <Spinner />}
+                </span>
+              </button>
+            </SignOutButton>
           </li>
         </div>
       </div>
