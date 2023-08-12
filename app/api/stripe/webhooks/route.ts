@@ -1,10 +1,7 @@
 import { stripe } from "@/utils/stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
-import { cookies } from "next/headers";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import prisma from "@/db/mongo";
-import Stripe from "stripe";
 import { currentUser } from "@clerk/nextjs";
 
 export const POST = async (req: NextRequest) => {

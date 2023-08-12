@@ -4,7 +4,6 @@ import Hero from "./Hero";
 import ServiceCarousel from "./ServiceCarousel";
 import PricingTables from "./PricingTables";
 
-import { cookies } from "next/headers";
 import { useUser } from "@/stores/user";
 import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
 
