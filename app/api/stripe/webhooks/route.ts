@@ -99,14 +99,14 @@ export const POST = async (req: NextRequest) => {
           id: subscription?.id,
         },
         data: {
-          interval_count: customerSubscriptionCreated.plan.interval_count,
-          interval: customerSubscriptionCreated.plan.interval,
-          amount: customerSubscriptionCreated.plan.amount,
+          interval_count: customerSubscriptionUpdated.plan.interval_count,
+          interval: customerSubscriptionUpdated.plan.interval,
+          amount: customerSubscriptionUpdated.plan.amount,
           current_period_end: new Date(
-            customerSubscriptionCreated.current_period_end * 1000
+            customerSubscriptionUpdated.current_period_end * 1000
           ),
           current_period_start: new Date(
-            customerSubscriptionCreated.current_period_start * 1000
+            customerSubscriptionUpdated.current_period_start * 1000
           ),
         },
       });
