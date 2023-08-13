@@ -1,4 +1,3 @@
-import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
 import prisma from "@/db/mongo";
 import { stripe } from "@/utils/stripe";
 import { auth, currentUser, redirectToSignIn } from "@clerk/nextjs";
@@ -6,10 +5,6 @@ import { redirect } from "next/navigation";
 
 const page = async () => {
   const user = await currentUser();
-
-  if (!user) {
-    redirectToSignIn();
-  }
 
   const dbUser = await prisma.user.findFirst({
     where: {
@@ -29,6 +24,7 @@ const page = async () => {
     data: {
       clerkId: user?.id as string,
       stripe_customer: customer?.id,
+      email: user?.emailAddresses[0].emailAddress as string,
     },
   });
 
