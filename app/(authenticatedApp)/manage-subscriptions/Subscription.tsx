@@ -18,7 +18,7 @@ const Subscription = ({ subscription }: { subscription: Subscription }) => {
     packageName === "Annual" ? 99 : packageName === "Quarterly" ? 39 : 59;
 
   const formateExpiredDate = formateDate(subscription.current_period_end);
-  const isActive = !!subscription.cancellation_date;
+  const isActive = !!!subscription.cancellation_date;
 
   return (
     <div
