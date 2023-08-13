@@ -1,7 +1,24 @@
-const Dashboard = () => {
+import { Suspense } from "react";
+import { currentUser } from "@clerk/nextjs";
+import Title from "../Title";
+import TransactionHistory from "./TransactionHistory";
+import TableSkeleton from "./TableSkeleton";
+
+const Dashboard = async () => {
+  const user = await currentUser();
+  const fullName = user?.firstName + " " + user?.lastName;
+
   return (
     <div>
-      <h1>Dashboard</h1>
+      <Title>Welcome {fullName}</Title>
+      <div className="py-5">
+        <h2 className="text-xl py-5 font-semibold flex space-x-2 items-center">
+          Transactions
+        </h2>
+        <Suspense fallback={<TableSkeleton />}>
+          <TransactionHistory />
+        </Suspense>
+      </div>
     </div>
   );
 };
