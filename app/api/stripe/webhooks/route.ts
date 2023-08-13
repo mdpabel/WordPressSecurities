@@ -66,12 +66,50 @@ export const POST = async (req: NextRequest) => {
 
       break;
     case "customer.subscription.deleted":
-      const customerSubscriptionDeleted = event.data.object;
-      console.log(customerSubscriptionDeleted);
+      const customerSubscriptionDeleted: any = event.data.object;
+      const sub = await prisma.subscription.findFirst({
+        where: {
+          subscription_id: customerSubscriptionDeleted.id as string,
+        },
+      });
+
+      await prisma.subscription.update({
+        where: {
+          id: sub?.id,
+        },
+        data: {
+          cancellation_date: new Date(
+            customerSubscriptionDeleted.canceled_at * 1000
+          ),
+        },
+      });
+
       break;
     case "customer.subscription.updated":
-      const customerSubscriptionUpdated = event.data.object;
-      console.log(customerSubscriptionUpdated);
+      const customerSubscriptionUpdated: any = event.data.object;
+
+      const subscription = await prisma.subscription.findFirst({
+        where: {
+          subscription_id: customerSubscriptionUpdated.id as string,
+        },
+      });
+
+      await prisma.subscription.update({
+        where: {
+          id: subscription?.id,
+        },
+        data: {
+          interval_count: customerSubscriptionCreated.plan.interval_count,
+          interval: customerSubscriptionCreated.plan.interval,
+          amount: customerSubscriptionCreated.plan.amount,
+          current_period_end: new Date(
+            customerSubscriptionCreated.current_period_end * 1000
+          ),
+          current_period_start: new Date(
+            customerSubscriptionCreated.current_period_start * 1000
+          ),
+        },
+      });
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
