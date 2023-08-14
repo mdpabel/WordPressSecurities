@@ -93,7 +93,7 @@ const serviceDetails = [
   {
     id: 4,
     pricingTableId: [2, 8],
-    imgUrl: "/http500error.PNG",
+    imgUrl: "/ddos.jpg",
     title: "Unified communication and collaboration platform",
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
@@ -111,7 +111,7 @@ const serviceDetails = [
   {
     id: 5,
     pricingTableId: [2, 9],
-    imgUrl: "/http500error.PNG",
+    imgUrl: "/http500error.jpg",
     title: "Unified communication and collaboration platform",
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
