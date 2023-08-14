@@ -7,6 +7,7 @@ const publicRoutes = [
   "/login",
   "/register",
   "/about",
+  "/forget-password",
   "/api/stripe/webhooks",
 ];
 

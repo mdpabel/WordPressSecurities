@@ -1,44 +1,27 @@
 import ComponentWrapper from "@/components/ComponentWrapper";
 import Logo from "@/components/Logo";
 import Link from "next/link";
-import React from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+} from "react";
 import AuthButton from "./AuthButton";
 import Alert from "./Alert";
-import { SRRegister } from "@/app/(unAuthenticatedApp)/register/old-page";
-import { SRLogin } from "@/app/(unAuthenticatedApp)/login/old-page";
-
-interface IInput {
-  label: string;
-  type: string;
-  placeholder: string;
-  id: string;
-}
-
-const Input = ({ label, type, placeholder, id }: IInput) => {
-  return (
-    <div>
-      <label
-        htmlFor={id}
-        className="block mb-2 text-sm font-medium text-gray-900"
-      >
-        {label}
-      </label>
-      <input
-        type={type}
-        name={id}
-        id={id}
-        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-        placeholder={placeholder}
-        required
-      />
-    </div>
-  );
-};
+import Button from "./Button";
+import Spinner from "./Spinner";
+import { Input } from "./Input";
 
 interface IForm {
-  formSubmission: (formData: FormData) => Promise<void>;
-  modeType: "register" | "signin";
-  signInResponse: SRLogin | SRRegister;
+  modeType: "register" | "login";
+  error: string;
+  handleSubmit: (e: SyntheticEvent) => Promise<void>;
+  setEmailAddress: Dispatch<SetStateAction<string>>;
+  setPassword: Dispatch<SetStateAction<string>>;
+  setFirstName?: Dispatch<SetStateAction<string>>;
+  setLastName?: Dispatch<SetStateAction<string>>;
+  loading: boolean;
 }
 
 const registerContent = {
@@ -61,7 +44,16 @@ const signInContent = {
 You're in! 🎉 Sign in successful!`,
 };
 
-const Form = ({ formSubmission, modeType, signInResponse }: IForm) => {
+const LoginSignupForm = ({
+  modeType,
+  error,
+  handleSubmit,
+  setEmailAddress,
+  loading,
+  setPassword,
+  setFirstName,
+  setLastName,
+}: IForm) => {
   const content = modeType === "register" ? registerContent : signInContent;
 
   return (
@@ -71,22 +63,37 @@ const Form = ({ formSubmission, modeType, signInResponse }: IForm) => {
       </div>
       <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          {signInResponse.error?.message && (
-            <Alert intent="danger">{signInResponse.error?.message}</Alert>
-          )}
-
-          {signInResponse.data?.user && (
-            <Alert intent="success">{content.successMessage}</Alert>
-          )}
+          {error && <Alert intent="danger">{error}</Alert>}
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
             {content.header}
           </h1>
-          <form className="space-y-4 md:space-y-6" action={formSubmission}>
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            {setFirstName && setLastName && (
+              <>
+                <div className="flex space-x-4">
+                  <Input
+                    id="firstName"
+                    placeholder="First name"
+                    type="text"
+                    label="First Name"
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <Input
+                    id="lastName"
+                    placeholder="Last Name"
+                    type="text"
+                    label="Last Name"
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+              </>
+            )}
             <Input
               id="email"
               placeholder="hello@wordpresssecurities.com"
               type="email"
               label="Email"
+              onChange={(e) => setEmailAddress(e.target.value)}
             />
 
             <Input
@@ -94,10 +101,11 @@ const Form = ({ formSubmission, modeType, signInResponse }: IForm) => {
               placeholder="*********"
               type="password"
               label="Password"
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <div className="flex items-center justify-between">
-              <AuthButton>{content.buttonText}</AuthButton>
+              <Button type="submit">{loading ? <Spinner /> : "Login"}</Button>
               <Link
                 href="/forgot-password"
                 className="text-sm font-medium text-primary-600 hover:underline "
@@ -107,7 +115,7 @@ const Form = ({ formSubmission, modeType, signInResponse }: IForm) => {
             </div>
 
             <p className="text-sm font-light text-gray-500 ">
-              {content.label}{" "}
+              {content.label} {"  "}
               <Link
                 href={content.linkUrl}
                 className="font-medium text-primary-600 hover:underline "
@@ -122,4 +130,4 @@ const Form = ({ formSubmission, modeType, signInResponse }: IForm) => {
   );
 };
 
-export default Form;
+export default LoginSignupForm;

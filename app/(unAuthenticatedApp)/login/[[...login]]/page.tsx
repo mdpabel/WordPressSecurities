@@ -1,10 +1,55 @@
-import ComponentWrapper from "@/components/ComponentWrapper";
-import { SignIn } from "@clerk/nextjs";
+"use client";
+import { SyntheticEvent, useState } from "react";
+import { useSignIn } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+
+import LoginSignupForm from "@/components/LoginSignupForm";
 
 export default function Page() {
+  const { isLoaded, signIn, setActive } = useSignIn();
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  // start the sign up process.
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const result = await signIn.create({
+        identifier: emailAddress,
+        password,
+      });
+
+      if (result.status === "complete") {
+        console.log(result);
+        await setActive({ session: result.createdSessionId });
+        setLoading(false);
+        router.push("/dashboard");
+      } else {
+        console.log(result);
+        setLoading(false);
+      }
+    } catch (err: any) {
+      setLoading(false);
+      setError(err.errors[0].longMessage);
+    }
+  };
+
   return (
-    <ComponentWrapper className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0">
-      <SignIn />
-    </ComponentWrapper>
+    <LoginSignupForm
+      loading={loading}
+      error={error}
+      handleSubmit={handleSubmit}
+      modeType="login"
+      setEmailAddress={setEmailAddress}
+      setPassword={setPassword}
+    />
   );
 }
