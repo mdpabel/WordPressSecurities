@@ -28,8 +28,8 @@ const ServiceDescription = ({
       className="w-full flex flex-col space-y-4 md:space-x-8 md:px-4 py-8 md:pb-3 md:pt-0 rounded"
     >
       <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
-        <div className="w-full md:w-1/2">
-          <Image width={600} height={400} src="/test.jpg" alt="test" />
+        <div className="w-full md:w-1/2 flex items-center justify-center">
+          <Image width={600} height={400} src={imgUrl} alt="test" />
         </div>
         <div className="w-full md:w-1/2 space-y-4">
           <div className="space-y-2">

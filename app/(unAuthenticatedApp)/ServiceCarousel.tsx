@@ -39,8 +39,7 @@ const serviceDetails = [
   {
     id: 1,
     pricingTableId: [2, 1],
-    imgUrl:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
+    imgUrl: "/malwareRedirect.png",
     title: "Unified communication and collaboration platform",
     subTitle:
       "Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
@@ -57,9 +56,8 @@ const serviceDetails = [
 
   {
     id: 2,
-    pricingTableId: [2, 3, 4, 5],
-    imgUrl:
-      "https://www.monlyceenumerique.fr/snt_seconde/photographie_numerique/Cours/img/profondeur_3.bmp",
+    pricingTableId: [2, 7],
+    imgUrl: "/security.jpg",
     title: "Unified communication and collaboration platform",
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
@@ -76,9 +74,8 @@ const serviceDetails = [
 
   {
     id: 3,
-    pricingTableId: [2, 7],
-    imgUrl:
-      "https://media.istockphoto.com/id/509927332/photo/icefields-parkway.jpg?s=612x612&w=0&k=20&c=w7suW6fuZw-U77WmN-nRXYsO_G0FzuICYgzrgm1fFA8=",
+    pricingTableId: [2, 10],
+    imgUrl: "/testing.jpg",
     title: "Unified communication and collaboration platform",
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
@@ -95,28 +92,8 @@ const serviceDetails = [
 
   {
     id: 4,
-    pricingTableId: [2, 10],
-    imgUrl:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-    title: "Unified communication and collaboration platform",
-    subTitle:
-      " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
-    list: [
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-    ],
-  },
-
-  {
-    id: 5,
     pricingTableId: [2, 8],
-    imgUrl:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
+    imgUrl: "/http500error.PNG",
     title: "Unified communication and collaboration platform",
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
@@ -134,8 +111,7 @@ const serviceDetails = [
   {
     id: 5,
     pricingTableId: [2, 9],
-    imgUrl:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
+    imgUrl: "/http500error.PNG",
     title: "Unified communication and collaboration platform",
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
@@ -154,26 +130,22 @@ const serviceDetails = [
 const serviceList = [
   {
     id: 1,
-    label: "Malware & Hacked Removal",
+    label: "Malware, Blacklist & Hacked Removal",
   },
   {
     id: 2,
-    label: "Blacklist removal",
+    label: "Malware & Hacked Prevention",
   },
   {
     id: 3,
-    label: "Malware & Blacklist Prevention",
-  },
-  {
-    id: 4,
     label: "Penetration Testing",
   },
   {
-    id: 5,
+    id: 4,
     label: "DDoS Protection",
   },
   {
-    id: 6,
+    id: 5,
     label: "Say Goodbye to Errors",
   },
 ];

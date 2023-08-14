@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useClerk } from "@clerk/clerk-react";
 import {
   BookIcon,
   DashBoardIcon,
@@ -77,7 +78,8 @@ const sidebarItems = [
 ];
 
 const Sidebar = () => {
-  const { isLoading, run, isError, isSuccess } = useAsync();
+  const { signOut } = useClerk();
+  const [loading, setLoading] = useState(false);
   const { isOpen, setIsOpen } = useSidebar();
   const ref = useRef<HTMLElement | null>(null);
 
@@ -93,13 +95,7 @@ const Sidebar = () => {
     return () => document.removeEventListener("click", event, true);
   }, []);
 
-  // LOGOUT
-
-  useEffect(() => {
-    if (isSuccess) {
-      redirect("/login");
-    }
-  }, [isSuccess]);
+  console.log(loading);
 
   return (
     <aside
@@ -121,14 +117,19 @@ const Sidebar = () => {
 
         <div className="pt-10">
           <li className="p-2 border-t border-t-gray-600 list-none">
-            <SignOutButton>
-              <button className="flex items-center text-gray-900 hover:bg-gray-100 ">
-                <LogoutIcon />
-                <span className="ml-3 flex space-x-2">
-                  Logout {isLoading && <Spinner />}
-                </span>
-              </button>
-            </SignOutButton>
+            <button
+              onClick={async () => {
+                setLoading(true);
+                await signOut();
+                setLoading(false);
+              }}
+              className="flex items-center text-gray-900 hover:bg-gray-100 "
+            >
+              <LogoutIcon />
+              <span className="ml-3 flex space-x-2">
+                {loading ? <Spinner /> : "Logout"}
+              </span>
+            </button>
           </li>
         </div>
       </div>
