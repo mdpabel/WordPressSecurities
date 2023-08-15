@@ -5,6 +5,7 @@ import { useSignUp } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
 import LoginSignupForm from "@/components/LoginSignupForm";
 import EmailVerificationForm from "@/components/EmailVerificationForm";
+import { client } from "@/utils/client";
 
 export default function Page() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -69,11 +70,16 @@ export default function Page() {
       }
       if (completeSignUp.status === "complete") {
         setVerifying(false);
+
         await setActive({ session: completeSignUp.createdSessionId });
+        await client("/api/profile", {
+          method: "POST",
+        });
         router.push("/dashboard");
       }
     } catch (err: any) {
       setVerifying(false);
+      console.log(err);
       setVerificationError(err?.errors[0]?.longMessage);
     }
   };

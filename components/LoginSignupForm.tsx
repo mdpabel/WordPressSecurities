@@ -13,16 +13,22 @@ import Button from "./Button";
 import Spinner from "./Spinner";
 import { Input } from "./Input";
 
-interface IForm {
-  modeType: "register" | "login";
+type IForm = {
   error: string;
   handleSubmit: (e: SyntheticEvent) => Promise<void>;
   setEmailAddress: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
-  setFirstName?: Dispatch<SetStateAction<string>>;
-  setLastName?: Dispatch<SetStateAction<string>>;
   loading: boolean;
-}
+} & (
+  | {
+      modeType: "register";
+      setFirstName: Dispatch<SetStateAction<string>>;
+      setLastName: Dispatch<SetStateAction<string>>;
+    }
+  | {
+      modeType: "login";
+    }
+);
 
 const registerContent = {
   linkUrl: "/login",
@@ -44,17 +50,18 @@ const signInContent = {
 You're in! 🎉 Sign in successful!`,
 };
 
-const LoginSignupForm = ({
-  modeType,
-  error,
-  handleSubmit,
-  setEmailAddress,
-  loading,
-  setPassword,
-  setFirstName,
-  setLastName,
-}: IForm) => {
-  const content = modeType === "register" ? registerContent : signInContent;
+const LoginSignupForm = (props: IForm) => {
+  const content =
+    props.modeType === "register" ? registerContent : signInContent;
+
+  const {
+    modeType,
+    error,
+    handleSubmit,
+    setEmailAddress,
+    loading,
+    setPassword,
+  } = props;
 
   return (
     <ComponentWrapper className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0">
@@ -68,26 +75,28 @@ const LoginSignupForm = ({
             {content.header}
           </h1>
           <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-            {setFirstName && setLastName && (
-              <>
-                <div className="flex space-x-4">
-                  <Input
-                    id="firstName"
-                    placeholder="First name"
-                    type="text"
-                    label="First Name"
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                  <Input
-                    id="lastName"
-                    placeholder="Last Name"
-                    type="text"
-                    label="Last Name"
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </div>
-              </>
-            )}
+            {modeType === "register" &&
+              props.setFirstName &&
+              props.setLastName && (
+                <>
+                  <div className="flex space-x-4">
+                    <Input
+                      id="firstName"
+                      placeholder="First name"
+                      type="text"
+                      label="First Name"
+                      onChange={(e) => props.setFirstName(e.target.value)}
+                    />
+                    <Input
+                      id="lastName"
+                      placeholder="Last Name"
+                      type="text"
+                      label="Last Name"
+                      onChange={(e) => props.setLastName(e.target.value)}
+                    />
+                  </div>
+                </>
+              )}
             <Input
               id="email"
               placeholder="hello@wordpresssecurities.com"

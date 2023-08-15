@@ -30,6 +30,7 @@ export default function Page() {
       if (result.status === "complete") {
         console.log(result);
         await setActive({ session: result.createdSessionId });
+        router.push("/dashboard");
         setLoading(false);
         router.push("/dashboard");
       } else {

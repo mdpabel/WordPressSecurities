@@ -31,6 +31,7 @@ export const GET = async (req: NextRequest, context: any) => {
       cancel_url: process.env.SITE_URL + "/payment-cancelled",
       payment_method_types: ["card"],
       mode: "subscription",
+      allow_promotion_codes: true,
       customer: profile?.stripe_customer as string,
       line_items: [
         {
