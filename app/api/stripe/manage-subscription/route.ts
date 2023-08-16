@@ -3,7 +3,7 @@ import { stripe } from "@/utils/stripe";
 import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
-export const POST = async (req: NextRequest) => {
+export const GET = async (req: NextRequest) => {
   const user = await currentUser();
 
   const profile = await prisma.user.findFirst({

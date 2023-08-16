@@ -15,9 +15,7 @@ const SubscriptionButtons = ({
 
   const handleUpdate = () => {
     setUpdateLoading(true);
-    client("/api/stripe/manage-subscription", {
-      method: "POST",
-    }).then((res) => {
+    client("/api/stripe/manage-subscription").then((res) => {
       const url = res.url + "/subscriptions/" + subscription_id + "/update";
       setUpdateLoading(false);
       router.push(url);
@@ -26,9 +24,7 @@ const SubscriptionButtons = ({
 
   const handleCancel = () => {
     setCancelLoading(true);
-    client("/api/stripe/manage-subscription", {
-      method: "POST",
-    }).then((res) => {
+    client("/api/stripe/manage-subscription").then((res) => {
       const url = res.url + "/subscriptions/" + subscription_id + "/cancel";
       setCancelLoading(false);
       router.push(url);
