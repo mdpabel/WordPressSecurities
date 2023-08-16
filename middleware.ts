@@ -9,6 +9,7 @@ const publicRoutes = [
   "/about",
   "/forget-password",
   "/api/stripe/webhooks",
+  "/api/stripe/paymentwebhooks",
   "/api/profile",
 ];
 
