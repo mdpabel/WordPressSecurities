@@ -73,7 +73,8 @@ export const GET = async (req: NextRequest) => {
   try {
     const user = await currentUser();
     const url = new URL(req.url);
-    const items = url.searchParams.get("items")?.split(",").map(Number) ?? [];
+    const searchParams = url.searchParams.get("items") ?? "";
+    const items = searchParams?.split(",").map(Number) ?? [];
 
     const price = calculatePrice(items);
 
@@ -102,6 +103,7 @@ export const GET = async (req: NextRequest) => {
       mode: "payment",
       allow_promotion_codes: true,
       customer: profile?.stripe_customer as string,
+      client_reference_id: searchParams,
       line_items: [
         {
           quantity: 1,

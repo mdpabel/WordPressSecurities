@@ -48,6 +48,7 @@ export const POST = async (req: NextRequest) => {
             amount: checkoutSessionCompleted.amount_total,
             orderId: checkoutSessionCompleted.id,
             userId: profile?.id,
+            product_ids: checkoutSessionCompleted.client_reference_id,
           },
         });
         break;

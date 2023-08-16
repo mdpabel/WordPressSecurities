@@ -57,6 +57,7 @@ model Order {
   website_url  String?
   order_status STATUS   @default(PENDING)
   order_start  DateTime @default(now())
+  product_ids  String
 }
 
 enum STATUS {
