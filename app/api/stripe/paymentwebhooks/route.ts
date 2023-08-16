@@ -8,7 +8,7 @@ export const POST = async (req: NextRequest) => {
   try {
     const user = await currentUser();
     const sig = headers().get("stripe-signature") as string;
-    const signingSecrete = process.env.STRIPE_WEBHOOKS_SIGNING_SECRETE!;
+    const signingSecrete = process.env.STRIPE_PAYMENT_WEBHOOKS_SIGNING_SECRETE!;
     const reqString = await req.text();
 
     const profile = await prisma.user.findFirst({
