@@ -1,6 +1,6 @@
-'use client';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import React from 'react';
+"use client";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import React, { useTransition } from "react";
 
 interface ITab {
   handleClick: (type: string) => void;
@@ -15,7 +15,7 @@ const Tab = ({ handleClick, search, label, type, tabClassName }: ITab) => {
     <li
       onClick={() => handleClick(type)}
       className={`cursor-pointer ${
-        search === type ? 'font-bold' : ''
+        search === type ? "font-bold" : ""
       } ${tabClassName}`}
     >
       {label}
@@ -35,15 +35,18 @@ interface ITabs {
   tabClassName?: string;
 }
 
-const Tabs = ({ tabs, className = '', tabClassName = '' }: ITabs) => {
+const Tabs = ({ tabs, className = "", tabClassName = "" }: ITabs) => {
   const pathName = usePathname();
+  const [isLoading, startTransition] = useTransition();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const search = searchParams.get('type')?.trim() ?? 'subscription';
+  const search = searchParams.get("type")?.trim() ?? "subscription";
 
   const handleClick = (type: string) => {
-    router.push(`${pathName}/?type=${type}`, {
-      scroll: false,
+    startTransition(() => {
+      router.push(`${pathName}/?type=${type}`, {
+        scroll: false,
+      });
     });
   };
 

@@ -1,5 +1,5 @@
 import ComponentWrapper from "@/components/ComponentWrapper";
-import React from "react";
+import { startTransition } from "react";
 import Hero from "./Hero";
 import ServiceCarousel from "./ServiceCarousel";
 import PricingTables from "./PricingTables";
@@ -14,8 +14,6 @@ interface IPage {
 }
 
 const page = async ({ searchParams }: IPage) => {
-  console.log(useUser.getState().email, useUser.getState().isLoggedIn);
-
   return (
     <ComponentWrapper>
       <Hero />
