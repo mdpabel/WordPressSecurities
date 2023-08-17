@@ -1,4 +1,5 @@
 "use client";
+import { useTab } from "@/stores/tabs";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import React, { useTransition } from "react";
 
@@ -37,12 +38,15 @@ interface ITabs {
 
 const Tabs = ({ tabs, className = "", tabClassName = "" }: ITabs) => {
   const pathName = usePathname();
+  const { active, setActive } = useTab();
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
   const searchParams = useSearchParams();
   const search = searchParams.get("type")?.trim() ?? "subscription";
 
   const handleClick = (type: string) => {
+    setActive(type);
+
     startTransition(() => {
       router.push(`${pathName}/?type=${type}`, {
         scroll: false,

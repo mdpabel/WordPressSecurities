@@ -27,6 +27,7 @@ const SideBarItem = ({
   link: string;
 }) => {
   const { isOpen, setIsOpen } = useSidebar();
+
   return (
     <li>
       <Link href={link}>
@@ -55,7 +56,12 @@ const sidebarItems = [
     label: "Manage Subscriptions",
     link: "/manage-subscriptions",
   },
-
+  {
+    id: 2,
+    Icon: SubScriptionIcon,
+    label: "Orders",
+    link: "/orders",
+  },
   {
     id: 4,
     Icon: BookIcon,

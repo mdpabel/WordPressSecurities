@@ -4,9 +4,6 @@ import Hero from "./Hero";
 import ServiceCarousel from "./ServiceCarousel";
 import PricingTables from "./PricingTables";
 
-import { useUser } from "@/stores/user";
-import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
-
 interface IPage {
   searchParams: {
     type: "subscription" | "instant";

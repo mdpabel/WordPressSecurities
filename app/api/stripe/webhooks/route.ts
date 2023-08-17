@@ -53,7 +53,7 @@ export const POST = async (req: NextRequest) => {
             : "cancelled",
           interval_count: customerSubscriptionCreated.plan.interval_count,
           interval: customerSubscriptionCreated.plan.interval,
-          amount: customerSubscriptionCreated.plan.amount,
+          amount: customerSubscriptionCreated.plan.amount / 100,
           current_period_end: new Date(
             customerSubscriptionCreated.current_period_end * 1000
           ),

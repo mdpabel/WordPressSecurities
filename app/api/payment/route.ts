@@ -3,7 +3,7 @@ import { stripe } from "@/utils/stripe";
 import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
-const services = [
+export const services = [
   {
     id: 1,
     label: "Malware/hacked removal",

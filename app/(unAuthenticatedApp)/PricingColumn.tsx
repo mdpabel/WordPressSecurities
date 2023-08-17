@@ -1,6 +1,7 @@
 import { services } from "@/utils/pricingData";
 import SubscribeButton from "./SubscribeButton";
 import { TickIcon } from "@/components/icons";
+import PricingColumnBody from "./PricingColumnBody";
 
 export const PricingColumnHeader = ({
   price,
@@ -83,14 +84,7 @@ export const PricingColumn = ({
         months={months}
         discount={discount}
       />
-      <ul role="list" className="mb-8 space-y-4 text-left">
-        {allFeatures.map((service, index) => (
-          <li key={service} className="flex items-center space-x-3">
-            <TickIcon />
-            <span>{service}</span>
-          </li>
-        ))}
-      </ul>
+      <PricingColumnBody allFeatures={allFeatures} />
       <SubscribeButton planId={id} />
     </div>
   );

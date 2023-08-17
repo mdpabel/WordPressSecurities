@@ -4,10 +4,14 @@ import Button from "@/components/Button";
 import SubTitle from "../SubTitle";
 import Subscription from "./Subscription";
 import prisma from "@/db/mongo";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 
 const getSubscription = async () => {
   const user = await currentUser();
+
+  if (!user) {
+    redirectToSignIn();
+  }
 
   const subscriptions = await prisma.subscription.findMany({
     where: {
