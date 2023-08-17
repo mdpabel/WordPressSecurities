@@ -1,22 +1,27 @@
 import { authMiddleware, redirectToSignIn } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 const publicRoutes = [
   "/",
-  "/emergency",
-  "/pricing",
-  "/login",
-  "/register",
-  "/about",
-  "/forget-password",
-  "/api/stripe/webhooks",
-  "/api/stripe/paymentwebhooks",
-  "/api/profile",
+  "/emergency(.*)",
+  "/pricing(.*)",
+  "/login(.*)",
+  "/register(.*)",
+  "/about(.*)",
+  "/forget-password(.*)",
+  "/api(.*)",
 ];
 
 export default authMiddleware({
   publicRoutes: publicRoutes,
   afterAuth: (auth, req) => {
-    // console.log(auth);
+    // Don't need to check auth for public routes
+    if (auth.isPublicRoute) {
+      return NextResponse.next();
+    }
+
+    // If user tries to access a private route without being authenticated,
+    // redirect them to the sign in page
     if (!auth.userId && !auth.isPublicRoute) {
       return redirectToSignIn({ returnBackUrl: req.url });
     }

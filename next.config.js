@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   experimental: {
     serverActions: true,
@@ -11,7 +12,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  reactStrictMode : false
+  reactStrictMode : false,
 };
 
 module.exports = nextConfig;

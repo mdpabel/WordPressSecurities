@@ -34,12 +34,9 @@ export const POST = async (req: NextRequest) => {
       event = stripe.webhooks.constructEvent(reqString, sig, signingSecrete);
     } catch (err: any) {
       console.log(err);
-      return NextResponse.json(
-        `Webhook Error: ${err.message} ${sig} ${signingSecrete}`,
-        {
-          status: 400,
-        }
-      );
+      return NextResponse.json(`Webhook Error: ${err.message}`, {
+        status: 400,
+      });
     }
 
     // Handle the event
