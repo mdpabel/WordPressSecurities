@@ -57,7 +57,7 @@ const sidebarItems = [
     link: "/manage-subscriptions",
   },
   {
-    id: 2,
+    id: 3,
     Icon: SubScriptionIcon,
     label: "Orders",
     link: "/orders",

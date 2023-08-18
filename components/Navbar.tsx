@@ -39,12 +39,19 @@ const navItems = [
   },
 ];
 
-const Navbar = ({ dashboard = false }: { dashboard?: boolean }) => {
-  const { isLoggedIn } = useUser();
+const Navbar = ({
+  dashboard = false,
+  isLoggedIn,
+}: {
+  dashboard?: boolean;
+  isLoggedIn: boolean;
+}) => {
   const pathName = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
   const { isOpen, setIsOpen } = useSidebar();
+
+  console.log("isLoggedIn ", isLoggedIn);
 
   useEffect(() => {
     const event = (e: any) => {
