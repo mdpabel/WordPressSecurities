@@ -2,7 +2,8 @@ import { stripe } from "@/utils/stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import prisma from "@/db/mongo";
-import { currentUser, clerkClient } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
+import { clerkClient } from "@clerk/nextjs/api";
 
 export const POST = async (req: NextRequest) => {
   const user = await currentUser();
