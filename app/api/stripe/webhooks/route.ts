@@ -64,7 +64,7 @@ export const POST = async (req: NextRequest) => {
         },
       });
 
-      clerkClient.users.updateUser(user?.id!, {
+      await clerkClient.users.updateUser(user?.id!, {
         privateMetadata: {
           isSubscribed: true,
           role: "user",
@@ -98,7 +98,7 @@ export const POST = async (req: NextRequest) => {
         },
       });
 
-      clerkClient.users.updateUser(user?.id!, {
+      await clerkClient.users.updateUser(user?.id!, {
         privateMetadata: {
           role: "user",
           isSubscribed: true,
@@ -140,7 +140,7 @@ export const POST = async (req: NextRequest) => {
         },
       });
 
-      clerkClient.users.updateUser(user?.id!, {
+      await clerkClient.users.updateUser(user?.id!, {
         privateMetadata: {
           role: "user",
           isSubscribed: true,
