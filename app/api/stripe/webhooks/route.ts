@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import prisma from "@/db/mongo";
 import { currentUser } from "@clerk/nextjs";
-import { clerkClient } from "@clerk/nextjs/api";
 
 export const POST = async (req: NextRequest) => {
   const user = await currentUser();
@@ -65,20 +64,6 @@ export const POST = async (req: NextRequest) => {
         },
       });
 
-      await clerkClient.users.updateUser(user?.id!, {
-        privateMetadata: {
-          isSubscribed: true,
-          role: "user",
-          current_period_end: new Date(
-            customerSubscriptionCreated.current_period_end * 1000
-          ),
-        },
-        publicMetadata: {
-          isSubscribed: true,
-          role: "user",
-        },
-      });
-
       break;
     case "customer.subscription.deleted":
       const customerSubscriptionDeleted: any = event.data.object;
@@ -96,20 +81,6 @@ export const POST = async (req: NextRequest) => {
           cancellation_date: new Date(
             customerSubscriptionDeleted.canceled_at * 1000
           ),
-        },
-      });
-
-      await clerkClient.users.updateUser(user?.id!, {
-        privateMetadata: {
-          role: "user",
-          isSubscribed: true,
-          cancellation_date: new Date(
-            customerSubscriptionDeleted.canceled_at * 1000
-          ),
-        },
-        publicMetadata: {
-          isSubscribed: true,
-          role: "user",
         },
       });
 
@@ -138,18 +109,6 @@ export const POST = async (req: NextRequest) => {
           current_period_start: new Date(
             customerSubscriptionUpdated.current_period_start * 1000
           ),
-        },
-      });
-
-      await clerkClient.users.updateUser(user?.id!, {
-        privateMetadata: {
-          role: "user",
-          isSubscribed: true,
-          cancellation_date: null,
-        },
-        publicMetadata: {
-          isSubscribed: true,
-          role: "user",
         },
       });
 
