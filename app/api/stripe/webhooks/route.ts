@@ -64,6 +64,15 @@ export const POST = async (req: NextRequest) => {
         },
       });
 
+      await prisma.user.update({
+        where: {
+          id: profile.id,
+        },
+        data: {
+          is_subscribed: true,
+        },
+      });
+
       break;
     case "customer.subscription.deleted":
       const customerSubscriptionDeleted: any = event.data.object;
@@ -81,6 +90,15 @@ export const POST = async (req: NextRequest) => {
           cancellation_date: new Date(
             customerSubscriptionDeleted.canceled_at * 1000
           ),
+        },
+      });
+
+      await prisma.user.update({
+        where: {
+          id: profile.id,
+        },
+        data: {
+          is_subscribed: false,
         },
       });
 
@@ -109,6 +127,15 @@ export const POST = async (req: NextRequest) => {
           current_period_start: new Date(
             customerSubscriptionUpdated.current_period_start * 1000
           ),
+        },
+      });
+
+      await prisma.user.update({
+        where: {
+          id: profile.id,
+        },
+        data: {
+          is_subscribed: true,
         },
       });
 
