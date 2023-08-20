@@ -1,3 +1,5 @@
+"use client";
+
 export const FacebookIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

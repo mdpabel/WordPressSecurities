@@ -1,4 +1,8 @@
-import { authMiddleware, redirectToSignIn } from "@clerk/nextjs/server";
+import {
+  authMiddleware,
+  redirectToSignIn,
+  clerkClient,
+} from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 const publicRoutes = [

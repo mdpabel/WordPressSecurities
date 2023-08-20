@@ -2,7 +2,8 @@ import ComponentWrapper from "@/components/ComponentWrapper";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import { auth } from "@clerk/nextjs";
+import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 import {
   BookIcon,
@@ -22,33 +23,8 @@ const sidebarItems = [
   {
     id: 2,
     Icon: SubScriptionIcon,
-    label: "Manage Subscriptions",
-    link: "/manage-subscriptions",
-  },
-  {
-    id: 3,
-    Icon: SubScriptionIcon,
-    label: "Orders",
-    link: "/orders",
-  },
-  {
-    id: 4,
-    Icon: BookIcon,
-    label: "Security Reports",
-    link: "/security-reports",
-  },
-  {
-    id: 5,
-    Icon: SupportInboxIcon,
-    label: "Customer Support",
-    link: "/customer-support",
-  },
-
-  {
-    id: 6,
-    Icon: UserIcon,
-    label: "Manage Account",
-    link: "/manage-account",
+    label: "messages",
+    link: "/messages",
   },
 ];
 
@@ -57,11 +33,21 @@ export default async function UnAuthenticatedAppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = auth();
+  const user = await currentUser();
+
+  console.log(!user?.privateMetadata?.isAdmin);
+
+  if (!user) {
+    return <RedirectToSignIn />;
+  }
+
+  if (!user?.privateMetadata?.isAdmin) {
+    redirect("/dashboard");
+  }
 
   return (
     <div className="bg_primary">
-      <Header isLoggedIn={!!userId} dashboard={true} />
+      <Header isLoggedIn={!!user?.id} dashboard={true} />
       <ComponentWrapper className="flex">
         <Sidebar sidebarItems={sidebarItems} />
         <section className="p-4 -ml-64 md:ml-0 min-h-[80vh] flex-1">

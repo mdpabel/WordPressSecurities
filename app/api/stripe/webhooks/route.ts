@@ -2,7 +2,7 @@ import { stripe } from "@/utils/stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import prisma from "@/db/mongo";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser, clerkClient } from "@clerk/nextjs";
 
 export const POST = async (req: NextRequest) => {
   const user = await currentUser();
@@ -64,6 +64,20 @@ export const POST = async (req: NextRequest) => {
         },
       });
 
+      clerkClient.users.updateUser(user?.id!, {
+        privateMetadata: {
+          isSubscribed: true,
+          role: "user",
+          current_period_end: new Date(
+            customerSubscriptionCreated.current_period_end * 1000
+          ),
+        },
+        publicMetadata: {
+          isSubscribed: true,
+          role: "user",
+        },
+      });
+
       break;
     case "customer.subscription.deleted":
       const customerSubscriptionDeleted: any = event.data.object;
@@ -84,6 +98,20 @@ export const POST = async (req: NextRequest) => {
         },
       });
 
+      clerkClient.users.updateUser(user?.id!, {
+        privateMetadata: {
+          role: "user",
+          isSubscribed: true,
+          cancellation_date: new Date(
+            customerSubscriptionDeleted.canceled_at * 1000
+          ),
+        },
+        publicMetadata: {
+          isSubscribed: true,
+          role: "user",
+        },
+      });
+
       break;
     case "customer.subscription.updated":
       const customerSubscriptionUpdated: any = event.data.object;
@@ -100,7 +128,7 @@ export const POST = async (req: NextRequest) => {
         },
         data: {
           cancellation_date: new Date(
-            customerSubscriptionDeleted.canceled_at * 1000
+            customerSubscriptionUpdated.canceled_at * 1000
           ),
           interval_count: customerSubscriptionUpdated.plan.interval_count,
           interval: customerSubscriptionUpdated.plan.interval,

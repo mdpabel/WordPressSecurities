@@ -4,7 +4,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
     serverActionsBodySizeLimit: '2mb',
-    serverComponentsExternalPackages : ["@prisma/client"]
+    serverComponentsExternalPackages : ["@prisma/client", "pusher", "pusher-js"]
   },
   typescript: {
     ignoreBuildErrors: true,

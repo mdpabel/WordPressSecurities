@@ -4,13 +4,14 @@ import Button from "@/components/Button";
 import SubTitle from "../SubTitle";
 import Subscription from "./Subscription";
 import prisma from "@/db/mongo";
-import { currentUser, redirectToSignIn } from "@clerk/nextjs";
+import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
+import { Subscription as SubscriptionType } from "@prisma/client";
 
 const getSubscription = async () => {
   const user = await currentUser();
 
   if (!user) {
-    redirectToSignIn();
+    return <RedirectToSignIn />;
   }
 
   const subscriptions = await prisma.subscription.findMany({
@@ -25,7 +26,7 @@ const getSubscription = async () => {
 };
 
 const ManageSubscription = async () => {
-  const subscriptions = await getSubscription();
+  const subscriptions = (await getSubscription()) as SubscriptionType[];
 
   return (
     <div className="space-y-4">

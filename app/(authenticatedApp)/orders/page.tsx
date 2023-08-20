@@ -1,14 +1,14 @@
 import prisma from "@/db/mongo";
 import Order from "./Order";
 
-import { currentUser, redirectToSignIn } from "@clerk/nextjs";
+import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
 import Title from "../Title";
 
 const getOrders = async () => {
   const user = await currentUser();
 
   if (!user) {
-    redirectToSignIn();
+    <RedirectToSignIn />;
   }
 
   const orders = await prisma.order.findMany({
@@ -24,8 +24,6 @@ const getOrders = async () => {
 
 const Orders = async () => {
   const orders = await getOrders();
-
-  console.log(orders.length);
 
   return (
     <div className="space-y-4">

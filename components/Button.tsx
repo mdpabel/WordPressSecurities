@@ -1,82 +1,80 @@
-import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import Link from "next/link";
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react";
 
-interface IButton {
-  children: ReactNode;
-  onClick?: () => void;
-  className?: string;
-  type?: 'button' | 'submit' | 'reset' | 'link';
-  href?: string;
+type ButtonProps = (
+  | ButtonHTMLAttributes<HTMLButtonElement>
+  | (AnchorHTMLAttributes<HTMLAnchorElement> & {
+      type: "link";
+    })
+) & {
   outline?: boolean;
-  disabled?: boolean;
-}
+};
 
-const Button = ({
-  children,
-  onClick,
-  className,
-  type,
-  href,
-  outline = false,
-  disabled = false,
-}: IButton) => {
-  if (type == 'link' && outline && href) {
+const Button = (props: ButtonProps) => {
+  if (props.type == "link" && props.outline && props.href) {
     return (
       <Link
         className={
-          'border border-black font-medium px-3 md:px-6 py-2 rounded-md flex space-x-2 ' +
-          className
+          "border border-black font-medium px-3 md:px-6 py-2 rounded-md flex space-x-2 " +
+          props.className
         }
-        href={href}
-        onClick={onClick}
+        href={props.href}
+        onClick={props.onClick}
       >
-        {children}
+        {props.children}
       </Link>
     );
   }
 
-  if (type == 'link' && href) {
+  if (props.type == "link" && props.href) {
     return (
       <Link
         className={
-          'bg-black text-white px-3 md:px-6 py-2 rounded-md flex space-x-2 ' +
-          className
+          "bg-black text-white px-3 md:px-6 py-2 rounded-md flex space-x-2 " +
+          props.className
         }
-        href={href}
-        onClick={onClick}
+        href={props.href}
+        onClick={props.onClick}
       >
-        {children}
+        {props.children}
       </Link>
     );
   }
 
-  if (type !== 'link' && outline) {
+  if (props.type !== "link" && props.outline) {
     return (
       <button
-        disabled={disabled}
-        type={type}
+        disabled={props.disabled}
+        type={props.type}
         className={
           `border border-black font-medium px-3 md:px-6 py-2 rounded-md flex space-x-2 ` +
-          className
+          props.className
         }
-        onClick={onClick}
+        onClick={props.onClick}
       >
-        {children}
+        {props.children}
       </button>
     );
   }
 
-  return (
-    <button
-      disabled={disabled}
-      className={
-        `bg-black text-white px-10 py-2 rounded flex space-x-2 ` + className
-      }
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
+  if (props.type !== "link" && !props.outline) {
+    return (
+      <button
+        disabled={props.disabled}
+        className={
+          `bg-black text-white px-10 py-2 rounded flex space-x-2 ` +
+          props.className
+        }
+        onClick={props.onClick}
+      >
+        {props.children}
+      </button>
+    );
+  }
 };
 
 export default Button;

@@ -41,15 +41,9 @@ interface IPricingTables {
 }
 
 const PricingTables = ({ type }: any) => {
-  const zustandActiveTab = useTab.getState().active;
-
-  console.log("zustandActiveTab ", zustandActiveTab);
-
-  const activeType = zustandActiveTab ? zustandActiveTab : type;
-
   return (
     <div className="pt-10">
-      {activeType === "subscription" ? (
+      {type === "subscription" ? (
         <PricingTableTitle
           title="Safely Empower Your Digital Business"
           subTitle="Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
@@ -64,7 +58,7 @@ const PricingTables = ({ type }: any) => {
       <div className="flex justify-center">
         <Tabs className="flex space-x-10  px-4 py-2 rounded-full" tabs={tabs} />
       </div>
-      {activeType === "subscription" ? (
+      {type === "subscription" ? (
         <Subscription />
       ) : (
         <CustomizablePricingTable />

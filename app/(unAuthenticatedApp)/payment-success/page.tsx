@@ -1,6 +1,6 @@
 import prisma from "@/db/mongo";
 import { stripe } from "@/utils/stripe";
-import { auth, currentUser, redirectToSignIn } from "@clerk/nextjs";
+import { auth, currentUser, RedirectToSignIn } from "@clerk/nextjs";
 import { subscribe } from "diagnostics_channel";
 import React from "react";
 
@@ -17,7 +17,7 @@ const page = async ({ searchParams }: Props) => {
   // );
 
   // if (!userId) {
-  //   redirectToSignIn();
+  //   return <RedirectToSignIn />
   // }
 
   // const profile = await prisma.user.findFirst({
