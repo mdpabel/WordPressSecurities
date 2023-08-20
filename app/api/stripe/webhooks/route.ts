@@ -127,9 +127,7 @@ export const POST = async (req: NextRequest) => {
           id: subscription?.id,
         },
         data: {
-          cancellation_date: new Date(
-            customerSubscriptionUpdated.canceled_at * 1000
-          ),
+          cancellation_date: null,
           interval_count: customerSubscriptionUpdated.plan.interval_count,
           interval: customerSubscriptionUpdated.plan.interval,
           amount: customerSubscriptionUpdated.plan.amount,
