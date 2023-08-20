@@ -139,6 +139,19 @@ export const POST = async (req: NextRequest) => {
           ),
         },
       });
+
+      clerkClient.users.updateUser(user?.id!, {
+        privateMetadata: {
+          role: "user",
+          isSubscribed: true,
+          cancellation_date: null,
+        },
+        publicMetadata: {
+          isSubscribed: true,
+          role: "user",
+        },
+      });
+
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
