@@ -1,8 +1,8 @@
-import Tabs from "@/components/Tabs";
 import React from "react";
 import Subscription from "./Subscription";
 import CustomizablePricingTable from "./CustomizablePricingTable";
 import { useTab } from "@/stores/tabs";
+import Tabs from "@/components/common/Tabs";
 
 interface IPricingTableTitle {
   title: string;

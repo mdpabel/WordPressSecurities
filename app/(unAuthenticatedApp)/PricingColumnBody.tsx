@@ -1,4 +1,4 @@
-import { TickIcon } from "@/components/icons";
+import { TickIcon } from "@/components/common/icons";
 
 const PricingColumnBody = ({
   allFeatures,

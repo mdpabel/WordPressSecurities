@@ -1,4 +1,4 @@
-import { stripe } from "@/utils/stripe";
+import { stripe } from "@/lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import prisma from "@/db/mongo";

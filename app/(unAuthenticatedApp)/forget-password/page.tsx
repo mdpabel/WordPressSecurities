@@ -2,12 +2,12 @@
 import React, { SyntheticEvent, useState } from "react";
 import { useSignIn } from "@clerk/nextjs";
 import type { NextPage } from "next";
-import ComponentWrapper from "@/components/ComponentWrapper";
-import Logo from "@/components/Logo";
-import Alert from "@/components/Alert";
+import ComponentWrapper from "@/components/common/ComponentWrapper";
+import Logo from "@/components/layouts/Logo";
+import Alert from "@/components/common/Alert";
 import { Input } from "@/components/Input";
-import Button from "@/components/Button";
-import Spinner from "@/components/Spinner";
+import Button from "@/components/ui/Button";
+import Spinner from "@/components/common/Spinner";
 
 const SignInPage: NextPage = () => {
   const [email, setEmail] = useState("");

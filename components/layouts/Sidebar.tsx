@@ -8,12 +8,12 @@ import {
   SubScriptionIcon,
   SupportInboxIcon,
   UserIcon,
-} from "./icons";
+} from "../common/icons";
 import Link from "next/link";
 import { useSidebar } from "@/stores/sidebar";
 import { clsx } from "clsx";
 import { useAsync } from "@/hooks/useAsync";
-import Spinner from "./Spinner";
+import Spinner from "../common/Spinner";
 import { redirect } from "next/navigation";
 import { SignOutButton } from "@clerk/nextjs";
 
@@ -69,8 +69,6 @@ const Sidebar = ({ sidebarItems }: ISidebar) => {
 
     return () => document.removeEventListener("click", event, true);
   }, []);
-
-  console.log(loading);
 
   return (
     <aside

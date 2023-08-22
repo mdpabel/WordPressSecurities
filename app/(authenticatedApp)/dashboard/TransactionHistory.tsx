@@ -1,5 +1,5 @@
-import { formateDate } from "@/utils/formateDate";
-import { stripe } from "@/utils/stripe";
+import { stripe } from "@/lib/stripe";
+import { formateDate } from "@/lib/utils";
 import React from "react";
 
 const TransactionHistory = async () => {

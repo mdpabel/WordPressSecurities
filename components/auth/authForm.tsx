@@ -1,17 +1,11 @@
-import ComponentWrapper from "@/components/ComponentWrapper";
-import Logo from "@/components/Logo";
+import ComponentWrapper from "@/components/common/ComponentWrapper";
+import Logo from "@/components/layouts/Logo";
 import Link from "next/link";
-import React, {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-} from "react";
-import AuthButton from "./AuthButton";
-import Alert from "./Alert";
-import Button from "./Button";
-import Spinner from "./Spinner";
-import { Input } from "./Input";
+import React, { Dispatch, SetStateAction, SyntheticEvent } from "react";
+import Alert from "../common/Alert";
+import Button from "../ui/Button";
+import Spinner from "../common/Spinner";
+import { Input } from "../ui/Input";
 
 type IForm = {
   error: string;
@@ -50,7 +44,7 @@ const signInContent = {
 You're in! 🎉 Sign in successful!`,
 };
 
-const LoginSignupForm = (props: IForm) => {
+const AuthForm = (props: IForm) => {
   const content =
     props.modeType === "register" ? registerContent : signInContent;
 
@@ -139,4 +133,4 @@ const LoginSignupForm = (props: IForm) => {
   );
 };
 
-export default LoginSignupForm;
+export default AuthForm;

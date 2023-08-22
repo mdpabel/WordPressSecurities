@@ -3,7 +3,7 @@ import { SyntheticEvent, useState } from "react";
 import { useSignIn } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
-import LoginSignupForm from "@/components/LoginSignupForm";
+import AuthForm from "@/components/auth/authForm";
 
 export default function Page() {
   const { isLoaded, signIn, setActive } = useSignIn();
@@ -42,7 +42,7 @@ export default function Page() {
   };
 
   return (
-    <LoginSignupForm
+    <AuthForm
       loading={loading}
       error={error}
       handleSubmit={handleSubmit}

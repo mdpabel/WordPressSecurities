@@ -1,5 +1,4 @@
-import ComponentWrapper from "@/components/ComponentWrapper";
-import { startTransition } from "react";
+import ComponentWrapper from "@/components/common/ComponentWrapper";
 import Hero from "./Hero";
 import ServiceCarousel from "./ServiceCarousel";
 import PricingTables from "./PricingTables";

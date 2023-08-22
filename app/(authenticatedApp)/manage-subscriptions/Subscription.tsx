@@ -1,9 +1,9 @@
 import React from "react";
 import SubTitle from "../SubTitle";
 import { Subscription } from "@prisma/client";
-import { formateDate } from "@/utils/formateDate";
 import SubscriptionButtons from "./SubscriptionButtons";
 import clsx from "clsx";
+import { formateDate } from "@/lib/utils";
 
 const Subscription = ({ subscription }: { subscription: Subscription }) => {
   const interval = subscription.interval_count + " " + subscription.interval;

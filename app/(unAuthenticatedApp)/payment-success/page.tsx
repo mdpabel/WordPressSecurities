@@ -1,5 +1,5 @@
 import prisma from "@/db/mongo";
-import { stripe } from "@/utils/stripe";
+import { stripe } from "@/lib/stripe";
 import { auth, currentUser, RedirectToSignIn } from "@clerk/nextjs";
 import { subscribe } from "diagnostics_channel";
 import React from "react";

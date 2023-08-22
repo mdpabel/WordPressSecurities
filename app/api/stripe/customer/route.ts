@@ -1,4 +1,4 @@
-import { stripe } from "@/utils/stripe";
+import { stripe } from "@/lib/stripe";
 import { NextResponse } from "next/server";
 
 export const GET = () => {

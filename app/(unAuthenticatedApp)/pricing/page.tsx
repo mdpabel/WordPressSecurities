@@ -1,17 +1,17 @@
-import ComponentWrapper from '@/components/ComponentWrapper';
-import React from 'react';
-import PricingTables from '../PricingTables';
+import ComponentWrapper from "@/components/common/ComponentWrapper";
+import React from "react";
+import PricingTables from "../PricingTables";
 
 interface IPage {
   searchParams: {
-    type: 'subscription' | 'instant';
+    type: "subscription" | "instant";
   };
 }
 
 const solutions = ({ searchParams }: IPage) => {
   return (
     <ComponentWrapper>
-      <PricingTables type={searchParams?.type ?? 'subscription'} />
+      <PricingTables type={searchParams?.type ?? "subscription"} />
     </ComponentWrapper>
   );
 };

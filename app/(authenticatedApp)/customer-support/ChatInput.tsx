@@ -1,5 +1,5 @@
 "use client";
-import { client } from "@/utils/client";
+import { client } from "@/lib/client";
 import React, { FormEvent, SyntheticEvent } from "react";
 
 const ChatInput = () => {

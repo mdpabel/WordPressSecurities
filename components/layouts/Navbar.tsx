@@ -1,43 +1,20 @@
 "use client";
 import React, { useState, useEffect, useRef, use } from "react";
-import { BarIcon, CrossIcon, SidebarToggleIcon } from "@/components/icons";
+import {
+  BarIcon,
+  CrossIcon,
+  SidebarToggleIcon,
+} from "@/components/common/icons";
 import Link from "next/link";
-import ComponentWrapper from "./ComponentWrapper";
-import Button from "./Button";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
 import { useAsync } from "@/hooks/useAsync";
 import { useUser } from "@/stores/user";
 import { useSidebar } from "@/stores/sidebar";
-
-const navItems = [
-  {
-    id: 0,
-    label: "Home",
-    link: "",
-  },
-  {
-    id: 1,
-    label: "Pricing",
-    link: "pricing",
-  },
-  {
-    id: 2,
-    label: "About",
-    link: "about",
-  },
-  {
-    id: 3,
-    label: "Blog",
-    link: "blog",
-  },
-  {
-    id: 4,
-    label: "Contact",
-    link: "contact",
-  },
-];
+import { navItems } from "@/data/navItems";
+import ComponentWrapper from "../common/ComponentWrapper";
+import Button from "../ui/Button";
 
 const Navbar = ({
   dashboard = false,
@@ -50,8 +27,6 @@ const Navbar = ({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
   const { isOpen, setIsOpen } = useSidebar();
-
-  console.log("isLoggedIn ", isLoggedIn);
 
   useEffect(() => {
     const event = (e: any) => {

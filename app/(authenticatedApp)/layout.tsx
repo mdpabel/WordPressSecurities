@@ -1,7 +1,7 @@
-import ComponentWrapper from "@/components/ComponentWrapper";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import ComponentWrapper from "@/components/common/ComponentWrapper";
+import Footer from "@/components/layouts/Footer";
+import Header from "@/components/layouts/Header";
+import Sidebar from "@/components/layouts/Sidebar";
 import { auth } from "@clerk/nextjs";
 
 import {
@@ -10,7 +10,7 @@ import {
   SubScriptionIcon,
   SupportInboxIcon,
   UserIcon,
-} from "@/components/icons";
+} from "@/components/common/icons";
 
 const sidebarItems = [
   {

@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 import { useUser } from "@/stores/user";
-import { client } from "@/utils/client";
+import { client } from "@/lib/client";
 import { loadStripe } from "@stripe/stripe-js";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/common/Spinner";
 
 const SubscribeButton = ({ planId }: { planId: string }) => {
   const [loading, setLoading] = useState(false);

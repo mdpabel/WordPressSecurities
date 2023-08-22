@@ -1,5 +1,5 @@
 import prisma from "@/db/mongo";
-import { pusherServer } from "@/utils/pusher";
+import { pusherServer } from "@/lib/pusher";
 import { currentUser } from "@clerk/nextjs/app-beta";
 import { NextRequest, NextResponse } from "next/server";
 

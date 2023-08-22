@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/utils/stripe";
+import { stripe } from "@/lib/stripe";
 import prisma from "@/db/mongo";
 import { currentUser } from "@clerk/nextjs";
 

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import prisma from "@/db/mongo";
 import { currentUser } from "@clerk/nextjs";
-import { stripe } from "@/utils/stripe";
+import { stripe } from "@/lib/stripe";
 
 export const POST = async (req: NextRequest) => {
   try {

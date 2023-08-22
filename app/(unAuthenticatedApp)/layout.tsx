@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/layouts/Footer";
+import Header from "@/components/layouts/Header";
 import { useUser } from "@/stores/user";
 import ClientSideStateInitializer from "@/components/ClientSideStateInitializer";
 import { auth } from "@clerk/nextjs";

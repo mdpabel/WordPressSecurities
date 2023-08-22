@@ -1,11 +1,11 @@
 "use client";
-import ComponentWrapper from "@/components/ComponentWrapper";
+import ComponentWrapper from "@/components/common/ComponentWrapper";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useSignUp } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
-import LoginSignupForm from "@/components/LoginSignupForm";
+import AuthForm from "@/components/auth/authForm";
 import EmailVerificationForm from "@/components/EmailVerificationForm";
-import { client } from "@/utils/client";
+import { client } from "@/lib/client";
 
 export default function Page() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -87,7 +87,7 @@ export default function Page() {
   return (
     <ComponentWrapper className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0">
       {!pendingVerification && (
-        <LoginSignupForm
+        <AuthForm
           loading={loading}
           modeType="register"
           setEmailAddress={setEmailAddress}

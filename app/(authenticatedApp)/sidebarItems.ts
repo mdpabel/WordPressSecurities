@@ -4,7 +4,7 @@ import {
   SubScriptionIcon,
   SupportInboxIcon,
   UserIcon,
-} from "@/components/icons";
+} from "@/components/common/icons";
 
 export const sidebarItems = [
   {

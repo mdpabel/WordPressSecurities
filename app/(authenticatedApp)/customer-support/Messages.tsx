@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { pusherClient } from "@/utils/pusher";
+import { pusherClient } from "@/lib/pusher";
 import { useSession } from "@clerk/nextjs";
 import Message from "./Message";
 import { Message as MessageType } from "@prisma/client";

@@ -1,6 +1,6 @@
 "use client";
-import Spinner from "@/components/Spinner";
-import { client } from "@/utils/client";
+import Spinner from "@/components/common/Spinner";
+import { client } from "@/lib/client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 

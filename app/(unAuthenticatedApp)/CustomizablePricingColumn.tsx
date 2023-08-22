@@ -1,5 +1,5 @@
-import Button from "@/components/Button";
-import { TickIcon } from "@/components/icons";
+import Button from "@/components/ui/Button";
+import { TickIcon } from "@/components/common/icons";
 
 interface IPlan {
   price: number;

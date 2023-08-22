@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
-import Button from "@/components/Button";
-import { TickIcon } from "@/components/icons";
+import Button from "@/components/ui/Button";
+import { TickIcon } from "@/components/common/icons";
 import { useUser } from "@/stores/user";
-import Spinner from "@/components/Spinner";
-import { client } from "@/utils/client";
+import Spinner from "@/components/common/Spinner";
+import { client } from "@/lib/client";
 import { loadStripe } from "@stripe/stripe-js";
 
 interface IPlan {

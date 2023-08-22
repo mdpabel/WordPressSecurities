@@ -1,10 +1,10 @@
 "use client";
-import { Title } from "@/components/Title";
 import React, { ReactNode, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ServiceDescription from "./ServiceDescription";
+import { Title } from "@/components/common/Title";
 
 interface IServiceTitle {
   children: ReactNode;
