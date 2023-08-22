@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import React from "react";
 
 const Hero = () => {

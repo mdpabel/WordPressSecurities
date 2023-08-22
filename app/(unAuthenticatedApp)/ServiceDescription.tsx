@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import { TickIcon } from "@/components/common/icons";
 import Image from "next/image";
 

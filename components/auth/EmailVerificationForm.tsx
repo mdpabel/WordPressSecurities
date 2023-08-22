@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, SyntheticEvent } from "react";
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import Logo from "@/components/layouts/Logo";
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import Spinner from "@/components/common/Spinner";
 import Alert from "@/components/common/Alert";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/common/Input";
 
 interface IEmailVerificationForm {
   onPressVerify: (e: SyntheticEvent) => Promise<void>;

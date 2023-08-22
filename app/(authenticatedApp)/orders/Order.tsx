@@ -1,6 +1,6 @@
 import React from "react";
 import ServiceItem from "./ServiceItem";
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import OrderHeader from "./OrderHeader";
 import { type Order } from "@prisma/client";
 import { services } from "@/app/api/payment/route";

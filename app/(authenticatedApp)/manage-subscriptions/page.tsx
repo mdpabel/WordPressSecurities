@@ -1,6 +1,6 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import Title from "../Title";
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import SubTitle from "../SubTitle";
 import Subscription from "./Subscription";
 import prisma from "@/db/mongo";

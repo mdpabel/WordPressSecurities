@@ -2,10 +2,10 @@ import ComponentWrapper from "@/components/common/ComponentWrapper";
 import Logo from "@/components/layouts/Logo";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, SyntheticEvent } from "react";
-import Alert from "../common/Alert";
-import Button from "../ui/Button";
-import Spinner from "../common/Spinner";
-import { Input } from "../ui/Input";
+import Alert from "@/components/common/Alert";
+import Button from "@/components/common/Button";
+import Spinner from "@/components/common/Spinner";
+import { Input } from "@/components//common/Input";
 
 type IForm = {
   error: string;

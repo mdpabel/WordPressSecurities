@@ -1,10 +1,11 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 const Spinner = ({ className = "" }: { className?: string }) => {
   return (
     <div className="relative g-blue-500 rounded-xl">
       <svg
-        className={"w-6 h-6 animate-spin " + className}
+        className={cn("w-6 h-6 animate-spin ", className)}
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

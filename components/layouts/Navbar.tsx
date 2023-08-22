@@ -14,7 +14,7 @@ import { useUser } from "@/stores/user";
 import { useSidebar } from "@/stores/sidebar";
 import { navItems } from "@/data/navItems";
 import ComponentWrapper from "../common/ComponentWrapper";
-import Button from "../ui/Button";
+import Button from "../common/Button";
 
 const Navbar = ({
   dashboard = false,

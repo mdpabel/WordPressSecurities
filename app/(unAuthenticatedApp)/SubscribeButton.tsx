@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import Button from "@/components/common/Button";
 import { useUser } from "@/stores/user";
 import { client } from "@/lib/client";
 import { loadStripe } from "@stripe/stripe-js";

@@ -2,7 +2,12 @@ import React from "react";
 import Subscription from "./Subscription";
 import CustomizablePricingTable from "./CustomizablePricingTable";
 import { useTab } from "@/stores/tabs";
-import Tabs from "@/components/common/Tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/common/Tabs";
 
 interface IPricingTableTitle {
   title: string;
@@ -20,49 +25,38 @@ export const PricingTableTitle = ({ title, subTitle }: IPricingTableTitle) => {
   );
 };
 
-const tabs = [
-  {
-    id: 1,
-    label: "Recurring Subscriptions",
-    type: "subscription",
-  },
-
-  {
-    id: 2,
-    label: "Instant Fixes",
-    type: "instant",
-  },
-];
-
-interface IPricingTables {
-  type:
-    | ("subscription" | "instant")
-    | ("malware_removal" | "wp_security" | "prentration" | "ddos" | "errors");
-}
-
 const PricingTables = ({ type }: any) => {
   return (
     <div className="pt-10">
-      {type === "subscription" ? (
-        <PricingTableTitle
-          title="Safely Empower Your Digital Business"
-          subTitle="Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
+      <Tabs defaultValue="subscription" className="w-full">
+        <TabsContent value="subscription">
+          <PricingTableTitle
+            title="Safely Empower Your Digital Business"
+            subTitle="Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
         Engineered for Small to Large-scale Websites"
-        />
-      ) : (
-        <PricingTableTitle
-          title="Emergency Rescue Services"
-          subTitle="Get Your Website Back on Track in No Time - Swift and Effective Solutions for Critical Situations"
-        />
-      )}
-      <div className="flex justify-center">
-        <Tabs className="flex space-x-10  px-4 py-2 rounded-full" tabs={tabs} />
-      </div>
-      {type === "subscription" ? (
-        <Subscription />
-      ) : (
-        <CustomizablePricingTable />
-      )}
+          />
+        </TabsContent>
+        <TabsContent value="instant">
+          <PricingTableTitle
+            title="Emergency Rescue Services"
+            subTitle="Get Your Website Back on Track in No Time - Swift and Effective Solutions for Critical Situations"
+          />
+        </TabsContent>
+        <TabsList className="w-full ">
+          <TabsTrigger className="text-base" value="subscription">
+            Recurring Subscriptions
+          </TabsTrigger>
+          <TabsTrigger className="text-base" value="instant">
+            Instant Fixes
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="subscription">
+          <Subscription />
+        </TabsContent>
+        <TabsContent value="instant">
+          <CustomizablePricingTable />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
