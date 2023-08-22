@@ -5,7 +5,7 @@ import type { NextPage } from "next";
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import Logo from "@/components/layouts/Logo";
 import Alert from "@/components/common/Alert";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import Spinner from "@/components/common/Spinner";
 
