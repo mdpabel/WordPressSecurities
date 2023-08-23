@@ -16,10 +16,21 @@ const publicRoutes = [
   "/api(.*)",
 ];
 
+const authRoutes = ["/login", "/register"];
+
 export default authMiddleware({
   publicRoutes: publicRoutes,
   afterAuth: (auth, req) => {
     // Don't need to check auth for public routes
+
+    const isAuthRoutes =
+      req.nextUrl.pathname.startsWith("/login") ||
+      req.nextUrl.pathname.startsWith("/register");
+
+    if (auth.userId && isAuthRoutes) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
+
     if (auth.isPublicRoute) {
       return NextResponse.next();
     }

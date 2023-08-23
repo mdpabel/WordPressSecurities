@@ -4,6 +4,7 @@ import { Subscription } from "@prisma/client";
 import SubscriptionButtons from "./SubscriptionButtons";
 import clsx from "clsx";
 import { formateDate } from "@/lib/utils";
+import { Card } from "@/components/common/Card";
 
 const Subscription = ({ subscription }: { subscription: Subscription }) => {
   const interval = subscription.interval_count + " " + subscription.interval;
@@ -21,12 +22,7 @@ const Subscription = ({ subscription }: { subscription: Subscription }) => {
   const isActive = !!!subscription.cancellation_date;
 
   return (
-    <div
-      style={{
-        background: "#f6f6f6",
-      }}
-      className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center justify-between p-4 md:p-8 rounded shadow"
-    >
+    <Card className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center justify-between p-4 md:p-8 rounded shadow">
       <div className="space-y-2">
         <SubTitle>{packageName}</SubTitle>
         <h3>
@@ -44,7 +40,7 @@ const Subscription = ({ subscription }: { subscription: Subscription }) => {
         </h3>
       </div>
       <SubscriptionButtons subscription_id={subscription.subscription_id} />
-    </div>
+    </Card>
   );
 };
 

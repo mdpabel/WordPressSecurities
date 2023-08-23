@@ -19,7 +19,7 @@ const ManageAccount = () => {
             rootBox: "w-full",
             headerTitle: "hidden ",
             headerSubtitle: "hidden",
-            card: "shadow-none bg-[#f6f6f6] w-full ",
+            card: "shadow w-full rounded-lg border bg-card text-card-foreground",
             navbar: "hidden",
             navbarMobileMenuButton: "hidden",
             pageScrollBox: "py-0 pb-10",

@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "../Title";
+import { Card } from "@/components/common/Card";
 
 const SkeletonOrderHeader = () => {
   return (
@@ -47,12 +48,7 @@ const SkeletonServiceItem = () => {
 
 const SkeletonOrder = () => {
   return (
-    <div
-      style={{
-        background: "#f6f6f6",
-      }}
-      className="p-4 md:p-8 rounded shadow"
-    >
+    <Card className="p-4 md:p-8 rounded shadow">
       <SkeletonOrderHeader />
 
       <div className="mt-5">
@@ -63,7 +59,7 @@ const SkeletonOrder = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </Card>
   );
 };
 

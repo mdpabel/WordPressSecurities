@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ServiceDescription from "./ServiceDescription";
 import { Title } from "@/components/common/Title";
+import { serviceDetails, serviceList } from "@/data/serviceCarousel";
 
 interface IServiceTitle {
   children: ReactNode;
@@ -34,121 +35,6 @@ const ServiceTitle = ({
     </li>
   );
 };
-
-const serviceDetails = [
-  {
-    id: 1,
-    pricingTableId: [2, 1],
-    imgUrl: "/malwareRedirect.png",
-    title: "Unified communication and collaboration platform",
-    subTitle:
-      "Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
-    list: [
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-    ],
-  },
-
-  {
-    id: 2,
-    pricingTableId: [2, 7],
-    imgUrl: "/security.jpg",
-    title: "Unified communication and collaboration platform",
-    subTitle:
-      " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
-    list: [
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-    ],
-  },
-
-  {
-    id: 3,
-    pricingTableId: [2, 10],
-    imgUrl: "/testing.jpg",
-    title: "Unified communication and collaboration platform",
-    subTitle:
-      " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
-    list: [
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-    ],
-  },
-
-  {
-    id: 4,
-    pricingTableId: [2, 8],
-    imgUrl: "/ddos.jpg",
-    title: "Unified communication and collaboration platform",
-    subTitle:
-      " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
-    list: [
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-    ],
-  },
-
-  {
-    id: 5,
-    pricingTableId: [2, 9],
-    imgUrl: "/http500error.jpg",
-    title: "Unified communication and collaboration platform",
-    subTitle:
-      " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
-    list: [
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
-    ],
-  },
-];
-
-const serviceList = [
-  {
-    id: 1,
-    label: "Malware, Blacklist & Hacked Removal",
-  },
-  {
-    id: 2,
-    label: "Malware & Hacked Prevention",
-  },
-  {
-    id: 3,
-    label: "Penetration Testing",
-  },
-  {
-    id: 4,
-    label: "DDoS Protection",
-  },
-  {
-    id: 5,
-    label: "Say Goodbye to Errors",
-  },
-];
 
 const ServiceCarousel = () => {
   const sliderRef = useRef<Slider>(null);

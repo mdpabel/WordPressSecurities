@@ -42,14 +42,16 @@ const PricingTables = ({ type }: any) => {
             subTitle="Get Your Website Back on Track in No Time - Swift and Effective Solutions for Critical Situations"
           />
         </TabsContent>
-        <TabsList className="w-full ">
-          <TabsTrigger className="text-base" value="subscription">
-            Recurring Subscriptions
-          </TabsTrigger>
-          <TabsTrigger className="text-base" value="instant">
-            Instant Fixes
-          </TabsTrigger>
-        </TabsList>
+        <div className="w-full flex justify-center">
+          <TabsList>
+            <TabsTrigger className="text-base" value="subscription">
+              Recurring Subscriptions
+            </TabsTrigger>
+            <TabsTrigger className="text-base" value="instant">
+              Instant Fixes
+            </TabsTrigger>
+          </TabsList>
+        </div>
         <TabsContent value="subscription">
           <Subscription />
         </TabsContent>

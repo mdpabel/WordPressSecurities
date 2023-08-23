@@ -4,6 +4,7 @@ import Button from "@/components/common/Button";
 import OrderHeader from "./OrderHeader";
 import { type Order } from "@prisma/client";
 import { services } from "@/app/api/payment/route";
+import { Card } from "@/components/common/Card";
 
 const Order = ({ order }: { order: Order }) => {
   const itemsId = order.product_ids.split(",").map(Number) ?? [];
@@ -13,12 +14,7 @@ const Order = ({ order }: { order: Order }) => {
   );
 
   return (
-    <div
-      style={{
-        background: "#f6f6f6",
-      }}
-      className="p-4 md:p-8 rounded shadow"
-    >
+    <Card className="p-4 md:p-8 rounded shadow">
       <OrderHeader
         status={order.order_status}
         createAt={order?.createAt}
@@ -38,7 +34,7 @@ const Order = ({ order }: { order: Order }) => {
           ))}
         </ul>
       </div>
-    </div>
+    </Card>
   );
 };
 

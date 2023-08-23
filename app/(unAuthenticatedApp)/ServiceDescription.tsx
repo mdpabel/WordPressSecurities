@@ -22,9 +22,6 @@ const ServiceDescription = ({
   return (
     <div
       data-id={id}
-      style={{
-        background: "#F0F0F0",
-      }}
       className="w-full flex flex-col space-y-4 md:space-x-8 md:px-4 py-8 md:pb-3 md:pt-0 rounded"
     >
       <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">

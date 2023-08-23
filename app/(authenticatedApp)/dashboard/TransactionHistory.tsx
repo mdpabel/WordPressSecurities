@@ -1,3 +1,4 @@
+import { Card } from "@/components/common/Card";
 import { stripe } from "@/lib/stripe";
 import { formateDate } from "@/lib/utils";
 import React from "react";
@@ -17,12 +18,7 @@ const TransactionHistory = async () => {
   });
 
   return (
-    <div
-      style={{
-        background: "#f6f6f6",
-      }}
-      className="relative overflow-x-auto shadow-md sm:rounded-lg"
-    >
+    <Card className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase ">
           <tr>
@@ -56,7 +52,7 @@ const TransactionHistory = async () => {
           ))}
         </tbody>
       </table>
-    </div>
+    </Card>
   );
 };
 
