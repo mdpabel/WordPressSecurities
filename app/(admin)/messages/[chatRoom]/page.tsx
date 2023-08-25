@@ -1,8 +1,8 @@
 import CustomerProfile from "@/components/chat/CustomerProfile";
-import Messages from "../../../components/chat/Messages";
 import prisma from "@/db/mongo";
 import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
 import ChatInput from "@/components/chat/ChatInput";
+import Messages from "@/components/chat/Messages";
 
 const getMessages = async (chatRoomId: string) => {
   const initialMessages = await prisma.message.findMany({
@@ -14,14 +14,20 @@ const getMessages = async (chatRoomId: string) => {
   return initialMessages;
 };
 
-const CustomerSupports = async () => {
+type CustomerSupportsProps = {
+  params: {
+    chatRoom: string;
+  };
+};
+
+const ChatRoom = async ({ params }: CustomerSupportsProps) => {
   const user = await currentUser();
 
   if (!user) {
     return <RedirectToSignIn />;
   }
 
-  const initialMessages = await getMessages(user.id);
+  const initialMessages = await getMessages(params.chatRoom);
 
   return (
     <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
@@ -29,13 +35,13 @@ const CustomerSupports = async () => {
       <div>
         <Messages
           userId={user?.id}
-          channel={user?.id}
+          channel={params.chatRoom}
           initialMessages={initialMessages}
         />
-        <ChatInput channel={user?.id} chatRoomId={user?.id} />
+        <ChatInput channel={params.chatRoom} chatRoomId={params.chatRoom} />
       </div>
     </div>
   );
 };
 
-export default CustomerSupports;
+export default ChatRoom;

@@ -2,6 +2,7 @@ import { productFeatures, services } from "@/data/pricingData";
 import { stripe } from "@/lib/stripe";
 import { PricingColumn } from "./PricingColumn";
 import { calculatePercentageDiscount } from "@/lib/utils";
+import { Suspense } from "react";
 
 const Subscription = async () => {
   const { data } = await stripe.prices.list();

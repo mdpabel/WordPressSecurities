@@ -1,6 +1,6 @@
 import React from "react";
-import Title from "../Title";
 import { Card } from "@/components/common/Card";
+import { Title } from "@/components/common/Title";
 
 const Skeleton = () => {
   return (

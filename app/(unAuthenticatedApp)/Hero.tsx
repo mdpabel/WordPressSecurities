@@ -1,5 +1,5 @@
-import Button from "@/components/common/Button";
-import React from "react";
+import { Button } from "@/components/common/Button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -14,11 +14,11 @@ const Hero = () => {
         </h2>
       </div>
       <div className="space-x-4 flex">
-        <Button type="link" href="?type=subscription#subscription">
-          Fix hacked site
+        <Button asChild>
+          <Link href="?type=subscription#subscription">Fix hacked site</Link>
         </Button>
-        <Button type="link" outline={true} href="?type=instant#instant">
-          Plans & Pricing
+        <Button className="border border-black" variant="outline" asChild>
+          <Link href="?type=instant#instant"> Plans & Pricing</Link>
         </Button>
       </div>
     </section>

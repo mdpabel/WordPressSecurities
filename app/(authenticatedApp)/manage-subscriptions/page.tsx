@@ -1,11 +1,10 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
-import Title from "../Title";
 import Button from "@/components/common/Button";
-import SubTitle from "../SubTitle";
 import Subscription from "./Subscription";
 import prisma from "@/db/mongo";
 import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
 import { Subscription as SubscriptionType } from "@prisma/client";
+import { Title } from "@/components/common/Title";
 
 const getSubscription = async () => {
   const user = await currentUser();

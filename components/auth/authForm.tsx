@@ -3,9 +3,9 @@ import Logo from "@/components/layouts/Logo";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, SyntheticEvent } from "react";
 import Alert from "@/components/common/Alert";
-import Button from "@/components/common/Button";
 import Spinner from "@/components/common/Spinner";
 import { Input } from "@/components//common/Input";
+import { Button } from "../common/Button";
 
 type IForm = {
   error: string;
@@ -108,7 +108,9 @@ const AuthForm = (props: IForm) => {
             />
 
             <div className="flex items-center justify-between">
-              <Button type="submit">{loading ? <Spinner /> : "Login"}</Button>
+              <Button type="submit">
+                {loading ? <Spinner /> : content.buttonText}
+              </Button>
               <Link
                 href="/forgot-password"
                 className="text-sm font-medium text-primary-600 hover:underline "

@@ -1,6 +1,5 @@
 import { services } from "@/data/pricingData";
 import SubscribeButton from "./SubscribeButton";
-import { TickIcon } from "@/components/common/icons";
 import PricingColumnBody from "./PricingColumnBody";
 
 export const PricingColumnHeader = ({

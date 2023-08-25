@@ -2,7 +2,13 @@
 import { client } from "@/lib/client";
 import React, { FormEvent, SyntheticEvent } from "react";
 
-const ChatInput = () => {
+const ChatInput = ({
+  chatRoomId,
+  channel,
+}: {
+  channel: string;
+  chatRoomId: string;
+}) => {
   const sendMessage = (e: SyntheticEvent) => {
     e.preventDefault();
     const message = (e.currentTarget as HTMLFormElement)["message"]
@@ -12,6 +18,17 @@ const ChatInput = () => {
       method: "POST",
       data: {
         content: message,
+        chatRoomId,
+        channel,
+      },
+    });
+  };
+
+  const handleTyping = () => {
+    client("/api/userTyping", {
+      method: "POST",
+      data: {
+        channel,
       },
     });
   };
@@ -44,6 +61,9 @@ const ChatInput = () => {
           </button>
         </span>
         <input
+          onKeyUp={handleTyping}
+          required
+          minLength={2}
           type="text"
           name="message"
           placeholder="Write your message!"

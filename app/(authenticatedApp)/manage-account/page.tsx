@@ -1,6 +1,6 @@
 import React from "react";
-import Title from "../Title";
 import { UserProfile } from "@clerk/nextjs";
+import { Title } from "@/components/common/Title";
 
 const ManageAccount = () => {
   return (

@@ -1,6 +1,7 @@
-import Button from "@/components/common/Button";
+import { Button } from "@/components/common/Button";
 import { TickIcon } from "@/components/common/icons";
 import Image from "next/image";
+import Link from "next/link";
 
 interface IServiceDescription {
   id: number;
@@ -43,12 +44,10 @@ const ServiceDescription = ({
         </div>
       </div>
       <div className="flex justify-end">
-        <Button
-          type="link"
-          outline={true}
-          href={`?type=instant&items=${String(pricingTableId)}#instant`}
-        >
-          Fix the issue
+        <Button asChild variant="outline">
+          <Link href={`?type=instant&items=${String(pricingTableId)}#instant`}>
+            Fix the issue
+          </Link>
         </Button>
       </div>
     </div>

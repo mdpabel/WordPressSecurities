@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
-import Button from "@/components/common/Button";
 import { TickIcon } from "@/components/common/icons";
 import { useUser } from "@/stores/user";
 import Spinner from "@/components/common/Spinner";
 import { client } from "@/lib/client";
 import { loadStripe } from "@stripe/stripe-js";
+import { Button } from "@/components/common/Button";
+import Link from "next/link";
 
 interface IPlan {
   price: number;
@@ -78,22 +79,17 @@ export const PricingColumn = ({
       </ul>
       {showBuyNowButton && (
         <Button
-          outline={true}
+          variant="outline"
           onClick={handlePayment}
-          className="flex justify-center"
+          className="flex justify-center border border-black"
         >
           {loading ? <Spinner className="text-black" /> : "Buy now"}
         </Button>
       )}
 
       {showCreateAccountButton && (
-        <Button
-          className="flex justify-center"
-          href="/register"
-          type="link"
-          outline={true}
-        >
-          Get started
+        <Button asChild className="flex justify-center" variant="outline">
+          <Link href="/register">Get started</Link>
         </Button>
       )}
     </div>

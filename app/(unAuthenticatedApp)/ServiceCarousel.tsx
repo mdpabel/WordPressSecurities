@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ServiceDescription from "./ServiceDescription";
-import { Title } from "@/components/common/Title";
+import { TitleWithBottomBorder } from "@/components/common/Title";
 import { serviceDetails, serviceList } from "@/data/serviceCarousel";
 
 interface IServiceTitle {
@@ -56,7 +56,9 @@ const ServiceCarousel = () => {
 
   return (
     <div className="space-y-8">
-      <Title>Facing Website Security Concerns?</Title>
+      <TitleWithBottomBorder>
+        Facing Website Security Concerns?
+      </TitleWithBottomBorder>
       <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
         <ul className={`w-full md:w-1/3 space-y-4`}>
           {serviceList.map((item) => (

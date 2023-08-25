@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import Button from "@/components/common/Button";
 import { useUser } from "@/stores/user";
 import { client } from "@/lib/client";
 import { loadStripe } from "@stripe/stripe-js";
 import Spinner from "@/components/common/Spinner";
+import { Button } from "@/components/common/Button";
+import Link from "next/link";
 
 const SubscribeButton = ({ planId }: { planId: string }) => {
   const [loading, setLoading] = useState(false);
@@ -31,22 +32,17 @@ const SubscribeButton = ({ planId }: { planId: string }) => {
     <>
       {showSubscriptionButton && (
         <Button
-          outline={true}
+          variant="outline"
           onClick={() => handleSubscription(planId)}
-          className="flex justify-center"
+          className="flex justify-center border border-black"
         >
           {loading ? <Spinner className="text-black" /> : "Subscribe"}
         </Button>
       )}
 
       {showCreateAccountButton && (
-        <Button
-          className="flex justify-center"
-          href="/register"
-          type="link"
-          outline={true}
-        >
-          Get started
+        <Button asChild className="flex justify-center" variant="outline">
+          <Link href="/register"> Get started</Link>
         </Button>
       )}
     </>

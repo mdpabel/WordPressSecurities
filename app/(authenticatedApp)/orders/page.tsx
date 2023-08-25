@@ -2,7 +2,7 @@ import prisma from "@/db/mongo";
 import Order from "./Order";
 
 import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
-import Title from "../Title";
+import { Title } from "@/components/common/Title";
 
 const getOrders = async () => {
   const user = await currentUser();

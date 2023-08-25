@@ -1,4 +1,4 @@
-import Button from "@/components/common/Button";
+import { Button } from "@/components/common/Button";
 import { TickIcon } from "@/components/common/icons";
 
 interface IPlan {
@@ -41,7 +41,11 @@ export const PricingColumn = ({
           </li>
         ))}
       </ul>
-      <Button outline={true} onClick={() => {}} className="flex justify-center">
+      <Button
+        variant="outline"
+        onClick={() => {}}
+        className="flex justify-center border border-black"
+      >
         Subscribe
       </Button>
     </div>

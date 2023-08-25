@@ -14,7 +14,7 @@ import { useUser } from "@/stores/user";
 import { useSidebar } from "@/stores/sidebar";
 import { navItems } from "@/data/navItems";
 import ComponentWrapper from "../common/ComponentWrapper";
-import Button from "../common/Button";
+import { Button } from "../common/Button";
 
 const Navbar = ({
   dashboard = false,
@@ -109,12 +109,10 @@ const Navbar = ({
           </ul>
 
           <Button
-            type="link"
-            outline={true}
-            href="/emergency"
-            className="hidden lg:flex md:px-8 py-1 md:py-1"
+            variant="outline"
+            className="hidden lg:flex md:px-8 py-1 md:py-1 border border-black"
           >
-            Emergency Repair
+            <Link href="/emergency">Emergency Repair</Link>
           </Button>
 
           <button

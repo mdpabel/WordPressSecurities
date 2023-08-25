@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { currentUser } from "@clerk/nextjs";
-import Title from "../Title";
 import TransactionHistory from "./TransactionHistory";
 import TableSkeleton from "./TableSkeleton";
+import { Title } from "@/components/common/Title";
 
 const Dashboard = async () => {
   const user = await currentUser();

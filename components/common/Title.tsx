@@ -1,16 +1,28 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-export const Title = ({
+export const TitleWithBottomBorder = ({
   children,
-  className = '',
+  className = "",
 }: {
   children: ReactNode;
   className?: string;
 }) => (
   <div className={`relative` + className}>
-    <h2 className='z-10 inline-block py-2 font-semibold text-2xl'>
+    <h2 className="z-10 inline-block py-2 font-semibold text-2xl">
       {children}
     </h2>
-    <div className='w-full h-[2px] bg-gray-500 absolute bottom-0'></div>
+    <div className="w-full h-[2px] bg-gray-500 absolute bottom-0"></div>
   </div>
 );
+
+export const Title = ({ children }: { children: ReactNode }) => {
+  return <h1 className="text-2xl font-semibold">{children}</h1>;
+};
+
+export const SubTitle = ({ children }: { children: ReactNode }) => {
+  return (
+    <h2 className="text-2xl font-semibold flex space-x-2 items-center">
+      <span>{children}</span> <img src="/rocket.gif" />
+    </h2>
+  );
+};

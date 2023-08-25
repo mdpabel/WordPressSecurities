@@ -35,8 +35,6 @@ export default async function UnAuthenticatedAppLayout({
 }) {
   const user = await currentUser();
 
-  console.log(!user?.privateMetadata?.isAdmin);
-
   if (!user) {
     return <RedirectToSignIn />;
   }
