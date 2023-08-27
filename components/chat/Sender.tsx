@@ -2,7 +2,7 @@ import { clerkClient } from "@clerk/nextjs";
 import React from "react";
 
 const Sender = async ({ sender }: { sender: string }) => {
-  let fullName = "Unknown";
+  let fullName = "Mr. Unknown";
 
   if (sender) {
     const user = await clerkClient.users.getUser(sender);
