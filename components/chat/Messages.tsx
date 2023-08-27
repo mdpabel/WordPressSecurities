@@ -50,7 +50,7 @@ const Messages = ({
       pusherClient.unbind("typing", handleTyping);
       pusherClient.unbind("incoming-message", handleIncomingMessage);
     };
-  }, [channel, userId]);
+  }, [channel, userId, setIncomingMessages]);
 
   useEffect(() => {
     if (messageContainerRef.current) {
