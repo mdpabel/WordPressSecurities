@@ -46,7 +46,7 @@ const Messages = ({
     return () => {
       clearTimeout(timerId);
     };
-  }, [incomingMessages]);
+  }, []);
 
   useEffect(() => {
     if (messageContainerRef.current) {
