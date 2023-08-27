@@ -22,10 +22,11 @@ const CustomerSupports = async () => {
   }
 
   const initialMessages = await getMessages(user.id);
+  const sender = initialMessages.find((m) => m.senderId != user?.id)?.senderId;
 
   return (
-    <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
-      <CustomerProfile />
+    <div className="flex-1 p:2 sm:px-6 flex flex-col h-screen">
+      <CustomerProfile sender={sender!} />
       <div>
         <Messages
           userId={user?.id}

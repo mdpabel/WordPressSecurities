@@ -1,5 +1,6 @@
 import prisma from "@/db/mongo";
 import { pusherServer } from "@/lib/pusher";
+import { inputSanitize } from "@/lib/sanitizeInput";
 import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -18,15 +19,17 @@ export const POST = async (req: NextRequest) => {
     );
   }
 
+  const sanitizedContent = inputSanitize(content);
+
   pusherServer.trigger(channel, "incoming-message", {
-    content,
+    content: sanitizedContent,
     senderId: user?.id,
   });
 
   await prisma.message.create({
     data: {
       chatRoomId: chatRoomId,
-      content: content,
+      content: sanitizedContent,
       senderId: user?.id,
     },
   });

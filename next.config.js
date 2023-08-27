@@ -6,6 +6,9 @@ const nextConfig = {
     serverActionsBodySizeLimit: '2mb',
     serverComponentsExternalPackages : ["@prisma/client", "pusher", "pusher-js"]
   },
+  images : {
+    domains : ['res.cloudinary.com']
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
