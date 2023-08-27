@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { pusherClient } from "@/lib/pusher";
-import { clerkClient, useSession } from "@clerk/nextjs";
 import Message from "./Message";
 import { Message as MessageType } from "@prisma/client";
 
@@ -29,7 +28,7 @@ const Messages = ({
     let timerId: NodeJS.Timeout | undefined;
     pusherClient.subscribe(channel);
 
-    pusherClient.bind("typing", (data: any) => {
+    const handleTyping = (data: any) => {
       if (userId !== data.userId) {
         setIsTyping(true);
         clearTimeout(timerId);
@@ -37,16 +36,21 @@ const Messages = ({
           setIsTyping(false);
         }, 1000);
       }
-    });
+    };
 
-    pusherClient.bind("incoming-message", (message: InComingMessageType) => {
+    const handleIncomingMessage = (message: InComingMessageType) => {
       setIncomingMessages((prev) => [...prev, message]);
-    });
+    };
+
+    pusherClient.bind("typing", handleTyping);
+    pusherClient.bind("incoming-message", handleIncomingMessage);
 
     return () => {
       clearTimeout(timerId);
+      pusherClient.unbind("typing", handleTyping);
+      pusherClient.unbind("incoming-message", handleIncomingMessage);
     };
-  }, []);
+  }, [channel, userId]);
 
   useEffect(() => {
     if (messageContainerRef.current) {
