@@ -1,7 +1,17 @@
 import clsx from "clsx";
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "../common/Avatar";
 
-const Message = ({ right, message }: { right?: boolean; message: string }) => {
+const Message = ({
+  right,
+  message,
+  senderImg,
+}: {
+  right?: boolean;
+  message: string;
+  senderImg: string;
+}) => {
+  const isImg = senderImg.includes("https://img.clerk.com");
   return (
     <div
       className={clsx({
@@ -24,11 +34,11 @@ const Message = ({ right, message }: { right?: boolean; message: string }) => {
           </div>
         )}
       </div>
-      <img
-        src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-        alt="My profile"
-        className="w-6 h-6 rounded-full order-1"
-      />
+
+      <Avatar className="w-8 h-8">
+        <AvatarImage src={senderImg} alt="@shadcn" />
+        <AvatarFallback>Mr.</AvatarFallback>
+      </Avatar>
     </div>
   );
 };

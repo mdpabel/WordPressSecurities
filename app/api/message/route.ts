@@ -24,6 +24,7 @@ export const POST = async (req: NextRequest) => {
   pusherServer.trigger(channel, "incoming-message", {
     content: sanitizedContent,
     senderId: user?.id,
+    senderImg: user?.imageUrl ?? user?.firstName,
   });
 
   await prisma.message.create({
@@ -31,6 +32,7 @@ export const POST = async (req: NextRequest) => {
       chatRoomId: chatRoomId,
       content: sanitizedContent,
       senderId: user?.id,
+      senderImg: user?.imageUrl ?? user?.firstName,
     },
   });
 

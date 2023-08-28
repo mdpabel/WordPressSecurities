@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Image from "next/image";
 
 export const TitleWithBottomBorder = ({
   children,
@@ -22,7 +23,8 @@ export const Title = ({ children }: { children: ReactNode }) => {
 export const SubTitle = ({ children }: { children: ReactNode }) => {
   return (
     <h2 className="text-2xl font-semibold flex space-x-2 items-center">
-      <span>{children}</span> <img src="/rocket.gif" />
+      <span>{children}</span>{" "}
+      <Image width={50} height={50} src="/rocket.gif" alt="Rocket" />
     </h2>
   );
 };

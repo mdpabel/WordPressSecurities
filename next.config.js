@@ -14,6 +14,7 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+    dirs : [""]
   },
   reactStrictMode : false,
 };

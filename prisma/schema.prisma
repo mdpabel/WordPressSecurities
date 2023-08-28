@@ -81,4 +81,5 @@ model Message {
   createdAt  DateTime @default(now())
   senderId   String
   chatRoomId String
+  senderImg  String
 }

@@ -7,6 +7,7 @@ import { Message as MessageType } from "@prisma/client";
 type InComingMessageType = {
   content: string;
   senderId: string;
+  senderImg: string;
 };
 
 const Messages = ({
@@ -63,10 +64,11 @@ const Messages = ({
     <div
       ref={messageContainerRef}
       id="messages"
-      className="flex flex-col space-y-4 p-3 max-h-72 overflow-y-auto"
+      className="flex flex-col space-y-4 p-3 h-72 overflow-y-auto"
     >
       {initialMessages?.map((message) => (
         <Message
+          senderImg={message.senderImg}
           key={message.id}
           message={message.content}
           right={userId == message?.senderId}
@@ -78,6 +80,7 @@ const Messages = ({
           right={userId == message?.senderId}
           key={index}
           message={message.content}
+          senderImg={message.senderImg}
         />
       ))}
       {isTyping ? "typing..." : null}

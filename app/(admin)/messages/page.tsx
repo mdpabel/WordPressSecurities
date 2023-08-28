@@ -22,7 +22,7 @@ const page = async () => {
       <Title>Customers Messages</Title>
       <div className="grid grid-cols-1 md:grid-cols-2">
         {chatRooms.map((chatRoom) => (
-          <ChatRoom chatRoom={chatRoom} />
+          <ChatRoom key={chatRoom.id} chatRoom={chatRoom} />
         ))}
       </div>
     </div>

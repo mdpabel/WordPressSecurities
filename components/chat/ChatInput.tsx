@@ -36,7 +36,7 @@ const ChatInput = ({
     } else {
       setProfane(false);
     }
-  }, [message]);
+  }, [message, toast]);
 
   const sendMessage = (e: SyntheticEvent) => {
     e.preventDefault();

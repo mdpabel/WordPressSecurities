@@ -68,7 +68,7 @@ const Sidebar = ({ sidebarItems }: ISidebar) => {
     document.addEventListener("click", event, true);
 
     return () => document.removeEventListener("click", event, true);
-  }, []);
+  }, [setIsOpen]);
 
   return (
     <aside
