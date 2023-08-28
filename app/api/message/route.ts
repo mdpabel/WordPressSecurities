@@ -21,7 +21,7 @@ export const POST = async (req: NextRequest) => {
 
   const sanitizedContent = inputSanitize(content);
 
-  pusherServer.trigger(channel, "incoming-message", {
+  await pusherServer.trigger(channel, "incoming-message", {
     content: sanitizedContent,
     senderId: user?.id,
     senderImg: user?.imageUrl ?? user?.firstName,
