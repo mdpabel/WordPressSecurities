@@ -8,7 +8,6 @@ import { Input } from "@/components//common/Input";
 import { Button } from "../common/Button";
 
 type IForm = {
-  error: string;
   handleSubmit: (e: SyntheticEvent) => Promise<void>;
   setEmailAddress: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
@@ -48,14 +47,8 @@ const AuthForm = (props: IForm) => {
   const content =
     props.modeType === "register" ? registerContent : signInContent;
 
-  const {
-    modeType,
-    error,
-    handleSubmit,
-    setEmailAddress,
-    loading,
-    setPassword,
-  } = props;
+  const { modeType, handleSubmit, setEmailAddress, loading, setPassword } =
+    props;
 
   return (
     <ComponentWrapper className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0">
@@ -64,7 +57,6 @@ const AuthForm = (props: IForm) => {
       </div>
       <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          {error && <Alert intent="danger">{error}</Alert>}
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
             {content.header}
           </h1>
@@ -75,6 +67,8 @@ const AuthForm = (props: IForm) => {
                 <>
                   <div className="flex space-x-4">
                     <Input
+                      required
+                      min={2}
                       id="firstName"
                       placeholder="First name"
                       type="text"
@@ -82,6 +76,8 @@ const AuthForm = (props: IForm) => {
                       onChange={(e) => props.setFirstName(e.target.value)}
                     />
                     <Input
+                      required
+                      min={2}
                       id="lastName"
                       placeholder="Last Name"
                       type="text"
@@ -92,6 +88,8 @@ const AuthForm = (props: IForm) => {
                 </>
               )}
             <Input
+              required
+              min={6}
               id="email"
               placeholder="hello@wordpresssecurities.com"
               type="email"
@@ -100,6 +98,8 @@ const AuthForm = (props: IForm) => {
             />
 
             <Input
+              min={6}
+              required
               id="password"
               placeholder="*********"
               type="password"

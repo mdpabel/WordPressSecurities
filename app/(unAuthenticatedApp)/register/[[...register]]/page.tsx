@@ -6,8 +6,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import AuthForm from "@/components/auth/authForm";
 import EmailVerificationForm from "@/components/auth/EmailVerificationForm";
 import { client } from "@/lib/client";
+import { catchClerkError } from "@/lib/utils";
+import { useToast } from "@/components/common/use-toast";
 
 export default function Page() {
+  const { toast } = useToast();
   const { isLoaded, signUp, setActive } = useSignUp();
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -17,9 +20,7 @@ export default function Page() {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [verifying, setVerifying] = useState(false);
-  const [error, setError] = useState("");
   const [verificationError, setVerificationError] = useState("");
-  const router = useRouter();
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -36,21 +37,22 @@ export default function Page() {
         lastName,
       });
 
-      // send the email.
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-
-      // change the UI to our pending section.
+      toast({
+        title: "Kindly review your email for the verification code.",
+      });
       setPendingVerification(true);
       setLoading(false);
     } catch (err: any) {
-      console.error("test =>", JSON.stringify(err, null, 2));
-      setError(err?.errors[0]?.message ?? "Something went wrong!");
-
-      setLoading(false);
+      const error = catchClerkError(err);
+      toast({
+        title: "Authentication Error",
+        description: error,
+        variant: "destructive",
+      });
     }
   };
 
-  // This verifies the user using email code that is delivered.
   const onPressVerify = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (!isLoaded) {
@@ -63,24 +65,28 @@ export default function Page() {
         code,
       });
       if (completeSignUp.status !== "complete") {
-        /*  investigate the response, to see if there was an error
-         or if the user needs to complete more steps.*/
         setVerifying(false);
         console.log(JSON.stringify(completeSignUp, null, 2));
       }
       if (completeSignUp.status === "complete") {
         setVerifying(false);
-
+        toast({
+          title: `Successfully verified`,
+          description: "You will be redirected to dashboard",
+        });
         await setActive({ session: completeSignUp.createdSessionId });
         await client("/api/profile", {
           method: "POST",
         });
-        router.push("/dashboard");
       }
     } catch (err: any) {
       setVerifying(false);
-      console.log(err);
-      setVerificationError(err?.errors[0]?.longMessage);
+      const error = catchClerkError(err);
+      toast({
+        title: "Authentication Error",
+        description: error,
+        variant: "destructive",
+      });
     }
   };
 
@@ -93,7 +99,6 @@ export default function Page() {
           setEmailAddress={setEmailAddress}
           setPassword={setPassword}
           handleSubmit={handleSubmit}
-          error={error}
           setFirstName={setFirstName}
           setLastName={setLastName}
         />
