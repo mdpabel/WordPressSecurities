@@ -1,7 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Subscription from "./Subscription";
 import CustomizablePricingTable from "./CustomizablePricingTable";
-import { useTab } from "@/stores/tabs";
 import {
   Tabs,
   TabsContent,
@@ -10,7 +9,7 @@ import {
 } from "@/components/common/Tabs";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 
-const PricingTables = ({ type }: any) => {
+const PricingTables = () => {
   return (
     <div className="pt-10">
       <Tabs defaultValue="subscription" className="w-full">
