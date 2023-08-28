@@ -8,6 +8,7 @@ type InComingMessageType = {
   content: string;
   senderId: string;
   senderImg: string;
+  id: string;
 };
 
 const Messages = ({
@@ -40,6 +41,7 @@ const Messages = ({
     };
 
     const handleIncomingMessage = (message: InComingMessageType) => {
+      console.log(message);
       setIncomingMessages((prev) => [...prev, message]);
     };
 
@@ -78,7 +80,7 @@ const Messages = ({
       {incomingMessages?.map((message, index) => (
         <Message
           right={userId == message?.senderId}
-          key={index}
+          key={message.id}
           message={message.content}
           senderImg={message.senderImg}
         />

@@ -25,6 +25,7 @@ export const POST = async (req: NextRequest) => {
     content: sanitizedContent,
     senderId: user?.id,
     senderImg: user?.imageUrl ?? user?.firstName,
+    id: new Date().getTime(),
   });
 
   await prisma.message.create({
