@@ -12,6 +12,7 @@ const publicRoutes = [
   "/login(.*)",
   "/register(.*)",
   "/about(.*)",
+  "/faq(.*)",
   "/forget-password(.*)",
   "/api(.*)",
 ];

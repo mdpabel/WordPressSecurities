@@ -8,36 +8,21 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/common/Tabs";
-
-interface IPricingTableTitle {
-  title: string;
-  subTitle: string;
-}
-
-export const PricingTableTitle = ({ title, subTitle }: IPricingTableTitle) => {
-  return (
-    <div className="mx-auto max-w-screen-md text-center">
-      <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
-        {title}
-      </h2>
-      <p className="mb-5 font-light text-gray-600 sm:text-xl ">{subTitle}</p>
-    </div>
-  );
-};
+import { SectionTitleWithSubTitle } from "@/components/common/Title";
 
 const PricingTables = ({ type }: any) => {
   return (
     <div className="pt-10">
       <Tabs defaultValue="subscription" className="w-full">
         <TabsContent value="subscription">
-          <PricingTableTitle
+          <SectionTitleWithSubTitle
             title="Safely Empower Your Digital Business"
             subTitle="Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
         Engineered for Small to Large-scale Websites"
           />
         </TabsContent>
         <TabsContent value="instant">
-          <PricingTableTitle
+          <SectionTitleWithSubTitle
             title="Emergency Rescue Services"
             subTitle="Get Your Website Back on Track in No Time - Swift and Effective Solutions for Critical Situations"
           />

@@ -10,8 +10,13 @@ const TopBar = () => {
           <div>Discover how to protect your WordPress site from threats</div>
           <nav className="hidden md:block">
             <ul className="flex justify-between space-x-6">
-              <li>Contact</li>
-              <li>Privacy Policy</li>
+              <li>
+                <Link href="/faq">FAQ</Link>
+              </li>
+
+              <li>
+                <Link href="/privacy">Privacy Policy</Link>
+              </li>
             </ul>
           </nav>
         </div>

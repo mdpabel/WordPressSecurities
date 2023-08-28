@@ -28,3 +28,22 @@ export const SubTitle = ({ children }: { children: ReactNode }) => {
     </h2>
   );
 };
+
+interface IPricingTableTitle {
+  title: string;
+  subTitle: string;
+}
+
+export const SectionTitleWithSubTitle = ({
+  title,
+  subTitle,
+}: IPricingTableTitle) => {
+  return (
+    <div className="mx-auto max-w-screen-md text-center">
+      <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
+        {title}
+      </h2>
+      <p className="mb-5 font-light text-gray-600 sm:text-xl ">{subTitle}</p>
+    </div>
+  );
+};
