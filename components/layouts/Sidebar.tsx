@@ -75,7 +75,7 @@ const Sidebar = ({ sidebarItems }: ISidebar) => {
       ref={ref}
       id="logo-sidebar"
       className={clsx({
-        "left-0 z-40 w-64 h-screen pt-10 transition-transform  bg_primary border-r border-gray-400 md:translate-x-0 ":
+        "left-0 z-40 w-64 h-screen pt-10 transition-transform border-r border-gray-400 md:translate-x-0 bg-white":
           true,
         "-translate-x-full": !isOpen,
       })}
