@@ -7,11 +7,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/common/dropdown-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/common/accordion";
 import Logo from "./Logo";
 import Link from "next/link";
 import Image from "next/image";
 import { MainHeaderType } from "./Navbar";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { navItems } from "@/data/navItems";
 import {
   BarIcon,
@@ -59,7 +65,14 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="inline-block md:hidden w-screen mt-6">
           {navItems.map((navItem) =>
-            navItem.subMenu ? null : (
+            navItem.subMenu ? (
+              <NavItemWithSubMenu
+                setOpen={setOpen}
+                key={navItem.id}
+                label={navItem.label}
+                components={navItem.subMenu}
+              />
+            ) : (
               <NavItem
                 label={navItem.label}
                 link={navItem.link}
@@ -76,6 +89,47 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
+  );
+};
+
+type NavItemWithSubMenuProps = {
+  label: string;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  components: {
+    title: string;
+    href: string;
+    description: string;
+  }[];
+};
+
+const NavItemWithSubMenu = ({
+  components,
+  label,
+  setOpen,
+}: NavItemWithSubMenuProps) => {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger className="text-lg px-4 no-underline active:no-underline hover:no-underline">
+          {label}
+        </AccordionTrigger>
+        {components.map((component) => (
+          <AccordionContent
+            className="border-b pt-2"
+            key={component.title}
+            onClick={() => setOpen(false)}
+          >
+            <DropdownMenuItem className="py-0" asChild>
+              <Link href={component.href}>
+                <DropdownMenuLabel className="py-0 font-normal">
+                  {component.title}
+                </DropdownMenuLabel>
+              </Link>
+            </DropdownMenuItem>
+          </AccordionContent>
+        ))}
+      </AccordionItem>
+    </Accordion>
   );
 };
 
