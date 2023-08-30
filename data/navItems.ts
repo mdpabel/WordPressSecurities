@@ -21,25 +21,25 @@ export const navItems = [
       },
       {
         title: "Malware Prevention",
-        href: "/solutions/blacklist-removal",
+        href: "/solutions/malware-prevention",
         description:
           "A modal dialog that interrupts the user with important content and expects a response.",
       },
       {
         title: "Malware Removal",
-        href: "/solutions/blacklist-removal",
+        href: "/solutions/malware-removal",
         description:
           "A modal dialog that interrupts the user with important content and expects a response.",
       },
       {
         title: "Malware Detection",
-        href: "/solutions/blacklist-removal",
+        href: "/solutions/malware-detection",
         description:
           "A modal dialog that interrupts the user with important content and expects a response.",
       },
       {
         title: "DDoS Protection",
-        href: "/solutions/blacklist-removal",
+        href: "/solutions/ddos-protection",
         description:
           "A modal dialog that interrupts the user with important content and expects a response.",
       },

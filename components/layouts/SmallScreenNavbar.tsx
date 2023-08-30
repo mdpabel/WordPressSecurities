@@ -86,6 +86,8 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
           ) : (
             <NavItem label="Login" link="/login" />
           )}
+
+          <NavItem label="Emergency Repair" link="/emergency" />
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
