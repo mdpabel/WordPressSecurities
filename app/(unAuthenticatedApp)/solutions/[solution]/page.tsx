@@ -13,6 +13,8 @@ type SolutionType = {
   };
 };
 
+export const dynamic = "error";
+
 export async function generateStaticParams() {
   const solutions = getAllSolution();
 
