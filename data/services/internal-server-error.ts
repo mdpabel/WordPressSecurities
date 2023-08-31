@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const reasons = [
   "Server Misconfigurations: Incorrect server settings or configurations can lead to HTTP 500 internal server errors.",
   "Resource Limitations: Insufficient server resources, such as memory or processing power, can trigger this error.",
@@ -17,7 +19,7 @@ const approach = [
   "Continuous Monitoring: We establish monitoring tools to track server performance and quickly address any emerging issues.",
 ];
 
-export const solution = {
+export const internalServerError: DataType = {
   paragraph:
     "Are you seeing a 500 internal server error in WordPress? The internal server error is one of the most common WordPress errors. Since the error doesn’t give any other information, many beginners find it quite frustrating. In this article, we will show you how to easily fix the 500 internal server error in WordPress..",
   reasons: {

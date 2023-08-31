@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const reasons = [
   "Enhanced Security: SSL (Secure Sockets Layer) encrypts data transferred between a user's browser and your server, protecting sensitive information from potential threats.",
   "Trust and Credibility: Having an SSL certificate installed on your website displays a padlock symbol in the browser's address bar, indicating a secure connection and building trust with visitors.",
@@ -16,7 +18,8 @@ const approach = [
   "Renewal Setup and Monitoring: We set up reminders for certificate renewal and provide ongoing monitoring to ensure your SSL certificate remains valid and active.",
 ];
 
-export const sslInstallationService = {
+export const sslInstallation: DataType = {
+  paragraph: "SSL Installation",
   reasons: {
     title: "Benefits of SSL Certificate Installation",
     list: reasons,

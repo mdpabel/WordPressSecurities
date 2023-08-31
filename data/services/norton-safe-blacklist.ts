@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const reasons = [
   "Reputation Impact: Being blacklisted by Norton Safe Web can negatively affect your website's reputation and discourage visitors from accessing your site.",
   "Security Concerns: Norton Safe Web scans websites for malware, phishing, and other security vulnerabilities, aiming to protect users from potential threats.",
@@ -14,7 +16,8 @@ const approach = [
   "Continuous Monitoring: Our team provides continuous monitoring to promptly address any security concerns and maintain a secure online presence.",
 ];
 
-export const nortonBlacklistService = {
+export const nortonSafe: DataType = {
+  paragraph: "",
   reasons: {
     title: "Why Your Website is Blacklisted by Norton Safe Web",
     list: reasons,

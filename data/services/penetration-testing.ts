@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const benefits = [
   "Identify Vulnerabilities: Pinpoint potential weaknesses in your systems before malicious actors exploit them.",
   "Enhance Security: Strengthen your defenses by addressing vulnerabilities and improving security measures.",
@@ -13,7 +15,7 @@ const approach = [
   "Reporting: You receive a comprehensive report detailing vulnerabilities, risks, and recommended actions.",
 ];
 
-export const penetrationTesting = {
+export const penetrationTesting: DataType = {
   paragraph:
     "Protect your digital assets with our Penetration Testing service. Uncover vulnerabilities, assess risks, and fortify your defenses with our thorough security assessments.",
   reasons: {
@@ -24,8 +26,6 @@ export const penetrationTesting = {
   },
   approach: {
     title: "Our Penetration Testing Approach",
-    subTitle:
-      "Our comprehensive penetration testing process involves several stages to ensure a thorough evaluation of your security:",
     list: approach,
   },
   deliveryTime: {

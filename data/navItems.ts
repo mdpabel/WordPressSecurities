@@ -1,35 +1,50 @@
 const subMenus = [
   {
-    title: "Blacklist Removal",
-    href: "/solutions/blacklist-removal",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Malware Prevention",
-    href: "/solutions/malware-prevention",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
     title: "Malware Removal",
-    href: "/solutions/malware-removal",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    href: "/malware-removal",
   },
   {
-    title: "Malware Detection",
-    href: "/solutions/malware-detection",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    title: "Google Safe Browsing blacklist",
+    href: "/google-safe-browsing-blacklist",
+  },
+  {
+    title: "McAfee Blacklist",
+    href: "/mcafee-blacklist",
+  },
+  {
+    title: "Penetration Testing",
+    href: "/penetration-testing",
+  },
+
+  {
+    title: "Redirect Malware",
+    href: "/redirect-malware",
   },
   {
     title: "DDoS Protection",
-    href: "/solutions/ddos-protection",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    href: "/ddos-protection",
   },
-];
+  {
+    title: "AVAST Blacklist",
+    href: "/avast-blacklist",
+  },
+  {
+    title: "http500 Internal Server Error",
+    href: "/internal-server-error",
+  },
+  {
+    title: "Malware Prevention",
+    href: "/malware-prevention",
+  },
+  {
+    title: "Norton Safe Blacklist",
+    href: "/norton-safe-blacklist",
+  },
+  {
+    title: "SSL Certificate Installation",
+    href: "/ssl-certificate-installation",
+  },
+] as const;
 
 export const navItems = [
   {
@@ -57,7 +72,5 @@ export const navItems = [
 
 const subMenusItems = subMenus.map((sm) => sm.href);
 
-type SubMenuUnion = Exclude<
-  NonNullable<(typeof subMenusItems)[number]>,
-  undefined
->;
+export type SubMenuType = typeof subMenus;
+export type SubMenuHefType = (typeof subMenusItems)[0];

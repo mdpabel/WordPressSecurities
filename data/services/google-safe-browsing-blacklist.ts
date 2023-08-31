@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const reasons = [
   "Malicious Content Detection: Google Safe Browsing scans websites for malicious content, such as phishing pages, malware, and deceptive downloads.",
   "Protection for Users: When Google detects unsafe content on a website, it warns users with a red warning page, discouraging them from accessing the site.",
@@ -15,7 +17,8 @@ const approach = [
   "Monitoring and Maintenance: Our team continuously monitors your website to ensure it stays clear of any Google Safe Browsing issues.",
 ];
 
-export const googleSafeBrowsingService = {
+export const googleSafeBrowsing: DataType = {
+  paragraph: "",
   reasons: {
     title: "Why Your Website is on Google Safe Browsing Blacklist",
     list: reasons,

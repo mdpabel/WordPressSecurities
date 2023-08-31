@@ -16,7 +16,7 @@ import {
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import { MainHeaderType } from "./Navbar";
-import { navItems } from "@/data/navItems";
+import { SubMenuType, navItems } from "@/data/navItems";
 import { Button } from "../common/Button";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
@@ -39,6 +39,7 @@ function BigScreenNavbar({ isLoggedIn }: MainHeaderType) {
             <NavItemWithSubMenu
               key={navItem.id}
               label={navItem.label}
+              link={navItem.link}
               components={navItem.subMenu}
             />
           ) : (
@@ -94,14 +95,15 @@ const NavItem = ({ label, link, pathName }: NavItemProps) => {
 
 type NavItemWithSubMenuProps = {
   label: string;
-  components: {
-    title: string;
-    href: string;
-    description: string;
-  }[];
+  link: string;
+  components: SubMenuType;
 };
 
-const NavItemWithSubMenu = ({ components, label }: NavItemWithSubMenuProps) => {
+const NavItemWithSubMenu = ({
+  components,
+  label,
+  link,
+}: NavItemWithSubMenuProps) => {
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger className="text-lg">{label}</NavigationMenuTrigger>
@@ -109,12 +111,11 @@ const NavItemWithSubMenu = ({ components, label }: NavItemWithSubMenuProps) => {
         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
           {components.map((component) => (
             <ListItem
+              className="border-b border-gray-400"
               key={component.title}
               title={component.title}
-              href={component.href}
-            >
-              {component.description}
-            </ListItem>
+              href={link + "/" + component.href}
+            ></ListItem>
           ))}
         </ul>
       </NavigationMenuContent>

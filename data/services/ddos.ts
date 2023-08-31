@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const reasons = [
   "High Traffic Attacks: DDoS attacks flood your network with an overwhelming amount of traffic, causing disruptions and downtime.",
   "Competitive Advantage: Competitors may target your online services to gain an advantage in the market.",
@@ -12,7 +14,7 @@ const approach = [
   "24/7 Monitoring: Our dedicated team provides round-the-clock monitoring and rapid response to mitigate attacks in real-time.",
 ];
 
-const ddosProtection = {
+export const ddos: DataType = {
   paragraph:
     "Shield your business from the disruptive force of DDoS attacks with our comprehensive DDoS Protection Service. Safeguard your online presence, maintain user trust, and ensure uninterrupted services with our robust defense solutions.",
   reasons: {

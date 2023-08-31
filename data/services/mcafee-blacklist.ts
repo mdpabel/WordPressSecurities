@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const reasons = [
   "Trust and Reputation Impact: Being blacklisted by McAfee can lead to a loss of user trust, as visitors may avoid accessing your website due to security concerns.",
   "Search Engine Ranking: McAfee blacklist status can affect your website's search engine rankings and result in decreased organic traffic.",
@@ -14,7 +16,8 @@ const approach = [
   "Ongoing Monitoring: Our team provides ongoing monitoring to promptly address any security issues and prevent future blacklisting incidents.",
 ];
 
-export const mcafeeBlacklistService = {
+export const mcafeeBlacklist: DataType = {
+  paragraph: "",
   reasons: {
     title: "Why Your Website is Blacklisted by McAfee",
     list: reasons,

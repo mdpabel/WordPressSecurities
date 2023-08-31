@@ -18,7 +18,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MainHeaderType } from "./Navbar";
 import { Dispatch, SetStateAction, useState } from "react";
-import { navItems } from "@/data/navItems";
+import { SubMenuType, navItems } from "@/data/navItems";
 import {
   BarIcon,
   CrossIcon,
@@ -67,6 +67,7 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
           {navItems.map((navItem) =>
             navItem.subMenu ? (
               <NavItemWithSubMenu
+                link={navItem.link}
                 setOpen={setOpen}
                 key={navItem.id}
                 label={navItem.label}
@@ -97,16 +98,14 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
 type NavItemWithSubMenuProps = {
   label: string;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  components: {
-    title: string;
-    href: string;
-    description: string;
-  }[];
+  components: SubMenuType;
+  link: string;
 };
 
 const NavItemWithSubMenu = ({
   components,
   label,
+  link,
   setOpen,
 }: NavItemWithSubMenuProps) => {
   return (
@@ -122,7 +121,7 @@ const NavItemWithSubMenu = ({
             onClick={() => setOpen(false)}
           >
             <DropdownMenuItem className="py-0" asChild>
-              <Link href={component.href}>
+              <Link href={link + "/" + component.href}>
                 <DropdownMenuLabel className="py-0 font-normal">
                   {component.title}
                 </DropdownMenuLabel>

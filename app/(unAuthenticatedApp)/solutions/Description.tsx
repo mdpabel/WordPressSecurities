@@ -1,4 +1,5 @@
 import { Title, TitleWithBottomBorder } from "@/components/common/Title";
+import { DataType } from "@/data/serviices";
 import React, { ReactNode } from "react";
 
 const WrapperDescription = ({ children }: { children: ReactNode }) => {
@@ -85,7 +86,7 @@ const solution = {
   },
 };
 
-const Description = () => {
+const Description = ({ solution }: { solution: DataType }) => {
   return (
     <WrapperDescription>
       <DescriptionParagraph>{solution.paragraph}</DescriptionParagraph>

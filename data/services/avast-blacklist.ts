@@ -1,3 +1,5 @@
+import { DataType } from "../serviices";
+
 const reasons = [
   "Trust and Credibility Impact: Being blacklisted or flagged by Avast can erode user trust and discourage visitors from interacting with your website.",
   "Malware and Security Detection: Avast scans websites for malware, phishing attempts, and other security vulnerabilities, ensuring user safety.",
@@ -14,7 +16,8 @@ const approach = [
   "Ongoing Monitoring: Our team provides ongoing monitoring to swiftly address any security concerns and maintain a secure online presence.",
 ];
 
-export const avastBlacklistService = {
+export const avastBlacklist: DataType = {
+  paragraph: "",
   reasons: {
     title: "Reasons Your Website is Flagged or Blacklisted by Avast",
     list: reasons,
