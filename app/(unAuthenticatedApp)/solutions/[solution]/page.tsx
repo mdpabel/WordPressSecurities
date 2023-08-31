@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   const solutions = getAllSolution();
 
   return solutions.map((solution) => ({
-    solution: solution.page,
+    solution: solution.page.slice(1),
   }));
 }
 
