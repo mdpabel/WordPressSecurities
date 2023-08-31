@@ -4,7 +4,7 @@ import PricingCard from "../PricingCard";
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import Description from "../Description";
-import { getSolution } from "@/data/serviices";
+import { getAllSolution, getSolution } from "@/data/serviices";
 import { notFound } from "next/navigation";
 
 type SolutionType = {
@@ -12,6 +12,14 @@ type SolutionType = {
     solution: string;
   };
 };
+
+export async function generateStaticParams() {
+  const solutions = getAllSolution();
+
+  return solutions.map((solution) => ({
+    solution: solution.page,
+  }));
+}
 
 const Solution = ({ params }: SolutionType) => {
   const service = getSolution(params?.solution);
