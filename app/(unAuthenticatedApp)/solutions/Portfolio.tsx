@@ -1,37 +1,40 @@
+import { Button } from "@/components/common/Button";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import { RightArrow } from "@/components/common/icons";
+import Link from "next/link";
 import React from "react";
 
 const Work = () => {
   return (
     <div className="space-y-4">
-      <span className="bg-gray-100 text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+      <span className="bg-gray-100 text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
         Alphabet Inc.
       </span>
-      <h3 className="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
+      <h3 className="text-2xl font-bold leading-tight text-gray-900 ">
         Official website
       </h3>
-      <p className="text-lg font-normal text-gray-500 dark:text-gray-400">
+      <p className="text-lg font-normal text-gray-500">
         Flowbite helps you connect with friends, family and communities of
         people who share your interests.
       </p>
-      <a
-        href="#"
-        title=""
-        className="text-white bg-primary-700 justify-center hover:bg-primary-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+      <Button
+        className="border border-gray-500"
+        variant="outline"
         role="button"
       >
-        View case study
-        <RightArrow />
-      </a>
+        <Link className="flex space-x-3" href="/">
+          <span>View case study</span>
+          <RightArrow />
+        </Link>
+      </Button>
     </div>
   );
 };
 
 const Portfolio = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 antialiased">
-      <div className="max-w-screen-xl px-4 py-8 mx-auto lg:px-6 sm:py-16 lg:py-24">
+    <section className="bg-white  antialiased">
+      <div className="max-w-screen-xl px-4 mx-auto lg:px-6 ">
         <SectionTitleWithSubTitle
           subTitle=" Crafted with skill and care to help our clients grow their business!"
           title="Our Recent work"
