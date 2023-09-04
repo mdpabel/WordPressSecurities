@@ -9,7 +9,7 @@ export default async function UnAuthenticatedAppLayout({
 }) {
   const { userId } = auth();
 
-  console.log(userId);
+  console.log("userId ", userId);
 
   return (
     <>
