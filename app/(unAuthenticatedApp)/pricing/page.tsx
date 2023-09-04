@@ -1,7 +1,7 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import React from "react";
-import PricingTables from "../PricingTables";
 import FAQ from "@/components/FAQ";
+import PricingTables from "@/components/payment/PricingTables";
 
 interface IPage {
   searchParams: {
@@ -12,7 +12,7 @@ interface IPage {
 const solutions = ({ searchParams }: IPage) => {
   return (
     <ComponentWrapper>
-      <PricingTables type={searchParams?.type ?? "subscription"} />
+      <PricingTables />
       <FAQ />
     </ComponentWrapper>
   );

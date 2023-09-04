@@ -1,7 +1,8 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import Hero from "./Hero";
-import ServiceCarousel from "./ServiceCarousel";
-import PricingTables from "./PricingTables";
+import ServiceCarousel from "../../components/payment/ServiceCarousel";
+import PricingTables from "@/components/payment/PricingTables";
+import FAQ from "@/components/FAQ";
 
 const page = async () => {
   return (
@@ -9,6 +10,7 @@ const page = async () => {
       <Hero />
       <ServiceCarousel />
       <PricingTables />
+      <FAQ items={[7, 1, 4, 6, 10]} />
     </ComponentWrapper>
   );
 };

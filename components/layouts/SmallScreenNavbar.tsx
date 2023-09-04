@@ -10,7 +10,6 @@ import {
 import {
   Accordion,
   AccordionContent,
-  AccordionItem,
   AccordionTrigger,
 } from "@/components/common/accordion";
 import Logo from "./Logo";
@@ -58,9 +57,9 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
       >
         <DropdownMenuTrigger>
           {open ? (
-            <CrossIcon className="w-6 h-6 font-bold text-gray-800" />
+            <CrossIcon className="w-6 h-6  text-gray-800" />
           ) : (
-            <BarIcon className="w-6 h-6 font-bold text-gray-800" />
+            <BarIcon className="w-6 h-6 text-gray-800" />
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent className="inline-block md:hidden w-screen mt-6">
@@ -109,27 +108,24 @@ const NavItemWithSubMenu = ({
   setOpen,
 }: NavItemWithSubMenuProps) => {
   return (
-    <Accordion type="single" collapsible>
-      <AccordionItem value="item-1">
-        <AccordionTrigger className="text-lg px-4 no-underline active:no-underline hover:no-underline">
-          {label}
-        </AccordionTrigger>
+    <Accordion className="border-b-gray-300">
+      <AccordionTrigger className="text-lg px-4 py-0 pb-2">
+        {label}
+      </AccordionTrigger>
+
+      <AccordionContent
+        className="border-b pt-2"
+        onClick={() => setOpen(false)}
+      >
         {components.map((component) => (
-          <AccordionContent
-            className="border-b pt-2"
+          <li
             key={component.title}
-            onClick={() => setOpen(false)}
+            className="list-none pl-8 border-b border-b-gray-200 py-2"
           >
-            <DropdownMenuItem className="py-0" asChild>
-              <Link href={link + "/" + component.href}>
-                <DropdownMenuLabel className="py-0 font-normal">
-                  {component.title}
-                </DropdownMenuLabel>
-              </Link>
-            </DropdownMenuItem>
-          </AccordionContent>
+            <Link href={link + "/" + component.href}>{component.title}</Link>
+          </li>
         ))}
-      </AccordionItem>
+      </AccordionContent>
     </Accordion>
   );
 };
@@ -142,8 +138,10 @@ type NavItemProps = {
 const NavItem = ({ label, link }: NavItemProps) => {
   return (
     <DropdownMenuItem className="border-b border-gray-300 rounded-none" asChild>
-      <Link href={link}>
-        <DropdownMenuLabel className="text-lg">{label}</DropdownMenuLabel>
+      <Link className="font-normal" href={link}>
+        <DropdownMenuLabel className="text-lg font-normal">
+          {label}
+        </DropdownMenuLabel>
       </Link>
     </DropdownMenuItem>
   );

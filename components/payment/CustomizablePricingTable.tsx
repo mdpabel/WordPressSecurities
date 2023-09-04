@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
 import { TickIcon } from "@/components/common/icons";
-import { useUser } from "@/stores/user";
 import Spinner from "@/components/common/Spinner";
 import { client } from "@/lib/client";
 import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/common/Button";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 interface IPlan {
   price: number;
@@ -29,11 +29,11 @@ export const PricingColumn = ({
   const searchParams = useSearchParams();
   const selectedItems = searchParams.get("items")?.trim() ?? "2";
   const [loading, setLoading] = useState(false);
-  const { isLoggedIn, userId } = useUser();
+  const { isSignedIn } = useUser();
   const { features, price } = plan;
 
-  const showBuyNowButton = isLoggedIn;
-  const showCreateAccountButton = !isLoggedIn;
+  const showBuyNowButton = isSignedIn;
+  const showCreateAccountButton = !isSignedIn;
 
   console.log(selectedItems);
 

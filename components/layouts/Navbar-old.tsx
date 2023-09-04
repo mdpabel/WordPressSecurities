@@ -9,8 +9,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
-import { useAsync } from "@/hooks/useAsync";
-import { useUser } from "@/stores/user";
 import { useSidebar } from "@/stores/sidebar";
 import { navItems } from "@/data/navItems";
 import ComponentWrapper from "../common/ComponentWrapper";

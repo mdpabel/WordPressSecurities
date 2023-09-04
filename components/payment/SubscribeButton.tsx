@@ -1,18 +1,18 @@
 "use client";
 import { useState } from "react";
-import { useUser } from "@/stores/user";
 import { client } from "@/lib/client";
 import { loadStripe } from "@stripe/stripe-js";
 import Spinner from "@/components/common/Spinner";
 import { Button } from "@/components/common/Button";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 const SubscribeButton = ({ planId }: { planId: string }) => {
+  const { isSignedIn } = useUser();
   const [loading, setLoading] = useState(false);
-  const { isLoggedIn, userId } = useUser();
 
-  const showSubscriptionButton = isLoggedIn;
-  const showCreateAccountButton = !isLoggedIn;
+  const showSubscriptionButton = isSignedIn;
+  const showCreateAccountButton = !isSignedIn;
 
   const handleSubscription = async (planId: string) => {
     setLoading(true);

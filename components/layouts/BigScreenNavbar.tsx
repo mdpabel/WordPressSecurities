@@ -14,7 +14,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/common/navigation-menu";
 import Image from "next/image";
-import { useUser } from "@clerk/nextjs";
 import { MainHeaderType } from "./Navbar";
 import { SubMenuType, navItems } from "@/data/navItems";
 import { Button } from "../common/Button";

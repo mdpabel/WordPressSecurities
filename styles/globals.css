@@ -74,3 +74,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+details[open] summary:after {
+  transform: rotate(45deg);
+  font-size: 2rem;
+}
+
+details[open] summary {
+  font-weight: bold;
+}
+
+.accordion-wrapper .content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-wrapper details[open] + .content {
+  max-height: 800px;
+  transition: max-height 0.6s ease-in-out;
+}
