@@ -1,11 +1,16 @@
-import React, { DetailsHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import React, {
+  ComponentPropsWithoutRef,
+  DetailsHTMLAttributes,
+  HTMLAttributes,
+  ReactNode,
+} from "react";
 import { cn } from "@/lib/utils";
 
-type PropsType = HTMLAttributes<HTMLElement> & {
+type AccordionTriggerType = ComponentPropsWithoutRef<"summary"> & {
   children: ReactNode;
 };
 
-const AccordionTrigger = ({ children, ...props }: PropsType) => {
+const AccordionTrigger = ({ children, ...props }: AccordionTriggerType) => {
   return (
     <details>
       <summary
@@ -21,11 +26,15 @@ const AccordionTrigger = ({ children, ...props }: PropsType) => {
   );
 };
 
-const AccordionContent = ({ children, ...props }: PropsType) => {
+type Accordion = ComponentPropsWithoutRef<"div"> & {
+  children: ReactNode;
+};
+
+const AccordionContent = ({ children, ...props }: Accordion) => {
   return <div className="content font-normal">{children}</div>;
 };
 
-const Accordion = ({ children, ...props }: PropsType) => {
+const Accordion = ({ children, ...props }: Accordion) => {
   return (
     <div
       {...props}
