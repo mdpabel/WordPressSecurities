@@ -1,6 +1,6 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
-import CustomizablePricingTable from "../CustomizablePricingTable";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
+import CustomizablePricingTable from "@/components/payment/CustomizablePricingTable";
 
 const Emergency = () => {
   return (

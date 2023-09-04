@@ -8,8 +8,8 @@ import {
   CardTitle,
 } from "@/components/common/Card";
 
-import PricingColumnBody from "../PricingColumnBody";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
+import PricingColumnBody from "@/components/payment/PricingColumnBody";
 
 const PricingCard = () => {
   return (

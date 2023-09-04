@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import Subscription from "./Subscription";
-import CustomizablePricingTable from "./CustomizablePricingTable";
 import {
   Tabs,
   TabsContent,
@@ -8,6 +7,7 @@ import {
   TabsTrigger,
 } from "@/components/common/Tabs";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
+import CustomizablePricingTable from "./CustomizablePricingTable";
 
 const PricingTables = () => {
   return (
