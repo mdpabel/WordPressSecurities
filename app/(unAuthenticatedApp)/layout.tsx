@@ -9,6 +9,8 @@ export default async function UnAuthenticatedAppLayout({
 }) {
   const { userId } = auth();
 
+  console.log(userId);
+
   return (
     <>
       <header>
