@@ -7,6 +7,9 @@ import NProgressBar from "@/components/common/NProgressBar";
 
 export const metadata: Metadata = {
   title: "WordPress Securites | Your Source for WordPress Security",
+  verification: {
+    google: "mpslCEbhgCmYaHT2a_tiVmqBZGNLOojyMYxd69EdvAo",
+  },
 };
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
