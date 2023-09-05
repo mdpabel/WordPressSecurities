@@ -19,9 +19,11 @@ type SolutionType = {
 export async function generateStaticParams() {
   const solutions = getAllSolution();
 
-  return solutions.map((solution) => ({
+  const params = solutions.map((solution) => ({
     solution: solution.page.slice(1),
   }));
+
+  return params;
 }
 
 const Solution = ({ params }: SolutionType) => {
