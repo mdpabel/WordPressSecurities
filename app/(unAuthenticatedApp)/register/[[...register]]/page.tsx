@@ -9,6 +9,9 @@ import { client } from "@/lib/client";
 import { catchClerkError } from "@/lib/utils";
 import { useToast } from "@/components/common/use-toast";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 export default function Page() {
   const { toast } = useToast();
   const { isLoaded, signUp, setActive } = useSignUp();
