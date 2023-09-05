@@ -3,13 +3,10 @@ import React from "react";
 import FAQ from "@/components/FAQ";
 import PricingTables from "@/components/payment/PricingTables";
 
-interface IPage {
-  searchParams: {
-    type: "subscription" | "instant";
-  };
-}
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
-const solutions = ({ searchParams }: IPage) => {
+const solutions = () => {
   return (
     <ComponentWrapper>
       <PricingTables />

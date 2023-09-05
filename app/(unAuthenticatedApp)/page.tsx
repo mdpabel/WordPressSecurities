@@ -4,6 +4,9 @@ import ServiceCarousel from "../../components/payment/ServiceCarousel";
 import PricingTables from "@/components/payment/PricingTables";
 import FAQ from "@/components/FAQ";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 const page = async () => {
   return (
     <ComponentWrapper>
