@@ -37,7 +37,7 @@ export default function sitemap(): SitemapType {
   const solutions = getAllSolution();
 
   const dynamicPages: SitemapType = solutions.map((solution) => ({
-    url: siteUrl + "/solutions/" + solution.page,
+    url: siteUrl + "/solutions" + solution.page,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 1,
