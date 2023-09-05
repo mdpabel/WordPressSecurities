@@ -18,6 +18,7 @@ type SitemapType = Array<{
 }>;
 
 const unAuthenticatedPages = [
+  "",
   "emergency",
   "faq",
   "pricing",
