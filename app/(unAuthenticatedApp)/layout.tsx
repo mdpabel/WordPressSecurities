@@ -7,9 +7,9 @@ export default async function UnAuthenticatedAppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = auth();
+  // const { userId } = auth();
 
-  console.log("userId ", userId);
+  const userId = true;
 
   return (
     <>
