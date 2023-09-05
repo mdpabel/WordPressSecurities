@@ -24,8 +24,7 @@ import {
   SidebarToggleIcon,
 } from "@/components/common/icons";
 import { useSidebar } from "@/stores/sidebar";
-import { Button } from "../common/Button";
-import { usePathname } from "next/navigation";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
   const [open, setOpen] = useState(false);
@@ -81,11 +80,19 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
             )
           )}
 
-          {isLoggedIn ? (
+          <SignedIn>
+            <NavItem label="Dashboard" link="/dashboard" />
+          </SignedIn>
+
+          <SignedOut>
+            <NavItem label="Login" link="/login" />
+          </SignedOut>
+
+          {/* {isLoggedIn ? (
             <NavItem label="Dashboard" link="/dashboard" />
           ) : (
             <NavItem label="Login" link="/login" />
-          )}
+          )} */}
 
           <NavItem label="Emergency Repair" link="/emergency" />
         </DropdownMenuContent>

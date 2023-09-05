@@ -7,6 +7,9 @@ import Description from "../Description";
 import { getAllSolution, getSolution } from "@/data/serviices";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 type SolutionType = {
   params: {
     solution: string;

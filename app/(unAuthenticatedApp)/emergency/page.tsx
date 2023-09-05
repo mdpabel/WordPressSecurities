@@ -2,6 +2,9 @@ import ComponentWrapper from "@/components/common/ComponentWrapper";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import CustomizablePricingTable from "@/components/payment/CustomizablePricingTable";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 const Emergency = () => {
   return (
     <ComponentWrapper className="pt-10">

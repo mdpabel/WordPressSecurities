@@ -9,6 +9,9 @@ import { Input } from "@/components/common/Input";
 import Spinner from "@/components/common/Spinner";
 import { Button } from "@/components/common/Button";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 const SignInPage: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

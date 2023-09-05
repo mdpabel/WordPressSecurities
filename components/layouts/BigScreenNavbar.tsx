@@ -19,7 +19,7 @@ import { SubMenuType, navItems } from "@/data/navItems";
 import { Button } from "../common/Button";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
-import { CaretDownIcon } from "@radix-ui/react-icons";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 function BigScreenNavbar({ isLoggedIn }: MainHeaderType) {
   const pathName = usePathname() ?? "/";
@@ -51,11 +51,19 @@ function BigScreenNavbar({ isLoggedIn }: MainHeaderType) {
           )
         )}
 
-        {isLoggedIn ? (
+        <SignedIn>
+          <NavItem pathName={pathName} label="Dashboard" link="/dashboard" />
+        </SignedIn>
+
+        <SignedOut>
+          <NavItem pathName={pathName} label="Login" link="/login" />
+        </SignedOut>
+
+        {/* {isLoggedIn ? (
           <NavItem pathName={pathName} label="Dashboard" link="/dashboard" />
         ) : (
           <NavItem pathName={pathName} label="Login" link="/login" />
-        )}
+        )} */}
       </NavigationMenuList>
 
       <Button variant="outline" className="border border-black">
