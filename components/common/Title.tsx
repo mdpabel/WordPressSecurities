@@ -1,14 +1,18 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+type AttributeType = HTMLAttributes<HTMLElement>;
+
+type AttributesWithChildren = AttributeType & {
+  children: ReactNode;
+};
 
 export const TitleWithBottomBorder = ({
   children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) => (
-  <div className={`relative` + className}>
+  className,
+}: AttributesWithChildren) => (
+  <div className={cn("relative", className)}>
     <h2 className="z-10 inline-block py-2 font-semibold text-2xl">
       {children}
     </h2>
@@ -16,30 +20,38 @@ export const TitleWithBottomBorder = ({
   </div>
 );
 
-export const Title = ({ children }: { children: ReactNode }) => {
-  return <h1 className="text-2xl font-semibold">{children}</h1>;
+export const Title = ({ children, className }: AttributesWithChildren) => {
+  return (
+    <h1 className={cn("text-2xl font-semibold", className)}>{children}</h1>
+  );
 };
 
-export const SubTitle = ({ children }: { children: ReactNode }) => {
+export const SubTitle = ({ children, className }: AttributesWithChildren) => {
   return (
-    <h2 className="text-2xl font-semibold flex space-x-2 items-center">
+    <h2
+      className={cn(
+        "text-2xl font-semibold flex space-x-2 items-center",
+        className
+      )}
+    >
       <span>{children}</span>{" "}
       <Image width={50} height={50} src="/rocket.gif" alt="Rocket" />
     </h2>
   );
 };
 
-interface IPricingTableTitle {
+type IPricingTableTitle = AttributeType & {
   title: string;
   subTitle: string;
-}
+};
 
 export const SectionTitleWithSubTitle = ({
   title,
   subTitle,
+  className,
 }: IPricingTableTitle) => {
   return (
-    <div className="mx-auto max-w-screen-md text-center">
+    <div className={cn("mx-auto max-w-screen-md text-center", className)}>
       <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
         {title}
       </h2>

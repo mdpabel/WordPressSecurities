@@ -1,17 +1,21 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useAsync } from "@/hooks/useAsync";
 import { client } from "@/lib/client";
 import React, { FormEvent, SyntheticEvent, useEffect, useState } from "react";
 import { Button } from "../common/Button";
 import { FileUploadIcon, ImageGallery, RightArrow } from "../common/icons";
 import Spinner from "../common/Spinner";
-import Emoji from "./Emoji";
+// import Emoji from "./Emoji";
 import { Textarea } from "../common/Textarea";
 import { inputSanitize, isProfane } from "@/lib/sanitizeInput";
 import { useToast } from "../common/use-toast";
 import { cn } from "@/lib/utils";
-import UploadFile from "./UploadFile";
+// import UploadFile from "./UploadFile";
 import { Input } from "../common/Input";
+
+const Emoji = dynamic(() => import("./Emoji"));
+const UploadFile = dynamic(() => import("./UploadFile"));
 
 const ChatInput = ({
   chatRoomId,

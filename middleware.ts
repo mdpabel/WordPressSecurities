@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 const publicRoutes = [
   "/",
   "/emergency(.*)",
+  "/guides(.*)",
   "/solutions(.*)",
   "/pricing(.*)",
   "/login(.*)",

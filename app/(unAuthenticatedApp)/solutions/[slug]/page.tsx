@@ -12,22 +12,20 @@ export const revalidate = 86400;
 
 type SolutionType = {
   params: {
-    solution: string;
+    slug: string;
   };
 };
 
 export async function generateStaticParams() {
   const solutions = getAllSolution();
 
-  const params = solutions.map((solution) => ({
-    solution: solution.page.slice(1),
+  return solutions.map((solution) => ({
+    slug: solution.page.slice(1),
   }));
-
-  return params;
 }
 
 const Solution = ({ params }: SolutionType) => {
-  const service = getSolution(params?.solution);
+  const service = getSolution(params?.slug);
 
   if (!service) {
     return notFound();

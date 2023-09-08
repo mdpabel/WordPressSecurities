@@ -57,7 +57,8 @@ export default async function UnAuthenticatedAppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = auth();
+  // const { userId } = auth();
+  const userId = true;
 
   return (
     <div className="bg_primary">

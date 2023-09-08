@@ -7,7 +7,7 @@ const nextConfig = {
     serverComponentsExternalPackages : ["@prisma/client", "pusher", "pusher-js"]
   },
   images : {
-    domains : ['res.cloudinary.com']
+    domains : ['res.cloudinary.com', "images.ctfassets.net"]
   },
   typescript: {
     ignoreBuildErrors: true,

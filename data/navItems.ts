@@ -65,8 +65,8 @@ export const navItems = [
   },
   {
     id: 4,
-    label: "Contact",
-    link: "/contact",
+    label: "Guides",
+    link: "/guides",
   },
 ];
 

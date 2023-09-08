@@ -83,3 +83,12 @@ model Message {
   chatRoomId String
   senderImg  String
 }
+
+model PostView {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  postId String
+  views  Int
+}

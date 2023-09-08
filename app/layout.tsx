@@ -6,6 +6,7 @@ import { Toaster } from "@/components/common/toaster";
 import NProgressBar from "@/components/common/NProgressBar";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.SITE_URL!),
   title: "WordPress Securites | Your Source for WordPress Security",
   verification: {
     google: "mpslCEbhgCmYaHT2a_tiVmqBZGNLOojyMYxd69EdvAo",
