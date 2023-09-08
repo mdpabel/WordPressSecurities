@@ -36,10 +36,10 @@ const Guide = async ({ params }: GuideType) => {
   if (!items) {
     return notFound();
   }
-
   const item = items[0];
 
   const data = {
+    id: item.sys.id,
     title: item.fields.title,
     slug: item.fields.slug,
     content: item.fields.content,
@@ -55,7 +55,7 @@ const Guide = async ({ params }: GuideType) => {
           <h1 className="text-3xl font-bold">{data?.title}</h1>
           {/* <div>Last updated on {formateDate(data?.updatedAt)}</div> */}
           <SocialShare
-            id={"1"}
+            id={data.id}
             url={`https://wordpresssecurites.com/${params?.slug}`}
           />
           <RichTextRender content={data.content} />

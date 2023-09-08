@@ -35,26 +35,46 @@ export const POST = async (req: NextRequest, context: any) => {
     );
   }
 
-  const post = await prisma.postView.findFirst({
+  let post = await prisma.postView.findFirst({
     where: {
       postId,
     },
   });
 
-  await prisma.postView.upsert({
-    where: {
-      id: post?.id,
-    },
-    create: {
-      views: 1,
-      postId: postId as string,
-    },
-    update: {
-      views: {
-        increment: 1,
+  if (!post) {
+    post = await prisma.postView.create({
+      data: {
+        postId,
+        views: 1,
       },
-    },
-  });
+    });
+  } else {
+    post = await prisma.postView.update({
+      where: {
+        id: post.id,
+      },
+      data: {
+        views: {
+          increment: 1,
+        },
+      },
+    });
+  }
+
+  // await prisma.postView.upsert({
+  //   where: {
+  //     id: post?.id,
+  //   },
+  //   create: {
+  //     views: 1,
+  //     postId: postId as string,
+  //   },
+  //   update: {
+  //     views: {
+  //       increment: 1,
+  //     },
+  //   },
+  // });
 
   return NextResponse.json({
     success: true,
