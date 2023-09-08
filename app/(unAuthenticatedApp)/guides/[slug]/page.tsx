@@ -8,6 +8,19 @@ import { TypePostsSkeleton } from "@/types";
 import { notFound } from "next/navigation";
 import React from "react";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
+export async function generateStaticParams() {
+  const { items } = await contentfulClient.getEntries<TypePostsSkeleton>({
+    content_type: "posts",
+  });
+
+  return items.map((item) => ({
+    slug: item.fields.slug,
+  }));
+}
+
 type GuideType = {
   params: {
     slug: string;
