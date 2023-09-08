@@ -8,8 +8,8 @@ import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import { SmallCard } from "@/components/guides/SmallCard";
 import Newsletter from "@/components/guides/Newsletter";
 
-// export const dynamic = "force-static";
-// export const revalidate = 86400;
+export const dynamic = "force-static";
+export const revalidate = true;
 
 export type BigCardType = HTMLAttributes<HTMLDivElement> & {
   blog: {
