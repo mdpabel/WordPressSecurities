@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 export const revalidate = true;
 
 export const POST = async (req: NextRequest) => {
-  revalidatePath("/guides");
+  //   revalidatePath("/guides");
 
   return NextResponse.json({
     success: true,
