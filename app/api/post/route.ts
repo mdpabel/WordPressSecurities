@@ -7,7 +7,7 @@ export const POST = async (req: NextRequest) => {
 
   console.log(r, headers);
 
-  await revalidatePath("/guides");
+  revalidatePath("/guides");
 
   return NextResponse.json({
     success: true,
