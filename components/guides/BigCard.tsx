@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/common/Card";
-import { parseContentFulImage } from "@/lib/contentful";
 import { cn } from "@/lib/utils";
 import { PostType } from "@/lib/posts";
 

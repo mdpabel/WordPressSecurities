@@ -1,5 +1,4 @@
 import prisma from "@/db/mongo";
-import { contentfulClient } from "@/lib/contentful";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest, context: any) => {
@@ -21,19 +20,6 @@ export const GET = async (req: NextRequest, context: any) => {
 export const POST = async (req: NextRequest, context: any) => {
   const { params } = context;
   const { postId } = params;
-
-  const entry = await contentfulClient.getEntry(postId);
-
-  if (!entry || !postId) {
-    return NextResponse.json(
-      {
-        success: false,
-      },
-      {
-        status: 401,
-      }
-    );
-  }
 
   let post = await prisma.postView.findFirst({
     where: {

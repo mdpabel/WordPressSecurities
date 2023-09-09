@@ -1,5 +1,5 @@
 "use client";
-import React, { FormEvent, ReactElement, ReactNode } from "react";
+import React, { FormEvent } from "react";
 import { EmailIcon } from "@/components/common/icons";
 
 const Newsletter = () => {

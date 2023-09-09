@@ -1,7 +1,6 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
-import React, { HTMLAttributes } from "react";
+import React from "react";
 import { BigCard } from "@/components/guides/BigCard";
-import { Asset, UnresolvedLink } from "contentful";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import { SmallCard } from "@/components/guides/SmallCard";
 import Newsletter from "@/components/guides/Newsletter";
@@ -10,19 +9,6 @@ import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
 export const revalidate = 100;
-
-export type BigCardType = HTMLAttributes<HTMLDivElement> & {
-  blog: {
-    title: string;
-    slug: string;
-    content: Document | any;
-    coverImage: UnresolvedLink<"Asset"> | Asset<undefined, string>;
-    lastUpdated:
-      | `${number}-${number}-${number}T${number}:${number}:${number}Z`
-      | undefined;
-    previewDescription: string;
-  };
-};
 
 const Blog = async () => {
   const blogs: PostType[] = await getPosts();

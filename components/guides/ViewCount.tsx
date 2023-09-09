@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAsync } from "@/hooks/useAsync";
 import { client } from "@/lib/client";
 
@@ -7,6 +7,8 @@ const ViewCount = ({ id }: { id: string }) => {
   const { isLoading, isError, isSuccess, data, error, run } = useAsync();
 
   const api = "/api/post/" + id;
+
+  console.log(id);
 
   useEffect(() => {
     client(api, {
