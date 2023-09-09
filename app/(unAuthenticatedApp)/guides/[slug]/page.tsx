@@ -5,6 +5,39 @@ import SocialShare from "@/components/guides/SocialShare";
 import { PostType, getPostBySlug, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import React from "react";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug;
+
+  // fetch data
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {};
+  }
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: post?.seo?.title,
+    description: post?.seo?.metaDesc,
+    keywords: post?.seo?.metaKeywords,
+    openGraph: {
+      images: [post?.featuredImage, ...previousImages],
+    },
+  };
+}
 
 export const dynamic = "force-static";
 export const revalidate = 86400;

@@ -34,14 +34,40 @@ export async function fetchAPI(
   return json.data;
 }
 
+interface SeoMeta {
+  canonical: string;
+  cornerstone: boolean;
+  focuskw: string;
+  fullHead: string;
+  metaDesc: string;
+  metaKeywords: string;
+  metaRobotsNofollow: string;
+  metaRobotsNoindex: string;
+  opengraphAuthor: string;
+  opengraphDescription: string;
+  opengraphModifiedTime: string;
+  opengraphPublishedTime: string;
+  opengraphPublisher: string;
+  opengraphSiteName: string;
+  opengraphTitle: string;
+  opengraphType: string;
+  opengraphUrl: string;
+  readingTime: number;
+  title: string;
+  twitterDescription: string;
+  twitterTitle: string;
+}
+
 export type PostType = {
-  excerpt: string;
+  id: any;
+  excerpt: string | null;
   content: string;
   slug: string;
   featuredImage: string;
   title: string;
   featuredImageAlt: string;
   date: string;
+  seo: SeoMeta;
 };
 
 export async function getPosts(first = 10) {
@@ -89,7 +115,7 @@ export async function getPosts(first = 10) {
   }
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<PostType | null> {
   try {
     const data = await client(API_URL, {
       method: "POST",
@@ -154,6 +180,7 @@ export async function getPostBySlug(slug: string) {
       featuredImage: post?.featuredImage?.node?.sourceUrl,
       featuredImageAlt: post?.featuredImage?.node?.altText,
       date: formatDate(post?.date),
+      seo: post?.seo,
     };
   } catch (error) {
     console.error("Error fetching post:", error);
