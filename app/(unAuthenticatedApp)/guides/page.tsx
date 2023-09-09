@@ -8,8 +8,8 @@ import Newsletter from "@/components/guides/Newsletter";
 import { PostType, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
-// export const dynamic = "force-static";
-// export const revalidate = 100;
+export const dynamic = "force-static";
+export const revalidate = 100;
 
 export type BigCardType = HTMLAttributes<HTMLDivElement> & {
   blog: {

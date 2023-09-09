@@ -1,26 +1,21 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import BlogSidebar from "@/components/guides/BlogSidebar";
 import Popular from "@/components/guides/Popular";
-import RichTextRender from "@/components/guides/RichTextRender";
 import SocialShare from "@/components/guides/SocialShare";
-import { contentfulClient } from "@/lib/contentful";
-import { getPostBySlug } from "@/lib/posts";
-import { TypePostsSkeleton } from "@/types";
+import { PostType, getPostBySlug, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import React from "react";
 
-// export const dynamic = "force-static";
-// export const revalidate = 86400;
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
-// export async function generateStaticParams() {
-//   const { items } = await contentfulClient.getEntries<TypePostsSkeleton>({
-//     content_type: "posts",
-//   });
+export async function generateStaticParams() {
+  const posts: PostType[] = await getPosts();
 
-//   return items.map((item) => ({
-//     slug: item.fields.slug,
-//   }));
-// }
+  return posts.map((post) => ({
+    slug: post?.slug,
+  }));
+}
 
 type GuideType = {
   params: {
