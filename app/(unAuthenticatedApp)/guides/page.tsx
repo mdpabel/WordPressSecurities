@@ -1,12 +1,12 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
-import { contentfulClient } from "@/lib/contentful";
 import React, { HTMLAttributes } from "react";
 import { BigCard } from "@/components/guides/BigCard";
-import { TypePosts, TypePostsSkeleton, TypePostsFields } from "@/types";
 import { Asset, UnresolvedLink } from "contentful";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import { SmallCard } from "@/components/guides/SmallCard";
 import Newsletter from "@/components/guides/Newsletter";
+import { PostType, getPosts } from "@/lib/posts";
+import { notFound } from "next/navigation";
 
 // export const dynamic = "force-static";
 // export const revalidate = 100;
@@ -25,20 +25,13 @@ export type BigCardType = HTMLAttributes<HTMLDivElement> & {
 };
 
 const Blog = async () => {
-  const { items } = await contentfulClient.getEntries<TypePostsSkeleton>({
-    content_type: "posts",
-  });
+  const blogs: PostType[] = await getPosts();
 
-  const blogs = items.map((item) => ({
-    title: item.fields.title,
-    slug: item.fields.slug,
-    content: item.fields.content,
-    coverImage: item.fields.coverImage,
-    lastUpdated: item.fields.lastUpdated,
-    previewDescription: item.fields.previewDescription,
-  }));
+  if (!blogs) {
+    return notFound();
+  }
 
-  const moreBlogs = blogs.slice(3);
+  const moreBlogs = blogs?.slice(3);
 
   return (
     <ComponentWrapper className="pt-8 space-y-8">

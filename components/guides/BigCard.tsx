@@ -4,32 +4,35 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/common/Card";
 import { parseContentFulImage } from "@/lib/contentful";
 import { cn } from "@/lib/utils";
-import { BigCardType } from "../../app/(unAuthenticatedApp)/guides/page";
+import { PostType } from "@/lib/posts";
 
-export const BigCard = ({ blog, className }: BigCardType) => {
-  const image = parseContentFulImage(blog.coverImage);
+export type PostCardType = {
+  blog: PostType;
+  className?: string;
+};
 
+export const BigCard = ({ blog, className }: PostCardType) => {
   return (
     <Link href={"/guides/" + blog?.slug}>
       <Card className={cn("h-[350px]", className)}>
         <CardContent className="row-span-3">
           <Image
-            width={image?.width ?? 400}
-            height={image?.height ?? 400}
+            width={400}
+            height={400}
             className="object-cover object-center w-full h-full"
-            src={image?.src ?? ""}
-            alt={image?.alt ?? "Image missing"}
+            src={blog?.featuredImage}
+            alt={blog?.featuredImageAlt}
           />
         </CardContent>
-        <CardFooter className="flex flex-col justify-between space-y-4 h-1/2">
+        <CardFooter className="flex flex-col justify-between space-y-4 h-1/2 items-start">
           <div className="space-y-1">
-            <span className="font-medium text-gray-700">11 December 2022</span>
+            <span className="font-medium text-gray-700">{blog?.date}</span>
             <h2 className="text-lg font-semibold tracking-wide">
               {blog?.title?.slice(0, 45)}{" "}
               {blog?.title?.length > 45 ? "..." : ""}
             </h2>
             <p className="text-sm tracking-wide">
-              {blog?.previewDescription?.slice(0, 100)}
+              {blog?.excerpt?.slice(0, 100)}
             </p>
           </div>
         </CardFooter>

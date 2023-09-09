@@ -31,6 +31,7 @@
     "encoding": "^0.1.13",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "jsdom": "^22.1.0",
     "lucide-react": "^0.268.0",
     "next": "13.4.11",
     "next-cloudinary": "^4.18.1",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@types/bad-words": "^3.0.1",
     "@types/dompurify": "^3.0.2",
+    "@types/jsdom": "^21.1.2",
     "@types/node": "20.4.5",
     "@types/react": "18.2.16",
     "@types/react-dom": "18.2.7",

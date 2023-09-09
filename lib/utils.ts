@@ -11,7 +11,7 @@ export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const formateDate = (date: Date) => {
+export const formatDate = (date: Date) => {
   return new Date(date).toLocaleDateString(undefined, {
     day: "numeric",
     month: "long",

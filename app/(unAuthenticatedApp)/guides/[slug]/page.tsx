@@ -4,6 +4,7 @@ import Popular from "@/components/guides/Popular";
 import RichTextRender from "@/components/guides/RichTextRender";
 import SocialShare from "@/components/guides/SocialShare";
 import { contentfulClient } from "@/lib/contentful";
+import { getPostBySlug } from "@/lib/posts";
 import { TypePostsSkeleton } from "@/types";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -28,37 +29,22 @@ type GuideType = {
 };
 
 const Guide = async ({ params }: GuideType) => {
-  const { items } = await contentfulClient.getEntries<TypePostsSkeleton>({
-    content_type: "posts",
-    "fields.slug": params?.slug,
-  });
+  const blog = await getPostBySlug(params?.slug);
 
-  if (!items) {
-    return notFound();
-  }
-  const item = items[0];
-
-  const data = {
-    id: item.sys.id,
-    title: item.fields.title,
-    slug: item.fields.slug,
-    content: item.fields.content,
-    coverImage: item.fields.coverImage,
-    lastUpdated: item.fields.lastUpdated,
-    previewDescription: item.fields.previewDescription,
-  };
+  console.log(blog);
 
   return (
     <ComponentWrapper className="flex flex-col mt-10 space-y-8 lg:space-x-8 lg:flex-row lg:space-y-0">
       <div className="w-full space-y-10 lg:w-2/3">
         <div className="p-2 md:p-8 space-y-4 bg-white rounded ">
-          <h1 className="text-3xl font-bold">{data?.title}</h1>
+          <h1 className="text-3xl font-bold">{blog?.title}</h1>
           {/* <div>Last updated on {formateDate(data?.updatedAt)}</div> */}
           <SocialShare
-            id={data.id}
+            id={blog?.id}
             url={`https://wordpresssecurites.com/${params?.slug}`}
           />
-          <RichTextRender content={data.content} />
+
+          <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
         </div>
 
         <Popular />
