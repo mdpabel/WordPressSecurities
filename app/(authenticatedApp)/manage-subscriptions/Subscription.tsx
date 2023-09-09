@@ -2,7 +2,7 @@ import React from "react";
 import { Subscription } from "@prisma/client";
 import SubscriptionButtons from "./SubscriptionButtons";
 import clsx from "clsx";
-import { formateDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { Card } from "@/components/common/Card";
 import { SubTitle } from "@/components/common/Title";
 
@@ -18,7 +18,7 @@ const Subscription = ({ subscription }: { subscription: Subscription }) => {
   const price =
     packageName === "Annual" ? 99 : packageName === "Quarterly" ? 39 : 59;
 
-  const formateExpiredDate = formateDate(subscription.current_period_end);
+  const formateExpiredDate = formatDate(subscription.current_period_end);
   const isActive = !!!subscription.cancellation_date;
 
   return (

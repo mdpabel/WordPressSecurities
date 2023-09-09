@@ -9,7 +9,7 @@ import {
 import { Message } from "@prisma/client";
 import Link from "next/link";
 import { clerkClient } from "@clerk/nextjs";
-import { formateDate, formateDateAndTime } from "@/lib/utils";
+import { formatDate, formatDateAndTime } from "@/lib/utils";
 import prisma from "@/db/mongo";
 import { Button } from "@/components/common/Button";
 
@@ -35,7 +35,7 @@ const ChatRoom = async ({ chatRoom }: { chatRoom: Message }) => {
       <CardHeader>
         <CardTitle>Sender: {user.firstName + " " + user?.lastName}</CardTitle>
         <CardDescription>
-          {formateDateAndTime(chatRoom.updatedAt)}
+          {formatDateAndTime(chatRoom.updatedAt)}
         </CardDescription>
       </CardHeader>
 

@@ -38,7 +38,7 @@ const Guide = async ({ params }: GuideType) => {
       <div className="w-full space-y-10 lg:w-2/3">
         <div className="p-2 md:p-8 space-y-4 bg-white rounded ">
           <h1 className="text-3xl font-bold">{blog?.title}</h1>
-          {/* <div>Last updated on {formateDate(data?.updatedAt)}</div> */}
+          {/* <div>Last updated on {formatDate(data?.updatedAt)}</div> */}
           <SocialShare
             id={blog?.id}
             url={`https://wordpresssecurites.com/${params?.slug}`}

@@ -1,6 +1,6 @@
 import { Card } from "@/components/common/Card";
 import { stripe } from "@/lib/stripe";
-import { formateDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import React from "react";
 
 const TransactionHistory = async () => {
@@ -12,7 +12,7 @@ const TransactionHistory = async () => {
     return {
       fee: d.fee / 100,
       process: d.description,
-      createdAt: formateDate(new Date(d.created * 1000)),
+      createdAt: formatDate(new Date(d.created * 1000)),
       amount: d.amount / 100,
     };
   });

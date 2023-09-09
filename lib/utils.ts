@@ -19,7 +19,7 @@ export const formatDate = (date: Date) => {
   });
 };
 
-export const formateDateAndTime = (date: Date) => {
+export const formatDateAndTime = (date: Date) => {
   return new Date(date).toLocaleDateString(undefined, {
     day: "numeric",
     month: "long",

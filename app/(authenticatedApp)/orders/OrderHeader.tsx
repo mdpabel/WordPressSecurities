@@ -1,5 +1,5 @@
 import Button from "@/components/common/Button";
-import { formateDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { Order } from "@prisma/client";
 import clsx from "clsx";
 import React from "react";
@@ -26,7 +26,7 @@ const OrderHeader = ({
         </div>
         <div className="w-1/2 md:w-fit">
           <h2>Order placed</h2>
-          <h3 className="text-gray-700">{formateDate(createAt)}</h3>
+          <h3 className="text-gray-700">{formatDate(createAt)}</h3>
         </div>
         <div className="hidden md:block">
           <h2>Total amount</h2>
