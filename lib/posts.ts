@@ -97,17 +97,40 @@ export async function getPostBySlug(slug: string) {
         query: `query FetchPostBySlug($slug: String!) {
           postBy(slug: $slug) {
             title
-            id
-            excerpt
-            content
-            date
-            featuredImage {
-              node {
-                sourceUrl
-                altText
-              }
+          id
+          excerpt
+          content
+          date
+          seo {
+            canonical
+            cornerstone
+            focuskw
+            fullHead
+            metaDesc
+            metaKeywords
+            metaRobotsNofollow
+            metaRobotsNoindex
+            opengraphAuthor
+            opengraphDescription
+            opengraphModifiedTime
+            opengraphPublishedTime
+            opengraphPublisher
+            opengraphSiteName
+            opengraphTitle
+            opengraphType
+            opengraphUrl
+            readingTime
+            title
+            twitterDescription
+            twitterTitle
+          }
+          featuredImage {
+            node {
+              sourceUrl
+              altText
             }
-            slug
+          }
+          slug
           }
         }`,
         variables: {
