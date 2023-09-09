@@ -15,7 +15,7 @@ const ViewCount = ({ id }: { id: string }) => {
         postId: id,
       },
     });
-  }, [api]);
+  }, [api, id]);
 
   useEffect(() => {
     run(client(api));

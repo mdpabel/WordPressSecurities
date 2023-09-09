@@ -116,8 +116,6 @@ export async function getPostBySlug(slug: string) {
       },
     });
 
-    console.log("GraphQL Response:", data);
-
     const post = data?.data?.postBy;
 
     if (!post) {

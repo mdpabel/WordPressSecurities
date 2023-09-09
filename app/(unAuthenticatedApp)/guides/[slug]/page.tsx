@@ -9,18 +9,18 @@ import { TypePostsSkeleton } from "@/types";
 import { notFound } from "next/navigation";
 import React from "react";
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
+// export const dynamic = "force-static";
+// export const revalidate = 86400;
 
-export async function generateStaticParams() {
-  const { items } = await contentfulClient.getEntries<TypePostsSkeleton>({
-    content_type: "posts",
-  });
+// export async function generateStaticParams() {
+//   const { items } = await contentfulClient.getEntries<TypePostsSkeleton>({
+//     content_type: "posts",
+//   });
 
-  return items.map((item) => ({
-    slug: item.fields.slug,
-  }));
-}
+//   return items.map((item) => ({
+//     slug: item.fields.slug,
+//   }));
+// }
 
 type GuideType = {
   params: {
@@ -31,7 +31,7 @@ type GuideType = {
 const Guide = async ({ params }: GuideType) => {
   const blog = await getPostBySlug(params?.slug);
 
-  console.log(blog);
+  if (!blog) return notFound();
 
   return (
     <ComponentWrapper className="flex flex-col mt-10 space-y-8 lg:space-x-8 lg:flex-row lg:space-y-0">

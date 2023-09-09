@@ -55,7 +55,7 @@ const Blog = async () => {
 
       <div className="grid grid-cols-1 grid-rows-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {moreBlogs.map((blog) => (
-          <BigCard blog={blog} />
+          <BigCard key={blog?.slug} blog={blog} />
         ))}
       </div>
     </ComponentWrapper>
