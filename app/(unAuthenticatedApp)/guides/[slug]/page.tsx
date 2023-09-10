@@ -6,6 +6,14 @@ import { PostType, getPostBySlug, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import React from "react";
 import type { Metadata, ResolvingMetadata } from "next";
+import { formatDate } from "@/lib/utils";
+import { CalenderIcon } from "@/components/common/icons";
+import Image from "next/image";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/common/Avatar";
 
 type Props = {
   params: { slug: string };
@@ -66,7 +74,30 @@ const Guide = async ({ params }: GuideType) => {
       <div className="w-full space-y-10 lg:w-2/3">
         <div className="p-2 md:p-8 space-y-4 bg-white rounded ">
           <h1 className="text-3xl font-bold">{blog?.title}</h1>
-          {/* <div>Last updated on {formatDate(data?.updatedAt)}</div> */}
+          <div className="flex space-x-8">
+            <div className="flex space-x-2">
+              {/* <Image
+                src={blog.author?.avatarUrl!}
+                width={blog.author?.avatarWidth ?? 96}
+                height={blog.author?.avatarHeight ?? 96}
+                alt={blog?.author?.avatarUrlAlt!}
+              /> */}
+              <Avatar className="w-8 h-8">
+                <AvatarImage
+                  src={blog.author?.avatarUrl!}
+                  alt={blog?.author?.avatarUrlAlt!}
+                />
+                <AvatarFallback>{blog?.author?.firstName}</AvatarFallback>
+              </Avatar>
+              <span>
+                By {blog?.author?.firstName + " " + blog?.author?.lastName}
+              </span>
+            </div>
+            <div className="flex space-x-2">
+              <CalenderIcon />
+              <span>{blog?.date}</span>
+            </div>
+          </div>
           <SocialShare
             id={blog?.id}
             url={`https://wordpresssecurites.com/${params?.slug}`}

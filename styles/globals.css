@@ -229,3 +229,8 @@ details[open] summary {
   @apply bg-zinc-900;
 }
 
+
+
+.pp-multiple-authors-boxes-wrapper{
+  display: none;
+}

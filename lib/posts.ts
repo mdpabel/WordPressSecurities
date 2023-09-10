@@ -68,6 +68,15 @@ export type PostType = {
   featuredImageAlt: string;
   date: string;
   seo: SeoMeta;
+  author?: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatarUrl: string;
+    avatarUrlAlt: string;
+    avatarHeight: number;
+    avatarWidth: number;
+  };
 };
 
 export async function getPosts(first = 10) {
@@ -127,6 +136,27 @@ export async function getPostBySlug(slug: string): Promise<PostType | null> {
           excerpt
           content
           date
+          author {
+            node {
+              id
+              avatar {
+                default
+                extraAttr
+                forceDefault
+                foundAvatar
+                height
+                isRestricted
+                rating
+                scheme
+                size
+                url
+                width
+              }
+              firstName
+              lastName
+              email
+            }
+          }
           seo {
             canonical
             cornerstone
@@ -166,6 +196,7 @@ export async function getPostBySlug(slug: string): Promise<PostType | null> {
     });
 
     const post = data?.data?.postBy;
+    const author = post?.author?.node;
 
     if (!post) {
       return null; // Post not found
@@ -181,6 +212,15 @@ export async function getPostBySlug(slug: string): Promise<PostType | null> {
       featuredImageAlt: post?.featuredImage?.node?.altText,
       date: formatDate(post?.date),
       seo: post?.seo,
+      author: {
+        firstName: author?.firstName,
+        lastName: author?.lastName,
+        email: author?.email,
+        avatarUrl: author?.avatar?.url,
+        avatarHeight: author?.avatar?.height,
+        avatarWidth: author?.avatar?.width,
+        avatarUrlAlt: author?.lastName,
+      },
     };
   } catch (error) {
     console.error("Error fetching post:", error);
