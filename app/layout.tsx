@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),
   title: "WordPress Securites | Your Source for WordPress Security",
   verification: {
-    google: "mpslCEbhgCmYaHT2a_tiVmqBZGNLOojyMYxd69EdvAo",
+    google: "GaE_YhZELr4ZqjhfgKydadvgHdzBlfKJGC1UZKIZono",
   },
 };
 
