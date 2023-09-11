@@ -15,7 +15,7 @@ import {
   AvatarImage,
 } from "@/components/common/Avatar";
 
-// export const revalidate = 1;
+export const revalidate = 1;
 
 type Props = {
   params: { slug: string };
