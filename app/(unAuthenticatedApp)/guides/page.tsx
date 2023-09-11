@@ -7,8 +7,8 @@ import Newsletter from "@/components/guides/Newsletter";
 import { PostType, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
-// export const dynamic = "force-static";
-export const revalidate = true;
+export const dynamic = "force-static";
+export const revalidate = 1;
 
 const Blog = async () => {
   const blogs: PostType[] = await getPosts();
