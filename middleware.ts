@@ -19,8 +19,6 @@ const publicRoutes = [
   "/api(.*)",
 ];
 
-const authRoutes = ["/login", "/register"];
-
 export default authMiddleware({
   publicRoutes: publicRoutes,
   afterAuth: (auth, req) => {
