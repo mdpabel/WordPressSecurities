@@ -103,7 +103,10 @@ const Guide = async ({ params }: GuideType) => {
             url={`https://wordpresssecurites.com/${params?.slug}`}
           />
 
-          <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
+          <div
+            className="prose"
+            dangerouslySetInnerHTML={{ __html: blog?.content }}
+          />
         </div>
 
         <Popular />

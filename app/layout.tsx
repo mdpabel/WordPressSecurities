@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { ClerkProvider, auth } from "@clerk/nextjs";
 import { Toaster } from "@/components/common/toaster";
 import NProgressBar from "@/components/common/NProgressBar";
+// import "../styles/wp.scss";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),

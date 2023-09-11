@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 
+const path = require('path')
+
 const nextConfig = {
   experimental: {
     serverActions: true,
     serverActionsBodySizeLimit: '2mb',
     serverComponentsExternalPackages : ["@prisma/client", "pusher", "pusher-js"]
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
   },
   images : {
     domains : ['res.cloudinary.com', "images.ctfassets.net", "pabel.xyz", "secure.gravatar.com"]
