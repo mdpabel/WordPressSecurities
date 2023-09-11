@@ -1,58 +1,65 @@
-import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (request: NextRequest) => {
+export async function GET(request: NextRequest) {
+  const path = request.nextUrl.searchParams.get("path");
+
+  console.log("GET");
+
+  if (path) {
+    revalidatePath(path);
+    return NextResponse.json({
+      revalidated: true,
+      now: Date.now(),
+      method: "GET",
+    });
+  }
+
   return NextResponse.json({
-    success: true,
+    revalidated: false,
+    now: Date.now(),
+    message: "Missing path to revalidate",
   });
-};
+}
 
 export async function POST(request: NextRequest) {
   const path = request.nextUrl.searchParams.get("path");
 
-  if (!path) {
-    return NextResponse.json(
-      { message: "Missing path param" },
-      { status: 400 }
-    );
+  console.log("POST");
+
+  if (path) {
+    revalidatePath(path);
+    return NextResponse.json({
+      revalidated: true,
+      now: Date.now(),
+      method: "POST",
+    });
   }
 
-  revalidatePath(path);
-
-  return NextResponse.json({ revalidated: true, now: Date.now() });
+  return NextResponse.json({
+    revalidated: false,
+    now: Date.now(),
+    message: "Missing path to revalidate",
+  });
 }
 
-// https://wordpress.org/plugins/on-demand-revalidation/
-export async function PUT(res: NextRequest) {
-  const path = res.nextUrl.searchParams.get("path");
-  const headersList = headers();
-  const token = `Bearer ${process.env.REVALIDATE_SECRET_KEY}`;
-  const authToken = headersList.get("authorization");
+export async function PUT(request: NextRequest) {
+  const path = request.nextUrl.searchParams.get("path");
 
-  if (token != authToken) {
-    return NextResponse.json(
-      {
-        message: "Invalid token",
-      },
-      {
-        status: 401,
-      }
-    );
+  console.log("PUT");
+
+  if (path) {
+    revalidatePath(path);
+    return NextResponse.json({
+      revalidated: true,
+      now: Date.now(),
+      method: "PUT",
+    });
   }
 
-  if (!path) {
-    return NextResponse.json(
-      {
-        message: "No paths",
-      },
-      {
-        status: 412,
-      }
-    );
-  }
-
-  revalidatePath(path);
-
-  return NextResponse.json({ revalidated: true, now: Date.now() });
+  return NextResponse.json({
+    revalidated: false,
+    now: Date.now(),
+    message: "Missing path to revalidate",
+  });
 }
