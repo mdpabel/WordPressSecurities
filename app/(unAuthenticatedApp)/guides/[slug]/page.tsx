@@ -47,9 +47,6 @@ export async function generateMetadata(
   };
 }
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
-
 export async function generateStaticParams() {
   const posts: PostType[] = await getPosts();
 

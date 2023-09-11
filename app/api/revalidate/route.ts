@@ -1,10 +1,10 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
+export const revalidate = true;
+
 export async function POST(request: NextRequest) {
   const path = request.nextUrl.searchParams.get("path");
-
-  console.log("POST");
 
   if (path) {
     revalidatePath(path);
