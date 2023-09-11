@@ -120,16 +120,19 @@ const NavItemWithSubMenu = ({
         {label}
       </AccordionTrigger>
 
-      <AccordionContent
-        className="border-b pt-2"
-        onClick={() => setOpen(false)}
-      >
+      <AccordionContent className="border-b pt-2">
         {components.map((component) => (
           <li
+            onClick={() => setOpen(false)}
             key={component.title}
             className="list-none pl-8 border-b border-b-gray-200 py-2"
           >
-            <Link href={link + "/" + component.href}>{component.title}</Link>
+            <Link
+              onClick={() => setOpen(false)}
+              href={link + "/" + component.href}
+            >
+              {component.title}
+            </Link>
           </li>
         ))}
       </AccordionContent>
