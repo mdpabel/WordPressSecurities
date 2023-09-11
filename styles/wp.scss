@@ -10,3 +10,9 @@
 
 @import 'node_modules/@wordpress/block-library/src/style.scss';
 @import 'node_modules/@wordpress/block-library/src/theme.scss';
+
+.wp-block-gallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}

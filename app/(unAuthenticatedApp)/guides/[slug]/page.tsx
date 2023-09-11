@@ -104,14 +104,13 @@ const Guide = async ({ params }: GuideType) => {
           />
 
           <div
-            className="prose"
+            className="prose max-w-full"
             dangerouslySetInnerHTML={{ __html: blog?.content }}
           />
         </div>
-
         <Popular />
       </div>
-      <div className="w-full lg:w-1/3">
+      <div className="w-full lg:w-1/3 lg:pt-12">
         <BlogSidebar />
       </div>
     </ComponentWrapper>
