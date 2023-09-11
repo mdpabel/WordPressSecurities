@@ -3,10 +3,8 @@ import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
 export const GET = async (request: NextRequest) => {
-  const path = request.nextUrl.searchParams.get("path");
-
   return NextResponse.json({
-    path,
+    success: true,
   });
 };
 
@@ -25,6 +23,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ revalidated: true, now: Date.now() });
 }
 
+// https://wordpress.org/plugins/on-demand-revalidation/
 export async function PUT(res: NextRequest) {
   const path = res.nextUrl.searchParams.get("path");
   const headersList = headers();
