@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   const path = request.nextUrl.searchParams.get("path");
 
   if (path) {
-    revalidatePath(path);
+    revalidatePath("/" + path);
     return NextResponse.json({
       revalidated: true,
       now: Date.now(),
