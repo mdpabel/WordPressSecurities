@@ -23,3 +23,18 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ revalidated: true, now: Date.now() });
 }
+
+export async function PUT(request: NextRequest) {
+  const path = request.nextUrl.searchParams.get("path");
+
+  if (!path) {
+    return NextResponse.json(
+      { message: "Missing path param" },
+      { status: 400 }
+    );
+  }
+
+  revalidatePath(path);
+
+  return NextResponse.json({ revalidated: true, now: Date.now() });
+}
