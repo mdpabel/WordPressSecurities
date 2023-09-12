@@ -16,3 +16,13 @@
     justify-content: space-between;
     gap: 25px;
 }
+
+@media screen and (max-width: 768px) {
+    .wp-block-gallery {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .wp-block-image {
+        width: 100% !important;
+    }
+}

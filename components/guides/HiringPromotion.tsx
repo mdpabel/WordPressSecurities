@@ -22,7 +22,7 @@ interface IWrapper {
 }
 
 const Wrapper = ({ children, href }: IWrapper) => (
-  <Link target="_blank" href={href}>
+  <Link href={href}>
     <div className="flex flex-col items-center transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 hover:rounded ">
       {children}
     </div>
@@ -34,14 +34,14 @@ const HiringPromotion = () => {
     <ComponentWrapper>
       <Title className="text-center">I need help with …</Title>
       <div className="grid grid-cols-2 gap-5 pt-5">
-        <Wrapper href="https://mdpabel.com">
+        <Wrapper href="/web-development">
           <Image
             width={40}
             height={40}
             src="/developer.png"
             alt="Website Development"
           />
-          <p className="text-center">Website Development</p>
+          <p className="text-center">Develop Unhackable Website</p>
         </Wrapper>
 
         <Wrapper href={`https://www.wordpresssecurities.com/`}>

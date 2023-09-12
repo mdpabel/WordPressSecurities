@@ -70,17 +70,11 @@ const Guide = async ({ params }: GuideType) => {
 
   return (
     <ComponentWrapper className="flex flex-col mt-10 space-y-8 lg:space-x-8 lg:flex-row lg:space-y-0">
-      <div className="w-full space-y-10 lg:w-2/3">
-        <div className="p-2 md:p-8 space-y-4 bg-white rounded ">
+      <div className="w-full space-y-10 lg:w-[70%]">
+        <div className="p-2 md:px-0 md:py-8 space-y-4 bg-white rounded ">
           <h1 className="text-3xl font-bold">{blog?.title}</h1>
           <div className="flex space-x-8">
             <div className="flex space-x-2">
-              {/* <Image
-                src={blog.author?.avatarUrl!}
-                width={blog.author?.avatarWidth ?? 96}
-                height={blog.author?.avatarHeight ?? 96}
-                alt={blog?.author?.avatarUrlAlt!}
-              /> */}
               <Avatar className="w-8 h-8">
                 <AvatarImage
                   src={blog.author?.avatarUrl!}
