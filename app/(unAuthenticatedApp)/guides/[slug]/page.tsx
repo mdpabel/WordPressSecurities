@@ -4,7 +4,7 @@ import Popular from "@/components/guides/Popular";
 import SocialShare from "@/components/guides/SocialShare";
 import { PostType, getPostBySlug, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata, ResolvingMetadata } from "next";
 import { formatDate } from "@/lib/utils";
 import { CalenderIcon } from "@/components/common/icons";
@@ -107,7 +107,9 @@ const Guide = async ({ params }: GuideType) => {
             dangerouslySetInnerHTML={{ __html: blog?.content }}
           />
         </div>
-        <Popular />
+        <Suspense fallback="Loading...">
+          <Popular />
+        </Suspense>
       </div>
       <div className="w-full lg:w-1/3 lg:pt-12">
         <BlogSidebar />
