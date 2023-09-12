@@ -16,7 +16,7 @@ import {
 } from "@/components/common/Avatar";
 
 export const dynamic = "force-static";
-export const revalidate = 6000000;
+export const revalidate = 1;
 
 type Props = {
   params: { slug: string };
