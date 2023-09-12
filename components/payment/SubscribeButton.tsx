@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { client } from "@/lib/client";
-import { loadStripe } from "@stripe/stripe-js";
 import Spinner from "@/components/common/Spinner";
 import { Button } from "@/components/common/Button";
 import Link from "next/link";
@@ -17,9 +16,10 @@ const SubscribeButton = ({ planId }: { planId: string }) => {
   const handleSubscription = async (planId: string) => {
     setLoading(true);
     const data = await client(`/api/subscription/${planId}`);
-    const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-    );
+    const stripeInit = import("@stripe/stripe-js");
+    const stripe = await (
+      await stripeInit
+    ).loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
     stripe?.redirectToCheckout({
       sessionId: data.sessionId,

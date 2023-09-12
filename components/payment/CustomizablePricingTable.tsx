@@ -1,11 +1,11 @@
 "use client";
+import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
 import { TickIcon } from "@/components/common/icons";
 import Spinner from "@/components/common/Spinner";
 import { client } from "@/lib/client";
-import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/common/Button";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
@@ -35,15 +35,14 @@ export const PricingColumn = ({
   const showBuyNowButton = isSignedIn;
   const showCreateAccountButton = !isSignedIn;
 
-  console.log(selectedItems);
-
   const handlePayment = async () => {
     try {
       setLoading(true);
       const data = await client(`/api/payment?items=${selectedItems}`);
-      const stripe = await loadStripe(
-        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-      );
+      const stripeInit = import("@stripe/stripe-js");
+      const stripe = await (
+        await stripeInit
+      ).loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
       stripe?.redirectToCheckout({
         sessionId: data.sessionId,
