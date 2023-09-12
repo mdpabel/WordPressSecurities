@@ -13,8 +13,13 @@ export type PostCardType = {
 export const BigCard = ({ blog, className }: PostCardType) => {
   return (
     <Link href={"/guides/" + blog?.slug}>
-      <Card className={cn("h-[350px]", className)}>
-        <CardContent className="row-span-3">
+      <Card className={cn("h-[350px]", className, "px-4 md:px-6 space-y-3")}>
+        <div
+          style={{
+            maxHeight: "50%",
+          }}
+          className="row-span-3 "
+        >
           <Image
             width={400}
             height={400}
@@ -22,8 +27,8 @@ export const BigCard = ({ blog, className }: PostCardType) => {
             src={blog?.featuredImage}
             alt={blog?.featuredImageAlt}
           />
-        </CardContent>
-        <CardFooter className="flex flex-col justify-between space-y-4 h-1/2 items-start">
+        </div>
+        <div className="flex flex-col justify-between space-y-4 h-1/2 items-start">
           <div className="space-y-1">
             <span className="font-medium text-gray-700">{blog?.date}</span>
             <h2 className="text-lg font-semibold tracking-wide">
@@ -34,7 +39,7 @@ export const BigCard = ({ blog, className }: PostCardType) => {
               {blog?.excerpt?.slice(0, 100)}
             </p>
           </div>
-        </CardFooter>
+        </div>
       </Card>
     </Link>
   );
