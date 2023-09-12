@@ -8,7 +8,7 @@ import { PostType, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
-export const revalidate = 60;
+export const revalidate = 6000000;
 
 const Blog = async () => {
   const blogs: PostType[] = await getPosts();
