@@ -13,7 +13,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/common/navigation-menu";
-import Image from "next/image";
 import { MainHeaderType } from "./Navbar";
 import { SubMenuType, navItems } from "@/data/navItems";
 import { Button } from "../common/Button";

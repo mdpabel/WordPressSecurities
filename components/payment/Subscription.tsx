@@ -1,7 +1,4 @@
-import { productFeatures, services } from "@/data/pricingData";
-import { stripe } from "@/lib/stripe";
 import { PricingColumn } from "./PricingColumn";
-import { calculatePercentageDiscount } from "@/lib/utils";
 import { products } from "@/data/data";
 
 const Subscription = async () => {

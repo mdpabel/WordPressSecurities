@@ -2,7 +2,6 @@ import ComponentWrapper from "@/components/common/ComponentWrapper";
 import Logo from "@/components/layouts/Logo";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, SyntheticEvent } from "react";
-import Alert from "@/components/common/Alert";
 import Spinner from "@/components/common/Spinner";
 import { Input } from "@/components//common/Input";
 import { Button } from "../common/Button";

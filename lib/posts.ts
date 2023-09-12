@@ -227,3 +227,109 @@ export async function getPostBySlug(slug: string): Promise<PostType | null> {
     return null; // Handle errors as needed
   }
 }
+
+export const getPostById = async (id: String) => {
+  try {
+    const data = await client(API_URL, {
+      method: "POST",
+      data: {
+        query: `query FetchPostByID($id: ID!) {
+          post(id: $id) {
+            id
+            content
+            title
+            id
+            excerpt
+            content
+            date
+            author {
+              node {
+                id
+                avatar {
+                  default
+                  extraAttr
+                  forceDefault
+                  foundAvatar
+                  height
+                  isRestricted
+                  rating
+                  scheme
+                  size
+                  url
+                  width
+                }
+                firstName
+                lastName
+                email
+              }
+            }
+            seo {
+              canonical
+              cornerstone
+              focuskw
+              fullHead
+              metaDesc
+              metaKeywords
+              metaRobotsNofollow
+              metaRobotsNoindex
+              opengraphAuthor
+              opengraphDescription
+              opengraphModifiedTime
+              opengraphPublishedTime
+              opengraphPublisher
+              opengraphSiteName
+              opengraphTitle
+              opengraphType
+              opengraphUrl
+              readingTime
+              title
+              twitterDescription
+              twitterTitle
+            }
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            slug
+          }
+        }`,
+        variables: {
+          id,
+        },
+      },
+    });
+
+    const post = data?.data?.post;
+    const author = post?.author?.node;
+
+    if (!post) {
+      return null; // Post not found
+    }
+
+    return {
+      id: post.id,
+      title: post.title,
+      excerpt: getPlainTextFromHTML(post?.excerpt),
+      content: post?.content,
+      slug: post?.slug,
+      featuredImage: post?.featuredImage?.node?.sourceUrl,
+      featuredImageAlt: post?.featuredImage?.node?.altText,
+      date: formatDate(post?.date),
+      seo: post?.seo,
+      author: {
+        firstName: author?.firstName,
+        lastName: author?.lastName,
+        email: author?.email,
+        avatarUrl: author?.avatar?.url,
+        avatarHeight: author?.avatar?.height,
+        avatarWidth: author?.avatar?.width,
+        avatarUrlAlt: author?.lastName,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    return null; // Handle errors as needed
+  }
+};
