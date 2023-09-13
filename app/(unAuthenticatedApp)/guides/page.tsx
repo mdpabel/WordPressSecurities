@@ -4,20 +4,15 @@ import { BigCard } from "@/components/guides/BigCard";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import { SmallCard } from "@/components/guides/SmallCard";
 import Newsletter from "@/components/guides/Newsletter";
-import { PostType, getPosts } from "@/lib/posts";
+import { PostType, getMostViewedPosts, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
 export const revalidate = 1;
 
 const Blog = async () => {
+  const mostViewedBlogs = await getMostViewedPosts(3);
   const blogs: PostType[] = await getPosts();
-
-  if (!blogs) {
-    return notFound();
-  }
-
-  const moreBlogs = blogs?.slice(3);
 
   return (
     <ComponentWrapper className="pt-8 space-y-8">
@@ -26,21 +21,21 @@ const Blog = async () => {
         subTitle="Explore Our Informative Blog for Actionable WordPress Security Insights and Tips."
       />
       <div className="grid grid-cols-1 grid-rows-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <BigCard blog={blogs[0]} />
+        <BigCard blog={mostViewedBlogs[0]} />
 
         <div className="space-y-[20px]">
           <div>
-            <SmallCard blog={blogs[1]} />
+            <SmallCard blog={mostViewedBlogs[1]} />
           </div>
           <div>
-            <SmallCard blog={blogs[2]} />
+            <SmallCard blog={mostViewedBlogs[2]} />
           </div>
         </div>
         <Newsletter />
       </div>
 
       <div className="grid grid-cols-1 grid-rows-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {moreBlogs.map((blog) => (
+        {blogs.map((blog) => (
           <BigCard key={blog?.slug} blog={blog} />
         ))}
       </div>

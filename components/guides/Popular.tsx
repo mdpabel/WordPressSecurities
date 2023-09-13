@@ -3,25 +3,7 @@ import prisma from "@/db/mongo";
 import { Title } from "../common/Title";
 import ComponentWrapper from "../common/ComponentWrapper";
 import { SmallCard } from "./SmallCard";
-import { getPostById } from "@/lib/posts";
-
-export const getMostViewedPosts = async (total: number) => {
-  const mostViews = await prisma.postView.findMany({
-    orderBy: {
-      views: "desc",
-    },
-    take: total,
-  });
-
-  const mostViewedPostsPromises = mostViews.map(async (view) => {
-    const res = await getPostById(view.postId);
-    return res;
-  });
-
-  const mostViewedPosts = await Promise.all(mostViewedPostsPromises);
-
-  return mostViewedPosts;
-};
+import { getMostViewedPosts } from "@/lib/posts";
 
 const Popular = async () => {
   const data = await getMostViewedPosts(4);

@@ -1,6 +1,7 @@
 import { client } from "./client";
 import { JSDOM } from "jsdom";
 import { formatDate } from "./utils";
+import prisma from "@/db/mongo";
 
 const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_ENDPOINT!;
 
@@ -332,4 +333,22 @@ export const getPostById = async (id: String) => {
     console.error("Error fetching post:", error);
     return null; // Handle errors as needed
   }
+};
+
+export const getMostViewedPosts = async (total: number) => {
+  const mostViews = await prisma.postView.findMany({
+    orderBy: {
+      views: "desc",
+    },
+    take: total,
+  });
+
+  const mostViewedPostsPromises = mostViews.map(async (view) => {
+    const res = await getPostById(view.postId);
+    return res;
+  });
+
+  const mostViewedPosts = await Promise.all(mostViewedPostsPromises);
+
+  return mostViewedPosts as PostType[];
 };
