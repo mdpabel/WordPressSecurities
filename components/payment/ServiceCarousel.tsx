@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ServiceDescription from "./ServiceDescription";
 import { TitleWithBottomBorder } from "@/components/common/Title";
 import { serviceDetails, serviceList } from "@/data/serviceCarousel";
+import { cn } from "@/lib/utils";
 
 interface IServiceTitle {
   children: ReactNode;
@@ -26,10 +27,10 @@ const ServiceTitle = ({
   return (
     <li
       onClick={() => onClick(serviceId)}
-      className={
-        `px-6 cursor-pointer flex items-center py-2 border border-black rounded ` +
-        activeClasses
-      }
+      className={cn(
+        `px-6 cursor-pointer flex items-center py-2 border border-black rounded h-11` +
+          activeClasses
+      )}
     >
       {children}
     </li>
@@ -54,12 +55,19 @@ const ServiceCarousel = () => {
     },
   };
 
+  const height = serviceList.length * 44 + serviceList.length * 16 - 16 + "px";
+
   return (
     <div className="space-y-8">
       <TitleWithBottomBorder>
         Facing Website Security Concerns?
       </TitleWithBottomBorder>
-      <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
+      <div
+        className={cn(
+          "flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8",
+          `md:h-[${height}]`
+        )}
+      >
         <ul className={`w-full md:w-1/3 space-y-4`}>
           {serviceList.map((item) => (
             <ServiceTitle
@@ -78,6 +86,7 @@ const ServiceCarousel = () => {
           {serviceDetails.map(
             ({ id, imgUrl, list, subTitle, title, pricingTableId }) => (
               <ServiceDescription
+                height={height}
                 pricingTableId={pricingTableId}
                 key={id}
                 id={id}

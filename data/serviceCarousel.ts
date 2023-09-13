@@ -12,8 +12,6 @@ export const serviceDetails = [
       "Make meaningful",
       "Make meaningful",
       "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
     ],
   },
 
@@ -25,8 +23,6 @@ export const serviceDetails = [
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
     list: [
-      "Make meaningful",
-      "Make meaningful",
       "Make meaningful",
       "Make meaningful",
       "Make meaningful",
@@ -48,8 +44,6 @@ export const serviceDetails = [
       "Make meaningful",
       "Make meaningful",
       "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
     ],
   },
 
@@ -66,8 +60,6 @@ export const serviceDetails = [
       "Make meaningful",
       "Make meaningful",
       "Make meaningful",
-      "Make meaningful",
-      "Make meaningful",
     ],
   },
 
@@ -79,8 +71,6 @@ export const serviceDetails = [
     subTitle:
       " Make meaningful connections with meetings, team chat, whiteboard, phone, and more in one offering.",
     list: [
-      "Make meaningful",
-      "Make meaningful",
       "Make meaningful",
       "Make meaningful",
       "Make meaningful",
