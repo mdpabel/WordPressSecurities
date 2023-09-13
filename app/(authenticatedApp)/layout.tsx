@@ -65,9 +65,9 @@ export default async function UnAuthenticatedAppLayout({
       <Header isLoggedIn={!!userId} dashboard={true} />
       <ComponentWrapper className="flex">
         <Sidebar sidebarItems={sidebarItems} />
-        <section className="p-4 -ml-64 md:ml-0 min-h-[80vh] flex-1">
+        <main className="p-4 -ml-64 md:ml-0 min-h-[80vh] flex-1">
           {children}
-        </section>
+        </main>
       </ComponentWrapper>
       <Footer />
     </div>
