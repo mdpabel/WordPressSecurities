@@ -23,7 +23,7 @@ export const BigCard = ({ blog, className }: PostCardType) => {
           <Image
             width={400}
             height={400}
-            className="object-cover object-center w-full h-full"
+            className="object-contain object-center h-full max-h-[175px] w-auto mx-auto"
             src={blog?.featuredImage}
             alt={blog?.featuredImageAlt}
           />

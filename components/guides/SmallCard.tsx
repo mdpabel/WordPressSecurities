@@ -13,7 +13,7 @@ export const SmallCard = ({ blog, className }: PostCardType) => {
           <Image
             width={400}
             height={400}
-            className="object-cover object-center w-full h-full"
+            className="object-contain object-center w-full h-full"
             src={blog?.featuredImage}
             alt={blog?.featuredImageAlt}
           />

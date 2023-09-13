@@ -13,8 +13,6 @@ const Blog = async () => {
   const mostViewedBlogs = await getMostViewedPosts(3);
   const blogs: PostType[] = await getPosts();
 
-  console.log(mostViewedBlogs.map((i) => i?.title));
-
   return (
     <ComponentWrapper className="pt-8 space-y-8">
       <SectionTitleWithSubTitle
