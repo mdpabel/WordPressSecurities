@@ -343,6 +343,8 @@ export const getMostViewedPosts = async (total: number) => {
     take: total,
   });
 
+  console.log(mostViews);
+
   const mostViewedPostsPromises = mostViews.map(async (view) => {
     const res = await getPostById(view.postId);
     return res;

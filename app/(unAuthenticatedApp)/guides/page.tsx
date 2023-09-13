@@ -5,7 +5,6 @@ import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import { SmallCard } from "@/components/guides/SmallCard";
 import Newsletter from "@/components/guides/Newsletter";
 import { PostType, getMostViewedPosts, getPosts } from "@/lib/posts";
-import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
 export const revalidate = 1;
@@ -13,6 +12,8 @@ export const revalidate = 1;
 const Blog = async () => {
   const mostViewedBlogs = await getMostViewedPosts(3);
   const blogs: PostType[] = await getPosts();
+
+  console.log(mostViewedBlogs.map((i) => i?.title));
 
   return (
     <ComponentWrapper className="pt-8 space-y-8">
