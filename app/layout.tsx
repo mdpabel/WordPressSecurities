@@ -25,9 +25,9 @@ export default async function RootLayout({
     <ClerkProvider>
       <html className="scroll-smooth" suppressHydrationWarning={true} lang="en">
         <body className={playfair.className}>
-          <main>
+          <>
             <NProgressBar>{children}</NProgressBar>
-          </main>
+          </>
           <Toaster />
         </body>
       </html>

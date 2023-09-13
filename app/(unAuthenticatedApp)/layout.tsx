@@ -15,7 +15,7 @@ export default async function UnAuthenticatedAppLayout({
       <header>
         <Header isLoggedIn={!!userId} />
       </header>
-      <section>{children}</section>
+      <main>{children}</main>
       <Footer />
     </>
   );
