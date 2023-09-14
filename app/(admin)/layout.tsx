@@ -6,12 +6,9 @@ import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import {
-  BookIcon,
   DashBoardIcon,
   SubScriptionIcon,
-  SupportInboxIcon,
-  UserIcon,
-} from "@/components/common/icons";
+} from "@/components/common/icons-client";
 
 const sidebarItems = [
   {

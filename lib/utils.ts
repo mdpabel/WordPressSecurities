@@ -1,6 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { z } from "zod";
 import { isClerkAPIResponseError } from "@clerk/nextjs";
 
 export function cn(...inputs: ClassValue[]) {
@@ -50,11 +49,6 @@ export const catchError = (err: unknown) => {
     return err.message;
   }
 
-  if (err instanceof z.ZodError) {
-    const errors = err.issues.map((issue) => issue.message);
-    return errors.join("\n");
-  }
-
   if (typeof err === "string") {
     return err;
   }
@@ -71,13 +65,7 @@ export type ToasterProps = {
 export function catchClerkError(err: unknown) {
   const unknownErr = "Something went wrong, please try again later.";
   console.log(err);
-  if (err instanceof z.ZodError) {
-    const errors = err.issues.map((issue) => {
-      return issue.message;
-    });
-
-    return errors.join("\n");
-  } else if (isClerkAPIResponseError(err)) {
+  if (isClerkAPIResponseError(err)) {
     const message = err.errors[0]?.longMessage ?? unknownErr;
 
     return message;

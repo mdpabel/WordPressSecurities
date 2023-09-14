@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "WordPress Securites | Your Source for WordPress Security",
   verification: {
     google: "GaE_YhZELr4ZqjhfgKydadvgHdzBlfKJGC1UZKIZono",
+    other: {
+      "p:domain_verify": "4320df33c383600249aec8097c68ea76",
+    },
   },
 };
 

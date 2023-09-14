@@ -1,9 +1,4 @@
-import React, {
-  ComponentPropsWithoutRef,
-  DetailsHTMLAttributes,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import React, { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type AccordionTriggerType = ComponentPropsWithoutRef<"summary"> & {
