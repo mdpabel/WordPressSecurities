@@ -6,14 +6,13 @@ import { PostType, getPostBySlug, getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 import type { Metadata, ResolvingMetadata } from "next";
-import { formatDate } from "@/lib/utils";
 import { CalenderIcon } from "@/components/common/icons";
-import Image from "next/image";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/common/Avatar";
+import "@/styles/wp.scss";
 
 export const dynamic = "force-static";
 export const revalidate = 1;
