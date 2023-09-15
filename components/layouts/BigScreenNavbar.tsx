@@ -83,7 +83,7 @@ const NavItem = ({ label, link, pathName }: NavItemProps) => {
 
   return (
     <NavigationMenuItem>
-      <Link href={link} legacyBehavior passHref>
+      <Link prefetch={label !== "Guides"} href={link} legacyBehavior passHref>
         <NavigationMenuLink
           href={link}
           className={cn(
