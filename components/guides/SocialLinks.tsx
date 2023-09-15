@@ -2,8 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ComponentWrapper from "../common/ComponentWrapper";
 import { Title } from "../common/Title";
-import { Facebook } from "lucide-react";
-import { LinkedinIcon, TwitterIcon } from "../common/icons";
+import { FacebookIcon, LinkedinIcon, TwitterIcon } from "../common/icons";
 
 const SocialLinks = () => {
   return (
@@ -18,7 +17,7 @@ const SocialLinks = () => {
           }}
           className="flex justify-center px-5 py-1 mr-4 space-x-3 rounded cursor-pointer md:mr-0"
         >
-          <Facebook />
+          <FacebookIcon />
         </Link>
         <Link
           href="/"
