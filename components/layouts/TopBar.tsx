@@ -11,15 +11,11 @@ const TopBar = () => {
           <nav className="hidden md:block">
             <ul className="flex justify-between space-x-6">
               <li>
-                <Link prefetch={false} href="/faq">
-                  FAQ
-                </Link>
+                <Link href="/faq">FAQ</Link>
               </li>
 
               <li>
-                <Link prefetch={false} href="/privacy">
-                  Privacy Policy
-                </Link>
+                <Link href="/privacy">Privacy Policy</Link>
               </li>
             </ul>
           </nav>
