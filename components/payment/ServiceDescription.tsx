@@ -42,6 +42,7 @@ const ServiceDescription = ({
             height={400}
             src={imgUrl}
             alt="test"
+            priority={true}
           />
         </div>
         <div className="w-full md:w-1/2 space-y-4 flex flex-col justify-center">
