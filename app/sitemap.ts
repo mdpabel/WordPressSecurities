@@ -1,4 +1,4 @@
-import { getAllSolution } from "@/data/serviices";
+import { getServices } from "@/lib/contentful";
 
 const siteUrl =
   process.env.SITE_URL || "SITE_URLhttps://www.wordpresssecurities.com";
@@ -35,10 +35,10 @@ export default async function sitemap() {
     priority: 1,
   }));
 
-  const solutions = await getAllSolution();
+  const solutions = await getServices();
 
   const dynamicPages: SitemapType = solutions.map((solution) => ({
-    url: siteUrl + "/solutions" + solution.page,
+    url: siteUrl + "/solutions/" + solution.slug,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 1,

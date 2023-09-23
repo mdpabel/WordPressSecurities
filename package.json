@@ -29,7 +29,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "contentful": "^10.5.2",
-    "contentful-ts-type-generator": "github:arimkevi/contentful-ts-type-generator",
     "dompurify": "^3.0.5",
     "emoji-mart": "^5.5.2",
     "encoding": "^0.1.13",
