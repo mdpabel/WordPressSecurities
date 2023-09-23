@@ -4,15 +4,18 @@ import ComponentWrapper from "../common/ComponentWrapper";
 import SmallScreenNavbar from "./SmallScreenNavbar";
 
 export type MainHeaderType = {
-  isLoggedIn: boolean;
+  solutionsSubmenu: any;
   dashboard?: boolean;
 };
 
-const MainHeader = ({ isLoggedIn, dashboard }: MainHeaderType) => {
+const MainHeader = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
   return (
     <ComponentWrapper>
-      <BigScreenNavbar isLoggedIn={isLoggedIn} />
-      <SmallScreenNavbar dashboard={dashboard} isLoggedIn={isLoggedIn} />
+      <BigScreenNavbar solutionsSubmenu={solutionsSubmenu} />
+      <SmallScreenNavbar
+        dashboard={dashboard}
+        solutionsSubmenu={solutionsSubmenu}
+      />
     </ComponentWrapper>
   );
 };

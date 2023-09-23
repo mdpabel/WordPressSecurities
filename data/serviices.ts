@@ -105,12 +105,3 @@ export const services: ServiceType[] = [
     data: penetrationTesting,
   },
 ];
-
-export const getSolution = (url: string) => {
-  const page = "/" + url;
-  return services.find((service) => service.page === page);
-};
-
-export const getAllSolution = () => {
-  return services;
-};

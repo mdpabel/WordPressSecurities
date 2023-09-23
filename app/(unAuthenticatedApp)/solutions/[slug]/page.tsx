@@ -1,13 +1,12 @@
 import React from "react";
-import Portfolio from "../Portfolio";
 import PricingCard from "../PricingCard";
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import { SectionTitleWithSubTitle } from "@/components/common/Title";
 import Description from "../Description";
-import { getAllSolution, getSolution } from "@/data/serviices";
 import { notFound } from "next/navigation";
+import { getServices, getServicesBySlug } from "@/lib/contentful";
+import RecentWorks from "../RecentWorks";
 
-export const dynamic = "force-static";
 export const revalidate = 86400;
 
 type SolutionType = {
@@ -17,15 +16,15 @@ type SolutionType = {
 };
 
 export async function generateStaticParams() {
-  const solutions = getAllSolution();
+  const services = await getServices();
 
-  return solutions.map((solution) => ({
-    slug: solution.page.slice(1),
+  return services.map((solution) => ({
+    slug: solution?.slug,
   }));
 }
 
-const Solution = ({ params }: SolutionType) => {
-  const service = getSolution(params?.slug);
+const Solution = async ({ params }: SolutionType) => {
+  const service = await getServicesBySlug(params?.slug);
 
   if (!service) {
     return notFound();
@@ -35,11 +34,16 @@ const Solution = ({ params }: SolutionType) => {
     <ComponentWrapper className="space-y-8 pt-7">
       <SectionTitleWithSubTitle
         title={service.title}
-        subTitle={service.subTitle}
+        subTitle={service.subtitle}
       />
-      <Description solution={service?.data} />
-      <Portfolio />
-      <PricingCard />
+      <Description description={service?.description} />
+      <RecentWorks portfolio={service?.portfolio} />
+      <PricingCard
+        price={service.price}
+        items={service.items}
+        subtitle={service.subtitle}
+        title={service.title}
+      />
     </ComponentWrapper>
   );
 };

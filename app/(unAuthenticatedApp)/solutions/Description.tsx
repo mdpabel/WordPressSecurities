@@ -1,109 +1,90 @@
-import { Title, TitleWithBottomBorder } from "@/components/common/Title";
-import { DataType } from "@/data/serviices";
-import React, { ReactNode } from "react";
+// @ts-nocheck
 
-const WrapperDescription = ({ children }: { children: ReactNode }) => {
-  return <div className="space-y-5">{children}</div>;
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Link from "next/link";
+import ContentfulImage from "./ContentfulImage";
+
+const options = {
+  renderMark: {
+    [MARKS.CODE]: (text) => {
+      return (
+        <pre>
+          <code>{text}</code>
+        </pre>
+      );
+    },
+  },
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => {
+      if (
+        node.content.find(
+          (item) => item.marks?.find((mark) => mark.type === "code")
+        )
+      ) {
+        return (
+          <div>
+            <pre>
+              <code>{children}</code>
+            </pre>
+          </div>
+        );
+      }
+
+      return <p>{children}</p>;
+    },
+
+    [INLINES.ENTRY_HYPERLINK]: (node) => {
+      if (node.data.target.sys.contentType.sys.id === "post") {
+        return (
+          <Link href={`/posts/${node.data.target.fields.slug}`}>
+            {node.data.target.fields.title}
+          </Link>
+        );
+      }
+    },
+
+    [INLINES.HYPERLINK]: (node) => {
+      const text = node.content.find((item) => item.nodeType === "text")?.value;
+      return (
+        <a href={node.data.uri} target="_blank" rel="noopener noreferrer">
+          {text}
+        </a>
+      );
+    },
+
+    [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+      if (node.data.target.sys.contentType.sys.id === "videoEmbed") {
+        return (
+          <iframe
+            height="400"
+            width="100%"
+            src={node.data.target.fields.embedUrl}
+            title={node.data.target.fields.title}
+            allowFullScreen={true}
+          />
+        );
+      }
+    },
+
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      return (
+        <ContentfulImage
+          src={node.data.target.fields.file.url}
+          height={node.data.target.fields.file.details.image.height}
+          width={node.data.target.fields.file.details.image.width}
+          alt={node.data.target.fields.title}
+          className="h-20 w-20"
+        />
+      );
+    },
+  },
 };
-
-const DescriptionParagraph = ({
-  children,
-  title,
-}: {
-  title?: string;
-  children: ReactNode;
-}) => {
+const Description = ({ description }: { description: any }) => {
   return (
-    <div className="space-y-1">
-      {title && <TitleWithBottomBorder>{title}</TitleWithBottomBorder>}
-      <p>{children}</p>
+    <div className="prose max-w-full leading-normal">
+      {documentToReactComponents(description, options)}
     </div>
-  );
-};
-
-const DescriptionList = ({
-  title,
-  subTitle,
-  items,
-}: {
-  title: string;
-  items: string[];
-  subTitle?: string;
-}) => {
-  return (
-    <div className="space-y-4">
-      <div className="space-y-1">
-        <TitleWithBottomBorder>{title}</TitleWithBottomBorder>
-        {subTitle && <p>{subTitle}</p>}
-      </div>
-      <ul className="space-y-1">
-        {items.map((item, index) =>
-          item.includes(":") ? (
-            <li key={index}>
-              <strong>{item.split(":")[0]}:</strong> {item.split(":")[1]}
-            </li>
-          ) : (
-            <li className="list-disc" key={index}>
-              {item}
-            </li>
-          )
-        )}
-      </ul>
-    </div>
-  );
-};
-
-const reasons = [
-  "Vulnerable Plugins or Themes: Outdated or poorly coded plugins and themes can create security vulnerabilities that malware exploits.",
-  "Weak Passwords: Weak administrator passwords provide an easy entry point for hackers to gain access and inject malware.",
-  "Unsafe Downloads: Downloading themes, plugins, or scripts from untrusted sources can introduce malicious code into your WordPress site.",
-  "Unsecure Hosting: Using a low-quality or insecure hosting provider can expose your website to malware attacks.",
-];
-
-const approach = [
-  "Thorough Site Scan: Our experienced team performs a comprehensive scan of your WordPress site to detect and identify all forms of malware.",
-  "Customized Removal Plan: Based on the scan results, we create a tailored strategy to effectively remove the malware from your website.",
-  "Malware Removal Process: Our experts use advanced tools and techniques to eliminate malware, ensuring that your website is clean and secure.",
-  "Security Enhancements: After removing malware, we bolster your website's security by updating plugins, themes, and implementing best security practices.",
-];
-
-const solution = {
-  paragraph:
-    "Is your WordPress website acting strange? Are you encountering unexpected errors, slow loading times, or suspicious redirects? Your website might be compromised by malware. Our specialized 'WordPress Malware Removal' service is designed to clean up your website, enhance its security, and restore its functionality.",
-  reasons: {
-    title: "Why Do WordPress Malware Infections Happen?",
-    subTitle:
-      "WordPress malware infections can occur due to a variety of reasons, including:",
-    list: reasons,
-  },
-  approach: {
-    title: "Our Approach to Resolution",
-    list: approach,
-  },
-  deliveryTime: {
-    title: "Estimated Resolution Time",
-    text: "The time it takes to remove malware from a WordPress site depends on the complexity and extent of the infection. Typically, our WordPress Malware Removal service is completed within [timeframe]. We prioritize rapid,efficient, and thorough cleaning to minimize any disruptions to your online presence.",
-  },
-};
-
-const Description = ({ solution }: { solution: DataType }) => {
-  return (
-    <WrapperDescription>
-      <DescriptionParagraph>{solution.paragraph}</DescriptionParagraph>
-      <DescriptionList
-        items={solution.reasons.list}
-        subTitle={solution.reasons.subTitle}
-        title={solution.reasons.title}
-      />
-      <DescriptionList
-        items={solution.approach.list}
-        title={solution.approach.title}
-      />
-
-      <DescriptionParagraph title={solution.deliveryTime.title}>
-        {solution.deliveryTime.text}
-      </DescriptionParagraph>
-    </WrapperDescription>
   );
 };
 

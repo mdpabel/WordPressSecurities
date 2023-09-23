@@ -1,52 +1,91 @@
+"use client";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { PortfolioProps } from "./RecentWorks";
+import ContentfulImage from "./ContentfulImage";
+import "@/styles/recentWorks.scss";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/common/Button";
-import { SectionTitleWithSubTitle } from "@/components/common/Title";
-import { RightArrow } from "@/components/common/icons";
-import Link from "next/link";
-import React from "react";
 
-const Work = () => {
+const Portfolio = ({ portfolio }: PortfolioProps) => {
+  const settings = {
+    className: "center",
+    centerMode: true,
+    focusOnSelect: true,
+    infinite: true,
+    centerPadding: "100px",
+    slidesToShow: 3,
+    speed: 500,
+    arrows: false,
+    autoplay: false,
+    pauseOnHover: true,
+  };
+
+  const recentWorks = portfolio?.map((p) => {
+    if ("fields" in p) {
+      const image = p.fields.image;
+      if ("fields" in image) {
+        return {
+          title: p.fields.title,
+          description: p.fields.description,
+          img: {
+            src: image.fields?.file?.url,
+            height: image?.fields?.file?.details?.image?.height,
+            width: image?.fields?.file?.details?.image?.width,
+            alt: image?.fields?.title,
+          },
+        };
+      }
+    }
+  });
+
   return (
-    <div className="space-y-4">
-      <span className="bg-gray-100 text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
-        Alphabet Inc.
-      </span>
-      <h3 className="text-2xl font-bold leading-tight text-gray-900 ">
-        Official website
-      </h3>
-      <p className="text-lg font-normal text-gray-500">
-        Flowbite helps you connect with friends, family and communities of
-        people who share your interests.
-      </p>
-      <Button
-        className="border border-gray-500"
-        variant="outline"
-        role="button"
-      >
-        <Link className="flex space-x-3" href="/">
-          <span>View case study</span>
-          <RightArrow />
-        </Link>
-      </Button>
-    </div>
-  );
-};
+    <Slider {...settings} className="w-full grid grid-cols-1">
+      {recentWorks.map((work, index) => (
+        <div key={index} className="relative group">
+          <ContentfulImage
+            src={work?.img.src}
+            width={work?.img?.width}
+            height={work?.img?.height}
+          />
 
-const Portfolio = () => {
-  return (
-    <section className="bg-white  antialiased">
-      <div className="max-w-screen-xl px-4 mx-auto lg:px-6 ">
-        <SectionTitleWithSubTitle
-          subTitle=" Crafted with skill and care to help our clients grow their business!"
-          title="Our Recent work"
-        />
-
-        <div className="grid grid-cols-1 mt-12 text-center sm:mt-16 gap-x-20 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          <Work />
-          <Work />
-          <Work />
+          <div
+            className={cn(
+              "absolute top-1/2 left-1/2 z-50  -translate-x-1/2 -translate-y-1/2 text-white group-hover:opacity-100 opacity-0 transition-all duration-500 cursor-pointer space-y-2"
+            )}
+          >
+            <h2>{work?.title}</h2>
+            <Button className="h-0 py-3 flex justify-center items-center text-sm bg-gray-300 text-black shadow">
+              View Case Study
+            </Button>
+          </div>
+          <div className="group-hover:bg-black absolute top-0 left-0 right-0 bottom-0 opacity-60 transition-all duration-500 cursor-pointer"></div>
         </div>
-      </div>
-    </section>
+      ))}
+
+      {recentWorks.map((work, index) => (
+        <div key={index} className="relative group">
+          <ContentfulImage
+            src={work?.img.src}
+            width={work?.img?.width}
+            height={work?.img?.height}
+            className="object-contain"
+          />
+          <div
+            className={cn(
+              "absolute top-1/2 left-1/2 z-50  -translate-x-1/2 -translate-y-1/2 text-white group-hover:opacity-100 opacity-0 transition-all duration-500 cursor-pointer space-y-2"
+            )}
+          >
+            <h2>{work?.title}</h2>
+            <Button className="h-0 py-3 flex justify-center items-center text-sm bg-gray-300 text-black shadow">
+              View Case Study
+            </Button>
+          </div>
+          <div className="group-hover:bg-black absolute top-0 left-0 right-0 bottom-0 opacity-60 transition-all duration-500 cursor-pointer"></div>
+        </div>
+      ))}
+    </Slider>
   );
 };
 

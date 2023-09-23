@@ -4,15 +4,15 @@ import Navbar from "./Navbar";
 
 const Header = ({
   dashboard,
-  isLoggedIn,
+  solutionsSubmenu,
 }: {
   dashboard?: boolean;
-  isLoggedIn: boolean;
+  solutionsSubmenu: any;
 }) => {
   return (
     <>
       <TopBar />
-      <Navbar isLoggedIn={isLoggedIn} dashboard={dashboard} />
+      <Navbar solutionsSubmenu={solutionsSubmenu} dashboard={dashboard} />
     </>
   );
 };

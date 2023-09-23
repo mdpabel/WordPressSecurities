@@ -1,3 +1,5 @@
+import { getServicesSubMenus } from "@/lib/service";
+
 const subMenus = [
   {
     title: "Malware Removal",
@@ -72,5 +74,8 @@ export const navItems = [
 
 const subMenusItems = subMenus.map((sm) => sm.href);
 
-export type SubMenuType = typeof subMenus;
+export type SubMenuType = {
+  title: string;
+  href: string;
+}[];
 export type SubMenuHefType = (typeof subMenusItems)[0];

@@ -27,7 +27,7 @@ const unAuthenticatedPages = [
   "terms",
 ];
 
-export default function sitemap(): SitemapType {
+export default async function sitemap() {
   const staticPages: SitemapType = unAuthenticatedPages.map((p) => ({
     url: siteUrl + "/" + p,
     lastModified: new Date(),
@@ -35,7 +35,7 @@ export default function sitemap(): SitemapType {
     priority: 1,
   }));
 
-  const solutions = getAllSolution();
+  const solutions = await getAllSolution();
 
   const dynamicPages: SitemapType = solutions.map((solution) => ({
     url: siteUrl + "/solutions" + solution.page,

@@ -26,7 +26,7 @@ import {
 import { useSidebar } from "@/stores/sidebar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 
-const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
+const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
   const [open, setOpen] = useState(false);
   const { isOpen, setIsOpen } = useSidebar();
 
@@ -69,7 +69,7 @@ const SmallScreenNavbar = ({ isLoggedIn, dashboard }: MainHeaderType) => {
                 setOpen={setOpen}
                 key={navItem.id}
                 label={navItem.label}
-                components={navItem.subMenu}
+                components={solutionsSubmenu}
               />
             ) : (
               <NavItem

@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import * as NavigationMenuRedix from "@radix-ui/react-navigation-menu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,7 +19,7 @@ import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 
-function BigScreenNavbar({ isLoggedIn }: MainHeaderType) {
+function BigScreenNavbar({ solutionsSubmenu }: MainHeaderType) {
   const pathName = usePathname() ?? "/";
 
   return (
@@ -38,7 +37,7 @@ function BigScreenNavbar({ isLoggedIn }: MainHeaderType) {
               key={navItem.id}
               label={navItem.label}
               link={navItem.link}
-              components={navItem.subMenu}
+              components={solutionsSubmenu}
             />
           ) : (
             <NavItem

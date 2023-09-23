@@ -14,7 +14,6 @@ import {
 } from "@/components/common/Avatar";
 import "@/styles/wp.scss";
 
-export const dynamic = "force-static";
 export const revalidate = 1;
 
 type Props = {

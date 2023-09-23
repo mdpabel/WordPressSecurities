@@ -203,12 +203,9 @@ const CustomizablePricingTable = () => {
       itemsCopy.splice(idx, 1);
     }
     setItems([...itemsCopy]);
-    router.push(
-      `${pathName}/?type=instant&items=${String(itemsCopy)}#instant`,
-      {
-        scroll: false,
-      }
-    );
+    router.push(`${pathName}/?items=${String(itemsCopy)}#instant`, {
+      scroll: false,
+    });
   };
 
   const selectedServices = services.filter(
