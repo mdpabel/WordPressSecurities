@@ -82,7 +82,7 @@ const NavItem = ({ label, link, pathName }: NavItemProps) => {
 
   return (
     <NavigationMenuItem>
-      <Link prefetch={label !== "Guides"} href={link} legacyBehavior passHref>
+      <Link href={link} legacyBehavior passHref>
         <NavigationMenuLink
           href={link}
           className={cn(
@@ -114,7 +114,7 @@ const NavItemWithSubMenu = ({
       <NavigationMenuTrigger className="text-lg">{label}</NavigationMenuTrigger>
       <NavigationMenuContent>
         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-          {components.map((component) => (
+          {components?.map((component) => (
             <ListItem
               className="border-b border-gray-400"
               key={component.title}

@@ -11,6 +11,7 @@ import {
   SupportInboxIcon,
   UserIcon,
 } from "@/components/common/icons-client";
+import { getServicesSubMenus } from "@/lib/contentful";
 
 const sidebarItems = [
   {
@@ -57,12 +58,11 @@ export default async function UnAuthenticatedAppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const { userId } = auth();
-  const userId = true;
+  const solutionsSubmenu = await getServicesSubMenus();
 
   return (
     <div className="bg_primary">
-      <Header isLoggedIn={!!userId} dashboard={true} />
+      <Header solutionsSubmenu={solutionsSubmenu} dashboard={true} />
       <ComponentWrapper className="flex">
         <Sidebar sidebarItems={sidebarItems} />
         <main className="p-4 -ml-64 md:ml-0 min-h-[80vh] flex-1">
