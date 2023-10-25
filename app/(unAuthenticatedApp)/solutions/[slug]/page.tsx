@@ -1,49 +1,37 @@
-import React from "react";
-import PricingCard from "../PricingCard";
 import ComponentWrapper from "@/components/common/ComponentWrapper";
-import { SectionTitleWithSubTitle } from "@/components/common/Title";
-import Description from "../Description";
-import { notFound } from "next/navigation";
-import { getServices, getServicesBySlug } from "@/lib/contentful";
-import RecentWorks from "../RecentWorks";
+import { Title } from "@/components/common/Title";
+import React from "react";
+import PricingTables from "@/components/payment/PricingTables";
+import FAQ from "@/components/FAQ";
+import Carousel from "../Carousel";
+import AboutService from "../AboutService";
+import PricingTable from "../PricingTable";
 
-export const revalidate = 86400;
-
-type SolutionType = {
-  params: {
-    slug: string;
-  };
-};
-
-export async function generateStaticParams() {
-  const services = await getServices();
-
-  return services.map((solution) => ({
-    slug: solution?.slug,
-  }));
-}
-
-const Solution = async ({ params }: SolutionType) => {
-  const service = await getServicesBySlug(params?.slug);
-
-  if (!service) {
-    return notFound();
-  }
-
+const Solution = () => {
   return (
-    <ComponentWrapper className="space-y-8 pt-7">
-      <SectionTitleWithSubTitle
-        title={service.title}
-        subTitle={service.subtitle}
-      />
-      <Description description={service?.description} />
-      <RecentWorks portfolio={service?.portfolio} />
-      <PricingCard
-        price={service.price}
-        items={service.items}
-        subtitle={service.subtitle}
-        title={service.title}
-      />
+    <ComponentWrapper className="pt-10">
+      <div className="grid grid-cols-3 space-x-8">
+        <div className="col-span-3 md:col-span-2 space-y-6">
+          <Title className="text-2xl md:text-3xl">
+            I will remove malware, fix redirecting issues and blacklist removal
+          </Title>
+          <Carousel />
+          <div className="md:hidden pt-10">
+            <PricingTables />
+          </div>
+          <AboutService />
+          <div>
+            <Title>Frequently Asked Questions</Title>
+            <FAQ title={false} items={[1, 2, 3, 4, 5]} />
+          </div>
+        </div>
+        <div className="hidden md:block col-span-1">
+          <PricingTable />
+        </div>
+      </div>
+      <div className="mt-5 md:mt-10">
+        <Title>More services by WordPressSecurities</Title>
+      </div>
     </ComponentWrapper>
   );
 };

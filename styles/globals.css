@@ -235,3 +235,7 @@ details[open] summary {
   display: none;
 }
 
+ul.slick-dots.slick-thumb.solution-page li {
+  width: 70px;
+  padding-top: 10px;
+}

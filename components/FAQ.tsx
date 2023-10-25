@@ -1,4 +1,4 @@
-import React, { DetailsHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import React from "react";
 import { SectionTitleWithSubTitle } from "./common/Title";
 import {
   Accordion,
@@ -9,7 +9,9 @@ import { faqData } from "@/data/faqData";
 import { it } from "node:test";
 import ComponentWrapper from "./common/ComponentWrapper";
 
-type FAQProps =
+type FAQProps = {
+  title?: boolean;
+} & (
   | {
       start?: number;
       end?: number;
@@ -20,7 +22,8 @@ type FAQProps =
     }
   | {
       items: number[];
-    };
+    }
+);
 
 const FAQ = (props: FAQProps) => {
   type faqTypes = {
@@ -40,11 +43,13 @@ const FAQ = (props: FAQProps) => {
   }
 
   return (
-    <ComponentWrapper className="space-x-5">
-      <SectionTitleWithSubTitle
-        subTitle="Exploring Answers to Common Inquiries, We're Here to Help!"
-        title="Frequently Asked Questions"
-      />
+    <div>
+      {props.title !== false && (
+        <SectionTitleWithSubTitle
+          subTitle="Exploring Answers to Common Inquiries, We're Here to Help!"
+          title="Frequently Asked Questions"
+        />
+      )}
       <div>
         {data.map((item) => (
           <Accordion key={item.id}>
@@ -53,7 +58,7 @@ const FAQ = (props: FAQProps) => {
           </Accordion>
         ))}
       </div>
-    </ComponentWrapper>
+    </div>
   );
 };
 

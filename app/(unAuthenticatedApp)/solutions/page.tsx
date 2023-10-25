@@ -1,10 +1,7 @@
-import { redirect } from "next/navigation";
-
-export const dynamic = "force-static";
-export const revalidate = 86400;
+import React from "react";
 
 const page = () => {
-  redirect("/solutions/malware-removal");
+  return <div>page</div>;
 };
 
 export default page;
