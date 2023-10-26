@@ -5,11 +5,19 @@ import PricingTables from "@/components/payment/PricingTables";
 import FAQ from "@/components/FAQ";
 import Carousel from "../Carousel";
 import PricingTable from "../PricingTable";
-import { getServicesBySlug } from "@/lib/services";
+import { getServices, getServicesBySlug } from "@/lib/services";
 
 type Props = {
   params: { slug: string };
 };
+
+export async function generateStaticParams() {
+  const services = await getServices();
+
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
 
 const Solution = async ({ params }: Props) => {
   const service = await getServicesBySlug(params?.slug);

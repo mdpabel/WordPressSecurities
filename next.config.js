@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 
+
 const path = require('path')
 
 const nextConfig = {
@@ -19,7 +20,6 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-    dirs : [""]
   },
   reactStrictMode : false,
 };
