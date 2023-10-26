@@ -120,7 +120,7 @@ const NavItemWithSubMenu = ({
               key={component.title}
               title={component.title}
               href={link + "/" + component.href}
-            ></ListItem>
+            />
           ))}
         </ul>
       </NavigationMenuContent>

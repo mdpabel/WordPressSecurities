@@ -10,28 +10,7 @@ import { PostDataType } from "@/types/posts";
 export const dynamic = "force-static";
 export const revalidate = 1;
 
-const getPostsv2 = async () => {
-  try {
-    const response = await fetch(
-      "https://pabel.xyz/blog/wp-json/wp/v2/posts?_embed"
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    console.log(data[0]);
-
-    return [];
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    return [];
-  }
-};
-
 const Blog = async () => {
-  await getPostsv2();
   const mostViewedBlogs = await getMostViewedPosts(3);
   const blogs: PostType[] = await getPosts();
 
