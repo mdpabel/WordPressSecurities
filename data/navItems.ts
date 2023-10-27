@@ -1,5 +1,3 @@
-import { getServicesSubMenus } from "@/lib/service";
-
 const subMenus = [
   {
     title: "Malware Removal",
@@ -69,6 +67,11 @@ export const navItems = [
     id: 4,
     label: "Guides",
     link: "/guides",
+  },
+  {
+    id: 5,
+    label: "Contact",
+    link: "/contact",
   },
 ];
 

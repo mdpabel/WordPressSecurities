@@ -2,7 +2,6 @@
 import ComponentWrapper from "@/components/common/ComponentWrapper";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useSignUp } from "@clerk/nextjs";
-import { useRouter, useSearchParams } from "next/navigation";
 import AuthForm from "@/components/auth/authForm";
 import EmailVerificationForm from "@/components/auth/EmailVerificationForm";
 import { client } from "@/lib/client";

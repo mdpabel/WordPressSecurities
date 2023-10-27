@@ -19,11 +19,8 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link
-              href="/editorial-team"
-              className="mr-4 hover:underline md:mr-6 "
-            >
-              Editorial Team
+            <Link href="/team" className="mr-4 hover:underline md:mr-6 ">
+              WordPressSecurities Team
             </Link>
           </li>
           <li>

@@ -48,25 +48,19 @@ function BigScreenNavbar({ solutionsSubmenu }: MainHeaderType) {
             />
           )
         )}
-
-        <SignedIn>
-          <NavItem pathName={pathName} label="Dashboard" link="/dashboard" />
-        </SignedIn>
-
-        <SignedOut>
-          <NavItem pathName={pathName} label="Login" link="/login" />
-        </SignedOut>
-
-        {/* {isLoggedIn ? (
-          <NavItem pathName={pathName} label="Dashboard" link="/dashboard" />
-        ) : (
-          <NavItem pathName={pathName} label="Login" link="/login" />
-        )} */}
       </NavigationMenuList>
 
-      <Button variant="outline" className="border border-black">
-        <Link href="/emergency">Emergency Repair</Link>
-      </Button>
+      <SignedIn>
+        <Button variant="outline" className="border border-black">
+          <Link href="/dashboard">Dashboard</Link>
+        </Button>
+      </SignedIn>
+
+      <SignedOut>
+        <Button variant="outline" className="border border-black">
+          <Link href="/login">Get Started</Link>
+        </Button>
+      </SignedOut>
     </NavigationMenu>
   );
 }
