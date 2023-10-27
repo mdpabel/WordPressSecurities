@@ -18,6 +18,8 @@ const handleRateLimiting = async (req: any, evt: NextFetchEvent) => {
     `ratelimit_middleware_${ip}`
   );
 
+  console.log(success, pending, limit, reset, remaining);
+
   evt.waitUntil(pending);
 
   const res = success
