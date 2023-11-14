@@ -1,19 +1,21 @@
 /** @type {import('next').NextConfig} */
 
-
-const path = require('path')
+const path = require('path');
 
 const nextConfig = {
   experimental: {
-    serverActions: true,
-    serverActionsBodySizeLimit: '2mb',
-    serverComponentsExternalPackages : ["@prisma/client", "pusher", "pusher-js"]
+    ppr: true,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  images : {
-    domains : ['res.cloudinary.com', "images.ctfassets.net", "pabel.xyz", "secure.gravatar.com"]
+  images: {
+    domains: [
+      'res.cloudinary.com',
+      'images.ctfassets.net',
+      'pabel.xyz',
+      'secure.gravatar.com',
+    ],
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -21,12 +23,12 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  reactStrictMode : false,
+  reactStrictMode: false,
 };
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
   openAnalyzer: false,
-})
+});
 
 module.exports = withBundleAnalyzer(nextConfig);

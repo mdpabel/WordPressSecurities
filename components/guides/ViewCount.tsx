@@ -1,33 +1,28 @@
-"use client";
-import { useEffect } from "react";
-import { useAsync } from "@/hooks/useAsync";
-import { client } from "@/lib/client";
+import { unstable_noStore as noStore } from 'next/cache';
+import prisma from '@/db/mongo';
 
-const ViewCount = ({ id }: { id: string }) => {
-  const { isLoading, isError, isSuccess, data, error, run } = useAsync();
-
-  const api = "/api/post/" + id;
-
-  console.log(id);
-
-  useEffect(() => {
-    client(api, {
-      method: "POST",
-      data: {
-        postId: id,
+const ViewCount = async ({ id }: { id: string }) => {
+  noStore();
+  const res = await prisma.postView.upsert({
+    where: {
+      postId: id,
+    },
+    update: {
+      views: {
+        increment: 1,
       },
-    });
-  }, [api, id]);
+    },
+    create: {
+      postId: id,
+      views: 1,
+    },
+  });
 
-  useEffect(() => {
-    run(client(api));
-  }, [api, run]);
+  console.log(res);
 
   return (
-    <div className="px-5 py-1 font-semibold border rounded shadow-sm">
-      {isLoading && "Loading..."}
-      {isSuccess && data?.data + " Views"}
-      {isError && "Error"}
+    <div className='px-5 py-1 font-semibold border rounded shadow-sm'>
+      {res?.views + ' Views'}
     </div>
   );
 };

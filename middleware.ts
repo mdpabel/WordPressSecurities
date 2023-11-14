@@ -2,21 +2,22 @@ import {
   authMiddleware,
   redirectToSignIn,
   clerkClient,
-} from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+} from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server';
 
 const publicRoutes = [
-  "/",
-  "/emergency(.*)",
-  "/guides(.*)",
-  "/solutions(.*)",
-  "/pricing(.*)",
-  "/login(.*)",
-  "/register(.*)",
-  "/about(.*)",
-  "/faq(.*)",
-  "/forget-password(.*)",
-  "/api(.*)",
+  '/',
+  '/emergency(.*)',
+  '/guides(.*)',
+  '/solutions(.*)',
+  '/pricing(.*)',
+  '/login(.*)',
+  '/register(.*)',
+  '/about(.*)',
+  '/contact(.*)',
+  '/faq(.*)',
+  '/forget-password(.*)',
+  '/api(.*)',
 ];
 
 export default authMiddleware({
@@ -25,11 +26,11 @@ export default authMiddleware({
     // Don't need to check auth for public routes
 
     const isAuthRoutes =
-      req.nextUrl.pathname.startsWith("/login") ||
-      req.nextUrl.pathname.startsWith("/register");
+      req.nextUrl.pathname.startsWith('/login') ||
+      req.nextUrl.pathname.startsWith('/register');
 
     if (auth.userId && isAuthRoutes) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+      return NextResponse.redirect(new URL('/dashboard', req.url));
     }
 
     if (auth.isPublicRoute) {
@@ -45,5 +46,5 @@ export default authMiddleware({
 });
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
 };

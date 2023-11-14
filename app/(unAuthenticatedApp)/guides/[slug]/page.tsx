@@ -1,20 +1,20 @@
-import ComponentWrapper from "@/components/common/ComponentWrapper";
-import BlogSidebar from "@/components/guides/BlogSidebar";
-import Popular from "@/components/guides/Popular";
-import SocialShare from "@/components/guides/SocialShare";
-import { PostType, getPostBySlug, getPosts } from "@/lib/posts";
-import { notFound } from "next/navigation";
-import React, { Suspense } from "react";
-import type { Metadata, ResolvingMetadata } from "next";
-import { CalenderIcon } from "@/components/common/icons";
+import ComponentWrapper from '@/components/common/ComponentWrapper';
+import BlogSidebar from '@/components/guides/BlogSidebar';
+import Popular from '@/components/guides/Popular';
+import SocialShare from '@/components/guides/SocialShare';
+import { PostType, getPostBySlug, getPosts } from '@/lib/posts';
+import { notFound } from 'next/navigation';
+import React, { Suspense } from 'react';
+import type { Metadata, ResolvingMetadata } from 'next';
+import { CalenderIcon } from '@/components/common/icons';
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/components/common/Avatar";
-import "@/styles/wp.scss";
+} from '@/components/common/Avatar';
+import '@/styles/wp.scss';
 
-export const revalidate = 1;
+export const revalidate = 'force-cache';
 
 type Props = {
   params: { slug: string };
@@ -23,7 +23,7 @@ type Props = {
 
 export async function generateMetadata(
   { params, searchParams }: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   // read route params
   const slug = params.slug;
@@ -68,13 +68,13 @@ const Guide = async ({ params }: GuideType) => {
   if (!blog) return notFound();
 
   return (
-    <ComponentWrapper className="flex flex-col mt-10 space-y-8 lg:space-x-8 lg:flex-row lg:space-y-0">
-      <div className="w-full space-y-10 lg:w-[70%]">
-        <div className="p-2 md:px-0 md:py-8 space-y-4 bg-white rounded ">
-          <h1 className="text-3xl font-bold">{blog?.title}</h1>
-          <div className="flex space-x-8">
-            <div className="flex space-x-2">
-              <Avatar className="w-8 h-8">
+    <ComponentWrapper className='flex flex-col mt-10 space-y-8 lg:space-x-8 lg:flex-row lg:space-y-0'>
+      <div className='w-full space-y-10 lg:w-[70%]'>
+        <div className='p-2 md:px-0 md:py-8 space-y-4 bg-white rounded '>
+          <h1 className='text-3xl font-bold'>{blog?.title}</h1>
+          <div className='flex space-x-8'>
+            <div className='flex space-x-2'>
+              <Avatar className='w-8 h-8'>
                 <AvatarImage
                   src={blog.author?.avatarUrl!}
                   alt={blog?.author?.avatarUrlAlt!}
@@ -82,10 +82,10 @@ const Guide = async ({ params }: GuideType) => {
                 <AvatarFallback>{blog?.author?.firstName}</AvatarFallback>
               </Avatar>
               <span>
-                By {blog?.author?.firstName + " " + blog?.author?.lastName}
+                By {blog?.author?.firstName + ' ' + blog?.author?.lastName}
               </span>
             </div>
-            <div className="flex space-x-2">
+            <div className='flex space-x-2'>
               <CalenderIcon />
               <span>{blog?.date}</span>
             </div>
@@ -96,15 +96,15 @@ const Guide = async ({ params }: GuideType) => {
           />
 
           <div
-            className="prose max-w-full"
+            className='prose max-w-full'
             dangerouslySetInnerHTML={{ __html: blog?.content }}
           />
         </div>
-        <Suspense fallback="Loading...">
+        <Suspense fallback='Loading...'>
           <Popular />
         </Suspense>
       </div>
-      <div className="w-full lg:w-1/3 lg:pt-12">
+      <div className='w-full lg:w-1/3 lg:pt-12'>
         <BlogSidebar />
       </div>
     </ComponentWrapper>
