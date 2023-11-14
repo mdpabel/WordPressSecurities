@@ -3,9 +3,7 @@
 const path = require('path');
 
 const nextConfig = {
-  experimental: {
-    ppr: true,
-  },
+  experimental: {},
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
