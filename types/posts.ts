@@ -43,9 +43,9 @@ export type PostDataType = {
     robots: {
       index: string;
       follow: string;
-      "max-snippet": string;
-      "max-image-preview": string;
-      " max-video-preview": string;
+      'max-snippet': string;
+      'max-image-preview': string;
+      ' max-video-preview': string;
     };
     canonical: string;
     og_locale: string;
@@ -65,7 +65,7 @@ export type PostDataType = {
     author: string;
     twitter_card: string;
     twitter_misc: {
-      "Written by": string;
+      'Written by': string;
     };
     schema: any; // You can specify the actual shape of "schema" if needed
   };
@@ -99,22 +99,22 @@ export type PostDataType = {
       embeddable: boolean;
       href: string;
     }[];
-    "version-history": {
+    'version-history': {
       count: number;
       href: string;
     }[];
-    " predecessor-version": {
+    ' predecessor-version': {
       id: number;
       href: string;
     }[];
-    "wp:featuredmedia": {
+    'wp:featuredmedia': {
       embeddable: boolean;
       href: string;
     }[];
-    "wp:attachment": {
+    'wp:attachment': {
       href: string;
     }[];
-    "wp:term": {
+    'wp:term': {
       taxonomy: string;
       embeddable: boolean;
       href: string;

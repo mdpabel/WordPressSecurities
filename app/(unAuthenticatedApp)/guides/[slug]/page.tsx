@@ -14,8 +14,6 @@ import {
 } from '@/components/common/Avatar';
 import '@/styles/wp.scss';
 
-export const revalidate = 'force-cache';
-
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -51,8 +49,8 @@ export async function generateMetadata(
 export async function generateStaticParams() {
   const posts: PostType[] = await getPosts();
 
-  return posts.map((post) => ({
-    slug: post?.slug,
+  return posts?.map((post) => ({
+    slug: post.slug,
   }));
 }
 
@@ -90,10 +88,13 @@ const Guide = async ({ params }: GuideType) => {
               <span>{blog?.date}</span>
             </div>
           </div>
-          <SocialShare
-            id={blog?.id}
-            url={`https://wordpresssecurites.com/${params?.slug}`}
-          />
+
+          <Suspense fallback='Loading....'>
+            <SocialShare
+              id={blog?.id}
+              url={`https://wordpresssecurites.com/${params?.slug}`}
+            />
+          </Suspense>
 
           <div
             className='prose max-w-full'

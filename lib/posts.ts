@@ -1,7 +1,7 @@
-import { client } from "./client";
-import { JSDOM } from "jsdom";
-import { formatDate } from "./utils";
-import prisma from "@/db/mongo";
+import { client } from './client';
+import { JSDOM } from 'jsdom';
+import { formatDate } from './utils';
+import prisma from '@/db/mongo';
 
 const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_ENDPOINT!;
 
@@ -11,26 +11,30 @@ function getPlainTextFromHTML(html: string) {
   return plainText;
 }
 
-export async function fetchAPI(
-  query = "",
-  { variables }: Record<string, any> = {}
-) {
-  const headers = { "Content-Type": "application/json" };
+export async function fetchAPI({
+  query = '',
+  variables = {},
+}: {
+  query: string;
+  variables: Record<string, any>;
+}) {
+  const headers = { 'Content-Type': 'application/json' };
 
   const res = await fetch(API_URL, {
     headers,
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
       query,
       variables,
     }),
+    cache: 'force-cache',
   });
 
   const json = await res.json();
 
   if (json.errors) {
     console.error(json.errors);
-    throw new Error("Failed to fetch API");
+    throw new Error('Failed to fetch API');
   }
   return json.data;
 }
@@ -81,35 +85,37 @@ export type PostType = {
 };
 
 export async function getPosts(first = 10) {
-  try {
-    const data = await client(API_URL, {
-      method: "POST",
-      data: {
-        query: `query FetchPosts($first: Int = 10) {
-        posts(first: $first) {
-            nodes {
-            excerpt
-            content
-            date
-            featuredImage {
-                node {
-                sourceUrl
-                altText
-                }
-            }
-            slug
-            title
-            }
+  const query = `
+  query FetchPosts($first: Int = 10) {
+    posts(first: $first) {
+      nodes {
+        excerpt
+        content
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
         }
-        }`,
+        slug
+        title
+      }
+    }
+  }
+`;
 
-        variables: {
-          first,
-        },
-      },
+  const variables = {
+    first: first,
+  };
+
+  try {
+    const data = await fetchAPI({
+      query,
+      variables,
     });
 
-    const output = data?.data?.posts?.nodes;
+    const output = data?.posts?.nodes;
 
     return output.map((post: any) => ({
       title: post.title,
@@ -126,77 +132,80 @@ export async function getPosts(first = 10) {
 }
 
 export async function getPostBySlug(slug: string): Promise<PostType | null> {
-  try {
-    const data = await client(API_URL, {
-      method: "POST",
-      data: {
-        query: `query FetchPostBySlug($slug: String!) {
-          postBy(slug: $slug) {
-            title
+  const query = `
+  query FetchPostBySlug($slug: String!) {
+    postBy(slug: $slug) {
+      title
+      id
+      excerpt
+      content
+      date
+      author {
+        node {
           id
-          excerpt
-          content
-          date
-          author {
-            node {
-              id
-              avatar {
-                default
-                extraAttr
-                forceDefault
-                foundAvatar
-                height
-                isRestricted
-                rating
-                scheme
-                size
-                url
-                width
-              }
-              firstName
-              lastName
-              email
-            }
+          avatar {
+            default
+            extraAttr
+            forceDefault
+            foundAvatar
+            height
+            isRestricted
+            rating
+            scheme
+            size
+            url
+            width
           }
-          seo {
-            canonical
-            cornerstone
-            focuskw
-            fullHead
-            metaDesc
-            metaKeywords
-            metaRobotsNofollow
-            metaRobotsNoindex
-            opengraphAuthor
-            opengraphDescription
-            opengraphModifiedTime
-            opengraphPublishedTime
-            opengraphPublisher
-            opengraphSiteName
-            opengraphTitle
-            opengraphType
-            opengraphUrl
-            readingTime
-            title
-            twitterDescription
-            twitterTitle
-          }
-          featuredImage {
-            node {
-              sourceUrl
-              altText
-            }
-          }
-          slug
-          }
-        }`,
-        variables: {
-          slug,
-        },
+          firstName
+          lastName
+          email
+        }
+      }
+      seo {
+        canonical
+        cornerstone
+        focuskw
+        fullHead
+        metaDesc
+        metaKeywords
+        metaRobotsNofollow
+        metaRobotsNoindex
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        title
+        twitterDescription
+        twitterTitle
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+      slug
+    }
+  }
+`;
+
+  try {
+    const data = await fetchAPI({
+      query,
+      variables: {
+        slug,
       },
     });
 
-    const post = data?.data?.postBy;
+    console.log(data);
+
+    const post = data?.postBy;
     const author = post?.author?.node;
 
     if (!post) {
@@ -224,85 +233,86 @@ export async function getPostBySlug(slug: string): Promise<PostType | null> {
       },
     };
   } catch (error) {
-    console.error("Error fetching post:", error);
+    console.error('Error fetching post:', error);
     return null; // Handle errors as needed
   }
 }
 
 export const getPostById = async (id: String) => {
-  try {
-    const data = await client(API_URL, {
-      method: "POST",
-      data: {
-        query: `query FetchPostByID($id: ID!) {
-          post(id: $id) {
-            id
-            content
-            title
-            id
-            excerpt
-            content
-            date
-            author {
-              node {
-                id
-                avatar {
-                  default
-                  extraAttr
-                  forceDefault
-                  foundAvatar
-                  height
-                  isRestricted
-                  rating
-                  scheme
-                  size
-                  url
-                  width
-                }
-                firstName
-                lastName
-                email
-              }
-            }
-            seo {
-              canonical
-              cornerstone
-              focuskw
-              fullHead
-              metaDesc
-              metaKeywords
-              metaRobotsNofollow
-              metaRobotsNoindex
-              opengraphAuthor
-              opengraphDescription
-              opengraphModifiedTime
-              opengraphPublishedTime
-              opengraphPublisher
-              opengraphSiteName
-              opengraphTitle
-              opengraphType
-              opengraphUrl
-              readingTime
-              title
-              twitterDescription
-              twitterTitle
-            }
-            featuredImage {
-              node {
-                sourceUrl
-                altText
-              }
-            }
-            slug
+  const query = `
+  query FetchPostByID($id: ID!) {
+    post(id: $id) {
+      id
+      content
+      title
+      id
+      excerpt
+      content
+      date
+      author {
+        node {
+          id
+          avatar {
+            default
+            extraAttr
+            forceDefault
+            foundAvatar
+            height
+            isRestricted
+            rating
+            scheme
+            size
+            url
+            width
           }
-        }`,
-        variables: {
-          id,
-        },
+          firstName
+          lastName
+          email
+        }
+      }
+      seo {
+        canonical
+        cornerstone
+        focuskw
+        fullHead
+        metaDesc
+        metaKeywords
+        metaRobotsNofollow
+        metaRobotsNoindex
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        title
+        twitterDescription
+        twitterTitle
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+      slug
+    }
+  }
+`;
+
+  try {
+    const data = await fetchAPI({
+      query,
+      variables: {
+        id,
       },
     });
 
-    const post = data?.data?.post;
+    const post = data?.post;
     const author = post?.author?.node;
 
     if (!post) {
@@ -330,17 +340,17 @@ export const getPostById = async (id: String) => {
       },
     };
   } catch (error) {
-    console.error("Error fetching post:", error);
+    console.error('Error fetching post:', error);
     return null; // Handle errors as needed
   }
 };
 
-export const getMostViewedPosts = async (total: number) => {
+export const getMostViewedPosts = async (take: number) => {
   const mostViews = await prisma.postView.findMany({
     orderBy: {
-      views: "desc",
+      views: 'desc',
     },
-    take: total,
+    take,
   });
 
   const mostViewedPostsPromises = mostViews.map(async (view) => {

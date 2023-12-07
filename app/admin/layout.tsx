@@ -14,14 +14,14 @@ const sidebarItems = [
   {
     id: 1,
     Icon: DashBoardIcon,
-    label: 'Dashboard',
-    link: '/dashboard',
+    label: 'Admin',
+    link: '/admin',
   },
   {
     id: 2,
     Icon: SubScriptionIcon,
     label: 'messages',
-    link: '/messages',
+    link: '/admin/messages',
   },
 ];
 

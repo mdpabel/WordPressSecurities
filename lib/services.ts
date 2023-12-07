@@ -19,7 +19,9 @@ type ServiceType = {
 };
 
 export const getServices = async () => {
-  const res = await fetch("https://pabel.xyz/blog/wp-json/wp/v2/service");
+  const res = await fetch('https://pabel.xyz/blog/wp-json/wp/v2/service', {
+    cache: 'force-cache',
+  });
   const data = await res.json();
 
   const services = data.map((s: any) => ({
@@ -45,7 +47,10 @@ export const getServicesSubMenus = async () => {
 
 export const getServicesBySlug = async (slug: string) => {
   const res = await fetch(
-    `https://pabel.xyz/blog/wp-json/wp/v2/service?slug=${slug}`
+    `https://pabel.xyz/blog/wp-json/wp/v2/service?slug=${slug}`,
+    {
+      cache: 'force-cache',
+    },
   );
   const data = await res.json();
 

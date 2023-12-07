@@ -1,13 +1,13 @@
-import { Title } from "@/components/common/Title";
-import prisma from "@/db/mongo";
-import React from "react";
-import ChatRoom from "@/components/chat/ChatRoom";
+import { Title } from '@/components/common/Title';
+import prisma from '@/db/mongo';
+import React from 'react';
+import ChatRoom from '@/components/chat/ChatRoom';
 
 const getChatRooms = async () => {
   const chatRooms = await prisma.message.findMany({
-    distinct: ["chatRoomId"],
+    distinct: ['chatRoomId'],
     orderBy: {
-      updatedAt: "desc",
+      updatedAt: 'desc',
     },
   });
 
@@ -20,7 +20,7 @@ const page = async () => {
   return (
     <div>
       <Title>Customers Messages</Title>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className='grid grid-cols-1 md:grid-cols-2'>
         {chatRooms.map((chatRoom) => (
           <ChatRoom key={chatRoom.id} chatRoom={chatRoom} />
         ))}

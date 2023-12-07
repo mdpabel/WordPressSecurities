@@ -22,7 +22,7 @@ const publicRoutes = [
 
 export default authMiddleware({
   publicRoutes: publicRoutes,
-  afterAuth: (auth, req) => {
+  afterAuth: async (auth, req) => {
     // Don't need to check auth for public routes
 
     const isAuthRoutes =
@@ -31,6 +31,30 @@ export default authMiddleware({
 
     if (auth.userId && isAuthRoutes) {
       return NextResponse.redirect(new URL('/dashboard', req.url));
+    }
+
+    if (auth.userId && req.nextUrl.pathname == '/dashboard') {
+      const user = await clerkClient.users.getUser(auth.userId);
+      const privateMetadata = user.privateMetadata as {
+        role: 'admin' | null;
+        isAdmin: boolean;
+      };
+
+      if (privateMetadata.isAdmin) {
+        return NextResponse.redirect(new URL('/admin', req.url));
+      }
+    }
+
+    if (auth.userId && req.nextUrl.pathname == '/admin') {
+      const user = await clerkClient.users.getUser(auth.userId);
+      const privateMetadata = user.privateMetadata as {
+        role: 'admin' | null;
+        isAdmin: boolean;
+      };
+
+      if (!privateMetadata.isAdmin) {
+        return redirectToSignIn();
+      }
     }
 
     if (auth.isPublicRoute) {

@@ -2,16 +2,16 @@ interface configType {
   data?: object;
   token?: string;
   headers?: HeadersInit;
-  method?: "POST" | "PUT" | "DELETE";
+  method?: 'POST' | 'PUT' | 'DELETE';
 }
 
 export async function client(url: string, { data, method }: configType = {}) {
   const config = {
-    method: method ? method : "GET",
+    method: method ? method : 'GET',
     body: data ? JSON.stringify(data) : undefined,
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
   };
 
