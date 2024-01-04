@@ -1,7 +1,7 @@
 import React from 'react';
-import { TwitterIcon, EmailIcon } from '@/components/common/icons';
+import { TwitterIcon, EmailIcon } from '@/components/ui/icons';
 import ContactForm from './ContactForm';
-import ComponentWrapper from '@/components/common/ComponentWrapper';
+import ComponentWrapper from '@/components/ui/ComponentWrapper';
 
 export const dynamic = 'force-static';
 

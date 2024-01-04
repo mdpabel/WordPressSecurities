@@ -1,7 +1,7 @@
-import React from "react";
-import BigScreenNavbar from "./BigScreenNavbar";
-import ComponentWrapper from "../common/ComponentWrapper";
-import SmallScreenNavbar from "./SmallScreenNavbar";
+import React from 'react';
+import BigScreenNavbar from './BigScreenNavbar';
+import ComponentWrapper from '../ui/ComponentWrapper';
+import SmallScreenNavbar from './SmallScreenNavbar';
 
 export type MainHeaderType = {
   solutionsSubmenu: any;

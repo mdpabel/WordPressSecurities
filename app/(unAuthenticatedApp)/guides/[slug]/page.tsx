@@ -1,4 +1,4 @@
-import ComponentWrapper from '@/components/common/ComponentWrapper';
+import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import BlogSidebar from '@/components/guides/BlogSidebar';
 import Popular from '@/components/guides/Popular';
 import SocialShare from '@/components/guides/SocialShare';
@@ -6,12 +6,8 @@ import { PostType, getPostBySlug, getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { CalenderIcon } from '@/components/common/icons';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/common/Avatar';
+import { CalenderIcon } from '@/components/ui/icons';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import '@/styles/wp.scss';
 
 type Props = {

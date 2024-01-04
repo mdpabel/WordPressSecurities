@@ -1,22 +1,25 @@
-import ComponentWrapper from "@/components/common/ComponentWrapper";
-import React from "react";
-import FAQ from "@/components/FAQ";
-import PricingTables from "@/components/payment/PricingTables";
-import { SectionTitleWithSubTitle } from "@/components/common/Title";
+import ComponentWrapper from '@/components/ui/ComponentWrapper';
+import React from 'react';
+import FAQ from '@/components/FAQ';
+import PricingTable from '@/components/PricingTable';
+import { SectionTitleWithSubTitle } from '@/components/ui/Title';
+import { getTitleAndPrice } from '@/lib/swell/product';
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 export const revalidate = 86400;
 
-const solutions = () => {
+const solutions = async () => {
+  const services = await getTitleAndPrice();
+
   return (
     <ComponentWrapper>
-      <div className="py-10">
+      <div className='py-10'>
         <SectionTitleWithSubTitle
-          title="Safely Empower Your Digital Business"
-          subTitle="Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
-        Engineered for Small to Large-scale Websites"
+          title='Safely Empower Your Digital Business'
+          subTitle='Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
+        Engineered for Small to Large-scale Websites'
         />
-        <PricingTables />
+        <PricingTable services={services} />
       </div>
       <FAQ />
     </ComponentWrapper>

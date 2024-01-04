@@ -1,19 +1,19 @@
-"use client";
-import { SyntheticEvent, useState } from "react";
-import { useSignIn } from "@clerk/nextjs";
+'use client';
+import { SyntheticEvent, useState } from 'react';
+import { useSignIn } from '@clerk/nextjs';
 
-import AuthForm from "@/components/auth/authForm";
-import { useToast } from "@/components/common/use-toast";
-import { catchClerkError } from "@/lib/utils";
+import AuthForm from '@/components/auth/authForm';
+import { useToast } from '@/components/ui/use-toast';
+import { catchClerkError } from '@/lib/utils';
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 export const revalidate = 86400;
 
 export default function Page() {
   const { toast } = useToast();
   const { isLoaded, signIn, setActive } = useSignIn();
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: SyntheticEvent) => {
@@ -29,14 +29,14 @@ export default function Page() {
         password,
       });
 
-      if (result.status === "complete") {
+      if (result.status === 'complete') {
         await setActive({ session: result.createdSessionId });
         setLoading(false);
         toast({
           title: `Welcome back ${
-            result.userData.firstName + " " + result.userData.lastName
+            result.userData.firstName + ' ' + result.userData.lastName
           }`,
-          description: "You will be redirected to dashboard",
+          description: 'You will be redirected to dashboard',
         });
       } else {
         setLoading(false);
@@ -45,9 +45,9 @@ export default function Page() {
       setLoading(false);
       const error = catchClerkError(err);
       toast({
-        title: "Authentication Error",
+        title: 'Authentication Error',
         description: error,
-        variant: "destructive",
+        variant: 'destructive',
       });
     }
   };
@@ -56,7 +56,7 @@ export default function Page() {
     <AuthForm
       loading={loading}
       handleSubmit={handleSubmit}
-      modeType="login"
+      modeType='login'
       setEmailAddress={setEmailAddress}
       setPassword={setPassword}
     />

@@ -9,15 +9,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/common/Form';
-import { Input } from '@/components/common/Input';
+} from '@/components/ui/Form';
+import { Input } from '@/components/ui/Input';
 import { FormDataType, FormSchema } from './Schema';
-import { Button } from '@/components/common/Button';
+import { Button } from '@/components/ui/Button';
 import { handleFormSubmission } from './action';
-import { Textarea } from '@/components/common/Textarea';
-import { useToast } from '@/components/common/use-toast';
-import { ToastAction } from '@/components/common/toast';
-import Spinner from '@/components/common/Spinner';
+import { Textarea } from '@/components/ui/Textarea';
+import { useToast } from '@/components/ui/use-toast';
+import { ToastAction } from '@/components/ui/toast';
+import Spinner from '@/components/ui/Spinner';
 import { useState } from 'react';
 
 const ContactForm = () => {

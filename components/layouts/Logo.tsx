@@ -1,13 +1,12 @@
-import React from "react";
-import { WordPressIcon } from "../common/icons";
-import Link from "next/link";
+import React from 'react';
+import { WordPressIcon } from '../ui/icons';
+import Link from 'next/link';
 
-const Logo = ({ href = "/" }: { href?: string }) => {
+const Logo = ({ href = '/' }: { href?: string }) => {
   return (
     <Link
       href={href}
-      className="flex items-center text-2xl font-semibold text-gray-900 space-x-2"
-    >
+      className='flex items-center text-2xl font-semibold text-gray-900 space-x-2'>
       <WordPressIcon />
       <span>Securities</span>
     </Link>

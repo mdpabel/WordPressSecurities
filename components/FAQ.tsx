@@ -1,13 +1,7 @@
-import React from "react";
-import { SectionTitleWithSubTitle } from "./common/Title";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionTrigger,
-} from "./common/accordion";
-import { faqData } from "@/data/faqData";
-import { it } from "node:test";
-import ComponentWrapper from "./common/ComponentWrapper";
+import React from 'react';
+import { SectionTitleWithSubTitle } from './ui/Title';
+import { Accordion, AccordionContent, AccordionTrigger } from './ui/accordion';
+import { faqData } from '@/data/faqData';
 
 type FAQProps = {
   title?: boolean;
@@ -34,9 +28,9 @@ const FAQ = (props: FAQProps) => {
 
   let data: faqTypes = [];
 
-  if ("items" in props) {
+  if ('items' in props) {
     data = faqData.filter((f) => props.items.includes(f.id));
-  } else if ("total" in props) {
+  } else if ('total' in props) {
     data = faqData.slice(props.start, props.total + props.start);
   } else {
     data = faqData.slice(props.start, props.end);
@@ -47,13 +41,13 @@ const FAQ = (props: FAQProps) => {
       {props.title !== false && (
         <SectionTitleWithSubTitle
           subTitle="Exploring Answers to Common Inquiries, We're Here to Help!"
-          title="Frequently Asked Questions"
+          title='Frequently Asked Questions'
         />
       )}
       <div>
         {data.map((item) => (
           <Accordion key={item.id}>
-            <AccordionTrigger className="">{item.question}</AccordionTrigger>
+            <AccordionTrigger className=''>{item.question}</AccordionTrigger>
             <AccordionContent>{item.answer}</AccordionContent>
           </Accordion>
         ))}

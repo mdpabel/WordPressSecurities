@@ -1,4 +1,4 @@
-import ComponentWrapper from '@/components/common/ComponentWrapper';
+import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import Sidebar from '@/components/layouts/Sidebar';
@@ -10,7 +10,7 @@ import {
   SubScriptionIcon,
   SupportInboxIcon,
   UserIcon,
-} from '@/components/common/icons-client';
+} from '@/components/ui/icons-client';
 import { getServicesSubMenus } from '@/lib/contentful';
 
 const sidebarItems = [

@@ -1,10 +1,10 @@
-import React from "react";
-import TopBar from "./TopBar";
-import Navbar from "./Navbar";
-import { getServicesSubMenus } from "@/lib/services";
+import React from 'react';
+import TopBar from './TopBar';
+import Navbar from './Navbar';
+import { getProductTitleAndSlug } from '@/lib/swell/product';
 
 const Header = async ({ dashboard }: { dashboard?: boolean }) => {
-  const solutionsSubmenu = await getServicesSubMenus();
+  const solutionsSubmenu = await getProductTitleAndSlug();
 
   return (
     <>

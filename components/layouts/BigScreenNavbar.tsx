@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,23 +11,22 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/common/navigation-menu";
-import { MainHeaderType } from "./Navbar";
-import { SubMenuType, navItems } from "@/data/navItems";
-import { Button } from "../common/Button";
-import Logo from "./Logo";
-import { usePathname } from "next/navigation";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+} from '@/components/ui/navigation-menu';
+import { MainHeaderType } from './Navbar';
+import { SubMenuType, navItems } from '@/data/navItems';
+import { Button } from '../ui/Button';
+import Logo from './Logo';
+import { usePathname } from 'next/navigation';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 function BigScreenNavbar({ solutionsSubmenu }: MainHeaderType) {
-  const pathName = usePathname() ?? "/";
+  const pathName = usePathname() ?? '/';
 
   return (
     <NavigationMenu
       className={cn(
-        "hidden md:flex items-center justify-between py-4 w-full max-w-full relative"
-      )}
-    >
+        'hidden md:flex items-center justify-between py-4 w-full max-w-full relative',
+      )}>
       <Logo />
 
       <NavigationMenuList>
@@ -46,19 +45,19 @@ function BigScreenNavbar({ solutionsSubmenu }: MainHeaderType) {
               link={navItem.link}
               key={navItem.label}
             />
-          )
+          ),
         )}
       </NavigationMenuList>
 
       <SignedIn>
-        <Button variant="outline" className="border border-black">
-          <Link href="/dashboard">Dashboard</Link>
+        <Button variant='outline' className='border border-black'>
+          <Link href='/dashboard'>Dashboard</Link>
         </Button>
       </SignedIn>
 
       <SignedOut>
-        <Button variant="outline" className="border border-black">
-          <Link href="/login">Get Started</Link>
+        <Button variant='outline' className='border border-black'>
+          <Link href='/login'>Get Started</Link>
         </Button>
       </SignedOut>
     </NavigationMenu>
@@ -81,10 +80,9 @@ const NavItem = ({ label, link, pathName }: NavItemProps) => {
           href={link}
           className={cn(
             navigationMenuTriggerStyle(),
-            "text-lg",
-            isActive && "border border-gray-700 py-1 px-3 rounded"
-          )}
-        >
+            'text-lg',
+            isActive && 'border border-gray-700 py-1 px-3 rounded',
+          )}>
           {label}
         </NavigationMenuLink>
       </Link>
@@ -105,15 +103,15 @@ const NavItemWithSubMenu = ({
 }: NavItemWithSubMenuProps) => {
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="text-lg">{label}</NavigationMenuTrigger>
+      <NavigationMenuTrigger className='text-lg'>{label}</NavigationMenuTrigger>
       <NavigationMenuContent>
-        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+        <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
           {components?.map((component) => (
             <ListItem
-              className="border-b border-gray-400"
+              className='border-b border-gray-400'
               key={component.title}
               title={component.title}
-              href={link + "/" + component.href}
+              href={link + '/' + component.href}
             />
           ))}
         </ul>
@@ -123,23 +121,23 @@ const NavItemWithSubMenu = ({
 };
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
         <Link
+          prefetch={true}
           href={props.href!}
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className,
           )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          {...props}>
+          <div className='text-sm font-medium leading-none'>{title}</div>
+          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
             {children}
           </p>
         </Link>
@@ -147,5 +145,7 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
+
+ListItem.displayName = 'ListItem';
 
 export default BigScreenNavbar;

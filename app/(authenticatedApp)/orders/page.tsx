@@ -1,8 +1,8 @@
-import prisma from "@/db/mongo";
-import Order from "./Order";
+import prisma from '@/db/mongo';
+import Order from './Order';
 
-import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
-import { Title } from "@/components/common/Title";
+import { currentUser, RedirectToSignIn } from '@clerk/nextjs';
+import { Title } from '@/components/ui/Title';
 
 const getOrders = async () => {
   const user = await currentUser();
@@ -26,12 +26,10 @@ const Orders = async () => {
   const orders = await getOrders();
 
   return (
-    <div className="space-y-4">
+    <div className='space-y-4'>
       <Title>All Orders</Title>
-      <div className="space-y-6">
-        {orders?.map((order) => (
-          <Order key={order.id} order={order} />
-        ))}
+      <div className='space-y-6'>
+        {orders?.map((order) => <Order key={order.id} order={order} />)}
       </div>
     </div>
   );

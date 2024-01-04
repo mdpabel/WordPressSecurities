@@ -12,7 +12,7 @@ import {
   FacebookIcon,
   LinkedinIcon,
   TwitterIcon,
-} from '../common/icons';
+} from '../ui/icons';
 
 export const FaceBook = ({ url }: { url: string }) => {
   return (

@@ -8,11 +8,23 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
-    domains: [
-      'res.cloudinary.com',
-      'images.ctfassets.net',
-      'pabel.xyz',
-      'secure.gravatar.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.swell.store',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pabel.xyz',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'secure.gravatar.com',
+      },
     ],
   },
   typescript: {

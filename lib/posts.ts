@@ -203,8 +203,6 @@ export async function getPostBySlug(slug: string): Promise<PostType | null> {
       },
     });
 
-    console.log(data);
-
     const post = data?.postBy;
     const author = post?.author?.node;
 

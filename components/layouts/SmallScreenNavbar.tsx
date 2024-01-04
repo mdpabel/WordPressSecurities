@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,41 +6,36 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/common/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   Accordion,
   AccordionContent,
   AccordionTrigger,
-} from "@/components/common/accordion";
-import Logo from "./Logo";
-import Link from "next/link";
-import Image from "next/image";
-import { MainHeaderType } from "./Navbar";
-import { Dispatch, SetStateAction, useState } from "react";
-import { SubMenuType, navItems } from "@/data/navItems";
-import {
-  BarIcon,
-  CrossIcon,
-  SidebarToggleIcon,
-} from "@/components/common/icons";
-import { useSidebar } from "@/stores/sidebar";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+} from '@/components/ui/accordion';
+import Logo from './Logo';
+import Link from 'next/link';
+import Image from 'next/image';
+import { MainHeaderType } from './Navbar';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { SubMenuType, navItems } from '@/data/navItems';
+import { BarIcon, CrossIcon, SidebarToggleIcon } from '@/components/ui/icons';
+import { useSidebar } from '@/stores/sidebar';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
   const [open, setOpen] = useState(false);
   const { isOpen, setIsOpen } = useSidebar();
 
   return (
-    <div className="flex md:hidden items-center justify-between py-4 w-full max-w-full">
-      <div className="flex space-x-4">
+    <div className='flex md:hidden items-center justify-between py-4 w-full max-w-full'>
+      <div className='flex space-x-4'>
         {dashboard && (
           <div
             onClick={() => setIsOpen(!isOpen)}
-            data-drawer-target="logo-sidebar"
-            data-drawer-toggle="logo-sidebar"
-            aria-controls="logo-sidebar"
-            className="inline-flex cursor-pointer items-center p-2 text-sm text-black rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-          >
+            data-drawer-target='logo-sidebar'
+            data-drawer-toggle='logo-sidebar'
+            aria-controls='logo-sidebar'
+            className='inline-flex cursor-pointer items-center p-2 text-sm text-black rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'>
             <SidebarToggleIcon />
           </div>
         )}
@@ -52,16 +47,15 @@ const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
       <DropdownMenu
         onOpenChange={(open) => {
           setOpen(open);
-        }}
-      >
+        }}>
         <DropdownMenuTrigger>
           {open ? (
-            <CrossIcon className="w-6 h-6  text-gray-800" />
+            <CrossIcon className='w-6 h-6  text-gray-800' />
           ) : (
-            <BarIcon className="w-6 h-6 text-gray-800" />
+            <BarIcon className='w-6 h-6 text-gray-800' />
           )}
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="inline-block md:hidden w-screen mt-6">
+        <DropdownMenuContent className='inline-block md:hidden w-screen mt-6'>
           {navItems.map((navItem) =>
             navItem.subMenu ? (
               <NavItemWithSubMenu
@@ -77,15 +71,15 @@ const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
                 link={navItem.link}
                 key={navItem.label}
               />
-            )
+            ),
           )}
 
           <SignedIn>
-            <NavItem label="Dashboard" link="/dashboard" />
+            <NavItem label='Dashboard' link='/dashboard' />
           </SignedIn>
 
           <SignedOut>
-            <NavItem label="Get Started" link="/login" />
+            <NavItem label='Get Started' link='/login' />
           </SignedOut>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -107,22 +101,20 @@ const NavItemWithSubMenu = ({
   setOpen,
 }: NavItemWithSubMenuProps) => {
   return (
-    <Accordion className="border-b-gray-300">
-      <AccordionTrigger className="text-lg px-4 py-0 pb-2">
+    <Accordion className='border-b-gray-300'>
+      <AccordionTrigger className='text-lg px-4 py-0 pb-2'>
         {label}
       </AccordionTrigger>
 
-      <AccordionContent className="border-b pt-2">
+      <AccordionContent className='border-b pt-2'>
         {components.map((component) => (
           <li
             onClick={() => setOpen(false)}
             key={component.title}
-            className="list-none pl-8 border-b border-b-gray-200 py-2"
-          >
+            className='list-none pl-8 border-b border-b-gray-200 py-2'>
             <Link
               onClick={() => setOpen(false)}
-              href={link + "/" + component.href}
-            >
+              href={link + '/' + component.href}>
               {component.title}
             </Link>
           </li>
@@ -139,9 +131,9 @@ type NavItemProps = {
 
 const NavItem = ({ label, link }: NavItemProps) => {
   return (
-    <DropdownMenuItem className="border-b border-gray-300 rounded-none" asChild>
-      <Link className="font-normal" href={link}>
-        <DropdownMenuLabel className="text-lg font-normal">
+    <DropdownMenuItem className='border-b border-gray-300 rounded-none' asChild>
+      <Link className='font-normal' href={link}>
+        <DropdownMenuLabel className='text-lg font-normal'>
           {label}
         </DropdownMenuLabel>
       </Link>

@@ -1,10 +1,10 @@
-import React, { Dispatch, SetStateAction, SyntheticEvent } from "react";
-import ComponentWrapper from "@/components/common/ComponentWrapper";
-import Logo from "@/components/layouts/Logo";
-import Spinner from "@/components/common/Spinner";
-import Alert from "@/components/common/Alert";
-import { Input } from "@/components/common/Input";
-import { Button } from "../common/Button";
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
+import ComponentWrapper from '@/components/ui/ComponentWrapper';
+import Logo from '@/components/layouts/Logo';
+import Spinner from '@/components/ui/Spinner';
+import Alert from '@/components/ui/Alert';
+import { Input } from '@/components/ui/Input';
+import { Button } from '../ui/Button';
 
 interface IEmailVerificationForm {
   onPressVerify: (e: SyntheticEvent) => Promise<void>;
@@ -22,25 +22,25 @@ const EmailVerificationForm = ({
   error,
 }: IEmailVerificationForm) => {
   return (
-    <ComponentWrapper className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0">
-      <div className="pb-4">
+    <ComponentWrapper className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0'>
+      <div className='pb-4'>
         <Logo />
       </div>
-      <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
-        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          {error && <Alert intent="danger">{error}</Alert>}
-          <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+      <div className='w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 '>
+        <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
+          {error && <Alert intent='danger'>{error}</Alert>}
+          <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl '>
             Verify your email
           </h1>
-          <form className="space-y-4" onSubmit={onPressVerify}>
+          <form className='space-y-4' onSubmit={onPressVerify}>
             <Input
-              id="code"
-              type="text"
-              label="Verification Code"
-              placeholder="Code..."
+              id='code'
+              type='text'
+              label='Verification Code'
+              placeholder='Code...'
               onChange={(e) => setCode(e.target.value)}
             />
-            <Button type="submit">{loading ? <Spinner /> : "Login"}</Button>
+            <Button type='submit'>{loading ? <Spinner /> : 'Login'}</Button>
           </form>
         </div>
       </div>

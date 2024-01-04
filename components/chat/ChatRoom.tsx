@@ -5,13 +5,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/common/Card';
+} from '@/components/ui/Card';
 import { Message } from '@prisma/client';
 import Link from 'next/link';
 import { clerkClient } from '@clerk/nextjs';
 import { formatDate, formatDateAndTime } from '@/lib/utils';
 import prisma from '@/db/mongo';
-import { Button } from '@/components/common/Button';
+import { Button } from '@/components/ui/Button';
 
 const getMessage = async (chatRoomId: string) => {
   const message = await prisma.message.findMany({

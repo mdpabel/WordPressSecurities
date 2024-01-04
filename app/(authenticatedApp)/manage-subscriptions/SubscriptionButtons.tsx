@@ -1,8 +1,8 @@
-"use client";
-import Spinner from "@/components/common/Spinner";
-import { client } from "@/lib/client";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+'use client';
+import Spinner from '@/components/ui/Spinner';
+import { client } from '@/lib/client';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 
 const SubscriptionButtons = ({
   subscription_id,
@@ -15,8 +15,8 @@ const SubscriptionButtons = ({
 
   const handleUpdate = () => {
     setUpdateLoading(true);
-    client("/api/stripe/manage-subscription").then((res) => {
-      const url = res.url + "/subscriptions/" + subscription_id + "/update";
+    client('/api/stripe/manage-subscription').then((res) => {
+      const url = res.url + '/subscriptions/' + subscription_id + '/update';
       setUpdateLoading(false);
       router.push(url);
     });
@@ -24,27 +24,25 @@ const SubscriptionButtons = ({
 
   const handleCancel = () => {
     setCancelLoading(true);
-    client("/api/stripe/manage-subscription").then((res) => {
-      const url = res.url + "/subscriptions/" + subscription_id + "/cancel";
+    client('/api/stripe/manage-subscription').then((res) => {
+      const url = res.url + '/subscriptions/' + subscription_id + '/cancel';
       setCancelLoading(false);
       router.push(url);
     });
   };
 
   return (
-    <div className="space-x-4">
+    <div className='space-x-4'>
       <button
         onClick={handleUpdate}
-        className="bg-gray-600 text-gray-50 px-6 py-2 rounded"
-      >
-        {updateLoading ? <Spinner /> : "Update"}
+        className='bg-gray-600 text-gray-50 px-6 py-2 rounded'>
+        {updateLoading ? <Spinner /> : 'Update'}
       </button>
 
       <button
         onClick={handleCancel}
-        className="bg-gray-600 text-gray-50 px-6 py-2 rounded"
-      >
-        {cancelLoading ? <Spinner /> : "Cancel"}
+        className='bg-gray-600 text-gray-50 px-6 py-2 rounded'>
+        {cancelLoading ? <Spinner /> : 'Cancel'}
       </button>
     </div>
   );
