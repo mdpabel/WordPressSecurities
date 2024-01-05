@@ -1,21 +1,11 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { useClerk } from '@clerk/clerk-react';
-import {
-  BookIcon,
-  DashBoardIcon,
-  LogoutIcon,
-  SubScriptionIcon,
-  SupportInboxIcon,
-  UserIcon,
-} from '../ui/icons';
+import { LogoutIcon } from '../ui/icons';
 import Link from 'next/link';
-import { useSidebar } from '@/stores/sidebar';
+import { useSidebar } from '@/zustand/sidebar';
 import { clsx } from 'clsx';
-import { useAsync } from '@/hooks/useAsync';
 import Spinner from '../ui/Spinner';
-import { redirect } from 'next/navigation';
-import { SignOutButton } from '@clerk/nextjs';
 
 const SideBarItem = ({
   Icon,

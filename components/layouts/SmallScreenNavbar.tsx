@@ -19,7 +19,7 @@ import { MainHeaderType } from './Navbar';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { SubMenuType, navItems } from '@/data/navItems';
 import { BarIcon, CrossIcon, SidebarToggleIcon } from '@/components/ui/icons';
-import { useSidebar } from '@/stores/sidebar';
+import { useSidebar } from '@/zustand/sidebar';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {

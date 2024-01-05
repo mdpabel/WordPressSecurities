@@ -16,14 +16,14 @@ const ServiceItem = ({ label, price, id, onChange, items }: IServiceItem) => {
       <div className='flex items-center pl-3'>
         <input
           onChange={onChange}
-          id={label}
+          id={id}
           value={id}
           type='checkbox'
           checked={items.indexOf(id) > -1}
           className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 '
         />
         <label
-          htmlFor={label}
+          htmlFor={id}
           className='w-full py-3 ml-2 text-base font-medium text-gray-900 flex justify-between'>
           <span>{label}</span>
           <span className='font-bold'>${price}</span>

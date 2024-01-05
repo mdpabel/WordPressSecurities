@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import { formatCurrency } from '@/lib/utils';
+import { useCart } from '@/zustand/cart';
 
 type PlanType = {
   price: number;
@@ -105,6 +106,11 @@ type ServiceItemType = {
 };
 
 const ServiceItem = ({ title, price, id, onChange }: ServiceItemType) => {
+  const cart = useCart((state) => state.cart);
+  const cartItems: string[] = cart?.items?.map((item) => item?.productId) ?? [];
+
+  console.log(cartItems.includes(id));
+
   return (
     <li className='w-full border-b border-gray-200 rounded-t-lg'>
       <div className='flex items-center pl-3'>
@@ -113,7 +119,7 @@ const ServiceItem = ({ title, price, id, onChange }: ServiceItemType) => {
           id={title}
           value={id}
           type='checkbox'
-          defaultChecked={price == 0}
+          defaultChecked={cartItems.includes(id)}
           className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 '
         />
         <label
@@ -138,13 +144,25 @@ type PropType = {
 };
 
 const PricingTable = ({ services }: PropType) => {
+  const { addToCart, getCart, cart, clearCart } = useCart();
+
   const freeServices = services
     .filter((service) => service.price === 0)
     .map((service) => service.id);
 
-  const [items, setItems] = useState(freeServices);
+  const cartItems: string[] = cart?.items?.map((item) => item?.productId) ?? [];
 
-  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [items, setItems] = useState([...freeServices, ...cartItems]);
+
+  console.log(items, cartItems);
+
+  useEffect(() => {
+    getCart().then(() => {
+      console.log('Done');
+    });
+  }, [getCart]);
+
+  const handleChecked = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const itemsCopy = [...items];
     const checked = e.target.checked;
     const id = e.target.value;
@@ -156,6 +174,10 @@ const PricingTable = ({ services }: PropType) => {
       itemsCopy.splice(idx, 1);
     }
     setItems([...itemsCopy]);
+
+    await addToCart({
+      productId: id,
+    });
   };
 
   const selectedServices = services.filter(
@@ -164,10 +186,12 @@ const PricingTable = ({ services }: PropType) => {
 
   const features = selectedServices.map((s) => s.title);
 
-  let totalPrice = selectedServices.reduce(
-    (total, service) => service.price + total,
-    0,
-  );
+  // let totalPrice = selectedServices.reduce(
+  //   (total, service) => service.price + total,
+  //   0,
+  // );
+
+  const totalPrice = cart?.subTotal ?? 0;
 
   return (
     <section
