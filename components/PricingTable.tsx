@@ -17,7 +17,7 @@ type ProductTitleAndPrice = {
   id: string;
 };
 
-type SubscriptionProducts = {
+export type SubscriptionProducts = {
   id: string;
   title: string;
   subscriptions: Subscriptions;
@@ -179,8 +179,6 @@ const PricingTable = ({ services, subscriptions }: PropType) => {
       initialized.current = true;
     }
   }, [loading]);
-
-  console.log(isLoading);
 
   return (
     <section

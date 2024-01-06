@@ -1,5 +1,6 @@
 import { Cart } from 'swell-js';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import swell from '@/lib/swell/client';
 
 export type AddToCart = {
@@ -30,77 +31,85 @@ export type State = {
   error: Error | null;
 };
 
-export const useCart = create<State & Action>()((set) => ({
-  cart: null,
-  error: null,
-  loading: false,
-  addToCart: async (item: AddToCart) => {
-    set({
-      loading: true,
-    });
-    const options = {
-      productId: item.productId,
-      quantity: item.quantity || 1,
-      purchaseOption: item.purchaseOption || {
-        type: 'standard',
+export const useCart = create<State & Action>()(
+  persist(
+    (set) => ({
+      cart: null,
+      error: null,
+      loading: false,
+      addToCart: async (item: AddToCart) => {
+        set({
+          loading: true,
+        });
+        const options = {
+          productId: item.productId,
+          quantity: item.quantity || 1,
+          purchaseOption: item.purchaseOption || {
+            type: 'standard',
+          },
+        };
+
+        const cart = await swell.cart.addItem(options);
+
+        set({
+          cart,
+          loading: false,
+        });
       },
-    };
+      removeFromCart: async (productId: string) => {
+        set({
+          loading: true,
+        });
 
-    const cart = await swell.cart.addItem(options);
+        const cart = await swell.cart.removeItem(productId);
 
-    set({
-      cart,
-      loading: false,
-    });
-  },
-  removeFromCart: async (productId: string) => {
-    set({
-      loading: true,
-    });
+        set({
+          cart,
+          loading: false,
+        });
+      },
+      updateCart: async (productId: string, quantity: number) => {
+        set({
+          loading: true,
+        });
 
-    const cart = await swell.cart.removeItem(productId);
+        const cart = await swell.cart.updateItem(productId, {
+          quantity,
+        });
 
-    set({
-      cart,
-      loading: false,
-    });
-  },
-  updateCart: async (productId: string, quantity: number) => {
-    set({
-      loading: true,
-    });
+        set({
+          cart,
+          loading: false,
+        });
+      },
+      clearCart: async () => {
+        set({
+          loading: true,
+        });
 
-    const cart = await swell.cart.updateItem(productId, {
-      quantity,
-    });
+        const cart = await swell.cart.setItems([]);
 
-    set({
-      cart,
-      loading: false,
-    });
-  },
-  clearCart: async () => {
-    set({
-      loading: true,
-    });
+        set({
+          cart,
+          loading: false,
+        });
+      },
+      getCart: async () => {
+        set({
+          loading: true,
+        });
 
-    const cart = await swell.cart.setItems([]);
+        const cart = await swell.cart.get();
 
-    set({
-      cart,
-      loading: false,
-    });
-  },
-  getCart: async () => {
-    set({
-      loading: true,
-    });
-
-    const cart = await swell.cart.get();
-
-    set({
-      cart,
-      loading: false,
-    });
-  },
-}));
+        set({
+          cart,
+          loading: false,
+        });
+      },
+    }),
+    {
+      name: 'cart',
+      skipHydration: true,
+    },
+  ),
+);

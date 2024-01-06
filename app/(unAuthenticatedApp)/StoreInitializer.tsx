@@ -7,9 +7,16 @@ const StoreInitializer = () => {
   const { getCart } = useCart();
 
   useEffect(() => {
-    getCart().then(() => {
-      console.log('DONE!');
-    });
+    useCart.persist.rehydrate();
+  }, []);
+
+  useEffect(() => {
+    if (!initialized.current) {
+      getCart().then(() => {
+        console.log('DONE!');
+      });
+      initialized.current = true;
+    }
   }, [getCart]);
 
   return null;
