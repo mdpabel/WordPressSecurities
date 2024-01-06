@@ -1,5 +1,6 @@
-import Footer from "@/components/layouts/Footer";
-import Header from "@/components/layouts/Header";
+import Footer from '@/components/layouts/Footer';
+import Header from '@/components/layouts/Header';
+import StoreInitializer from './StoreInitializer';
 
 export default async function UnAuthenticatedAppLayout({
   children,
@@ -11,7 +12,10 @@ export default async function UnAuthenticatedAppLayout({
       <header>
         <Header />
       </header>
-      <main>{children}</main>
+      <main>
+        {children}
+        <StoreInitializer />
+      </main>
       <Footer />
     </>
   );

@@ -1,5 +1,6 @@
 import { AddToCart, UpdateCart } from '@/zustand/cart';
 import swell from './client';
+import { cache } from 'react';
 
 export const addToCart = async ({
   productId,
@@ -23,13 +24,16 @@ export const removeFromCart = async (productId: string) => {
   return await swell.cart.removeItem(productId);
 };
 
-export const updateCart = async ({ productId, quantity }: UpdateCart) => {
+export const updateProductQuantity = async ({
+  productId,
+  quantity,
+}: UpdateCart) => {
   return await swell.cart.updateItem(productId, {
     quantity,
   });
 };
 
-export const clearCart = async () => {
+export const emptyCart = async () => {
   return await swell.cart.setItems([]);
 };
 

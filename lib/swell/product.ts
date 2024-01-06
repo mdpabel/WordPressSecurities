@@ -34,12 +34,49 @@ export const getProductTitleAndSlug = async () => {
   }));
 };
 
-export const getTitleAndPrice = async () => {
+export const getStandardProducts = async () => {
   const res = await getProducts();
 
-  return res?.map((product) => ({
+  const products = res?.filter(
+    (product) => !product?.purchaseOptions?.subscription,
+  );
+
+  return products?.map((product) => ({
     id: product?.id ?? '',
     title: capitalize(product?.name),
     price: product?.price ?? 0,
+  }));
+};
+
+export type BillingSchedule = {
+  interval: 'monthly' | 'yearly';
+  intervalCount: number;
+  limit: null | number;
+  trialDays: number;
+};
+
+export type Plan = {
+  name: string;
+  description: null | string;
+  price: number;
+  billingSchedule: BillingSchedule;
+  id: string;
+};
+
+export type Subscriptions = {
+  plans: Plan[];
+};
+
+export const getSubscriptionsBasedProducts = async () => {
+  const res = await getProducts();
+
+  const products = res?.filter(
+    (product) => product?.purchaseOptions?.subscription,
+  );
+
+  return products?.map((product) => ({
+    id: product?.id ?? '',
+    title: capitalize(product?.name),
+    subscriptions: product?.purchaseOptions?.subscription as Subscriptions,
   }));
 };

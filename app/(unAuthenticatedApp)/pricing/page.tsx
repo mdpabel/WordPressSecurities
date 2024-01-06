@@ -1,15 +1,15 @@
 import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import React from 'react';
 import FAQ from '@/components/FAQ';
-import PricingTable from '@/components/PricingTable';
 import { SectionTitleWithSubTitle } from '@/components/ui/Title';
-import { getTitleAndPrice } from '@/lib/swell/product';
+import { getStandardProducts } from '@/lib/swell/product';
+import PricingTable from './PricingTable';
 
 export const dynamic = 'force-static';
 export const revalidate = 86400;
 
 const solutions = async () => {
-  const services = await getTitleAndPrice();
+  const services = await getStandardProducts();
 
   return (
     <ComponentWrapper>

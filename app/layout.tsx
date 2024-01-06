@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { ClerkProvider, auth } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/toaster';
 import NProgressBar from '@/components/ui/NProgressBar';
+import Providers from './Providers';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),
@@ -25,11 +26,9 @@ export default async function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html className='scroll-smooth' suppressHydrationWarning={true} lang='en'>
+      <html className='scroll-smooth' lang='en'>
         <body className={playfair.className}>
-          <>
-            <NProgressBar>{children}</NProgressBar>
-          </>
+          <Providers>{children}</Providers>
           <Toaster />
         </body>
       </html>

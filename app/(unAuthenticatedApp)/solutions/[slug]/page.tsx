@@ -8,7 +8,7 @@ import Carousel from '../Carousel';
 import {
   getProductByIdAndSlug,
   getProducts,
-  getTitleAndPrice,
+  getStandardProducts,
 } from '@/lib/swell/product';
 
 type Props = {
@@ -24,7 +24,7 @@ export async function generateStaticParams() {
 }
 
 const Solution = async ({ params }: Props) => {
-  const services = await getTitleAndPrice();
+  const services = await getStandardProducts();
   const service = await getProductByIdAndSlug(params?.slug);
 
   const images =
