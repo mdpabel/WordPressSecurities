@@ -1,7 +1,7 @@
 import { Cart } from 'swell-js';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import swell from '@/lib/swell/client';
+import swell from '@/swell/client';
 
 export type AddToCart = {
   productId: string;

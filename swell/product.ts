@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import swell from './client';
-import { capitalize, formatCurrency } from '../utils';
+import { capitalize, formatCurrency } from '../lib/utils';
 
 type GetProductsTypes = {
   category?: string;

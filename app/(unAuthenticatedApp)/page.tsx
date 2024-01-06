@@ -8,7 +8,7 @@ import {
   getProducts,
   getStandardProducts,
   getSubscriptionsBasedProducts,
-} from '@/lib/swell/product';
+} from '@/swell/product';
 
 export const dynamic = 'force-static';
 export const revalidate = 86400;

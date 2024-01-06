@@ -5,7 +5,7 @@ import { SectionTitleWithSubTitle } from '@/components/ui/Title';
 import {
   getStandardProducts,
   getSubscriptionsBasedProducts,
-} from '@/lib/swell/product';
+} from '@/swell/product';
 import PricingTable from '@/components/PricingTable';
 
 export const dynamic = 'force-static';

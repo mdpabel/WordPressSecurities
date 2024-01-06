@@ -1,4 +1,4 @@
-import { getProducts } from '@/lib/swell/product';
+import { getProducts } from '@/swell/product';
 
 const siteUrl = process.env.SITE_URL || 'https://www.wordpresssecurities.com/';
 

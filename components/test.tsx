@@ -9,7 +9,7 @@ import { useUser } from '@clerk/nextjs';
 import { formatCurrency } from '@/lib/utils';
 import { useCart } from '@/context/cartProvider';
 import { CartItemCamel } from 'swell-js/types/cart/camel';
-import { Subscriptions } from '@/lib/swell/product';
+import { Subscriptions } from '@/swell/product';
 
 type ProductTitleAndPrice = {
   title: string;

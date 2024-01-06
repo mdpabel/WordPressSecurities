@@ -7,9 +7,12 @@ import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import { formatCurrency } from '@/lib/utils';
 import { CartItemCamel } from 'swell-js/types/cart/camel';
-import { Subscriptions } from '@/lib/swell/product';
+import { Subscriptions } from '@/swell/product';
 import { useCart } from '@/zustand/cart';
 import { useAsync } from '@/hooks/useAsync';
+import { login } from '@/swell/account';
+import { generateToken } from '@/app/_actions';
+import { useRouter } from 'next/navigation';
 
 type ProductTitleAndPrice = {
   title: string;
@@ -38,9 +41,10 @@ export const PricingColumn = ({
   title,
   subscriptions,
 }: PricingColumnProps) => {
-  const { cart } = useCart();
+  const router = useRouter();
+  const { cart, getCart } = useCart();
   const [loading, setLoading] = useState(false);
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user, isLoaded } = useUser();
 
   const cartItems = cart?.items?.map((item: CartItemCamel) => item.productId);
   const selectedServices = services.filter(
@@ -51,7 +55,29 @@ export const PricingColumn = ({
   const showBuyNowButton = isSignedIn;
   const showCreateAccountButton = !isSignedIn;
 
-  const handlePayment = async () => {};
+  const handlePayment = async () => {
+    if (!isSignedIn || !isLoaded) return;
+
+    if (!cart?.accountLoggedIn) {
+      setLoading(true);
+      // generate token with swell-node
+      const { token } = await generateToken();
+      console.log(token);
+      const email = user.primaryEmailAddress?.emailAddress;
+      if (!email || !token) return;
+
+      // login with swell-js
+      const { success } = await login(email, token);
+      if (success) {
+        await getCart();
+      }
+      setLoading(false);
+    }
+
+    if (cart?.checkoutUrl) {
+      router.push(cart?.checkoutUrl);
+    }
+  };
 
   return (
     <div
@@ -87,7 +113,7 @@ export const PricingColumn = ({
 
       {showCreateAccountButton && (
         <Button asChild className='flex justify-center' variant='outline'>
-          <Link href='/register'>Get started</Link>
+          <Link href='/login'>Sign in to Checkout</Link>
         </Button>
       )}
     </div>

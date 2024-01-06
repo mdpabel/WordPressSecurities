@@ -9,7 +9,7 @@ import {
   getProductByIdAndSlug,
   getProducts,
   getStandardProducts,
-} from '@/lib/swell/product';
+} from '@/swell/product';
 
 type Props = {
   params: { slug: string };
