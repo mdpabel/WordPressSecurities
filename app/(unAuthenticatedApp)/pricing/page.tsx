@@ -8,8 +8,6 @@ import {
 } from '@/swell/product';
 import PricingTable from '@/components/PricingTable';
 
-getStandardProducts;
-
 const Pricing = async () => {
   const standardProducts = await getStandardProducts();
   const subscriptionsProducts = await getSubscriptionsBasedProducts();

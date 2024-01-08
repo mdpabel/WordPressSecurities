@@ -1,5 +1,4 @@
 import ComponentWrapper from '@/components/ui/ComponentWrapper';
-import Button from '@/components/ui/Button';
 import Subscription from './Subscription';
 import prisma from '@/prisma/prisma';
 import { currentUser, RedirectToSignIn } from '@clerk/nextjs';

@@ -9,8 +9,6 @@ import { Input } from '@/components/ui/Input';
 import Spinner from '@/components/ui/Spinner';
 import { Button } from '@/components/ui/Button';
 
-getStandardProducts;
-
 const SignInPage: NextPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

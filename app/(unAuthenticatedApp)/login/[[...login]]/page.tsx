@@ -6,9 +6,6 @@ import AuthForm from '@/components/auth/authForm';
 import { useToast } from '@/components/ui/use-toast';
 import { catchClerkError } from '@/lib/utils';
 
-export const dynamic = 'force-static';
-export const revalidate = 86400;
-
 export default function Page() {
   const { toast } = useToast();
   const { isLoaded, signIn, setActive } = useSignIn();

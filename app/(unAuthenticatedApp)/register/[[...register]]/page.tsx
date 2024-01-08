@@ -8,8 +8,6 @@ import { client } from '@/lib/client';
 import { catchClerkError } from '@/lib/utils';
 import { useToast } from '@/components/ui/use-toast';
 
-getStandardProducts;
-
 export default function Page() {
   const { toast } = useToast();
   const { isLoaded, signUp, setActive } = useSignUp();
