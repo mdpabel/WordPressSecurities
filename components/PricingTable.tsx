@@ -10,7 +10,7 @@ import { CartItemCamel } from 'swell-js/types/cart/camel';
 import { Subscriptions } from '@/swell/product';
 import { useCart } from '@/zustand/cart';
 import { useAsync } from '@/hooks/useAsync';
-import { login } from '@/swell/account';
+import { login, logout } from '@/swell/account';
 import { generateToken } from '@/app/_actions';
 import { useRouter } from 'next/navigation';
 
@@ -58,16 +58,20 @@ export const PricingColumn = ({
   const handlePayment = async () => {
     setLoading(true);
     await getCart();
-    console.log(cart?.accountLoggedIn, cart?.checkoutUrl);
     if (!isSignedIn || !isLoaded) return;
 
     if (!cart?.accountLoggedIn) {
+      console.log('Loging from pricing table component...');
+      const { token } = await generateToken();
+      const email = user?.primaryEmailAddress?.emailAddress as string;
+
+      await login(email, token);
       await getCart();
     }
 
-    // if (cart?.checkoutUrl) {
-    //   router.push(cart?.checkoutUrl);
-    // }
+    if (cart?.checkoutUrl) {
+      router.push(cart?.checkoutUrl);
+    }
 
     setLoading(false);
   };
