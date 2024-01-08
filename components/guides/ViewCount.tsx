@@ -1,5 +1,5 @@
 import { unstable_noStore as noStore } from 'next/cache';
-import prisma from '@/db/mongo';
+import prisma from '@/prisma/prisma';
 
 const ViewCount = async ({ id }: { id: string }) => {
   noStore();

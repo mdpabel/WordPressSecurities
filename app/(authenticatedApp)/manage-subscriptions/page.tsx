@@ -1,7 +1,7 @@
 import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import Button from '@/components/ui/Button';
 import Subscription from './Subscription';
-import prisma from '@/db/mongo';
+import prisma from '@/prisma/prisma';
 import { currentUser, RedirectToSignIn } from '@clerk/nextjs';
 import { Subscription as SubscriptionType } from '@prisma/client';
 import { Title } from '@/components/ui/Title';

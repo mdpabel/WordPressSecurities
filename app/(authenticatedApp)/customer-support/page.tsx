@@ -1,8 +1,8 @@
-import CustomerProfile from "@/components/chat/CustomerProfile";
-import Messages from "../../../components/chat/Messages";
-import prisma from "@/db/mongo";
-import { currentUser, RedirectToSignIn } from "@clerk/nextjs";
-import ChatInput from "@/components/chat/ChatInput";
+import CustomerProfile from '@/components/chat/CustomerProfile';
+import Messages from '../../../components/chat/Messages';
+import prisma from '@/prisma/prisma';
+import { currentUser, RedirectToSignIn } from '@clerk/nextjs';
+import ChatInput from '@/components/chat/ChatInput';
 
 const getMessages = async (chatRoomId: string) => {
   const initialMessages = await prisma.message.findMany({
@@ -25,7 +25,7 @@ const CustomerSupports = async () => {
   const sender = initialMessages.find((m) => m.senderId != user?.id)?.senderId;
 
   return (
-    <div className="flex-1 p:2 sm:px-6 flex flex-col h-screen">
+    <div className='flex-1 p:2 sm:px-6 flex flex-col h-screen'>
       <CustomerProfile sender={sender!} />
       <div>
         <Messages

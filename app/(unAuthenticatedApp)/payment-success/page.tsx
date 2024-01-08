@@ -1,10 +1,10 @@
-import prisma from "@/db/mongo";
-import { stripe } from "@/lib/stripe";
-import { auth, currentUser, RedirectToSignIn } from "@clerk/nextjs";
-import { subscribe } from "diagnostics_channel";
-import React from "react";
+import prisma from '@/prisma/prisma';
+import { stripe } from '@/lib/stripe';
+import { auth, currentUser, RedirectToSignIn } from '@clerk/nextjs';
+import { subscribe } from 'diagnostics_channel';
+import React from 'react';
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 export const revalidate = 86400;
 
 interface Props {

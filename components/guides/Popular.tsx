@@ -1,5 +1,5 @@
 import { use } from 'react';
-import prisma from '@/db/mongo';
+import prisma from '@/prisma/prisma';
 import { Title } from '../ui/Title';
 import ComponentWrapper from '../ui/ComponentWrapper';
 import { SmallCard } from './SmallCard';

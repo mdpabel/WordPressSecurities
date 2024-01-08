@@ -1,8 +1,8 @@
-import prisma from "@/db/mongo";
-import { pusherServer } from "@/lib/pusher";
-import { inputSanitize } from "@/lib/sanitizeInput";
-import { currentUser } from "@clerk/nextjs";
-import { NextRequest, NextResponse } from "next/server";
+import prisma from '@/prisma/prisma';
+import { pusherServer } from '@/lib/pusher';
+import { inputSanitize } from '@/lib/sanitizeInput';
+import { currentUser } from '@clerk/nextjs';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = async (req: NextRequest) => {
   const user = await currentUser();
@@ -11,17 +11,17 @@ export const POST = async (req: NextRequest) => {
   if (!user) {
     return NextResponse.json(
       {
-        message: "You are not authenticated",
+        message: 'You are not authenticated',
       },
       {
         status: 401,
-      }
+      },
     );
   }
 
   const sanitizedContent = inputSanitize(content);
 
-  await pusherServer.trigger(channel, "incoming-message", {
+  await pusherServer.trigger(channel, 'incoming-message', {
     content: sanitizedContent,
     senderId: user?.id,
     senderImg: user?.imageUrl ?? user?.firstName,
@@ -38,6 +38,6 @@ export const POST = async (req: NextRequest) => {
   });
 
   return NextResponse.json({
-    message: "Send message successfully",
+    message: 'Send message successfully',
   });
 };

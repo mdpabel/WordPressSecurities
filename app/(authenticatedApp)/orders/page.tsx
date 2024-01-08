@@ -1,4 +1,4 @@
-import prisma from '@/db/mongo';
+import prisma from '@/prisma/prisma';
 import Order from './Order';
 
 import { currentUser, RedirectToSignIn } from '@clerk/nextjs';

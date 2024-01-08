@@ -10,7 +10,7 @@ import { Message } from '@prisma/client';
 import Link from 'next/link';
 import { clerkClient } from '@clerk/nextjs';
 import { formatDate, formatDateAndTime } from '@/lib/utils';
-import prisma from '@/db/mongo';
+import prisma from '@/prisma/prisma';
 import { Button } from '@/components/ui/Button';
 
 const getMessage = async (chatRoomId: string) => {

@@ -1,12 +1,12 @@
-import { stripe } from "@/lib/stripe";
-import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
-import prisma from "@/db/mongo";
-import { currentUser } from "@clerk/nextjs";
+import { stripe } from '@/lib/stripe';
+import { NextRequest, NextResponse } from 'next/server';
+import { headers } from 'next/headers';
+import prisma from '@/prisma/prisma';
+import { currentUser } from '@clerk/nextjs';
 
 export const POST = async (req: NextRequest) => {
   const user = await currentUser();
-  const sig = headers().get("stripe-signature") as string;
+  const sig = headers().get('stripe-signature') as string;
   const reqString = await req.text();
   const signingSecrete = process.env.STRIPE_WEBHOOKS_SIGNING_SECRETE!;
 
@@ -19,11 +19,11 @@ export const POST = async (req: NextRequest) => {
   if (!profile) {
     return NextResponse.json(
       {
-        message: "You are not authorized to access this endpoint",
+        message: 'You are not authorized to access this endpoint',
       },
       {
         status: 401,
-      }
+      },
     );
   }
 
@@ -40,7 +40,7 @@ export const POST = async (req: NextRequest) => {
 
   // Handle the event
   switch (event.type) {
-    case "customer.subscription.created":
+    case 'customer.subscription.created':
       const customerSubscriptionCreated: any = event.data.object;
 
       await prisma.subscription.create({
@@ -49,16 +49,16 @@ export const POST = async (req: NextRequest) => {
           cancellation_date: null,
           subscription_id: customerSubscriptionCreated.id,
           subscription_status: customerSubscriptionCreated.plan.active
-            ? "active"
-            : "cancelled",
+            ? 'active'
+            : 'cancelled',
           interval_count: customerSubscriptionCreated.plan.interval_count,
           interval: customerSubscriptionCreated.plan.interval,
           amount: customerSubscriptionCreated.plan.amount / 100,
           current_period_end: new Date(
-            customerSubscriptionCreated.current_period_end * 1000
+            customerSubscriptionCreated.current_period_end * 1000,
           ),
           current_period_start: new Date(
-            customerSubscriptionCreated.current_period_start * 1000
+            customerSubscriptionCreated.current_period_start * 1000,
           ),
           userId: profile.id,
         },
@@ -74,7 +74,7 @@ export const POST = async (req: NextRequest) => {
       });
 
       break;
-    case "customer.subscription.deleted":
+    case 'customer.subscription.deleted':
       const customerSubscriptionDeleted: any = event.data.object;
       const sub = await prisma.subscription.findFirst({
         where: {
@@ -88,7 +88,7 @@ export const POST = async (req: NextRequest) => {
         },
         data: {
           cancellation_date: new Date(
-            customerSubscriptionDeleted.canceled_at * 1000
+            customerSubscriptionDeleted.canceled_at * 1000,
           ),
         },
       });
@@ -103,7 +103,7 @@ export const POST = async (req: NextRequest) => {
       });
 
       break;
-    case "customer.subscription.updated":
+    case 'customer.subscription.updated':
       const customerSubscriptionUpdated: any = event.data.object;
 
       const subscription = await prisma.subscription.findFirst({
@@ -122,10 +122,10 @@ export const POST = async (req: NextRequest) => {
           interval: customerSubscriptionUpdated.plan.interval,
           amount: customerSubscriptionUpdated.plan.amount,
           current_period_end: new Date(
-            customerSubscriptionUpdated.current_period_end * 1000
+            customerSubscriptionUpdated.current_period_end * 1000,
           ),
           current_period_start: new Date(
-            customerSubscriptionUpdated.current_period_start * 1000
+            customerSubscriptionUpdated.current_period_start * 1000,
           ),
         },
       });
@@ -145,8 +145,8 @@ export const POST = async (req: NextRequest) => {
   }
 
   return NextResponse.json({
-    status: "OK",
-    message: "Webhook POST request received",
+    status: 'OK',
+    message: 'Webhook POST request received',
     received: true,
   });
 };

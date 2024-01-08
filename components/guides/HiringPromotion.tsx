@@ -1,4 +1,4 @@
-import prisma from '@/db/mongo';
+import prisma from '@/prisma/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';

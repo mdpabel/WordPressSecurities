@@ -1,7 +1,7 @@
 import { client } from './client';
 import { JSDOM } from 'jsdom';
 import { formatDate } from './utils';
-import prisma from '@/db/mongo';
+import prisma from '@/prisma/prisma';
 
 const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_ENDPOINT!;
 

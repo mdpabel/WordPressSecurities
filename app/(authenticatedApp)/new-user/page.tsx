@@ -1,7 +1,7 @@
-import prisma from "@/db/mongo";
-import { stripe } from "@/lib/stripe";
-import { auth, currentUser, redirectToSignIn } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import prisma from '@/prisma/prisma';
+import { stripe } from '@/lib/stripe';
+import { auth, currentUser, redirectToSignIn } from '@clerk/nextjs';
+import { redirect } from 'next/navigation';
 
 const page = async () => {
   const user = await currentUser();
@@ -13,7 +13,7 @@ const page = async () => {
   });
 
   if (dbUser) {
-    redirect("/dashboard");
+    redirect('/dashboard');
   }
 
   const customer = await stripe.customers.create({
@@ -29,7 +29,7 @@ const page = async () => {
   });
 
   if (newUser) {
-    redirect("/dashboard");
+    redirect('/dashboard');
   }
 
   return null;

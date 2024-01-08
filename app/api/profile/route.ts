@@ -1,7 +1,7 @@
-import prisma from "@/db/mongo";
-import { stripe } from "@/lib/stripe";
-import { currentUser } from "@clerk/nextjs";
-import { NextRequest, NextResponse } from "next/server";
+import prisma from '@/prisma/prisma';
+import { stripe } from '@/lib/stripe';
+import { currentUser } from '@clerk/nextjs';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = async () => {
   try {
@@ -26,11 +26,11 @@ export const POST = async () => {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Something went wrong",
+        message: 'Something went wrong',
       },
       {
         status: 500,
-      }
+      },
     );
   }
 };
