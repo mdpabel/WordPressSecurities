@@ -27,8 +27,10 @@ export default async function RootLayout({
     <ClerkProvider>
       <html className='scroll-smooth' lang='en'>
         <body className={playfair.className}>
-          {children}
-          <Toaster />
+          <NProgressBar>
+            {children}
+            <Toaster />
+          </NProgressBar>
         </body>
       </html>
     </ClerkProvider>

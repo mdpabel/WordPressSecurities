@@ -23,7 +23,5 @@ export const generateToken = async () => {
     password_token: null,
   });
 
-  console.log(password_token);
-
   return { success: true, token: password_token };
 };

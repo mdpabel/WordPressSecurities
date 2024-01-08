@@ -10,8 +10,7 @@ import {
   getSubscriptionsBasedProducts,
 } from '@/swell/product';
 
-export const dynamic = 'force-static';
-export const revalidate = 86400;
+getStandardProducts;
 
 // id: number;
 // pricingTableId: number[];

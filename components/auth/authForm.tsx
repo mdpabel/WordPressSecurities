@@ -1,13 +1,13 @@
 import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import Logo from '@/components/layouts/Logo';
 import Link from 'next/link';
-import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
+import React, { Dispatch, FormEvent, SetStateAction } from 'react';
 import Spinner from '@/components/ui/Spinner';
 import { Input } from '@/components/ui/Input';
 import { Button } from '../ui/Button';
 
 type IForm = {
-  handleSubmit: (e: SyntheticEvent) => Promise<void>;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   setEmailAddress: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
   loading: boolean;

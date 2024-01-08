@@ -8,8 +8,7 @@ import {
 } from '@/swell/product';
 import PricingTable from '@/components/PricingTable';
 
-export const dynamic = 'force-static';
-export const revalidate = 86400;
+getStandardProducts;
 
 const Pricing = async () => {
   const standardProducts = await getStandardProducts();

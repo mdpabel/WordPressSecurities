@@ -56,27 +56,20 @@ export const PricingColumn = ({
   const showCreateAccountButton = !isSignedIn;
 
   const handlePayment = async () => {
+    setLoading(true);
+    await getCart();
+    console.log(cart?.accountLoggedIn, cart?.checkoutUrl);
     if (!isSignedIn || !isLoaded) return;
 
     if (!cart?.accountLoggedIn) {
-      setLoading(true);
-      // generate token with swell-node
-      const { token } = await generateToken();
-      console.log(token);
-      const email = user.primaryEmailAddress?.emailAddress;
-      if (!email || !token) return;
-
-      // login with swell-js
-      const { success } = await login(email, token);
-      if (success) {
-        await getCart();
-      }
-      setLoading(false);
+      await getCart();
     }
 
-    if (cart?.checkoutUrl) {
-      router.push(cart?.checkoutUrl);
-    }
+    // if (cart?.checkoutUrl) {
+    //   router.push(cart?.checkoutUrl);
+    // }
+
+    setLoading(false);
   };
 
   return (
