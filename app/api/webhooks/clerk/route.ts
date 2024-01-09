@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { WebhookEvent } from '@clerk/clerk-sdk-node';
 import { headers } from 'next/headers';
 import { Webhook } from 'svix';
-import { clerkClient } from '@clerk/nextjs';
+import { clerkClient, currentUser } from '@clerk/nextjs';
 import { generateToken } from '@/app/_actions';
 import { login, logout } from '@/swell/account';
 import { useCart } from '@/zustand/cart';
@@ -18,7 +18,6 @@ const signingKey = process.env.CLERK_WEBHOOK_SIGNING_SECRET!;
 export const POST = async (req: NextRequest) => {
   const payload = await req.json();
   const headerLists = headers();
-  const getCart = useCart.getState().getCart;
 
   const svixId = headerLists.get('svix-id');
   const svixSignature = headerLists.get('svix-signature');
@@ -46,15 +45,17 @@ export const POST = async (req: NextRequest) => {
       await login(email, token);
     } else if (event.type === 'session.created') {
       const userId = event?.data?.user_id;
+
       const user = await clerkClient.users.getUser(userId);
+      console.log('Webhook => ', user);
 
       const { token } = await generateToken();
 
       const primaryEmailAddressId = user?.primaryEmailAddressId;
-      const userWithPrimaryEmail = user?.emailAddresses.find(
+      const userPrimaryEmail = user?.emailAddresses.find(
         (email) => email.id === primaryEmailAddressId,
       );
-      const email = userWithPrimaryEmail?.emailAddress as string;
+      const email = userPrimaryEmail?.emailAddress as string;
 
       await login(email, token);
     } else if (event.type === 'user.deleted') {
@@ -69,8 +70,6 @@ export const POST = async (req: NextRequest) => {
         success: false,
       });
     }
-
-    await await getCart();
 
     return NextResponse.json({
       success: true,

@@ -1,4 +1,3 @@
-import Button from '@/components/ui/Button';
 import { formatDate } from '@/lib/utils';
 import { Order } from '@prisma/client';
 import clsx from 'clsx';

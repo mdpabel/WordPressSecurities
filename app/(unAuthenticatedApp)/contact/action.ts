@@ -52,8 +52,6 @@ export const handleFormSubmission = async (data: FormDataType) => {
     // @ts-ignore
     const res = await resend.emails.send(emailOptions);
 
-    console.log(res);
-
     return {
       title: 'Thank You for Reaching Out!',
       message:

@@ -16,7 +16,6 @@ export const addToCart = async ({
   };
 
   const res = await swell.cart.addItem(options);
-  console.log(res);
   return res;
 };
 

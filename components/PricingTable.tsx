@@ -1,18 +1,16 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { TickIcon } from '@/components/ui/icons';
 import Spinner from '@/components/ui/Spinner';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
-import { useUser } from '@clerk/nextjs';
 import { formatCurrency } from '@/lib/utils';
 import { CartItemCamel } from 'swell-js/types/cart/camel';
 import { Subscriptions } from '@/swell/product';
 import { useCart } from '@/zustand/cart';
 import { useAsync } from '@/hooks/useAsync';
-import { login, logout } from '@/swell/account';
-import { generateToken } from '@/app/_actions';
-import { useRouter } from 'next/navigation';
+import Coupon from './Coupon';
+import { usePricing } from '@/hooks/usePricing';
 
 type ProductTitleAndPrice = {
   title: string;
@@ -41,57 +39,34 @@ export const PricingColumn = ({
   title,
   subscriptions,
 }: PricingColumnProps) => {
-  const router = useRouter();
-  const { cart, getCart } = useCart();
-  const [loading, setLoading] = useState(false);
-  const { isSignedIn, user, isLoaded } = useUser();
-
-  const cartItems = cart?.items?.map((item: CartItemCamel) => item.productId);
-  const selectedServices = services.filter(
-    (service) => cartItems?.includes(service.id),
-  );
-
-  const subTotal = cart?.subTotal ?? 0;
-  const showBuyNowButton = isSignedIn;
-  const showCreateAccountButton = !isSignedIn;
-
-  const handlePayment = async () => {
-    setLoading(true);
-    await getCart();
-    if (!isSignedIn || !isLoaded) return;
-
-    if (!cart?.accountLoggedIn) {
-      console.log('Loging from pricing table component...');
-      const { token } = await generateToken();
-      const email = user?.primaryEmailAddress?.emailAddress as string;
-
-      await login(email, token);
-      await getCart();
-    }
-
-    if (cart?.checkoutUrl) {
-      router.push(cart?.checkoutUrl);
-    }
-
-    setLoading(false);
-  };
+  const {
+    handlePayment,
+    loading,
+    price,
+    selectedServices,
+    showBuyNowButton,
+    showCouponComponent,
+    showCreateAccountButton,
+  } = usePricing({
+    services,
+  });
 
   return (
     <div
       className={`flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg_primary rounded-lg border border-gray-100 shadow  ${className}`}>
       <div className=''>
-        <h3 className='mb-4 text-2xl font-semibold'>{title}</h3>
+        <h3 className='mb-2 text-2xl font-semibold'>{title}</h3>
         <p className='font-light text-gray-700 sm:text-lg '>{subTitle}</p>
-        <div className='flex justify-center items-baseline my-8'>
+        <div className='flex justify-center items-baseline mt-2 mb-4'>
           <span className='mr-2 text-5xl font-extrabold'>
             {formatCurrency({
-              amount: subTotal,
+              amount: price,
             }) ?? '$0.00'}
           </span>
           <span className='text-gray-500 '>/onetime</span>
         </div>
       </div>
-      <ul role='list' className='mb-8 space-y-4 text-left'>
+      <ul role='list' className='mb-8 space-y-2 text-left'>
         {selectedServices.map((service, index) => (
           <li key={index} className='flex items-center space-x-3'>
             <TickIcon />
@@ -99,6 +74,7 @@ export const PricingColumn = ({
           </li>
         ))}
       </ul>
+      {showCouponComponent && <Coupon />}
       {showBuyNowButton && (
         <Button
           variant='outline'
@@ -142,7 +118,6 @@ const ServiceItem = ({ title, price, id }: ServiceItemType) => {
       const item = cart?.items?.find(
         (item: CartItemCamel) => item.productId === productId,
       );
-      console.log(item, checked);
       if (!item?.id) return;
 
       run(removeFromCart(item?.id));
@@ -192,17 +167,6 @@ type PropType = {
 };
 
 const PricingTable = ({ services, subscriptions }: PropType) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const initialized = useRef(false);
-  const { loading } = useCart();
-
-  useEffect(() => {
-    if (!initialized.current) {
-      setIsLoading(loading);
-      initialized.current = true;
-    }
-  }, [loading]);
-
   return (
     <section
       id='instant'

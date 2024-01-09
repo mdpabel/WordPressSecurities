@@ -64,7 +64,6 @@ export type ToasterProps = {
 
 export function catchClerkError(err: unknown) {
   const unknownErr = 'Something went wrong, please try again later.';
-  console.log(err);
   if (isClerkAPIResponseError(err)) {
     const message = err.errors[0]?.longMessage ?? unknownErr;
 

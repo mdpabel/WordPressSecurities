@@ -5,7 +5,6 @@ export const login = async (email: string, token: string) => {
     password_token: token,
   });
 
-  console.log(res);
   return {
     success: true,
   };
@@ -13,8 +12,15 @@ export const login = async (email: string, token: string) => {
 
 export const logout = async () => {
   const res = await swell.account.logout();
-  console.log(res);
   return {
     success: true,
   };
+};
+
+export const getLoggedInAccount = async () => {
+  return await swell.account.get();
+};
+
+export const getSwellSession = async () => {
+  return await swell.session.get();
 };

@@ -28,7 +28,6 @@ const getMessage = async (chatRoomId: string) => {
 
 const ChatRoom = async ({ chatRoom }: { chatRoom: Message }) => {
   const user = await clerkClient.users.getUser(chatRoom?.senderId);
-  console.log(user);
   const messages = (await getMessage(chatRoom.chatRoomId)) ?? [];
 
   return (

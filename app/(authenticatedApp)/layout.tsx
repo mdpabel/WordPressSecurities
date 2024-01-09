@@ -2,7 +2,6 @@ import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import Sidebar from '@/components/layouts/Sidebar';
-import { auth } from '@clerk/nextjs';
 
 import {
   BookIcon,
@@ -11,8 +10,6 @@ import {
   SupportInboxIcon,
   UserIcon,
 } from '@/components/ui/icons-client';
-import { getServicesSubMenus } from '@/lib/contentful';
-
 const sidebarItems = [
   {
     id: 1,

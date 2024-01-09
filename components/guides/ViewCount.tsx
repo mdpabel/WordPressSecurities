@@ -18,8 +18,6 @@ const ViewCount = async ({ id }: { id: string }) => {
     },
   });
 
-  console.log(res);
-
   return (
     <div className='px-5 py-1 font-semibold border rounded shadow-sm'>
       {res?.views + ' Views'}
