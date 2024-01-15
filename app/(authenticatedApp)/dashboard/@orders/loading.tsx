@@ -22,7 +22,7 @@ const TableSkeleton = () => {
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3].map((index) => (
+          {[1].map((index) => (
             <tr key={index} className='border-b'>
               <td className='px-6 py-4 animate-pulse'>Placeholder</td>
               <td className='px-6 py-4 animate-pulse'>Placeholder</td>

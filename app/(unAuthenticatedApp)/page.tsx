@@ -9,8 +9,7 @@ import {
   getStandardProducts,
   getSubscriptionsBasedProducts,
 } from '@/swell/product';
-
-getStandardProducts;
+import { useCart } from '@/zustand/cart';
 
 // id: number;
 // pricingTableId: number[];

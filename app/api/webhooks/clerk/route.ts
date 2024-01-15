@@ -3,13 +3,17 @@ import type { WebhookEvent } from '@clerk/clerk-sdk-node';
 import { headers } from 'next/headers';
 import { Webhook } from 'svix';
 import { clerkClient, currentUser } from '@clerk/nextjs';
-import { generateToken } from '@/app/_actions';
+import { generateToken } from '@/app/(unAuthenticatedApp)/_actions';
 import { login, logout } from '@/swell/account';
-import { useCart } from '@/zustand/cart';
+import swell from '@/swell/server';
+import swellClient from '@/swell/client';
 
-export const GET = () => {
+export const GET = async () => {
+  const user = await currentUser();
+
   return NextResponse.json({
     success: true,
+    user,
   });
 };
 
@@ -41,15 +45,26 @@ export const POST = async (req: NextRequest) => {
   try {
     if (event.type === 'user.created') {
       const email = event.data.email_addresses[0]?.email_address;
-      const { token } = await generateToken();
-      await login(email, token);
+      const firstName = event.data.first_name;
+      const lastName = event.data.last_name;
+
+      await swellClient.account.create({
+        email: email,
+        first_name: firstName,
+        last_name: lastName,
+        email_optin: true,
+      });
     } else if (event.type === 'session.created') {
       const userId = event?.data?.user_id;
 
       const user = await clerkClient.users.getUser(userId);
-      console.log('Webhook => ', user);
 
-      const { token } = await generateToken();
+      if (!user) {
+        return NextResponse.json({
+          success: false,
+          message: 'No user found!',
+        });
+      }
 
       const primaryEmailAddressId = user?.primaryEmailAddressId;
       const userPrimaryEmail = user?.emailAddresses.find(
@@ -57,7 +72,11 @@ export const POST = async (req: NextRequest) => {
       );
       const email = userPrimaryEmail?.emailAddress as string;
 
-      await login(email, token);
+      const { password_token } = await swell.put(`/accounts/${email}`, {
+        password_token: null,
+      });
+
+      await login(email, password_token);
     } else if (event.type === 'user.deleted') {
       await logout();
     } else if (event.type === 'session.removed') {

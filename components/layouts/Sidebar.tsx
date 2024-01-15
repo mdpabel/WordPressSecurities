@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useSidebar } from '@/zustand/sidebar';
 import { clsx } from 'clsx';
 import Spinner from '../ui/Spinner';
+import { logout } from '@/swell/account';
 
 const SideBarItem = ({
   Icon,
@@ -82,6 +83,8 @@ const Sidebar = ({ sidebarItems }: ISidebar) => {
               onClick={async () => {
                 setLoading(true);
                 await signOut();
+                const res = await logout();
+                console.log('Logout swell', res);
                 setLoading(false);
               }}
               className='flex items-center text-gray-900 hover:bg-gray-100 '>

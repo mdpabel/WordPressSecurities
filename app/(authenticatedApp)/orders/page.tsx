@@ -1,22 +1,13 @@
-import prisma from '@/prisma/prisma';
-import Order from './Order';
-import { currentUser, RedirectToSignIn } from '@clerk/nextjs';
 import { Title } from '@/components/ui/Title';
-import { getOrders } from '@/swell/order';
+import Orders from './Orders';
 
-const Orders = async () => {
-  const orders = await getOrders();
-
-  console.log(orders);
-
+const OrdersPage = async () => {
   return (
     <div className='space-y-4'>
       <Title>All Orders</Title>
-      <div className='space-y-6'>
-        {/* {orders?.map((order) => <Order key={order.id} order={order} />)} */}
-      </div>
+      <Orders />
     </div>
   );
 };
 
-export default Orders;
+export default OrdersPage;

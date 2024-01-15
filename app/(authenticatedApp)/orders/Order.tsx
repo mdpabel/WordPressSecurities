@@ -1,35 +1,45 @@
 import React from 'react';
 import ServiceItem from './ServiceItem';
-import Button from '@/components/ui/Button';
 import OrderHeader from './OrderHeader';
-import { type Order } from '@prisma/client';
 import { services } from '@/app/api/payment/route';
 import { Card } from '@/components/ui/Card';
+import { OrderSnake } from 'swell-js/types/order/snake';
 
-const Order = ({ order }: { order: Order }) => {
-  const itemsId = order.product_ids.split(',').map(Number) ?? [];
-
-  const selectedServices = services.filter(
-    (service) => itemsId.indexOf(service.id) > -1,
-  );
+const Order = ({ order }: { order: OrderSnake }) => {
+  const {
+    payment_total,
+    items,
+    coupon_code,
+    sub_total,
+    discount_total,
+    status,
+    item_quantity,
+    paid,
+    currency,
+    account_logged_in,
+    date_created,
+    id,
+    number,
+  } = order;
 
   return (
     <Card className='p-4 md:p-8 rounded shadow'>
       <OrderHeader
-        status={order.order_status}
-        createAt={order?.createAt}
-        orderId={order?.id}
-        price={order?.amount}
+        status={status!}
+        createAt={date_created!}
+        orderId={number!}
+        paymentTotal={Number(payment_total)}
+        discount={discount_total!}
       />
 
       <div className='mt-5'>
         <h2 className='mb-5'>Order details</h2>
         <ul>
-          {selectedServices.map((service) => (
+          {items?.map((service) => (
             <ServiceItem
               key={service.id}
-              label={service.label}
-              price={service.price}
+              label={service.product_name!}
+              price={service.price!}
             />
           ))}
         </ul>

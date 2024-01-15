@@ -6,7 +6,7 @@ import Spinner from '@/components/ui/Spinner';
 import { Input } from '@/components/ui/Input';
 import { Button } from '../ui/Button';
 
-type IForm = {
+type FormType = {
   handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   setEmailAddress: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
@@ -42,7 +42,7 @@ const signInContent = {
 You're in! 🎉 Sign in successful!`,
 };
 
-const AuthForm = (props: IForm) => {
+const AuthForm = (props: FormType) => {
   const content =
     props.modeType === 'register' ? registerContent : signInContent;
 
@@ -69,6 +69,7 @@ const AuthForm = (props: IForm) => {
                       required
                       min={2}
                       id='firstName'
+                      name='firstName'
                       placeholder='First name'
                       type='text'
                       label='First Name'
@@ -78,6 +79,7 @@ const AuthForm = (props: IForm) => {
                       required
                       min={2}
                       id='lastName'
+                      name='lastName'
                       placeholder='Last Name'
                       type='text'
                       label='Last Name'
@@ -90,6 +92,7 @@ const AuthForm = (props: IForm) => {
               required
               min={6}
               id='email'
+              name='email'
               placeholder='hello@wordpresssecurities.com'
               type='email'
               label='Email'
@@ -100,6 +103,7 @@ const AuthForm = (props: IForm) => {
               min={6}
               required
               id='password'
+              name='password'
               placeholder='*********'
               type='password'
               label='Password'
@@ -111,7 +115,7 @@ const AuthForm = (props: IForm) => {
                 {loading ? <Spinner /> : content.buttonText}
               </Button>
               <Link
-                href='/forgot-password'
+                href='/forget-password'
                 className='text-sm font-medium text-primary-600 hover:underline '>
                 Forgot password?
               </Link>

@@ -11,6 +11,8 @@ const options = {
   useCamelCase: true,
 };
 
-swell.init(storeId, publicKey, options);
+swell.init(storeId, publicKey, {
+  useCamelCase: true,
+});
 
 export default swell;

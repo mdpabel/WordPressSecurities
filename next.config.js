@@ -3,10 +3,17 @@
 const path = require('path');
 
 const nextConfig = {
-  experimental: {},
+  experimental: {
+    optimizePackageImports: [
+      '@clerk/nextjs',
+      '@wordpress/base-styles',
+      '@wordpress/block-library',
+    ],
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  compress: true,
   images: {
     remotePatterns: [
       {

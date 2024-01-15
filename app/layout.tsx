@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { ClerkProvider, auth } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/toaster';
 import NProgressBar from '@/components/ui/NProgressBar';
+import { getCart } from '@/swell/cart';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),

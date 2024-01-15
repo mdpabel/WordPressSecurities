@@ -10,6 +10,11 @@ import {
   SupportInboxIcon,
   UserIcon,
 } from '@/components/ui/icons-client';
+import { login, loginWithToken } from '@/swell/account';
+import { currentUser } from '@clerk/nextjs';
+import { generateToken } from '../(unAuthenticatedApp)/_actions';
+import { headers } from 'next/headers';
+import StoreInitializer from './StoreInitializer';
 const sidebarItems = [
   {
     id: 1,
@@ -50,7 +55,7 @@ const sidebarItems = [
   },
 ];
 
-export default async function UnAuthenticatedAppLayout({
+export default async function AuthenticatedAppLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -62,6 +67,7 @@ export default async function UnAuthenticatedAppLayout({
         <Sidebar sidebarItems={sidebarItems} />
         <main className='p-4 -ml-64 md:ml-0 min-h-[80vh] flex-1'>
           {children}
+          <StoreInitializer />
         </main>
       </ComponentWrapper>
       <Footer />

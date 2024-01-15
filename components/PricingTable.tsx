@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TickIcon } from '@/components/ui/icons';
 import Spinner from '@/components/ui/Spinner';
 import { Button } from '@/components/ui/Button';
@@ -165,6 +165,7 @@ type PropType = {
   services: ProductTitleAndPrice[];
   subscriptions: SubscriptionProducts;
 };
+import swell from '@/swell/client';
 
 const PricingTable = ({ services, subscriptions }: PropType) => {
   return (

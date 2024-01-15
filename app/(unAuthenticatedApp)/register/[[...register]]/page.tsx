@@ -7,6 +7,7 @@ import EmailVerificationForm from '@/components/auth/EmailVerificationForm';
 import { client } from '@/lib/client';
 import { catchClerkError } from '@/lib/utils';
 import { useToast } from '@/components/ui/use-toast';
+import { createAccount } from '@/swell/account';
 
 export default function Page() {
   const { toast } = useToast();
@@ -68,15 +69,20 @@ export default function Page() {
         console.log(JSON.stringify(completeSignUp, null, 2));
       }
       if (completeSignUp.status === 'complete') {
+        const res = await createAccount({
+          email: emailAddress,
+          password,
+          firstName,
+          lastName,
+        });
+
+        console.log('SWELL register ', res);
         setVerifying(false);
         toast({
           title: `Successfully verified`,
           description: 'You will be redirected to dashboard',
         });
         await setActive({ session: completeSignUp.createdSessionId });
-        await client('/api/profile', {
-          method: 'POST',
-        });
       }
     } catch (err: any) {
       setVerifying(false);

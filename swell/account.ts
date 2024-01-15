@@ -1,13 +1,39 @@
+import { generateToken } from '@/app/(unAuthenticatedApp)/_actions';
 import swell from './client';
 
-export const login = async (email: string, token: string) => {
-  const res = await swell.account.login(email, {
+type Account = {
+  email: string;
+  password: string;
+  firstName?: string;
+  lastName?: string;
+};
+
+export const login = async ({ email, password }: Account) => {
+  console.log(email, password);
+  return await swell.account.login(email, password);
+};
+
+export const loginWithToken = async (email: string) => {
+  const { token } = await generateToken();
+  return await swell.account.login(email, {
     password_token: token,
   });
+};
 
-  return {
-    success: true,
-  };
+export const createAccount = async ({
+  email,
+  firstName,
+  lastName,
+  password,
+}: Account) => {
+  console.log(email, password);
+  return await swell.account.create({
+    email,
+    email_optin: true,
+    password,
+    first_name: firstName ?? '',
+    last_name: lastName ?? '',
+  });
 };
 
 export const logout = async () => {
@@ -17,10 +43,6 @@ export const logout = async () => {
   };
 };
 
-export const getLoggedInAccount = async () => {
+export const getUser = async () => {
   return await swell.account.get();
-};
-
-export const getSwellSession = async () => {
-  return await swell.session.get();
 };

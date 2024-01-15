@@ -11,9 +11,7 @@ const StoreInitializer = () => {
   }, []);
 
   useEffect(() => {
-    getCart().then(() => {
-      console.log('Fetched cart!');
-    });
+    getCart();
   }, [getCart]);
 
   return null;

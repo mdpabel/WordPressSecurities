@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/zustand/cart';
-import { generateToken } from '@/app/_actions';
-import { login } from '@/swell/account';
+import { generateToken } from '@/app/(unAuthenticatedApp)/_actions';
+import { login, loginWithToken } from '@/swell/account';
 
 type Service = {
   id: string;
@@ -26,7 +26,7 @@ type UsePricingResult = {
 };
 
 export const usePricing = ({ services }: UsePricingProps): UsePricingResult => {
-  const { cart, getCart } = useCart();
+  const { cart, getCart, clearCart } = useCart();
   const { isSignedIn, user, isLoaded } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -41,10 +41,8 @@ export const usePricing = ({ services }: UsePricingProps): UsePricingResult => {
     if (!isSignedIn || !isLoaded) return;
 
     if (!cart?.accountLoggedIn) {
-      const { token } = await generateToken();
       const email = user?.primaryEmailAddress?.emailAddress as string;
-
-      await login(email, token);
+      await loginWithToken(email);
       await getCart();
     }
 
