@@ -11,8 +11,11 @@ const StoreInitializer = () => {
   }, []);
 
   useEffect(() => {
-    getCart();
-  }, [getCart]);
+    if (!initialized.current) {
+      getCart();
+      initialized.current = true;
+    }
+  }, []);
 
   return null;
 };

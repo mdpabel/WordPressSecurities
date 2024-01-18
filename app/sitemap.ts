@@ -1,6 +1,6 @@
 import { getProducts } from '@/swell/product';
 
-const siteUrl = process.env.SITE_URL || 'https://www.wordpresssecurities.com/';
+const siteUrl = process.env.SITE_URL || 'https://www.wordpresssecurities.com';
 
 type SitemapType = Array<{
   url: string;
