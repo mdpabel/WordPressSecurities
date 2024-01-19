@@ -1,7 +1,4 @@
-import React from "react";
-
-export const dynamic = "force-static";
-export const revalidate = 86400;
+import React from 'react';
 
 const Term = () => {
   // termly.io

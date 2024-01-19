@@ -1,7 +1,8 @@
-import React from "react";
+import ComponentWrapper from '@/components/ui/ComponentWrapper';
+import React from 'react';
 
 const loading = () => {
-  return <div>loading...</div>;
+  return <ComponentWrapper>loading...</ComponentWrapper>;
 };
 
 export default loading;

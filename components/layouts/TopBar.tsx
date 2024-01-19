@@ -9,15 +9,29 @@ const TopBar = () => {
         <div className='flex justify-between text-sm font-semibold'>
           <div>Discover how to protect your WordPress site from threats</div>
           <nav className='hidden md:block'>
-            <ul className='flex justify-between space-x-6'>
+            <ul className='flex justify-between space-x-4'>
               <li>
-                <Link href='/about-us'>About Us</Link>
+                <Link href='/about-us' className='hover:underline'>
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link href='/team' className='hover:underline'>
+                  Team
+                </Link>
+              </li>
+              <li>
+                <Link href='/privacy' className='hover:underline'>
+                  Privacy
+                </Link>
+              </li>
+              <li>
+                <Link href='/cookie-policy' className='hover:underline'>
+                  Cookie Policy
+                </Link>
               </li>
               <li>
                 <Link href='/faq'>FAQ</Link>
-              </li>
-              <li>
-                <Link href='/privacy'>Privacy Policy</Link>
               </li>
             </ul>
           </nav>
