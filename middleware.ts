@@ -2,18 +2,7 @@ import { authMiddleware, redirectToSignIn } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
 const publicRoutes = [
-  '/',
-  '/emergency(.*)',
-  '/guides(.*)',
-  '/solutions(.*)',
-  '/pricing(.*)',
-  '/login(.*)',
-  '/register(.*)',
-  '/about(.*)',
-  '/contact(.*)',
-  '/faq(.*)',
-  '/forget-password(.*)',
-  '/api(.*)',
+  '/((?!dashboard|customer-support|manage-account|manage-subscriptions|orders|security-reports).*)',
 ];
 
 export default authMiddleware({
