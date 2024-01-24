@@ -10,6 +10,7 @@ import {
   getSubscriptionsBasedProducts,
 } from '@/swell/product';
 import { useCart } from '@/zustand/cart';
+import GlobalProjectsMap from '@/components/GlobalProjectsMap';
 
 // id: number;
 // pricingTableId: number[];
@@ -50,6 +51,7 @@ const page = async () => {
           subscriptions={subscriptionsProducts}
         />
       </div>
+      <GlobalProjectsMap />
       <FAQ items={[7, 1, 4, 6, 10]} />
     </ComponentWrapper>
   );

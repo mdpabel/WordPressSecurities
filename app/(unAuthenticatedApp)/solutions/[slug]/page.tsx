@@ -10,6 +10,7 @@ import {
   getProducts,
   getStandardProducts,
 } from '@/swell/product';
+import GlobalProjectsMap from '@/components/GlobalProjectsMap';
 
 type Props = {
   params: { slug: string };
@@ -42,7 +43,7 @@ const Solution = async ({ params }: Props) => {
           <Title className='text-2xl md:text-3xl'>{service?.name}</Title>
           <Carousel images={images} />
           <div className='md:hidden pt-10'>
-            <PricingTable services={services} />
+            <PricingTable subscriptions={[]} services={services} />
           </div>
           <div className='pt-5 md:pt-20 space-y-4'>
             <Title>About this service</Title>
@@ -57,6 +58,7 @@ const Solution = async ({ params }: Props) => {
             <Title>Frequently Asked Questions</Title>
             <FAQ title={false} items={[1, 2, 3, 4, 5]} />
           </div>
+          <GlobalProjectsMap />
         </div>
         <div className='hidden md:block col-span-1'>
           <ModifiedPricingTable services={services} />
