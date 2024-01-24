@@ -35,6 +35,10 @@ export const usePricing = ({ services }: UsePricingProps): UsePricingResult => {
     getCart();
   }, []);
 
+  useEffect(() => {
+    useCart.persist.rehydrate();
+  }, []);
+
   const handlePayment = async () => {
     setLoading(true);
 

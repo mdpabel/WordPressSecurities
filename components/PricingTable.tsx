@@ -165,7 +165,6 @@ type PropType = {
   services: ProductTitleAndPrice[];
   subscriptions: SubscriptionProducts;
 };
-import swell from '@/swell/client';
 
 const PricingTable = ({ services, subscriptions }: PropType) => {
   return (

@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "cross-env ANALYZE=true npm run build",
-    "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
+    "analyze": "cross-env ANALYZE=true npm run build"
   },
   "dependencies": {
     "@clerk/nextjs": "4.27.1",

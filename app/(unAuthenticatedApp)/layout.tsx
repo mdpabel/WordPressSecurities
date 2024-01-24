@@ -1,7 +1,5 @@
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
-import StoreInitializer from './StoreInitializer';
-import { Metadata } from 'next';
 import CookieBanner from './CookieBanner';
 
 export default async function UnAuthenticatedAppLayout({
@@ -16,7 +14,7 @@ export default async function UnAuthenticatedAppLayout({
       </header>
       <main>
         {children}
-        <StoreInitializer />
+        {/* <StoreInitializer /> */}
       </main>
       <Footer />
       <CookieBanner />
