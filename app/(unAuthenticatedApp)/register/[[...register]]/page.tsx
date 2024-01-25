@@ -9,6 +9,8 @@ import { catchClerkError } from '@/lib/utils';
 import { useToast } from '@/components/ui/use-toast';
 import { createAccount } from '@/swell/account';
 
+export const dynamic = 'force-static';
+
 export default function Page() {
   const { toast } = useToast();
   const { isLoaded, signUp, setActive } = useSignUp();

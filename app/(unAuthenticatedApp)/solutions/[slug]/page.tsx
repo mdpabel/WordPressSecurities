@@ -12,6 +12,8 @@ import {
 } from '@/swell/product';
 import GlobalProjectsMap from '@/components/GlobalProjectsMap';
 
+export const dynamic = 'force-static';
+
 type Props = {
   params: { slug: string };
 };

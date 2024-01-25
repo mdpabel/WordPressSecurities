@@ -7,7 +7,6 @@ import Newsletter from '@/components/guides/Newsletter';
 import { PostType, getMostViewedPosts, getPosts } from '@/lib/posts';
 
 export const dynamic = 'force-static';
-export const revalidate = 'force-cache';
 
 const Blog = async () => {
   const mostViewedBlogs = await getMostViewedPosts(3);

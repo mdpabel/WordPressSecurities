@@ -10,6 +10,8 @@ import { loginToSwell } from '../_action';
 import { generateToken } from '../../_actions';
 import { login } from '@/swell/account';
 
+export const dynamic = 'force-static';
+
 export default function Page() {
   const { toast } = useToast();
   const { isLoaded, signIn, setActive } = useSignIn();

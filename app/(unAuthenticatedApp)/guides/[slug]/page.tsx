@@ -10,6 +10,8 @@ import { CalenderIcon } from '@/components/ui/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import '@/styles/wp.scss';
 
+export const dynamic = 'force-static';
+
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };

@@ -4,6 +4,8 @@ import { auth, currentUser, RedirectToSignIn } from '@clerk/nextjs';
 import { subscribe } from 'diagnostics_channel';
 import React from 'react';
 
+export const dynamic = 'force-static';
+
 interface Props {
   searchParams: {
     session_id: string;
