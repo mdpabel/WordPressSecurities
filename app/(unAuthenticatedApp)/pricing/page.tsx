@@ -9,6 +9,8 @@ import {
 import PricingTable from '@/components/PricingTable';
 import GlobalProjectsMap from '@/components/GlobalProjectsMap';
 
+export const dynamic = 'force-static';
+
 const Pricing = async () => {
   const standardProducts = await getStandardProducts();
   const subscriptionsProducts = await getSubscriptionsBasedProducts();

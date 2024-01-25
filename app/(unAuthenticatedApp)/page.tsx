@@ -12,12 +12,8 @@ import {
 import { useCart } from '@/zustand/cart';
 import GlobalProjectsMap from '@/components/GlobalProjectsMap';
 
-// id: number;
-// pricingTableId: number[];
-// imgUrl: string;
-// title: string;
-// subTitle: string;
-// list: string[];
+export const dynamic = 'force-static';
+
 const noImage = '/images/fourOfour.jpg';
 
 const page = async () => {
