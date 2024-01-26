@@ -1,3 +1,4 @@
+import lazy from 'next/dynamic';
 import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import Hero from './Hero';
 import ServiceCarousel from '../../components/ServiceCarousel';
@@ -10,7 +11,8 @@ import {
   getSubscriptionsBasedProducts,
 } from '@/swell/product';
 import { useCart } from '@/zustand/cart';
-import GlobalProjectsMap from '@/components/GlobalProjectsMap';
+const GlobalProjectsMap = lazy(() => import('@/components/GlobalProjectsMap'));
+// import GlobalProjectsMap from '@/components/GlobalProjectsMap';
 
 export const dynamic = 'force-static';
 
