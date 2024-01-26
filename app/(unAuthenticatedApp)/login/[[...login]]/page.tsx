@@ -1,13 +1,9 @@
 'use client';
 import { SyntheticEvent, useState } from 'react';
 import { useSignIn } from '@clerk/nextjs';
-import swell from '@/swell/client';
 import AuthForm from '@/components/auth/authForm';
 import { useToast } from '@/components/ui/use-toast';
 import { catchClerkError } from '@/lib/utils';
-import { useFormState } from 'react-dom';
-import { loginToSwell } from '../_action';
-import { generateToken } from '../../_actions';
 import { login } from '@/swell/account';
 
 export const dynamic = 'force-static';

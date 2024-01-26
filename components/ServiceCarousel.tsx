@@ -1,21 +1,21 @@
 'use client';
-import React, { ReactNode, useId, useRef, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { TitleWithBottomBorder } from '@/components/ui/Title';
-import { serviceDetails, serviceList } from '@/data/serviceCarousel';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
-import { TickIcon } from '@/components/ui/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type PropTypes = {
   services: {
-    id: string | undefined;
+    id: string;
     pricingTableId: string[];
     imgUrl: string;
+    imgWidth: number | undefined;
+    imgHeight: number | undefined;
     title: string;
     subTitle: string;
     slug: string;
@@ -23,7 +23,6 @@ type PropTypes = {
 };
 
 const ServiceCarousel = ({ services }: PropTypes) => {
-  const id = useId();
   const sliderRef = useRef<Slider>(null);
   const [activeSlider, setActiveSlider] = useState(1);
 
@@ -68,12 +67,16 @@ const ServiceCarousel = ({ services }: PropTypes) => {
         </ul>
         <Slider ref={sliderRef} {...settings} className='w-full md:w-2/3'>
           {services.map(
-            ({ id, imgUrl, pricingTableId, subTitle, title, slug }, index) => (
+            (
+              { id, imgUrl, subTitle, title, slug, imgHeight, imgWidth },
+              index,
+            ) => (
               <ServiceDescription
-                pricingTableId={pricingTableId}
                 key={id}
                 id={index + 1}
                 imgUrl={imgUrl}
+                imgWidth={imgWidth}
+                imgHeight={imgHeight}
                 subTitle={subTitle}
                 title={title}
                 slug={slug}
@@ -96,10 +99,11 @@ type ServiceTitleTypes = {
 type ServiceDescriptionType = {
   id: number;
   imgUrl: string;
+  imgWidth?: number;
+  imgHeight?: number;
   title: string;
   subTitle: string;
   // list: string;
-  pricingTableId: string[];
   slug: string;
 };
 
@@ -108,7 +112,8 @@ const ServiceDescription = ({
   subTitle,
   id,
   imgUrl,
-  pricingTableId,
+  imgHeight,
+  imgWidth,
   slug,
 }: ServiceDescriptionType) => {
   return (
@@ -119,8 +124,8 @@ const ServiceDescription = ({
         <div className='w-full md:w-1/2 flex items-center justify-center'>
           <Image
             className='object-cover object-center'
-            width={600}
-            height={400}
+            width={imgWidth || 600}
+            height={imgHeight || 400}
             src={imgUrl}
             alt='test'
             // priority={id === 1}

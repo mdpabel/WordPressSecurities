@@ -29,6 +29,8 @@ const page = async () => {
     id: product?.id ?? '',
     pricingTableId: [product?.id ?? ''],
     imgUrl: product?.images![0]?.file?.url ?? noImage,
+    imgWidth: product?.images![0]?.file?.width,
+    imgHeight: product?.images![0]?.file?.height,
     title: product?.name,
     subTitle: product.description?.slice(0, 220) ?? '',
     slug: product?.slug ?? '',
