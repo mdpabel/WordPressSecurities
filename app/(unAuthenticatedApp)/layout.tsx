@@ -17,7 +17,7 @@ export default async function UnAuthenticatedAppLayout({
         {/* <StoreInitializer /> */}
       </main>
       <Footer />
-      <CookieBanner />
+      {/* <CookieBanner />  */}
     </>
   );
 }
