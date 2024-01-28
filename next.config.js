@@ -2,7 +2,32 @@
 
 const path = require('path');
 
+const cspHeader = `
+    frame-ancestors 'none';
+`;
+
+const cacheControl = `
+  public, max-age=3600, must-revalidate;
+`;
+
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: cspHeader.replace(/\n/g, ''),
+          },
+          {
+            key: 'Cache-Control',
+            value: cacheControl.replace(/\n/g, ''),
+          },
+        ],
+      },
+    ];
+  },
   experimental: {
     optimizePackageImports: [
       '@clerk/nextjs',
