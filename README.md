@@ -22,7 +22,7 @@ WordPress Securities provides advanced security solutions for WordPress websites
 - [x] Real-Time Chat for Authenticated Users.
 - [x] Secure Authentication with Clerk.
 - [ ] Lead Generation (Planned).
-- [ ] Cookie Banner (Planned).
+- [ ] Cookieyes Cookie Banner (Planned).
 
 ## Performance Optimization
 
