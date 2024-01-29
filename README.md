@@ -13,6 +13,7 @@ WordPress Securities provides advanced security solutions for WordPress websites
 - **Zustand**: Application state management.
 - **Prisma & MongoDB**: Database management.
 - **Pusher**: Real-time communication.
+- **WordPress**: Headless CMS.
 
 ## Features
 
@@ -38,7 +39,8 @@ WordPress Securities provides advanced security solutions for WordPress websites
 
 - [x] iFrame Protection & Content Security Policy.
 - [x] Input Validation & Sanitization.
-- [ ] XSS, SSRF, SSJI, SRI, CORS, CSRF, Honeypot Fields (Planned).
+- [ ] XSS, SSRF, SSJI, SRI, CORS, CSRF Protection (Planned).
+- [] Honeypot Fields (Planned).
 
 ## Logging and Monitoring
 
@@ -46,7 +48,7 @@ WordPress Securities provides advanced security solutions for WordPress websites
 
 ## WebHooks
 
-- [ ] Automatic Revalidation (Planned).
+- [ ] On demand Revalidation: WordPress blog posts and Swell products (Planned).
 
 ## Testing
 
