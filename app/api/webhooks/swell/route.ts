@@ -19,7 +19,9 @@ export const POST = async (req: NextRequest) => {
     const slug = product?.slug;
 
     if (slug) {
-      revalidatePath('/solutions/' + slug);
+      await revalidatePath('/solutions/' + slug);
+      await revalidatePath('/');
+      await revalidatePath('/pricing');
       return Response.json({ revalidated: true, now: Date.now() });
     }
 

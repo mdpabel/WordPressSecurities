@@ -51,7 +51,7 @@ export const SectionTitleWithSubTitle = ({
 }: IPricingTableTitle) => {
   return (
     <div className={cn('mx-auto max-w-screen-md text-center', className)}>
-      <h2 className='mb-4 text-2xl md:text-4xl tracking-tight font-extrabold text-gray-900'>
+      <h2 className='mb-4 text-2xl md:text-4xl tracking-tight font-semibold md:font-bold text-gray-900'>
         {title}
       </h2>
       <p className='mb-5 font-light text-gray-600 sm:text-xl '>{subTitle}</p>
