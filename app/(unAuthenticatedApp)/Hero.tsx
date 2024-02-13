@@ -15,10 +15,10 @@ const Hero = () => {
       </div>
       <div className='space-x-4 flex'>
         <Button asChild>
-          <Link href='?type=subscription#subscription'>Fix hacked site</Link>
+          <Link href='/'>Fix hacked site</Link>
         </Button>
         <Button className='border border-black' variant='outline' asChild>
-          <Link href='?type=instant#instant'> Plans & Pricing</Link>
+          <Link href='/pricing'> Plans & Pricing</Link>
         </Button>
       </div>
     </section>
