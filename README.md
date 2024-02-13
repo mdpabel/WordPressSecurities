@@ -40,7 +40,7 @@ WordPress Securities provides advanced security solutions for WordPress websites
 - [x] iFrame Protection & Content Security Policy.
 - [x] Input Validation & Sanitization.
 - [ ] XSS, SSRF, SSJI, SRI, CORS, CSRF Protection (Planned).
-- [] Honeypot Fields (Planned).
+- [ ] Honeypot Fields (Planned).
 
 ## Logging and Monitoring
 

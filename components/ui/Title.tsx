@@ -1,6 +1,6 @@
-import { HTMLAttributes, ReactNode } from "react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { HTMLAttributes, ReactNode } from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 type AttributeType = HTMLAttributes<HTMLElement>;
 
@@ -12,17 +12,17 @@ export const TitleWithBottomBorder = ({
   children,
   className,
 }: AttributesWithChildren) => (
-  <div className={cn("relative", className)}>
-    <h2 className="z-10 inline-block py-2 font-semibold text-2xl">
+  <div className={cn('relative', className)}>
+    <h2 className='z-10 inline-block py-2 font-semibold text-2xl'>
       {children}
     </h2>
-    <div className="w-full h-[2px] bg-gray-500 absolute bottom-0"></div>
+    <div className='w-full h-[2px] bg-gray-500 absolute bottom-0'></div>
   </div>
 );
 
 export const Title = ({ children, className }: AttributesWithChildren) => {
   return (
-    <h1 className={cn("text-2xl font-semibold", className)}>{children}</h1>
+    <h1 className={cn('text-2xl font-semibold', className)}>{children}</h1>
   );
 };
 
@@ -30,12 +30,11 @@ export const SubTitle = ({ children, className }: AttributesWithChildren) => {
   return (
     <h2
       className={cn(
-        "text-2xl font-semibold flex space-x-2 items-center",
-        className
-      )}
-    >
-      <span>{children}</span>{" "}
-      <Image width={50} height={50} src="/rocket.gif" alt="Rocket" />
+        'text-2xl font-semibold flex space-x-2 items-center',
+        className,
+      )}>
+      <span>{children}</span>{' '}
+      <Image width={50} height={50} src='/rocket.gif' alt='Rocket' />
     </h2>
   );
 };
@@ -51,11 +50,11 @@ export const SectionTitleWithSubTitle = ({
   className,
 }: IPricingTableTitle) => {
   return (
-    <div className={cn("mx-auto max-w-screen-md text-center", className)}>
-      <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
+    <div className={cn('mx-auto max-w-screen-md text-center', className)}>
+      <h2 className='mb-4 text-2xl md:text-4xl tracking-tight font-extrabold text-gray-900'>
         {title}
       </h2>
-      <p className="mb-5 font-light text-gray-600 sm:text-xl ">{subTitle}</p>
+      <p className='mb-5 font-light text-gray-600 sm:text-xl '>{subTitle}</p>
     </div>
   );
 };
