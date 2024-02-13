@@ -16,11 +16,11 @@ export const getProducts = async ({ category }: GetProductsTypes = {}) => {
   return products;
 };
 
-export const getProductByIdAndSlug = cache(async (slugOrId: string) => {
+export const getProductByIdAndSlug = async (slugOrId: string) => {
   const product = await swell.products.get(slugOrId);
 
   return product;
-});
+};
 
 export const getProductTitleAndSlug = async () => {
   const res = await getProducts();
