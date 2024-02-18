@@ -21,7 +21,7 @@ export const POST = async (req: NextRequest) => {
     if (slug) {
       await revalidatePath('/solutions/' + slug);
       await revalidatePath('/');
-      await revalidatePath('/', 'layout');
+      await revalidatePath('/(unAuthenticatedApp)', 'layout');
       await revalidatePath('/pricing');
       return Response.json({ revalidated: true, now: Date.now() });
     }

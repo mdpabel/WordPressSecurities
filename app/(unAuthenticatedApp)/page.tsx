@@ -11,6 +11,7 @@ import {
   getSubscriptionsBasedProducts,
 } from '@/swell/product';
 import { useCart } from '@/zustand/cart';
+import SubscriptionTable from '@/components/SubscriptionTable';
 const GlobalProjectsMap = lazy(() => import('@/components/GlobalProjectsMap'));
 // import GlobalProjectsMap from '@/components/GlobalProjectsMap';
 
@@ -46,6 +47,7 @@ const page = async () => {
           subTitle='Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
         Engineered for Small to Large-scale Websites'
         />
+        {/* <SubscriptionTable />  */}
         <PricingTable
           services={standardProducts}
           subscriptions={subscriptionsProducts}
