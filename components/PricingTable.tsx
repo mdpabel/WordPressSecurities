@@ -59,7 +59,7 @@ export const PricingColumn = ({
         <h3 className='mb-2 text-2xl font-semibold'>{title}</h3>
         <p className='font-light text-gray-700 sm:text-lg '>{subTitle}</p>
 
-        <ProductQuantity />
+        {/* <ProductQuantity />  */}
 
         <div className='flex justify-center items-baseline mt-2 mb-4'>
           <span className='mr-2 text-5xl font-extrabold'>
