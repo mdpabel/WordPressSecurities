@@ -8,7 +8,6 @@ const TopBar = () => {
     <div className='py-2 text-white bg-black'>
       <ComponentWrapper>
         <div className='flex justify-between text-sm font-semibold'>
-          {/* <div>Discover how to protect your WordPress site from threats</div> */}
           <TextCarousel />
           <nav className='hidden md:block'>
             <ul className='flex justify-between space-x-4'>
