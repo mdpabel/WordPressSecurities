@@ -2,7 +2,7 @@ import ComponentWrapper from '@/components/ui/ComponentWrapper';
 import BlogSidebar from '@/components/guides/BlogSidebar';
 import Popular from '@/components/guides/Popular';
 import SocialShare from '@/components/guides/SocialShare';
-import { PostType, getPostBySlug, getPosts } from '@/lib/posts';
+import { PostType, getPostBySlug, getPosts } from '@/wordpress/posts';
 import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react';
 import type { Metadata, ResolvingMetadata } from 'next';

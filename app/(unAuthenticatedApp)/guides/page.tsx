@@ -4,7 +4,7 @@ import { BigCard } from '@/components/guides/BigCard';
 import { SectionTitleWithSubTitle } from '@/components/ui/Title';
 import { SmallCard } from '@/components/guides/SmallCard';
 import Newsletter from '@/components/guides/Newsletter';
-import { PostType, getMostViewedPosts, getPosts } from '@/lib/posts';
+import { PostType, getMostViewedPosts, getPosts } from '@/wordpress/posts';
 
 export const dynamic = 'force-static';
 

@@ -1,9 +1,7 @@
-import { use } from 'react';
-import prisma from '@/prisma/prisma';
 import { Title } from '../ui/Title';
 import ComponentWrapper from '../ui/ComponentWrapper';
 import { SmallCard } from './SmallCard';
-import { getMostViewedPosts } from '@/lib/posts';
+import { getMostViewedPosts } from '@/wordpress/posts';
 
 const Popular = async () => {
   const data = await getMostViewedPosts(4);

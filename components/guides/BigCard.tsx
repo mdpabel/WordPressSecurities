@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
-import { PostType } from '@/lib/posts';
+import { PostType } from '@/wordpress/posts';
 
 export type PostCardType = {
   blog: PostType;
@@ -18,7 +18,7 @@ export const BigCard = ({ blog, className }: PostCardType) => {
           style={{
             maxHeight: '50%',
           }}
-          className='row-span-3 '>
+          className='row-span-3'>
           <Image
             width={400}
             height={400}
