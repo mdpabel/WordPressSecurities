@@ -1,4 +1,4 @@
-import { fetchAPI } from '@/lib/fetchApi';
+import { fetchAPI } from '@/lib/fetchAPI';
 
 const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL!;
 
