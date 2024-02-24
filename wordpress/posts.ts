@@ -2,7 +2,7 @@ import { client } from '../lib/client';
 import { JSDOM } from 'jsdom';
 import { formatDate } from '../lib/utils';
 import prisma from '@/prisma/prisma';
-import { fetchAPI } from '@/lib/fetchApi';
+import { fetchAPI } from '@/lib/fetchAPI';
 
 function getPlainTextFromHTML(html: string) {
   const { window } = new JSDOM(html);
