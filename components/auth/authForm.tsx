@@ -43,6 +43,8 @@ const signInContent = {
 You're in! 🎉 Sign in successful!`,
 };
 
+const env = process.env.NODE_ENV;
+
 const AuthForm = (props: FormType) => {
   const turnstile = useTurnstile();
   const content =
@@ -112,12 +114,14 @@ const AuthForm = (props: FormType) => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Turnstile
-              sitekey={process.env.CLOUDFLARE_TURNSTILE_SITEKEY!}
-              onVerify={(token) => {
-                console.log(token);
-              }}
-            />
+            {env === 'production' && (
+              <Turnstile
+                sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITEKEY!}
+                onVerify={(token) => {
+                  console.log(token);
+                }}
+              />
+            )}
 
             <div className='flex items-center justify-between'>
               <Button type='submit'>
