@@ -2,41 +2,12 @@ import { client } from '../lib/client';
 import { JSDOM } from 'jsdom';
 import { formatDate } from '../lib/utils';
 import prisma from '@/prisma/prisma';
-
-const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_ENDPOINT!;
+import { fetchAPI } from '@/lib/fetchApi';
 
 function getPlainTextFromHTML(html: string) {
   const { window } = new JSDOM(html);
   const plainText = window.document.body.textContent;
   return plainText;
-}
-
-export async function fetchAPI({
-  query = '',
-  variables = {},
-}: {
-  query: string;
-  variables: Record<string, any>;
-}) {
-  const headers = { 'Content-Type': 'application/json' };
-
-  const res = await fetch(API_URL, {
-    headers,
-    method: 'POST',
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-    cache: 'force-cache',
-  });
-
-  const json = await res.json();
-
-  if (json.errors) {
-    console.error(json.errors);
-    throw new Error('Failed to fetch API');
-  }
-  return json.data;
 }
 
 interface SeoMeta {

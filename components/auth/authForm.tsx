@@ -5,6 +5,7 @@ import React, { Dispatch, FormEvent, SetStateAction } from 'react';
 import Spinner from '@/components/ui/Spinner';
 import { Input } from '@/components/ui/Input';
 import { Button } from '../ui/Button';
+import Turnstile, { useTurnstile } from 'react-turnstile';
 
 type FormType = {
   handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
@@ -43,6 +44,7 @@ You're in! 🎉 Sign in successful!`,
 };
 
 const AuthForm = (props: FormType) => {
+  const turnstile = useTurnstile();
   const content =
     props.modeType === 'register' ? registerContent : signInContent;
 
@@ -108,6 +110,13 @@ const AuthForm = (props: FormType) => {
               type='password'
               label='Password'
               onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <Turnstile
+              sitekey={process.env.CLOUDFLARE_TURNSTILE_SITEKEY!}
+              onVerify={(token) => {
+                console.log(token);
+              }}
             />
 
             <div className='flex items-center justify-between'>

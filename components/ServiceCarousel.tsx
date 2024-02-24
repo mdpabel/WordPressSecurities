@@ -17,7 +17,7 @@ type PropTypes = {
     imgWidth: number | undefined;
     imgHeight: number | undefined;
     title: string;
-    subTitle: string;
+    description: string;
     slug: string;
   }[];
 };
@@ -68,7 +68,7 @@ const ServiceCarousel = ({ services }: PropTypes) => {
         <Slider ref={sliderRef} {...settings} className='w-full md:w-2/3'>
           {services.map(
             (
-              { id, imgUrl, subTitle, title, slug, imgHeight, imgWidth },
+              { id, imgUrl, description, title, slug, imgHeight, imgWidth },
               index,
             ) => (
               <ServiceDescription
@@ -77,7 +77,7 @@ const ServiceCarousel = ({ services }: PropTypes) => {
                 imgUrl={imgUrl}
                 imgWidth={imgWidth}
                 imgHeight={imgHeight}
-                subTitle={subTitle}
+                description={description}
                 title={title}
                 slug={slug}
               />
@@ -102,14 +102,14 @@ type ServiceDescriptionType = {
   imgWidth?: number;
   imgHeight?: number;
   title: string;
-  subTitle: string;
+  description: string;
   // list: string;
   slug: string;
 };
 
 const ServiceDescription = ({
   title,
-  subTitle,
+  description,
   id,
   imgUrl,
   imgHeight,
@@ -133,8 +133,8 @@ const ServiceDescription = ({
         </div>
         <div className='w-full md:w-1/2 space-y-4 flex flex-col justify-between gap-4'>
           <div className='space-y-2'>
-            <h2 className='text-2xl font-medium'>{title}</h2>
-            <p className='text-base'>{subTitle}</p>
+            <h2 className='text-2xl font-medium line-clamp-2'>{title}</h2>
+            <p className='text-base line-clamp-6'>{description}</p>
           </div>
 
           <div className='flex justify-end'>
