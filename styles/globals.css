@@ -245,3 +245,7 @@ ul.slick-dots.slick-thumb.solution-page li {
   position: absolute;
   height: 100%;
 }
+
+iframe#cf-chl-widget-364pb {
+  width: 100% !important;
+}

@@ -35,6 +35,7 @@ const Hero = () => {
           alt='wordfence scan report'
           width={1200}
           height={700}
+          className='p-8'
         />
       </div>
     </section>

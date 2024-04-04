@@ -5,7 +5,7 @@ import TextCarousel from './TextCarousel';
 
 const TopBar = () => {
   return (
-    <div className='py-2 text-white bg-black'>
+    <div className='py-2 text-white bg-gradient-to-r  from-black via-gray-900 to-black'>
       <ComponentWrapper>
         <div className='flex justify-between text-sm font-semibold'>
           <TextCarousel />
