@@ -2,6 +2,10 @@ import { getProductByIdAndSlug } from '@/swell/product';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const GET = async (req: NextRequest) => {
+  return NextResponse.json({});
+};
+
 type PayLoad = {
   model: 'products' | 'orders';
   data: {
