@@ -1,77 +1,77 @@
 const subMenus = [
   {
-    title: "Malware Removal",
-    href: "/malware-removal",
+    title: 'Malware Removal',
+    href: '/malware-removal',
   },
   {
-    title: "Google Safe Browsing blacklist",
-    href: "/google-safe-browsing-blacklist",
+    title: 'Google Safe Browsing blacklist',
+    href: '/google-safe-browsing-blacklist',
   },
   {
-    title: "McAfee Blacklist",
-    href: "/mcafee-blacklist",
+    title: 'McAfee Blacklist',
+    href: '/mcafee-blacklist',
   },
   {
-    title: "Penetration Testing",
-    href: "/penetration-testing",
+    title: 'Penetration Testing',
+    href: '/penetration-testing',
   },
 
   {
-    title: "Redirect Malware",
-    href: "/redirect-malware",
+    title: 'Redirect Malware',
+    href: '/redirect-malware',
   },
   {
-    title: "DDoS Protection",
-    href: "/ddos-protection",
+    title: 'DDoS Protection',
+    href: '/ddos-protection',
   },
   {
-    title: "AVAST Blacklist",
-    href: "/avast-blacklist",
+    title: 'AVAST Blacklist',
+    href: '/avast-blacklist',
   },
   {
-    title: "http500 Internal Server Error",
-    href: "/internal-server-error",
+    title: 'http500 Internal Server Error',
+    href: '/internal-server-error',
   },
   {
-    title: "Malware Prevention",
-    href: "/malware-prevention",
+    title: 'Malware Prevention',
+    href: '/malware-prevention',
   },
   {
-    title: "Norton Safe Blacklist",
-    href: "/norton-safe-blacklist",
+    title: 'Norton Safe Blacklist',
+    href: '/norton-safe-blacklist',
   },
   {
-    title: "SSL Certificate Installation",
-    href: "/ssl-certificate-installation",
+    title: 'SSL Certificate Installation',
+    href: '/ssl-certificate-installation',
   },
 ] as const;
 
 export const navItems = [
   {
     id: 0,
-    label: "Home",
-    link: "/",
+    label: 'Home',
+    link: '/',
   },
   {
     id: 1,
-    label: "Pricing",
-    link: "/pricing",
+    label: 'Pricing',
+    link: '/pricing',
   },
   {
     id: 3,
-    label: "Solutions",
-    link: "/solutions",
+    label: 'Solutions',
+    link: '/solutions',
     subMenu: subMenus,
   },
   {
     id: 4,
-    label: "Guides",
-    link: "/guides",
+    label: 'Store',
+    link: '/store',
   },
   {
     id: 5,
-    label: "Contact",
-    link: "/contact",
+    label: 'Guides',
+    link: '/guides',
   },
 ];
 

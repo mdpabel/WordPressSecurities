@@ -27,12 +27,11 @@ const TopBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href='/cookie-policy' className='hover:underline'>
-                  Cookie Policy
-                </Link>
-              </li>
-              <li>
                 <Link href='/faq'>FAQ</Link>
+              </li>
+
+              <li>
+                <Link href='/contact'>Contact</Link>
               </li>
             </ul>
           </nav>
