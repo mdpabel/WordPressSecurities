@@ -27,6 +27,12 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html className='scroll-smooth' lang='en'>
+        <head>
+          <link
+            rel='prefetch'
+            href='https://www.wordpresssecurities.com/login'
+          />
+        </head>
         <body className={playfair.className}>
           <NProgressBar>
             {children}
