@@ -1,14 +1,22 @@
-import React from 'react';
+'use client';
 import { WordPressIcon } from '../ui/icons';
 import Link from 'next/link';
 
 const Logo = ({ href = '/' }: { href?: string }) => {
+  const domain = 'wordpresssecurities.com';
+
+  if (window) {
+    window.location.hostname || document.location.hostname;
+  }
+
+  const wpSec = domain == 'wordpresssecurities.com' ? true : false;
+
   return (
     <Link
       href={href}
       className='flex items-center text-2xl font-semibold text-gray-900 space-x-2'>
       <WordPressIcon />
-      <span>Securities</span>
+      <span>{wpSec ? 'Securities' : 'Next Generation'}</span>
     </Link>
   );
 };
