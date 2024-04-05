@@ -11,7 +11,7 @@ const Hero = () => {
             style={{
               lineHeight: 1.1,
             }}
-            className='text-2xl font-semibold md:text-6xl'>
+            className='text-2xl font-semibold md:text-[3.5rem]'>
             Clean and Protect Your Website Now
           </h1>
           <h2 className='mb-5 font-light text-gray-600 sm:text-xl'>
