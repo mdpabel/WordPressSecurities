@@ -7,8 +7,6 @@ import { getAuthors } from '@/wordpress/author';
 const page = async () => {
   const authors = await getAuthors();
 
-  console.log(authors);
-
   return (
     <ComponentWrapper>
       <SectionTitleWithSubTitle

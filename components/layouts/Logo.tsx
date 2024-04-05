@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Logo = ({ href = '/' }: { href?: string }) => {
   const domain = 'wordpresssecurities.com';
 
-  if (window) {
+  if (typeof window !== 'undefined') {
     window.location.hostname || document.location.hostname;
   }
 
