@@ -1,7 +1,7 @@
-import ComponentWrapper from '@/components/ui/ComponentWrapper';
-import Footer from '@/components/layouts/Footer';
-import Header from '@/components/layouts/Header';
-import Sidebar from '@/components/layouts/Sidebar';
+import ComponentWrapper from '@/components/ComponentWrapper';
+import Footer from '@/app/(unAuthenticatedApp)/_components/layouts/Footer';
+import Header from '@/app/(unAuthenticatedApp)/_components/layouts/Header';
+import Sidebar from '@/app/(unAuthenticatedApp)/_components/layouts/Sidebar';
 
 import {
   BookIcon,
@@ -9,12 +9,12 @@ import {
   SubScriptionIcon,
   SupportInboxIcon,
   UserIcon,
-} from '@/components/ui/icons-client';
+} from '@/components/icons-client';
 import { login, loginWithToken } from '@/swell/account';
 import { currentUser } from '@clerk/nextjs';
 import { generateToken } from '../(unAuthenticatedApp)/_actions';
 import { headers } from 'next/headers';
-import StoreInitializer from './StoreInitializer';
+import StoreInitializer from './_components/StoreInitializer';
 const sidebarItems = [
   {
     id: 1,

@@ -1,6 +1,6 @@
-import Footer from '@/components/layouts/Footer';
-import Header from '@/components/layouts/Header';
-import CookieBanner from './CookieBanner';
+import Footer from './_components/layouts/Footer';
+import Header from './_components/layouts/Header';
+import CookieBanner from './_components/CookieBanner';
 
 export default async function UnAuthenticatedAppLayout({
   children,

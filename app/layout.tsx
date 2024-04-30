@@ -2,8 +2,8 @@ import '../styles/globals.css';
 import { Playfair_Display } from 'next/font/google';
 import { Metadata } from 'next';
 import { ClerkProvider, auth } from '@clerk/nextjs';
-import { Toaster } from '@/components/ui/toaster';
-import NProgressBar from '@/components/ui/NProgressBar';
+import { Toaster } from '@/components/toaster';
+import NProgressBar from '@/components/NProgressBar';
 import { getCart } from '@/swell/cart';
 
 export const metadata: Metadata = {

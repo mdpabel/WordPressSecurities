@@ -1,41 +1,33 @@
 import lazy from 'next/dynamic';
-import ComponentWrapper from '@/components/ui/ComponentWrapper';
-import Hero from './Hero';
-import ServiceCarousel from '../../components/ServiceCarousel';
-import FAQ from '@/components/FAQ';
-import { SectionTitleWithSubTitle } from '@/components/ui/Title';
-import PricingTable from '@/components/PricingTable';
+import ComponentWrapper from '@/components/ComponentWrapper';
+import Hero from './_components/Hero';
+import ServiceCarousel from './_components/ServiceCarousel';
+import FAQ from '@/app/(unAuthenticatedApp)/_components/FAQ';
+import { SectionTitleWithSubTitle } from '@/components/Title';
+import PricingTable from '@/app/(unAuthenticatedApp)/_components/pricing/PricingTable';
 import {
   getProducts,
   getStandardProducts,
   getSubscriptionsBasedProducts,
 } from '@/swell/product';
-import { useCart } from '@/zustand/cart';
-import SubscriptionTable from '@/components/SubscriptionTable';
-const GlobalProjectsMap = lazy(() => import('@/components/GlobalProjectsMap'));
-// import GlobalProjectsMap from '@/components/GlobalProjectsMap';
+import { Product } from 'swell-js';
+import { getFeaturedServices } from './_utils/services.util';
+const GlobalProjectsMap = lazy(
+  () => import('@/app/(unAuthenticatedApp)/_components/GlobalProjectsMap'),
+);
 
 export const dynamic = 'force-static';
 
-const noImage = '/images/fourOfour.jpg';
+interface ExtendedProduct extends Product {
+  list: {
+    listOfServices: string;
+  };
+}
 
 const page = async () => {
   const subscriptionsProducts = await getSubscriptionsBasedProducts();
   const standardProducts = await getStandardProducts();
-  const featuredProducts = await getProducts({
-    category: 'featured',
-  });
-
-  const featuredServices = featuredProducts?.map((product) => ({
-    id: product?.id ?? '',
-    pricingTableId: [product?.id ?? ''],
-    imgUrl: product?.images![0]?.file?.url ?? noImage,
-    imgWidth: product?.images![0]?.file?.width,
-    imgHeight: product?.images![0]?.file?.height,
-    title: product?.name,
-    description: product?.description ?? '',
-    slug: product?.slug ?? '',
-  }));
+  const featuredServices = await getFeaturedServices();
 
   return (
     <ComponentWrapper>
