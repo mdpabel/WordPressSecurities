@@ -19,7 +19,7 @@ const PricingTable = ({
           'grid grid-cols-1 space-y-5 md:space-y-0 md:grid-cols-2 pt-5',
       )}>
       <ul className='col-span-1 text-sm font-medium text-gray-900 rounded-lg'>
-        <PricingTablePrice services={services} />
+        {hideColumn && <PricingTablePrice services={services} />}
 
         {services?.map((service) => (
           <ServiceItem
