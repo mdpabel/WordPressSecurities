@@ -12,7 +12,7 @@ import {
   FacebookIcon,
   LinkedinIcon,
   TwitterIcon,
-} from '../../../../../components/ui/icons';
+} from '@/components/icons';
 
 export const FaceBook = ({ url }: { url: string }) => {
   return (

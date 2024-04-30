@@ -1,5 +1,5 @@
-import { Title } from '../../../../../components/ui/Title';
-import ComponentWrapper from '../../../../../components/ui/ComponentWrapper';
+import { Title } from '@/components/Title';
+import ComponentWrapper from '@/components/ComponentWrapper';
 import { SmallCard } from '../../_components/SmallCard';
 import { getMostViewedPosts } from '@/wordpress/posts';
 

@@ -2,15 +2,15 @@ import prisma from '@/prisma/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import { Title } from '../../../../../components/ui/Title';
+import { Title } from '@/components/Title';
 import {
   PerformanceIcon,
   SEOIcon,
   SecurityIcon,
   VirusIcon,
   WarningIcon,
-} from '../../../../../components/ui/icons';
-import ComponentWrapper from '../../../../../components/ui/ComponentWrapper';
+} from '@/components/icons';
+import ComponentWrapper from '@/components/ComponentWrapper';
 
 const getData = async () => {
   const res = await prisma.user.findFirst();

@@ -1,12 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import ComponentWrapper from '../../../../../components/ui/ComponentWrapper';
-import { Title } from '../../../../../components/ui/Title';
-import {
-  FacebookIcon,
-  LinkedinIcon,
-  TwitterIcon,
-} from '../../../../../components/ui/icons';
+import ComponentWrapper from '@/components/ComponentWrapper';
+import { Title } from '@/components/Title';
+import { FacebookIcon, LinkedinIcon, TwitterIcon } from '@/components/icons';
 
 const SocialLinks = () => {
   return (

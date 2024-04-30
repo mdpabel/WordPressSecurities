@@ -1,8 +1,8 @@
 import CustomerProfile from '@/app/(authenticatedApp)/(routes)/customer-support/_components/CustomerProfile';
-import Messages from '../../../components/chat/Messages';
 import prisma from '@/prisma/prisma';
 import { currentUser, RedirectToSignIn } from '@clerk/nextjs';
 import ChatInput from '@/app/(authenticatedApp)/(routes)/customer-support/_components/ChatInput';
+import Messages from './_components/Messages';
 
 const getMessages = async (chatRoomId: string) => {
   const initialMessages = await prisma.message.findMany({
