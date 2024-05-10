@@ -37,7 +37,7 @@ export const PricingColumn = ({
       className={`flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg_primary rounded-lg border border-gray-100 shadow  ${className}`}>
       <div className=''>
         <h3 className='mb-2 text-2xl font-semibold'>{title}</h3>
-        <p className='font-light text-gray-700 sm:text-lg '>{subTitle}</p>
+        <p className='font-light text-gray-800 sm:text-lg '>{subTitle}</p>
 
         {/* <ProductQuantity />  */}
 

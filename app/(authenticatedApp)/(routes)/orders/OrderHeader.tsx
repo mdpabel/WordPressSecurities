@@ -30,15 +30,15 @@ const OrderHeader = ({
       <div className='flex md:space-x-12'>
         <div className='w-1/2 md:w-fit'>
           <h2>Order number</h2>
-          <h3 className='w-2/3 md:w-fit text-gray-700 '>{orderId}</h3>
+          <h3 className='w-2/3 md:w-fit text-gray-800 '>{orderId}</h3>
         </div>
         <div className='w-1/2 md:w-fit'>
           <h2>Order placed</h2>
-          <h3 className='text-gray-700'>{formatDate(new Date(createAt))}</h3>
+          <h3 className='text-gray-800'>{formatDate(new Date(createAt))}</h3>
         </div>
         <div className='hidden md:block'>
           <h2>Total amount</h2>
-          <p className='text-gray-700'>
+          <p className='text-gray-800'>
             <span>
               {formatCurrency({
                 amount: Number(paymentTotal),
@@ -50,7 +50,7 @@ const OrderHeader = ({
       <div className='flex'>
         <div className='w-1/2 md:w-fit block md:hidden'>
           <h2>Total amount</h2>
-          <h3 className='text-gray-700'>
+          <h3 className='text-gray-800'>
             {formatCurrency({
               amount: paymentTotal,
             })}

@@ -54,7 +54,7 @@ export const SectionTitleWithSubTitle = ({
       <h2 className='mb-4 text-2xl md:text-4xl tracking-tight font-semibold md:font-bold text-gray-900'>
         {title}
       </h2>
-      <p className='mb-5 font-light text-gray-600 sm:text-xl '>{subTitle}</p>
+      <p className='mb-5 font-light text-gray-800 sm:text-xl '>{subTitle}</p>
     </div>
   );
 };

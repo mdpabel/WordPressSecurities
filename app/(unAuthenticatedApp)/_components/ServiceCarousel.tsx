@@ -33,7 +33,7 @@ const ServiceCarousel = ({ services }: PropTypes) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: false,
+    autoplay: true,
     pauseOnHover: true,
     adaptiveHeight: true,
     beforeChange: (oldIndex: number, newIndex: number) => {
@@ -120,18 +120,22 @@ const ServiceDescription = ({
     <div
       data-id={id}
       className='w-full flex flex-col space-y-4 md:space-x-8 md:px-4 py-8 md:pb-3 md:pt-0 rounded'>
-      <div className='flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6'>
+      <div
+        style={{
+          maxHeight: '300px',
+        }}
+        className='flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6'>
         <div className='w-full md:w-1/2 flex items-center justify-center'>
           <Image
             className='object-cover object-center'
-            width={imgWidth || 600}
-            height={imgHeight || 400}
+            width={600}
+            height={400}
             src={imgUrl}
             alt='test'
             // priority={id === 1}
           />
         </div>
-        <div className='w-full md:w-1/2 space-y-4 flex flex-col justify-between gap-4'>
+        <div className='w-full md:w-1/2 space-y-4 flex flex-col justify-center gap-4'>
           <div className='space-y-2'>
             <h2 className='text-2xl font-medium line-clamp-2'>{title}</h2>
             <p

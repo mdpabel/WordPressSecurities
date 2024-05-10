@@ -14,7 +14,7 @@ const Hero = () => {
             className='text-2xl font-semibold md:text-[3.5rem]'>
             Clean and Protect Your Website Now
           </h1>
-          <h2 className='mb-5 font-light text-gray-600 sm:text-xl'>
+          <h2 className='mb-5 font-light text-gray-800 sm:text-xl'>
             Hackers don&apos;t take vacations. Restore your peace of mind by
             securing your online presence with our expert engineers.
           </h2>

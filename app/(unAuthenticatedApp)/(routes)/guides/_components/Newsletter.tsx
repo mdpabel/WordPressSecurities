@@ -10,7 +10,7 @@ const Newsletter = () => {
   return (
     <div className='flex flex-col justify-center space-y-4'>
       <h2 className='text-4xl'>Subscribe to our newsletter</h2>
-      <p className='text-sm font-medium text-gray-700 leading-wide'>
+      <p className='text-sm font-medium text-gray-800 leading-wide'>
         Do you want to get notified when a new security post is added to
         wordpresssecurities? Sign up for our newsletter and you&apos;ll be among
         the first to find out about new security news, tips and tricks.
@@ -35,7 +35,7 @@ const Newsletter = () => {
         </button>
       </form>
 
-      <p className='text-sm font-medium text-gray-700 '>
+      <p className='text-sm font-medium text-gray-800 '>
         By subscribing, you agree with wordpresssecurities&apos;s Terms of
         Service and Privacy Policy.
       </p>

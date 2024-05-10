@@ -20,7 +20,7 @@ const TransactionHistory = async () => {
   return (
     <Card className='relative overflow-x-auto shadow-md sm:rounded-lg'>
       <table className='w-full text-sm text-left text-gray-500'>
-        <thead className='text-xs text-gray-700 uppercase '>
+        <thead className='text-xs text-gray-800 uppercase '>
           <tr>
             <th scope='col' className='px-6 py-3'>
               Process

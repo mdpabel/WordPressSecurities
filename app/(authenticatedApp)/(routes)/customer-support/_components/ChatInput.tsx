@@ -86,7 +86,7 @@ const ChatInput = ({
           minLength={1}
           name='message'
           placeholder='Write your message!'
-          className='w-full pl-5 focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600  bg-gray-200 rounded-md py-3'
+          className='w-full pl-5 focus:outline-none focus:placeholder-gray-400 text-gray-800 placeholder-gray-600  bg-gray-200 rounded-md py-3'
         />
         <div className='right-0 items-center inset-y-0 flex'>
           <UploadFile channel={channel} chatRoomId={chatRoomId} />

@@ -29,7 +29,7 @@ export const BigCard = ({ blog, className }: PostCardType) => {
         </div>
         <div className='flex flex-col justify-between space-y-4 h-1/2 items-start'>
           <div className='space-y-1'>
-            <span className='font-medium text-gray-700'>{blog?.date}</span>
+            <span className='font-medium text-gray-800'>{blog?.date}</span>
             <h2 className='text-lg font-semibold tracking-wide line-clamp-2'>
               {blog?.title}
             </h2>

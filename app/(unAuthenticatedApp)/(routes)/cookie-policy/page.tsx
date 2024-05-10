@@ -62,7 +62,7 @@ const CookiePolicy = () => {
         </h5>
         <a
           href='#'
-          className='cky-banner-element inline-block py-2 px-6 bg-gray-200 text-gray-700 border border-gray-400 rounded cursor-pointer'>
+          className='cky-banner-element inline-block py-2 px-6 bg-gray-200 text-gray-800 border border-gray-400 rounded cursor-pointer'>
           Cookie Settings
         </a>
         <div className='mt-4'>

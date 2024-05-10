@@ -19,7 +19,7 @@ export const SmallCard = ({ blog, className }: PostCardType) => {
           />
         </div>
         <div className='w-3/5 space-y-3 p-2 flex flex-col justify-center'>
-          <span className='text-sm font-medium text-gray-700'>
+          <span className='text-sm font-medium text-gray-800'>
             {blog?.date}
           </span>
           <h2 className={`text-sm font-medium line-clamp-3`}>{blog?.title}</h2>
