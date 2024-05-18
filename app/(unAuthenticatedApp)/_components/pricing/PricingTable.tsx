@@ -18,7 +18,7 @@ const PricingTable = ({
         !hideColumn &&
           'grid grid-cols-1 space-y-5 md:space-y-0 md:grid-cols-2 pt-5',
       )}>
-      <ul className='col-span-1 text-sm font-medium text-gray-900 rounded-lg'>
+      <ul className='col-span-1 rounded-lg font-medium text-gray-900 text-sm'>
         {hideColumn && <PricingTablePrice services={services} />}
 
         {services?.map((service) => (
@@ -27,6 +27,7 @@ const PricingTable = ({
             id={service.id}
             title={service.title}
             price={service.price}
+            originalPrice={service.originalPrice}
           />
         ))}
       </ul>

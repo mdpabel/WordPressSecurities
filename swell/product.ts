@@ -45,6 +45,7 @@ export const getStandardProducts = async () => {
     id: product?.id ?? '',
     title: capitalize(product?.name),
     price: product?.price ?? 0,
+    originalPrice: product?.origPrice,
   }));
 };
 

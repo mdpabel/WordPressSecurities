@@ -8,6 +8,7 @@ export type PricingTableProps = {
 
 export type ServiceItemType = {
   title: string;
+  originalPrice: number | undefined;
   price: number;
   id: string;
 };
@@ -15,6 +16,7 @@ export type ServiceItemType = {
 type ProductTitleAndPrice = {
   title: string;
   price: number;
+  originalPrice: number | undefined;
   id: string;
 };
 

@@ -4,7 +4,9 @@ import { useCart } from '@/zustand/cart';
 import { CartItemCamel } from 'swell-js/types/cart/camel';
 import Spinner from '@/components/Spinner';
 
-const ServiceItem = ({ title, price, id }: ServiceItemType) => {
+const ServiceItem = ({ title, price, id, originalPrice }: ServiceItemType) => {
+  console.log(originalPrice);
+
   const { isLoading, isSuccess, isIdle, isError, run } = useAsync();
   const { removeFromCart, addToCart, clearCart, cart, loading } = useCart();
 
@@ -30,7 +32,7 @@ const ServiceItem = ({ title, price, id }: ServiceItemType) => {
   };
 
   return (
-    <li className='w-full border-b border-gray-200 rounded-t-lg'>
+    <li className='border-gray-200 border-b rounded-t-lg w-full'>
       <div className='flex items-center pl-3'>
         {isLoading && <Spinner className='w-4 h-4' />}
         {isSuccess && (
@@ -41,7 +43,7 @@ const ServiceItem = ({ title, price, id }: ServiceItemType) => {
             checked={cartItems?.includes(id)}
             type='checkbox'
             defaultChecked={price == 0}
-            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 '
+            className='border-gray-300 bg-gray-100 rounded w-4 h-4 text-blue-600 focus:ring-blue-500'
           />
         )}
         {isIdle && (
@@ -52,14 +54,29 @@ const ServiceItem = ({ title, price, id }: ServiceItemType) => {
             type='checkbox'
             checked={cartItems?.includes(id)}
             defaultChecked={price == 0}
-            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 '
+            className='border-gray-300 bg-gray-100 rounded w-4 h-4 text-blue-600 focus:ring-blue-500'
           />
         )}
         <label
           htmlFor={title}
-          className='w-full py-3 ml-2 text-base font-medium text-gray-900 flex justify-between'>
+          className='flex justify-between ml-2 py-3 w-full font-medium text-base text-gray-900'>
           <span>{title}</span>
-          <span className='font-bold'>${price}</span>
+          <div>
+            <div className='flex items-center'>
+              {originalPrice && price ? (
+                <>
+                  <span className='mr-2 font-bold'>${price}</span>
+                  <span className='text-base text-gray-500 line-through'>
+                    ${originalPrice}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className='mr-2 font-bold'>${price}</span>
+                </>
+              )}
+            </div>
+          </div>
         </label>
       </div>
     </li>
