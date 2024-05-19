@@ -1,6 +1,7 @@
 import { getProducts } from '@/swell/product';
+import { PostType, getPosts } from '@/wordpress/posts';
 
-const siteUrl = process.env.SITE_URL || 'https://www.wordpresssecurities.com';
+const siteUrl = process.env.SITE_URL || 'https://www.nextgenwordpress.com';
 
 type SitemapType = Array<{
   url: string;
@@ -43,5 +44,14 @@ export default async function sitemap() {
     priority: 1,
   }));
 
-  return [...staticPages, ...dynamicPages];
+  const blogs: PostType[] = await getPosts();
+
+  const posts: SitemapType = blogs.map((blog) => ({
+    url: siteUrl + '/guides/' + blog.slug,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.5,
+  }));
+
+  return [...staticPages, ...dynamicPages, ...posts];
 }
