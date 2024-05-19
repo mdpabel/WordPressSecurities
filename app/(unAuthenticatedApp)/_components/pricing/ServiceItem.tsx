@@ -5,8 +5,6 @@ import { CartItemCamel } from 'swell-js/types/cart/camel';
 import Spinner from '@/components/Spinner';
 
 const ServiceItem = ({ title, price, id, originalPrice }: ServiceItemType) => {
-  console.log(originalPrice);
-
   const { isLoading, isSuccess, isIdle, isError, run } = useAsync();
   const { removeFromCart, addToCart, clearCart, cart, loading } = useCart();
 

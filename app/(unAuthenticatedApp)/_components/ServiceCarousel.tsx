@@ -119,15 +119,11 @@ const ServiceDescription = ({
   return (
     <div
       data-id={id}
-      className='w-full flex flex-col space-y-4 md:space-x-8 md:px-4 py-8 md:pb-3 md:pt-0 rounded'>
-      <div
-        style={{
-          maxHeight: '300px',
-        }}
-        className='flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6'>
-        <div className='w-full md:w-1/2 flex items-center justify-center'>
+      className='flex flex-col md:space-x-8 space-y-4 md:px-4 py-8 md:pt-0 md:pb-3 rounded w-full'>
+      <div className='flex md:flex-row flex-col md:space-x-6 space-y-6 md:space-y-0 md:max-h-[300px]'>
+        <div className='flex justify-center items-center w-full md:w-1/2'>
           <Image
-            className='object-cover object-center'
+            className='object-center object-cover'
             width={600}
             height={400}
             src={imgUrl}
@@ -135,11 +131,11 @@ const ServiceDescription = ({
             // priority={id === 1}
           />
         </div>
-        <div className='w-full md:w-1/2 space-y-4 flex flex-col justify-center gap-4'>
+        <div className='flex flex-col justify-center gap-4 space-y-4 w-full md:w-1/2'>
           <div className='space-y-2'>
-            <h2 className='text-2xl font-medium line-clamp-2'>{title}</h2>
+            <h2 className='line-clamp-2 font-medium text-2xl'>{title}</h2>
             <p
-              className='text-base line-clamp-6'
+              className='line-clamp-6 text-base'
               dangerouslySetInnerHTML={{
                 __html: description,
               }}
