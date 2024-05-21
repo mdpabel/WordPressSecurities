@@ -249,3 +249,12 @@ ul.slick-dots.slick-thumb.solution-page li {
 iframe#cf-chl-widget-364pb {
   width: 100% !important;
 }
+
+.custom-background {
+  background-color: #293f4d;
+}
+
+.top-notification .slick-track {
+  display: flex !important;
+  align-items: center !important;
+}

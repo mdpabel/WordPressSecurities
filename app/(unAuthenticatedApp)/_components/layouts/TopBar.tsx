@@ -2,14 +2,15 @@ import Link from 'next/link';
 import React from 'react';
 import ComponentWrapper from '../../../../components/ComponentWrapper';
 import TextCarousel from './TextCarousel';
+import { cn } from '@/lib/utils';
 
 const TopBar = () => {
   return (
-    <div className='py-2 text-white bg-gradient-to-r  from-black via-gray-900 to-black'>
+    <div className={cn('bg-gradient-to-r text-white', 'custom-background')}>
       <ComponentWrapper>
-        <div className='flex justify-between text-sm font-semibold'>
+        <div className='flex justify-between items-center font-semibold text-sm'>
           <TextCarousel />
-          <nav className='hidden md:block'>
+          <nav className='md:block hidden'>
             <ul className='flex justify-between space-x-4'>
               <li>
                 <Link href='/about-us' className='hover:underline'>

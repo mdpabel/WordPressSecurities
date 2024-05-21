@@ -22,14 +22,12 @@ const TextCarousel = () => {
   };
 
   return (
-    <div
-      style={{
-        width: '500px',
-        overflow: 'hidden',
-      }}>
-      <Slider {...settings}>
+    <div className='flex items-center w-[500px] h-10 overflow-hidden'>
+      <Slider className='top-notification' {...settings}>
         {hackStaticsData.map((text, index) => (
-          <li key={index}>{text}</li>
+          <li className='line-clamp-1' key={index}>
+            {text}
+          </li>
         ))}
       </Slider>
     </div>

@@ -33,7 +33,7 @@ const page = async () => {
     <ComponentWrapper>
       <Hero />
       <ServiceCarousel services={featuredServices} />
-      <div className='py-10'>
+      <div className='py-10 md:py-16'>
         <SectionTitleWithSubTitle
           title='Safely Empower Your Digital Business'
           subTitle='Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -

@@ -10,7 +10,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-black text-white px-10 py-2 rounded flex space-x-2 text-white bg-gradient-to-r from-black via-gray-900 to-black',
+          // 'bg-black text-white px-10 py-2 rounded flex space-x-2 text-white bg-gradient-to-r from-black via-gray-900 to-black',
+          'bg-black text-white px-10 py-2 rounded flex space-x-2 text-white custom-background',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
