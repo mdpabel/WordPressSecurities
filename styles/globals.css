@@ -251,7 +251,7 @@ iframe#cf-chl-widget-364pb {
 }
 
 .custom-background {
-  background-color: #008673;
+  background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
 }
 
 .top-notification .slick-track {
