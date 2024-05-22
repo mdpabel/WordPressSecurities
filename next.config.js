@@ -40,6 +40,7 @@ const nextConfig = {
   },
   compress: true,
   images: {
+    dangerouslyAllowSVG: true,
     minimumCacheTTL: 31536000,
     remotePatterns: [
       {

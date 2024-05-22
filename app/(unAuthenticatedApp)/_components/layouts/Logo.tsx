@@ -1,22 +1,19 @@
 'use client';
-import { WordPressIcon } from '../../../../components/icons';
+import Image from 'next/image';
 import Link from 'next/link';
+import logo from '@/public/logo.png';
 
 const Logo = ({ href = '/' }: { href?: string }) => {
-  const domain = 'wordpresssecurities.com';
-
-  if (typeof window !== 'undefined') {
-    window.location.hostname || document.location.hostname;
-  }
-
-  const wpSec = domain == 'wordpresssecurities.com' ? true : false;
-
   return (
     <Link
       href={href}
-      className='flex items-center text-2xl font-semibold text-gray-900 space-x-2'>
-      <WordPressIcon />
-      <span>{wpSec ? 'Securities' : 'Next Generation'}</span>
+      className='flex items-center space-x-2 font-semibold text-2xl text-gray-900'>
+      <Image
+        src={logo}
+        alt='Next Generation WordPress logo'
+        width={150}
+        height={150}
+      />
     </Link>
   );
 };
