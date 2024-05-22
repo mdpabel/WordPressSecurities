@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 ::selection {
-  background: #000;
+  background: #293f4d;
   color: #fff;
 }
 
@@ -251,7 +251,7 @@ iframe#cf-chl-widget-364pb {
 }
 
 .custom-background {
-  background-color: #293f4d;
+  background-color: #008673;
 }
 
 .top-notification .slick-track {
