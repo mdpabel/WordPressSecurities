@@ -258,3 +258,7 @@ iframe#cf-chl-widget-364pb {
   display: flex !important;
   align-items: center !important;
 }
+
+input[type='checkbox'] {
+  accent-color: #3b6489;
+}

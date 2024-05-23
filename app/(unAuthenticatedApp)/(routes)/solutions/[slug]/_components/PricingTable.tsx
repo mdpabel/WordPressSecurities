@@ -12,7 +12,7 @@ interface IServiceItem {
 
 const ServiceItem = ({ label, price, id, onChange, items }: IServiceItem) => {
   return (
-    <li className='w-full border-b border-gray-200 rounded-t-lg'>
+    <li className='border-gray-200 border-b rounded-t-lg w-full'>
       <div className='flex items-center pl-3'>
         <input
           onChange={onChange}
@@ -20,11 +20,11 @@ const ServiceItem = ({ label, price, id, onChange, items }: IServiceItem) => {
           value={id}
           type='checkbox'
           checked={items.indexOf(id) > -1}
-          className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 '
+          className='border-gray-300 bg-gray-100 rounded w-4 h-4 text-blue-600 focus:ring-blue-500'
         />
         <label
           htmlFor={id}
-          className='w-full py-3 ml-2 text-base font-medium text-gray-900 flex justify-between'>
+          className='flex justify-between ml-2 py-3 w-full font-medium text-base text-gray-900'>
           <span>{label}</span>
           <span className='font-bold'>${price}</span>
         </label>
@@ -76,12 +76,12 @@ const PricingTable = ({ services }: PropType) => {
   );
 
   return (
-    <div className='border shadow-sm p-5 rounded sticky top-0'>
+    <div className='top-0 sticky shadow-sm p-5 border rounded'>
       <div className='text-center text-xl'>
         <h2 className='font-medium'>Fix your site</h2>
         <h2 className='font-bold'>$99.99</h2>
       </div>
-      <ul className='col-span-1 text-sm font-medium text-gray-900 rounded-lg'>
+      <ul className='col-span-1 rounded-lg font-medium text-gray-900 text-sm'>
         {services.map((service) => (
           <ServiceItem
             items={items}

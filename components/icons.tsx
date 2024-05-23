@@ -175,7 +175,7 @@ export const CloseEye = () => (
 export const UploadIcon = () => (
   <svg
     aria-hidden='true'
-    className='w-10 h-10 mb-3 text-gray-400'
+    className='mb-3 w-10 h-10 text-gray-400'
     fill='none'
     stroke='currentColor'
     viewBox='0 0 24 24'
@@ -189,7 +189,7 @@ export const UploadIcon = () => (
 
 export const TickIcon = () => (
   <svg
-    className='flex-shrink-0 w-5 h-5 text-green-500 '
+    className='flex-shrink-0 w-5 h-5 text-[#3b7bb1]'
     fill='currentColor'
     viewBox='0 0 20 20'
     xmlns='http://www.w3.org/2000/svg'>
@@ -255,7 +255,7 @@ export const SidebarToggleIcon = () => (
 
 export const LogoutIcon = () => (
   <svg
-    className='flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+    className='group-hover:text-gray-900 dark:group-hover:text-white flex-shrink-0 w-5 h-5 text-gray-500 dark:text-gray-400 transition duration-75'
     aria-hidden='true'
     xmlns='http://www.w3.org/2000/svg'
     fill='none'
@@ -275,7 +275,7 @@ export const EmojiIcon = () => (
     fill='none'
     viewBox='0 0 24 24'
     stroke='currentColor'
-    className='h-6 w-6 text-gray-800'>
+    className='w-6 h-6 text-gray-800'>
     <path
       strokeLinecap='round'
       strokeLinejoin='round'
@@ -290,7 +290,7 @@ export const ImageGallery = () => (
     fill='none'
     viewBox='0 0 24 24'
     stroke='currentColor'
-    className='h-6 w-6 text-gray-800'>
+    className='w-6 h-6 text-gray-800'>
     <path
       strokeLinecap='round'
       strokeLinejoin='round'
@@ -310,7 +310,7 @@ export const FileUploadIcon = () => (
     fill='none'
     viewBox='0 0 24 24'
     stroke='currentColor'
-    className='h-6 w-6 text-gray-800'>
+    className='w-6 h-6 text-gray-800'>
     <path
       strokeLinecap='round'
       strokeLinejoin='round'
@@ -325,7 +325,7 @@ export const SpeakerIcon = () => (
     fill='none'
     viewBox='0 0 24 24'
     stroke='currentColor'
-    className='h-6 w-6 text-gray-800'>
+    className='w-6 h-6 text-gray-800'>
     <path
       strokeLinecap='round'
       strokeLinejoin='round'
@@ -340,7 +340,7 @@ export const SearchIcon = () => (
     fill='none'
     viewBox='0 0 24 24'
     stroke='currentColor'
-    className='h-6 w-6'>
+    className='w-6 h-6'>
     <path
       strokeLinecap='round'
       strokeLinejoin='round'
