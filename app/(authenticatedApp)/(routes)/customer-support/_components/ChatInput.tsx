@@ -76,8 +76,8 @@ const ChatInput = ({
   };
 
   return (
-    <div className='border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0'>
-      <div className='flex flex-col md:flex-row space-y-4 md:space-y-0'>
+    <div className='border-gray-200 mb-2 sm:mb-0 px-4 pt-4 border-t-2'>
+      <div className='flex md:flex-row flex-col space-y-4 md:space-y-0'>
         <input
           onChange={(e) => setMessage(e.target.value)}
           value={message}
@@ -86,9 +86,9 @@ const ChatInput = ({
           minLength={1}
           name='message'
           placeholder='Write your message!'
-          className='w-full pl-5 focus:outline-none focus:placeholder-gray-400 text-gray-800 placeholder-gray-600  bg-gray-200 rounded-md py-3'
+          className='pl-5 w-full focus:outline-none focus:placeholder-gray-400 bg-gray-200 py-3 rounded-md text-gray-800 placeholder-gray-600'
         />
-        <div className='right-0 items-center inset-y-0 flex'>
+        <div className='right-0 inset-y-0 flex items-center'>
           <UploadFile channel={channel} chatRoomId={chatRoomId} />
 
           <Emoji setMessage={setMessage} />
@@ -99,7 +99,7 @@ const ChatInput = ({
             className={cn(
               'inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none',
             )}>
-            <span className='font-bold'>
+            <span className='font-semibold'>
               {profane ? 'Not Allowed' : 'Send'}
             </span>
             {isLoading ? <Spinner /> : profane ? '' : <RightArrow />}

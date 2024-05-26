@@ -63,14 +63,14 @@ const ServiceItem = ({ title, price, id, originalPrice }: ServiceItemType) => {
             <div className='flex items-center'>
               {originalPrice && price ? (
                 <>
-                  <span className='mr-2 font-bold'>${price}</span>
+                  <span className='mr-2 font-medium'>${price}</span>
                   <span className='text-base text-gray-500 line-through'>
                     ${originalPrice}
                   </span>
                 </>
               ) : (
                 <>
-                  <span className='mr-2 font-bold'>${price}</span>
+                  <span className='mr-2 font-medium'>${price}</span>
                 </>
               )}
             </div>

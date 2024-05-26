@@ -80,15 +80,15 @@ const SignInPage: NextPage = () => {
   }
 
   return (
-    <ComponentWrapper className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0'>
+    <ComponentWrapper className='flex flex-col justify-center items-center mx-auto px-6 py-8 lg:py-0 md:min-h-[80vh]'>
       <div className='pb-4'>
         <Logo />
       </div>
-      <div className='w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 '>
-        <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
+      <div className='bg-white shadow md:mt-0 xl:p-0 rounded-lg w-full sm:max-w-md'>
+        <div className='space-y-4 md:space-y-6 p-6 sm:p-8'>
           {error && <Alert intent='danger'>{error}</Alert>}
           {message && <Alert intent='success'>{message}</Alert>}
-          <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl '>
+          <h1 className='font-semibold text-gray-900 text-xl md:text-2xl leading-tight tracking-tight'>
             Reset your password
           </h1>
           <form

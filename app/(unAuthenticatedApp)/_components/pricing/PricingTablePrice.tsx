@@ -18,12 +18,12 @@ const PricingTablePrice = ({ services }: { services: services }) => {
 
   return (
     <div className='flex justify-center items-baseline mt-2 mb-4'>
-      <span className='mr-2 text-5xl font-extrabold'>
+      <span className='mr-2 font-semibold text-5xl'>
         {formatCurrency({
           amount: price,
         }) ?? '$0.00'}
       </span>
-      <span className='text-gray-500 '>/onetime</span>
+      <span className='text-gray-500'>/onetime</span>
     </div>
   );
 };

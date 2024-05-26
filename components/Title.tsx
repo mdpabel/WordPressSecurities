@@ -13,10 +13,10 @@ export const TitleWithBottomBorder = ({
   className,
 }: AttributesWithChildren) => (
   <div className={cn('relative', className)}>
-    <h2 className='z-10 inline-block py-2 font-semibold text-2xl'>
+    <h2 className='inline-block z-10 py-2 font-semibold text-2xl'>
       {children}
     </h2>
-    <div className='w-full h-[2px] bg-gray-500 absolute bottom-0'></div>
+    <div className='bottom-0 absolute bg-gray-500 w-full h-[2px]'></div>
   </div>
 );
 
@@ -51,10 +51,10 @@ export const SectionTitleWithSubTitle = ({
 }: IPricingTableTitle) => {
   return (
     <div className={cn('mx-auto max-w-screen-md text-center', className)}>
-      <h2 className='mb-4 text-2xl md:text-4xl tracking-tight font-semibold md:font-bold text-gray-900'>
+      <h2 className='mb-4 font-semibold md:font-semibold text-2xl text-gray-900 md:text-4xl tracking-tight'>
         {title}
       </h2>
-      <p className='mb-5 font-light text-gray-800 sm:text-xl '>{subTitle}</p>
+      <p className='mb-5 font-light text-gray-800 sm:text-xl'>{subTitle}</p>
     </div>
   );
 };

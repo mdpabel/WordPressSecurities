@@ -64,10 +64,10 @@ const Guide = async ({ params }: GuideType) => {
   if (!blog) return notFound();
 
   return (
-    <ComponentWrapper className='flex flex-col mt-10 space-y-8 lg:space-x-8 lg:flex-row lg:space-y-0'>
-      <div className='w-full space-y-10 lg:w-[70%]'>
-        <div className='p-2 md:px-0 md:py-8 space-y-4 bg-white rounded '>
-          <h1 className='text-3xl font-bold'>{blog?.title}</h1>
+    <ComponentWrapper className='flex lg:flex-row flex-col lg:space-x-8 space-y-8 lg:space-y-0 mt-10'>
+      <div className='space-y-10 w-full lg:w-[70%]'>
+        <div className='space-y-4 bg-white md:px-0 md:py-8 p-2 rounded'>
+          <h1 className='font-semibold text-3xl'>{blog?.title}</h1>
           <div className='flex space-x-8'>
             <div className='flex space-x-2'>
               <Avatar className='w-8 h-8'>
@@ -95,7 +95,7 @@ const Guide = async ({ params }: GuideType) => {
           </Suspense>
 
           <div
-            className='prose max-w-full'
+            className='max-w-full prose'
             dangerouslySetInnerHTML={{ __html: blog?.content }}
           />
         </div>
@@ -103,7 +103,7 @@ const Guide = async ({ params }: GuideType) => {
           <Popular />
         </Suspense>
       </div>
-      <div className='w-full lg:w-1/3 lg:pt-12'>
+      <div className='lg:pt-12 w-full lg:w-1/3'>
         <BlogSidebar />
       </div>
     </ComponentWrapper>

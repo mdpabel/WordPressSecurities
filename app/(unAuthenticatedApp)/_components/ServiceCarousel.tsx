@@ -120,7 +120,11 @@ const ServiceDescription = ({
     <div
       data-id={id}
       className='flex flex-col md:space-x-8 space-y-4 md:px-4 py-8 md:pt-0 md:pb-3 rounded w-full'>
-      <div className='flex md:flex-row flex-col md:space-x-6 space-y-6 md:space-y-0 md:max-h-[300px]'>
+      <div
+        style={{
+          userSelect: 'text',
+        }}
+        className='flex md:flex-row flex-col md:space-x-6 space-y-6 md:space-y-0 md:max-h-[300px] yse'>
         <div className='flex justify-center items-center w-full md:w-1/2'>
           <Image
             className='object-center object-cover'
@@ -160,7 +164,7 @@ const ServiceTitle = ({
   activeSlider,
 }: ServiceTitleTypes) => {
   const activeClasses =
-    activeSlider === serviceId ? 'bg_primary font-bold' : '';
+    activeSlider === serviceId ? 'bg_primary font-semibold text-gray-800' : '';
 
   return (
     <li

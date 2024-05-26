@@ -18,7 +18,7 @@ const ServiceItem = ({ label, price }: IServiceItem) => {
           htmlFor={label}
           className='flex justify-between ml-2 py-3 w-full font-medium text-base text-gray-900'>
           <span>{label}</span>
-          <span className='font-bold'>${price}</span>
+          <span className='font-semibold'>${price}</span>
         </label>
       </div>
     </li>

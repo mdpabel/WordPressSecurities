@@ -7,7 +7,7 @@ export const dynamic = 'force-static';
 const PrivacyPolicy = () => {
   return (
     <ComponentWrapper>
-      <h1 className='text-3xl font-bold mb-4'>
+      <h1 className='mb-4 font-semibold text-3xl'>
         Privacy Policy
         <br />
         <span>Last Updated On 19-Jan-2024</span>
@@ -37,26 +37,26 @@ const PrivacyPolicy = () => {
 
       <ol className='privacy-policy-ol'>
         <li>
-          <h2 className='text-xl font-semibold mb-2'>
+          <h2 className='mb-2 font-semibold text-xl'>
             Information We Collect:
           </h2>
           <p className='privacy-policy-p'>
             We will collect and process the following personal information about
             you:
           </p>
-          <ol className='privacy-policy-ol list-inside list-disc ml-6'>
+          <ol className='ml-6 list-disc list-inside privacy-policy-ol'>
             <li>Email</li>
           </ol>
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>
+          <h2 className='mb-2 font-semibold text-xl'>
             How We Collect Your Information:
           </h2>
           <p className='privacy-policy-p'>
             We collect/receive information about you in the following manner:
           </p>
-          <ol className='privacy-policy-ol list-inside list-disc ml-6'>
+          <ol className='ml-6 list-disc list-inside privacy-policy-ol'>
             <li>
               When a user fills up the registration form or otherwise submits
               personal information
@@ -67,14 +67,14 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>
+          <h2 className='mb-2 font-semibold text-xl'>
             How We Use Your Information:
           </h2>
           <p className='privacy-policy-p'>
             We will use the information that we collect about you for the
             following purposes:
           </p>
-          <ol className='privacy-policy-ol list-inside list-disc ml-6'>
+          <ol className='ml-6 list-disc list-inside privacy-policy-ol'>
             <li>Marketing/ Promotional</li>
             <li>Creating user account</li>
             <li>Processing payment</li>
@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>
+          <h2 className='mb-2 font-semibold text-xl'>
             How We Share Your Information:
           </h2>
           <p className='privacy-policy-p'>
@@ -113,7 +113,7 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>
+          <h2 className='mb-2 font-semibold text-xl'>
             Retention Of Your Information:
           </h2>
           <p className='privacy-policy-p'>
@@ -130,7 +130,7 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>Your Rights:</h2>
+          <h2 className='mb-2 font-semibold text-xl'>Your Rights:</h2>
           <p className='privacy-policy-p'>
             Depending on the law that applies, you may have a right to access
             and rectify or erase your personal data or receive a copy of your
@@ -156,7 +156,7 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>Cookies Etc.</h2>
+          <h2 className='mb-2 font-semibold text-xl'>Cookies Etc.</h2>
           <p className='privacy-policy-p'>
             To learn more about how we use these and your choices in relation to
             these tracking technologies, please refer to our{' '}
@@ -165,7 +165,7 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>Security:</h2>
+          <h2 className='mb-2 font-semibold text-xl'>Security:</h2>
           <p className='privacy-policy-p'>
             The security of your information is important to us and we will use
             reasonable security measures to prevent the loss, misuse or
@@ -178,7 +178,7 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>
+          <h2 className='mb-2 font-semibold text-xl'>
             Third Party Links & Use Of Your Information:
           </h2>
           <p className='privacy-policy-p'>
@@ -194,7 +194,7 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className='text-xl font-semibold mb-2'>
+          <h2 className='mb-2 font-semibold text-xl'>
             Grievance / Data Protection Officer:
           </h2>
           <p className='privacy-policy-p'>

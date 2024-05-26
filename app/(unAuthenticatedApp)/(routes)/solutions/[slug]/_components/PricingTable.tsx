@@ -26,7 +26,7 @@ const ServiceItem = ({ label, price, id, onChange, items }: IServiceItem) => {
           htmlFor={id}
           className='flex justify-between ml-2 py-3 w-full font-medium text-base text-gray-900'>
           <span>{label}</span>
-          <span className='font-bold'>${price}</span>
+          <span className='font-semibold'>${price}</span>
         </label>
       </div>
     </li>
@@ -79,7 +79,7 @@ const PricingTable = ({ services }: PropType) => {
     <div className='top-0 sticky shadow-sm p-5 border rounded'>
       <div className='text-center text-xl'>
         <h2 className='font-medium'>Fix your site</h2>
-        <h2 className='font-bold'>$99.99</h2>
+        <h2 className='font-semibold'>$99.99</h2>
       </div>
       <ul className='col-span-1 rounded-lg font-medium text-gray-900 text-sm'>
         {services.map((service) => (

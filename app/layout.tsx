@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import { Playfair_Display } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import { Metadata } from 'next';
 import { ClerkProvider, auth } from '@clerk/nextjs';
 import { Toaster } from '@/components/toaster';
@@ -17,7 +17,10 @@ export const metadata: Metadata = {
   },
 };
 
-const playfair = Playfair_Display({ subsets: ['latin'] });
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+});
 
 export default async function RootLayout({
   children,
@@ -33,7 +36,7 @@ export default async function RootLayout({
             href='https://www.wordpresssecurities.com/login'
           />
         </head>
-        <body className={playfair.className}>
+        <body className={poppins.className}>
           <NProgressBar>
             {children}
             <Toaster />

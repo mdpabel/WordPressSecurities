@@ -1,5 +1,6 @@
 import ComponentWrapper from '@/components/ComponentWrapper';
-import React from 'react';
+
+export const dynamic = 'force-static';
 
 const page = () => {
   return <ComponentWrapper>page</ComponentWrapper>;

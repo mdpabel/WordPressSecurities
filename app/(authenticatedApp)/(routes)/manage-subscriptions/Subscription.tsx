@@ -22,14 +22,14 @@ const Subscription = ({ subscription }: { subscription: Subscription }) => {
   const isActive = !!!subscription.cancellation_date;
 
   return (
-    <Card className='flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center justify-between p-4 md:p-8 rounded shadow'>
+    <Card className='flex md:flex-row flex-col justify-between md:items-center space-y-4 md:space-y-0 shadow p-4 md:p-8 rounded'>
       <div className='space-y-2'>
         <SubTitle>{packageName}</SubTitle>
         <h3>
           Expires on {formateExpiredDate} | {price} USD | https://mdpabel.com |
           <span
             className={clsx({
-              'font-bold': true,
+              'font-semibold': true,
               'text-green-500 ': isActive,
               'text-red-500 ': !isActive,
             })}>

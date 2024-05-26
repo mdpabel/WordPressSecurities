@@ -23,7 +23,7 @@ const GlobalProjectsMap = () => {
         title='Our Milestones and Worldwide Impact'
         subTitle='Unveiling Project Success, Hacked Website Fixes, Client Relationships, Global Impact.'
       />
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-6 mb-6'>
+      <div className='gap-6 grid grid-cols-2 md:grid-cols-4 mb-6'>
         <Card title={totalWebsiteFixes + '+'} subtitle='Hacked Website Fixes' />
         <Card title={worldDominaation + '%'} subtitle='Global Impact' />
         <Card title={totalProjects + '+'} subtitle='Project Success' />
@@ -57,8 +57,8 @@ const Card = ({
   subtitle: string;
 }) => {
   return (
-    <div className='flex justify-center items-center h-28 flex-col border rounded shadow-sm p-2'>
-      <h3 className='font-bold text-3xl'>{title}</h3>
+    <div className='flex flex-col justify-center items-center shadow-sm p-2 border rounded h-28'>
+      <h3 className='font-semibold text-3xl'>{title}</h3>
       <h4>{subtitle}</h4>
     </div>
   );
