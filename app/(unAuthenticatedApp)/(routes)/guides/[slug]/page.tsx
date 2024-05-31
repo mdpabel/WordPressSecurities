@@ -67,7 +67,7 @@ const Guide = async ({ params }: GuideType) => {
     <ComponentWrapper className='flex lg:flex-row flex-col lg:space-x-8 space-y-8 lg:space-y-0 mt-10'>
       <div className='space-y-10 w-full lg:w-[70%]'>
         <div className='space-y-4 bg-white md:px-0 md:py-8 p-2 rounded'>
-          <h1 className='font-semibold text-3xl'>{blog?.title}</h1>
+          <h1 className='font-semibold text-3xl break-words'>{blog?.title}</h1>
           <div className='flex space-x-8'>
             <div className='flex space-x-2'>
               <Avatar className='w-8 h-8'>

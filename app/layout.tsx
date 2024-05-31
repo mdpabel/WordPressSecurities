@@ -1,11 +1,14 @@
+import dynamic from 'next/dynamic';
 import '../styles/globals.css';
 import { Poppins } from 'next/font/google';
 import { Metadata } from 'next';
 import { ClerkProvider, auth } from '@clerk/nextjs';
 import { Toaster } from '@/components/toaster';
 import NProgressBar from '@/components/NProgressBar';
-import { getCart } from '@/swell/cart';
-import FaceBookMessenger from './(unAuthenticatedApp)/_components/FbMessenger';
+
+const FaceBookMessenger = dynamic(
+  () => import('./(unAuthenticatedApp)/_components/FbMessenger'),
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),
@@ -41,7 +44,7 @@ export default async function RootLayout({
           <NProgressBar>
             {children}
             <Toaster />
-            {process.env.NODE_ENV === 'production' && <FaceBookMessenger />}
+            {/* <FaceBookMessenger />  */}
           </NProgressBar>
         </body>
       </html>
