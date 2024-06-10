@@ -10,14 +10,14 @@ const AboutPage = () => {
           Welcome to NextGenerationWordPress!
         </p>
         <div className='mt-10'>
-          <p className='mb-4 text-gray-700 text-lg'>
+          <p className='mb-4 text-gray-700'>
             We are a team of four passionate friends, each having completed our
             Computer Science degrees from reputable universities in Bangladesh.
             Our expertise spans various programming languages and frameworks,
             honed through years of solving complex coding challenges and
             addressing real-world problems for clients.
           </p>
-          <p className='mb-4 text-gray-700 text-lg'>
+          <p className='mb-4 text-gray-700'>
             For the past eight years, we have been dedicated freelancers, making
             our mark on platforms like Upwork, Fiverr, Freelancer.com, and
             PeoplePerHour. Our collective experience also includes significant
@@ -68,7 +68,7 @@ const AboutPage = () => {
             </div>
           </div>
           <div className='mt-6'>
-            <ul className='pl-5 text-gray-700 text-lg list-disc'>
+            <ul className='pl-5 text-gray-700 list-disc'>
               <li>
                 Over 6140+ hacked websites fixed: We've restored security and
                 functionality to countless sites, ensuring our clients' digital
@@ -85,7 +85,7 @@ const AboutPage = () => {
               </li>
             </ul>
           </div>
-          <p className='mt-4 text-gray-700 text-lg'>
+          <p className='mt-4 text-gray-700'>
             After years of freelancing success, we decided to channel our
             expertise into a new venture—NextGenerationWordPress. This
             initiative is our way of transitioning into the specialized world of
@@ -94,7 +94,7 @@ const AboutPage = () => {
             unparalleled WordPress solutions, ensuring your website not only
             meets but exceeds your expectations.
           </p>
-          <p className='mt-4 text-gray-700 text-lg'>
+          <p className='mt-4 text-gray-700'>
             At NextGenerationWordPress, we are committed to delivering
             excellence, security, and innovation. Whether you're looking to
             build a new site from scratch, enhance your existing WordPress site,
@@ -102,13 +102,13 @@ const AboutPage = () => {
             to make your digital experience seamless and successful, backed by
             our proven track record and dedication to client satisfaction.
           </p>
-          <p className='mt-4 text-gray-700 text-lg'>
+          <p className='mt-4 text-gray-700'>
             Thank you for choosing NextGenerationWordPress. We look forward to
             working with you and bringing your vision to life.
           </p>
           <div className='mt-8'>
-            <p className='font-medium text-gray-900 text-lg'>Best regards,</p>
-            <p className='font-medium text-gray-900 text-lg'>
+            <p className='font-medium text-gray-900'>Best regards,</p>
+            <p className='font-medium text-gray-900'>
               The NextGenerationWordPress Team
             </p>
           </div>
