@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 import ComponentWrapper from '../../../../components/ComponentWrapper';
-import TextCarousel from './TextCarousel';
 import { cn } from '@/lib/utils';
+import dynamic from 'next/dynamic';
+
+const TextCarousel = dynamic(() => import('./TextCarousel'));
 
 const TopBar = () => {
   return (

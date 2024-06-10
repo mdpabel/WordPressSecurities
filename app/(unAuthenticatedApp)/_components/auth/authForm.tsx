@@ -1,3 +1,4 @@
+'use client';
 import ComponentWrapper from '@/components/ComponentWrapper';
 import Logo from '@/app/(unAuthenticatedApp)/_components/layouts/Logo';
 import Link from 'next/link';
@@ -5,10 +6,11 @@ import React, { Dispatch, FormEvent, SetStateAction } from 'react';
 import Spinner from '@/components/Spinner';
 import { Input } from '@/components/Input';
 import { Button } from '../../../../components/Button';
-import Turnstile, { useTurnstile } from 'react-turnstile';
+import CFTurnstile from './CFTurnstile';
 
 type FormType = {
   handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  setTurnstileTokenVeification: Dispatch<SetStateAction<boolean>>;
   setEmailAddress: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
   loading: boolean;
@@ -46,12 +48,17 @@ You're in! 🎉 Sign in successful!`,
 const env = process.env.NODE_ENV;
 
 const AuthForm = (props: FormType) => {
-  const turnstile = useTurnstile();
   const content =
     props.modeType === 'register' ? registerContent : signInContent;
 
-  const { modeType, handleSubmit, setEmailAddress, loading, setPassword } =
-    props;
+  const {
+    modeType,
+    handleSubmit,
+    setEmailAddress,
+    loading,
+    setPassword,
+    setTurnstileTokenVeification,
+  } = props;
 
   return (
     <ComponentWrapper className='flex flex-col justify-center items-center mx-auto px-6 py-8 lg:py-0 md:min-h-[80vh]'>
@@ -114,19 +121,13 @@ const AuthForm = (props: FormType) => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            {env === 'production' && (
-              <Turnstile
-                sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITEKEY!}
-                onVerify={(token) => {
-                  console.log(token);
-                }}
-              />
-            )}
+            <CFTurnstile setIsTokenVerified={setTurnstileTokenVeification} />
 
             <div className='flex justify-between items-center'>
               <Button type='submit'>
-                {loading ? <Spinner /> : content.buttonText}
+                {loading ? <Spinner /> : content.buttonText}{' '}
               </Button>
+
               <Link
                 href='/forget-password'
                 className='font-medium text-primary-600 text-sm hover:underline'>

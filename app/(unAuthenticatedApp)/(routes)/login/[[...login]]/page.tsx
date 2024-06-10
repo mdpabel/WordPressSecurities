@@ -14,10 +14,15 @@ export default function Page() {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [turnstileTokenVeification, setTurnstileTokenVeification] =
+    useState(false);
+
+  console.log('turnstileTokenVeification ', turnstileTokenVeification);
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!isLoaded) {
+    if (!isLoaded || !turnstileTokenVeification) {
+      console.log('turnstileTokenVeification ', turnstileTokenVeification);
       return;
     }
 
@@ -65,6 +70,7 @@ export default function Page() {
       modeType='login'
       setEmailAddress={setEmailAddress}
       setPassword={setPassword}
+      setTurnstileTokenVeification={setTurnstileTokenVeification}
     />
   );
 }

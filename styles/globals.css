@@ -262,3 +262,7 @@ iframe#cf-chl-widget-364pb {
 input[type='checkbox'] {
   accent-color: #3b6489;
 }
+
+.cf-turnstile iframe {
+  width: 100% !important;
+}
