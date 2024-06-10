@@ -20,11 +20,6 @@ const TopBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href='/team' className='hover:underline'>
-                  Team
-                </Link>
-              </li>
-              <li>
                 <Link href='/privacy' className='hover:underline'>
                   Privacy
                 </Link>
