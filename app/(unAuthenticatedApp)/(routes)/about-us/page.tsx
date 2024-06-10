@@ -2,6 +2,8 @@ import ComponentWrapper from '@/components/ComponentWrapper';
 import Image from 'next/image';
 import React from 'react';
 
+export const dynamic = 'force-static';
+
 const AboutPage = () => {
   return (
     <ComponentWrapper className='py-12'>
