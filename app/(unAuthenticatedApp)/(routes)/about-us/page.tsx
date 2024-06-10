@@ -1,9 +1,10 @@
+import ComponentWrapper from '@/components/ComponentWrapper';
 import Image from 'next/image';
 import React from 'react';
 
 const AboutPage = () => {
   return (
-    <div className='py-12'>
+    <ComponentWrapper className='py-12'>
       <div className='mx-auto max-w-7xl'>
         <p className='mt-2 font-medium text-gray-900 text-xl leading-8 tracking-tight'>
           Welcome to NextGenerationWordPress!
@@ -114,7 +115,7 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 
