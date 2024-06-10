@@ -1,35 +1,10 @@
 'use client';
 import { Dispatch, SetStateAction } from 'react';
 import Turnstile, { useTurnstile } from 'react-turnstile';
+import { useCfTurnstile } from './useCFTurnstile';
 
-type Response = { success: boolean };
-
-const CFTurnstile = ({
-  setIsTokenVerified,
-}: {
-  setIsTokenVerified: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const turnstile = useTurnstile();
-
-  const verifyTurnstileToken = async (token: string | undefined) => {
-    if (!token) return;
-    try {
-      const response = await fetch('/api/turnstile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token }),
-      });
-
-      const data: Response = await response.json();
-
-      setIsTokenVerified(data.success);
-    } catch (error) {
-      turnstile.reset();
-      setIsTokenVerified(false);
-    }
-  };
+const CFTurnstile = () => {
+  const { verifyTurnstileToken } = useCfTurnstile();
 
   return (
     <Turnstile

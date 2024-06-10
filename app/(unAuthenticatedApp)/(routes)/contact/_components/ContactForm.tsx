@@ -19,8 +19,11 @@ import { useToast } from '@/components/use-toast';
 import { ToastAction } from '@/components/toast';
 import Spinner from '@/components/Spinner';
 import { useState } from 'react';
+import CFTurnstile from '@/app/(unAuthenticatedApp)/_components/auth/CFTurnstile';
+import { useCfTurnstile } from '@/app/(unAuthenticatedApp)/_components/auth/useCFTurnstile';
 
 const ContactForm = () => {
+  const { isVerified: turnstileTokenVeification } = useCfTurnstile();
   const [pending, setPending] = useState(false);
   const { toast } = useToast();
   const form = useForm<FormDataType>({
@@ -35,6 +38,10 @@ const ContactForm = () => {
   });
 
   const send = async (data: FormDataType) => {
+    if (!turnstileTokenVeification) {
+      console.log('turnstileTokenVeification', turnstileTokenVeification);
+      return;
+    }
     setPending(true);
     const res = await handleFormSubmission(data);
 
@@ -139,9 +146,11 @@ const ContactForm = () => {
           )}
         />
 
+        <CFTurnstile />
+
         <Button
           type='submit'
-          className='flex space-x-2 px-5 py-3 text-sm font-medium text-center text-white bg-black rounded-lg sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300'>
+          className='flex space-x-2 bg-black hover:bg-primary-800 px-5 py-3 rounded-lg sm:w-fit font-medium text-center text-sm text-white focus:ring-4 focus:outline-none focus:ring-primary-300'>
           Send message {pending ? <Spinner /> : null}
         </Button>
       </form>

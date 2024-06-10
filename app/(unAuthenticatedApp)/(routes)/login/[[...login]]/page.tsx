@@ -5,8 +5,7 @@ import AuthForm from '@/app/(unAuthenticatedApp)/_components/auth/authForm';
 import { useToast } from '@/components/use-toast';
 import { catchClerkError } from '@/lib/utils';
 import { login } from '@/swell/account';
-
-export const dynamic = 'force-static';
+import { useCfTurnstile } from '@/app/(unAuthenticatedApp)/_components/auth/useCFTurnstile';
 
 export default function Page() {
   const { toast } = useToast();
@@ -14,15 +13,13 @@ export default function Page() {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [turnstileTokenVeification, setTurnstileTokenVeification] =
-    useState(false);
-
-  console.log('turnstileTokenVeification ', turnstileTokenVeification);
+  const { isVerified: turnstileTokenVeification } = useCfTurnstile();
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (!isLoaded || !turnstileTokenVeification) {
       console.log('turnstileTokenVeification ', turnstileTokenVeification);
+      console.log('isLoaded ', isLoaded);
       return;
     }
 
@@ -70,7 +67,6 @@ export default function Page() {
       modeType='login'
       setEmailAddress={setEmailAddress}
       setPassword={setPassword}
-      setTurnstileTokenVeification={setTurnstileTokenVeification}
     />
   );
 }

@@ -4,10 +4,10 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { useSignUp } from '@clerk/nextjs';
 import AuthForm from '@/app/(unAuthenticatedApp)/_components/auth/authForm';
 import EmailVerificationForm from '@/app/(unAuthenticatedApp)/_components/auth/EmailVerificationForm';
-import { client } from '@/lib/client';
 import { catchClerkError } from '@/lib/utils';
 import { useToast } from '@/components/use-toast';
 import { createAccount } from '@/swell/account';
+import { useCfTurnstile } from '@/app/(unAuthenticatedApp)/_components/auth/useCFTurnstile';
 
 export const dynamic = 'force-static';
 
@@ -23,10 +23,13 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [verificationError, setVerificationError] = useState('');
+  const { isVerified: turnstileTokenVeification } = useCfTurnstile();
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!isLoaded) {
+    if (!isLoaded || !turnstileTokenVeification) {
+      console.log('turnstileTokenVeification ', turnstileTokenVeification);
+      console.log('isLoaded ', isLoaded);
       return;
     }
 
@@ -98,7 +101,7 @@ export default function Page() {
   };
 
   return (
-    <ComponentWrapper className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0'>
+    <ComponentWrapper className='flex flex-col justify-center items-center mx-auto px-6 py-8 lg:py-0 md:min-h-[80vh]'>
       {!pendingVerification && (
         <AuthForm
           loading={loading}

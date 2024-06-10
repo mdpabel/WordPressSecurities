@@ -10,7 +10,6 @@ import CFTurnstile from './CFTurnstile';
 
 type FormType = {
   handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
-  setTurnstileTokenVeification: Dispatch<SetStateAction<boolean>>;
   setEmailAddress: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
   loading: boolean;
@@ -51,14 +50,8 @@ const AuthForm = (props: FormType) => {
   const content =
     props.modeType === 'register' ? registerContent : signInContent;
 
-  const {
-    modeType,
-    handleSubmit,
-    setEmailAddress,
-    loading,
-    setPassword,
-    setTurnstileTokenVeification,
-  } = props;
+  const { modeType, handleSubmit, setEmailAddress, loading, setPassword } =
+    props;
 
   return (
     <ComponentWrapper className='flex flex-col justify-center items-center mx-auto px-6 py-8 lg:py-0 md:min-h-[80vh]'>
@@ -121,7 +114,7 @@ const AuthForm = (props: FormType) => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <CFTurnstile setIsTokenVerified={setTurnstileTokenVeification} />
+            <CFTurnstile />
 
             <div className='flex justify-between items-center'>
               <Button type='submit'>
