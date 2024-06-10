@@ -11,12 +11,11 @@ const AboutPage = () => {
         </p>
         <div className='mt-10'>
           <p className='mb-4 text-gray-700 text-lg'>
-            We are a team of four passionate friends, bonded by our shared
-            journey through a prestigious university in Bangladesh, where we
-            earned our degrees in Computer Science. Our expertise spans various
-            programming languages and frameworks, honed through years of solving
-            complex coding challenges and addressing real-world problems for
-            clients.
+            We are a team of four passionate friends, each having completed our
+            Computer Science degrees from reputable universities in Bangladesh.
+            Our expertise spans various programming languages and frameworks,
+            honed through years of solving complex coding challenges and
+            addressing real-world problems for clients.
           </p>
           <p className='mb-4 text-gray-700 text-lg'>
             For the past eight years, we have been dedicated freelancers, making
