@@ -8,8 +8,7 @@ import { catchClerkError } from '@/lib/utils';
 import { useToast } from '@/components/use-toast';
 import { createAccount } from '@/swell/account';
 import { useCfTurnstile } from '@/app/(unAuthenticatedApp)/_components/auth/useCFTurnstile';
-
-export const dynamic = 'force-static';
+import { verifyTurnstileToken } from '@/app/(unAuthenticatedApp)/_utils/turnstile.util';
 
 export default function Page() {
   const { toast } = useToast();
@@ -24,6 +23,7 @@ export default function Page() {
   const [verifying, setVerifying] = useState(false);
   const [verificationError, setVerificationError] = useState('');
   const { isVerified: turnstileTokenVeification } = useCfTurnstile();
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -60,12 +60,23 @@ export default function Page() {
 
   const onPressVerify = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!isLoaded) {
+    if (!isLoaded || !turnstileToken) {
+      console.log('turnstileToken ', turnstileToken);
+      console.log('isLoaded ', isLoaded);
       return;
     }
 
     try {
       setVerifying(true);
+
+      const turnstileRes = await verifyTurnstileToken(turnstileToken);
+
+      console.log(turnstileRes);
+
+      if (!turnstileRes?.success) {
+        return;
+      }
+
       const completeSignUp = await signUp.attemptEmailAddressVerification({
         code,
       });
@@ -111,6 +122,7 @@ export default function Page() {
           handleSubmit={handleSubmit}
           setFirstName={setFirstName}
           setLastName={setLastName}
+          setTurnstileToken={setTurnstileToken}
         />
       )}
 

@@ -6,6 +6,7 @@ import { useToast } from '@/components/use-toast';
 import { catchClerkError } from '@/lib/utils';
 import { login } from '@/swell/account';
 import { useCfTurnstile } from '@/app/(unAuthenticatedApp)/_components/auth/useCFTurnstile';
+import { verifyTurnstileToken } from '@/app/(unAuthenticatedApp)/_utils/turnstile.util';
 
 export default function Page() {
   const { toast } = useToast();
@@ -13,18 +14,27 @@ export default function Page() {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { isVerified: turnstileTokenVeification } = useCfTurnstile();
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!isLoaded || !turnstileTokenVeification) {
-      console.log('turnstileTokenVeification ', turnstileTokenVeification);
+    if (!isLoaded || !turnstileToken) {
+      console.log('turnstileToken ', turnstileToken);
       console.log('isLoaded ', isLoaded);
       return;
     }
 
     try {
       setLoading(true);
+
+      const turnstileRes = await verifyTurnstileToken(turnstileToken);
+
+      console.log(turnstileRes);
+
+      if (!turnstileRes?.success) {
+        return;
+      }
+
       const result = await signIn.create({
         identifier: emailAddress,
         password,
@@ -67,6 +77,7 @@ export default function Page() {
       modeType='login'
       setEmailAddress={setEmailAddress}
       setPassword={setPassword}
+      setTurnstileToken={setTurnstileToken}
     />
   );
 }

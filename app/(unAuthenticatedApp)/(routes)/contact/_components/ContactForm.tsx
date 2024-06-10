@@ -4,10 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/Form';
 import { Input } from '@/components/Input';
@@ -21,9 +19,10 @@ import Spinner from '@/components/Spinner';
 import { useState } from 'react';
 import CFTurnstile from '@/app/(unAuthenticatedApp)/_components/auth/CFTurnstile';
 import { useCfTurnstile } from '@/app/(unAuthenticatedApp)/_components/auth/useCFTurnstile';
+import { verifyTurnstileToken } from '@/app/(unAuthenticatedApp)/_utils/turnstile.util';
 
 const ContactForm = () => {
-  const { isVerified: turnstileTokenVeification } = useCfTurnstile();
+  const [turnstileToken, setTurnstileToken] = useState('');
   const [pending, setPending] = useState(false);
   const { toast } = useToast();
   const form = useForm<FormDataType>({
@@ -38,11 +37,20 @@ const ContactForm = () => {
   });
 
   const send = async (data: FormDataType) => {
-    if (!turnstileTokenVeification) {
-      console.log('turnstileTokenVeification', turnstileTokenVeification);
+    if (!turnstileToken) {
+      console.log('turnstileToken', turnstileToken);
       return;
     }
     setPending(true);
+
+    const turnstileRes = await verifyTurnstileToken(turnstileToken);
+
+    console.log(turnstileRes);
+
+    if (!turnstileRes?.success) {
+      return;
+    }
+
     const res = await handleFormSubmission(data);
 
     if (res?.status == 'success') {
@@ -146,7 +154,7 @@ const ContactForm = () => {
           )}
         />
 
-        <CFTurnstile />
+        <CFTurnstile setTurnstileToken={setTurnstileToken} />
 
         <Button
           type='submit'

@@ -13,6 +13,7 @@ type FormType = {
   setEmailAddress: Dispatch<SetStateAction<string>>;
   setPassword: Dispatch<SetStateAction<string>>;
   loading: boolean;
+  setTurnstileToken: Dispatch<SetStateAction<string>>;
 } & (
   | {
       modeType: 'register';
@@ -50,8 +51,14 @@ const AuthForm = (props: FormType) => {
   const content =
     props.modeType === 'register' ? registerContent : signInContent;
 
-  const { modeType, handleSubmit, setEmailAddress, loading, setPassword } =
-    props;
+  const {
+    modeType,
+    handleSubmit,
+    setEmailAddress,
+    loading,
+    setPassword,
+    setTurnstileToken,
+  } = props;
 
   return (
     <ComponentWrapper className='flex flex-col justify-center items-center mx-auto px-6 py-8 lg:py-0 md:min-h-[80vh]'>
@@ -114,7 +121,7 @@ const AuthForm = (props: FormType) => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <CFTurnstile />
+            <CFTurnstile setTurnstileToken={setTurnstileToken} />
 
             <div className='flex justify-between items-center'>
               <Button type='submit'>

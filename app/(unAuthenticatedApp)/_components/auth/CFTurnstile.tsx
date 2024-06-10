@@ -1,18 +1,20 @@
 'use client';
-import { Dispatch, SetStateAction } from 'react';
-import Turnstile, { useTurnstile } from 'react-turnstile';
+import Turnstile from 'react-turnstile';
 import { useCfTurnstile } from './useCFTurnstile';
+import { Dispatch, SetStateAction } from 'react';
 
-const CFTurnstile = () => {
-  const { verifyTurnstileToken } = useCfTurnstile();
-
+const CFTurnstile = ({
+  setTurnstileToken,
+}: {
+  setTurnstileToken: Dispatch<SetStateAction<string>>;
+}) => {
   return (
     <Turnstile
       className='cf-turnstile'
       sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITEKEY!}
       theme='light'
       onVerify={(token) => {
-        verifyTurnstileToken(token);
+        setTurnstileToken(token);
       }}
     />
   );

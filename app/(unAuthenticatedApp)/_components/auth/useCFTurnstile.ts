@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTurnstile } from 'react-turnstile';
 
 type Response = { success: boolean };
@@ -7,6 +7,8 @@ type Response = { success: boolean };
 export const useCfTurnstile = () => {
   const [isVerified, setIsVerified] = useState(false);
   const turnstile = useTurnstile();
+
+  console.log(isVerified);
 
   const verifyTurnstileToken = async (token: string | undefined) => {
     if (!token) return;
@@ -21,10 +23,10 @@ export const useCfTurnstile = () => {
 
       const data: Response = await response.json();
 
-      setIsVerified(data.success);
+      return data;
     } catch (error) {
       turnstile.reset();
-      setIsVerified(false);
+      return { success: false };
     }
   };
 
