@@ -22,6 +22,8 @@ import { SignedIn, SignedOut } from '@clerk/nextjs';
 function BigScreenNavbar({ solutionsSubmenu }: MainHeaderType) {
   const pathName = usePathname() ?? '/';
 
+  console.log(pathName);
+
   return (
     <NavigationMenu
       className={cn(
@@ -105,10 +107,10 @@ const NavItemWithSubMenu = ({
     <NavigationMenuItem>
       <NavigationMenuTrigger className='text-lg'>{label}</NavigationMenuTrigger>
       <NavigationMenuContent>
-        <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
+        <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
           {components?.map((component) => (
             <ListItem
-              className='border-b border-gray-400'
+              className='border-gray-400 border-b'
               key={component.title}
               title={component.title}
               href={link + '/' + component.href}
@@ -136,8 +138,8 @@ const ListItem = React.forwardRef<
             className,
           )}
           {...props}>
-          <div className='text-sm font-medium leading-none'>{title}</div>
-          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+          <div className='font-medium text-sm leading-none'>{title}</div>
+          <p className='line-clamp-2 text-muted-foreground text-sm leading-snug'>
             {children}
           </p>
         </Link>

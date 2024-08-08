@@ -1,14 +1,28 @@
+'use client';
 import Link from 'next/link';
 import React from 'react';
-import ComponentWrapper from '../../../../components/ComponentWrapper';
+import ComponentWrapper from '@/components/ComponentWrapper';
 import { cn } from '@/lib/utils';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
+import TextCarousel from './TextCarousel';
+import { usePathname } from 'next/navigation';
 
-const TextCarousel = dynamic(() => import('./TextCarousel'));
+// const TextCarousel = dynamic(() => import('./TextCarousel'));
+
+const classNames = '';
 
 const TopBar = () => {
+  const pathName = usePathname();
+  const className = pathName.split('/')[1];
+  console.log(className);
+
   return (
-    <div className={cn('bg-gradient-to-r text-white', 'custom-background')}>
+    <div
+      className={cn(
+        'bg-gradient-to-r text-white',
+        'custom-background',
+        className,
+      )}>
       <ComponentWrapper>
         <div className='flex justify-between items-center font-semibold text-sm'>
           <TextCarousel />

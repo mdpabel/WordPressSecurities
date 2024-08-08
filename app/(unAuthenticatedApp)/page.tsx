@@ -6,6 +6,7 @@ import FAQ from '@/app/(unAuthenticatedApp)/_components/FAQ';
 import { SectionTitleWithSubTitle } from '@/components/Title';
 import PricingTable from '@/app/(unAuthenticatedApp)/_components/pricing/PricingTable';
 import {
+  getCategories,
   getProducts,
   getStandardProducts,
   getSubscriptionsBasedProducts,
@@ -18,20 +19,26 @@ const GlobalProjectsMap = lazy(
 
 export const dynamic = 'force-static';
 
-interface ExtendedProduct extends Product {
-  list: {
-    listOfServices: string;
-  };
-}
-
 const page = async () => {
   const subscriptionsProducts = await getSubscriptionsBasedProducts();
   const standardProducts = await getStandardProducts();
   const featuredServices = await getFeaturedServices();
 
+  getCategories();
+
   return (
     <ComponentWrapper>
-      <Hero />
+      <Hero
+        title='Clean and Protect Your Website Now'
+        description=" Hackers don't take vacations. Restore your peace of mind by
+            securing your online presence with our expert engineers."
+        buttonText='Fix hacked site'
+        buttonLink='/'
+        image={{
+          src: '/hero.png',
+          alt: 'Secure your website',
+        }}
+      />
       <ServiceCarousel services={featuredServices} />
       <div className='py-10 md:py-16'>
         <SectionTitleWithSubTitle
@@ -39,7 +46,6 @@ const page = async () => {
           subTitle='Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
         Engineered for Small to Large-scale Websites'
         />
-        {/* <SubscriptionTable />  */}
         <PricingTable
           services={standardProducts}
           subscriptions={subscriptionsProducts}

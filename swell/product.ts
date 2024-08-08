@@ -6,6 +6,14 @@ type GetProductsTypes = {
   category?: string;
 };
 
+export const getCategories = async () => {
+  const res = await swell.categories.list({
+    limit: 25,
+    page: 1,
+  });
+  return res;
+};
+
 export const getProducts = async ({ category }: GetProductsTypes = {}) => {
   const res = await swell.products.list({
     category,

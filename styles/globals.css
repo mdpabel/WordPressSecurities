@@ -254,6 +254,10 @@ iframe#cf-chl-widget-364pb {
   background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
 }
 
+.website-maintenance {
+  background: linear-gradient(to right, #614385, #516395);
+}
+
 .top-notification .slick-track {
   display: flex !important;
   align-items: center !important;

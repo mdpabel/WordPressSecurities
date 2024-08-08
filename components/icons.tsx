@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils';
+
 export const FacebookIcon = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
@@ -187,9 +189,9 @@ export const UploadIcon = () => (
   </svg>
 );
 
-export const TickIcon = () => (
+export const TickIcon = ({ className = '' }: { className?: string }) => (
   <svg
-    className='flex-shrink-0 w-5 h-5 text-[#3b7bb1]'
+    className={cn('flex-shrink-0 w-5 h-5 text-[#3b7bb1]', className)}
     fill='currentColor'
     viewBox='0 0 20 20'
     xmlns='http://www.w3.org/2000/svg'>
