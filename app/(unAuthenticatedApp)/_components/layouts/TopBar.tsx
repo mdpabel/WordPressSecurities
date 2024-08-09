@@ -14,7 +14,6 @@ const classNames = '';
 const TopBar = () => {
   const pathName = usePathname();
   const className = pathName.split('/')[1];
-  console.log(className);
 
   return (
     <div

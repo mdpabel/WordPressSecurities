@@ -250,14 +250,6 @@ iframe#cf-chl-widget-364pb {
   width: 100% !important;
 }
 
-.custom-background {
-  background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
-}
-
-.website-maintenance {
-  background: linear-gradient(to right, #614385, #516395);
-}
-
 .top-notification .slick-track {
   display: flex !important;
   align-items: center !important;
@@ -269,4 +261,18 @@ input[type='checkbox'] {
 
 .cf-turnstile iframe {
   width: 100% !important;
+}
+
+/* THEME  */
+
+.custom-background {
+  background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
+}
+
+.website-maintenance {
+  background: linear-gradient(to right, #614385, #516395);
+}
+
+.speed-optimization {
+  background: linear-gradient(to right, #c35797, #500c75);
 }

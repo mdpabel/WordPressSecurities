@@ -12,7 +12,7 @@ const PricingTable = () => {
         subTitle='Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
         Engineered for Small to Large-scale Websites'
       />
-      <div className='space-y-4 md:space-y-0 grid grid-cols-1 md:grid-cols-3 pt-10'>
+      <div className='gap-y-10 md:gap-y-0 space-y-4 md:space-y-0 grid grid-cols-1 md:grid-cols-3 pt-10'>
         <div className='flex flex-col justify-between space-y-4 shadow-sm p-10 border rounded-2xl'>
           <h2 className='font-medium text-xl'>Basic</h2>
           <p className='text-sm'>
