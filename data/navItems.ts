@@ -4,45 +4,28 @@ const subMenus = [
     href: '/malware-removal',
   },
   {
-    title: 'Google Safe Browsing blacklist',
-    href: '/google-safe-browsing-blacklist',
+    title: 'Website Maintenance',
+    href: '/website-maintenance',
   },
   {
-    title: 'McAfee Blacklist',
-    href: '/mcafee-blacklist',
+    title: 'Speed Optimization',
+    href: '/speed-optimization',
   },
   {
-    title: 'Penetration Testing',
-    href: '/penetration-testing',
-  },
-
-  {
-    title: 'Redirect Malware',
-    href: '/redirect-malware',
+    title: 'WordPress Security',
+    href: '/wordpress-security',
   },
   {
-    title: 'DDoS Protection',
-    href: '/ddos-protection',
+    title: 'Blacklist Removal',
+    href: '/blacklist-removal',
   },
   {
-    title: 'AVAST Blacklist',
-    href: '/avast-blacklist',
+    title: 'WordPress Development',
+    href: '/wordpress-development',
   },
   {
-    title: 'http500 Internal Server Error',
-    href: '/internal-server-error',
-  },
-  {
-    title: 'Malware Prevention',
-    href: '/malware-prevention',
-  },
-  {
-    title: 'Norton Safe Blacklist',
-    href: '/norton-safe-blacklist',
-  },
-  {
-    title: 'SSL Certificate Installation',
-    href: '/ssl-certificate-installation',
+    title: 'Headless WordPress',
+    href: '/headless-wordpress',
   },
 ] as const;
 
@@ -68,17 +51,11 @@ export const navItems = [
     label: 'Store',
     link: '/store',
   },
-  {
-    id: 5,
-    label: 'Guides',
-    link: '/guides',
-  },
+  // {
+  //   id: 5,
+  //   label: 'Guides',
+  //   link: '/guides',
+  // },
 ];
 
-const subMenusItems = subMenus.map((sm) => sm.href);
-
-export type SubMenuType = {
-  title: string;
-  href: string;
-}[];
-export type SubMenuHefType = (typeof subMenusItems)[0];
+export type SubMenu = typeof subMenus;

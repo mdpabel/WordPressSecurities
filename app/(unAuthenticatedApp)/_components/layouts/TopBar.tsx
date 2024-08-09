@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ComponentWrapper from '@/components/ComponentWrapper';
 import { cn } from '@/lib/utils';
 // import dynamic from 'next/dynamic';
@@ -12,16 +12,17 @@ import { usePathname } from 'next/navigation';
 const classNames = '';
 
 const TopBar = () => {
+  const [className, setClassName] = useState('');
   const pathName = usePathname();
-  const className = pathName.split('/')[1];
+
+  useEffect(() => {
+    const className = pathName.replace('/solutions/', '');
+    setClassName(className);
+  }, [pathName]);
 
   return (
     <div
-      className={cn(
-        'bg-gradient-to-r text-white',
-        'custom-background',
-        className,
-      )}>
+      className={cn('bg-gradient-to-r text-white', 'default-theme', className)}>
       <ComponentWrapper>
         <div className='flex justify-between items-center font-semibold text-sm'>
           <TextCarousel />

@@ -265,7 +265,7 @@ input[type='checkbox'] {
 
 /* THEME  */
 
-.custom-background {
+.default-theme {
   background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
 }
 
@@ -275,4 +275,8 @@ input[type='checkbox'] {
 
 .speed-optimization {
   background: linear-gradient(to right, #c35797, #500c75);
+}
+
+.malware-removal {
+  background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
 }

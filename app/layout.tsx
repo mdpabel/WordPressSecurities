@@ -1,14 +1,9 @@
-import dynamic from 'next/dynamic';
 import '../styles/globals.css';
 import { Poppins } from 'next/font/google';
 import { Metadata } from 'next';
 import { ClerkProvider, auth } from '@clerk/nextjs';
 import { Toaster } from '@/components/toaster';
 import NProgressBar from '@/components/NProgressBar';
-
-const FaceBookMessenger = dynamic(
-  () => import('./(unAuthenticatedApp)/_components/FbMessenger'),
-);
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),
@@ -44,7 +39,6 @@ export default async function RootLayout({
           <NProgressBar>
             {children}
             <Toaster />
-            {/* <FaceBookMessenger />  */}
           </NProgressBar>
         </body>
       </html>

@@ -1,8 +1,8 @@
 import ComponentWrapper from '@/components/ComponentWrapper';
 import React from 'react';
-import Hero from '../../_components/Hero';
 import PricingTable from './_components/PricingTable';
-import FAQ from '../../_components/FAQ';
+import Hero from '@/app/(unAuthenticatedApp)/_components/Hero';
+import FAQ from '@/app/(unAuthenticatedApp)/_components/FAQ';
 
 const WebsiteMaintenance = () => {
   return (

@@ -13,7 +13,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/navigation-menu';
 import { MainHeaderType } from './Navbar';
-import { SubMenuType, navItems } from '@/data/navItems';
+import { SubMenu, navItems } from '@/data/navItems';
 import { Button } from '../../../../components/Button';
 import Logo from './Logo';
 import { usePathname } from 'next/navigation';
@@ -38,7 +38,7 @@ function BigScreenNavbar({ solutionsSubmenu }: MainHeaderType) {
               key={navItem.id}
               label={navItem.label}
               link={navItem.link}
-              components={solutionsSubmenu}
+              components={navItem.subMenu}
             />
           ) : (
             <NavItem
@@ -95,7 +95,7 @@ const NavItem = ({ label, link, pathName }: NavItemProps) => {
 type NavItemWithSubMenuProps = {
   label: string;
   link: string;
-  components: SubMenuType;
+  components: SubMenu;
 };
 
 const NavItemWithSubMenu = ({
@@ -113,7 +113,7 @@ const NavItemWithSubMenu = ({
               className='border-gray-400 border-b'
               key={component.title}
               title={component.title}
-              href={link + '/' + component.href}
+              href={link + component.href}
             />
           ))}
         </ul>

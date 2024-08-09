@@ -14,20 +14,19 @@ import {
 } from '@/components/accordion';
 import Logo from './Logo';
 import Link from 'next/link';
-import Image from 'next/image';
 import { MainHeaderType } from './Navbar';
-import { Dispatch, SetStateAction, useState } from 'react';
-import { SubMenuType, navItems } from '@/data/navItems';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { navItems, SubMenu } from '@/data/navItems';
 import { BarIcon, CrossIcon, SidebarToggleIcon } from '@/components/icons';
 import { useSidebar } from '@/zustand/sidebar';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 
-const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
+const SmallScreenNavbar = ({ dashboard }: MainHeaderType) => {
   const [open, setOpen] = useState(false);
   const { isOpen, setIsOpen } = useSidebar();
 
   return (
-    <div className='flex md:hidden items-center justify-between py-4 w-full max-w-full'>
+    <div className='flex justify-between items-center md:hidden py-4 w-full max-w-full'>
       <div className='flex space-x-4'>
         {dashboard && (
           <div
@@ -35,7 +34,7 @@ const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
             data-drawer-target='logo-sidebar'
             data-drawer-toggle='logo-sidebar'
             aria-controls='logo-sidebar'
-            className='inline-flex cursor-pointer items-center p-2 text-sm text-black rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'>
+            className='inline-flex items-center md:hidden hover:bg-gray-100 p-2 rounded-lg focus:ring-2 focus:ring-gray-200 text-black text-sm cursor-pointer focus:outline-none'>
             <SidebarToggleIcon />
           </div>
         )}
@@ -50,12 +49,12 @@ const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
         }}>
         <DropdownMenuTrigger>
           {open ? (
-            <CrossIcon className='w-6 h-6  text-gray-800' />
+            <CrossIcon className='w-6 h-6 text-gray-800' />
           ) : (
             <BarIcon className='w-6 h-6 text-gray-800' />
           )}
         </DropdownMenuTrigger>
-        <DropdownMenuContent className='inline-block md:hidden w-screen mt-6'>
+        <DropdownMenuContent className='inline-block md:hidden mt-6 w-screen'>
           {navItems.map((navItem) =>
             navItem.subMenu ? (
               <NavItemWithSubMenu
@@ -63,7 +62,7 @@ const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
                 setOpen={setOpen}
                 key={navItem.id}
                 label={navItem.label}
-                components={solutionsSubmenu}
+                components={navItem.subMenu}
               />
             ) : (
               <NavItem
@@ -90,7 +89,7 @@ const SmallScreenNavbar = ({ solutionsSubmenu, dashboard }: MainHeaderType) => {
 type NavItemWithSubMenuProps = {
   label: string;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  components: SubMenuType;
+  components: SubMenu;
   link: string;
 };
 
@@ -102,21 +101,19 @@ const NavItemWithSubMenu = ({
 }: NavItemWithSubMenuProps) => {
   return (
     <Accordion className='border-b-gray-300'>
-      <AccordionTrigger className='text-lg px-4 py-0 pb-2'>
+      <AccordionTrigger className='px-4 py-0 pb-2 text-lg'>
         {label}
       </AccordionTrigger>
 
-      <AccordionContent className='border-b pt-2'>
+      <AccordionContent className='pt-2 border-b'>
         {components.map((component) => (
           <li
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+            }}
             key={component.title}
-            className='list-none pl-8 border-b border-b-gray-200 py-2'>
-            <Link
-              onClick={() => setOpen(false)}
-              href={link + '/' + component.href}>
-              {component.title}
-            </Link>
+            className='py-2 pl-8 border-b border-b-gray-200 list-none'>
+            <Link href={link + '/' + component.href}>{component.title}</Link>
           </li>
         ))}
       </AccordionContent>
@@ -131,9 +128,9 @@ type NavItemProps = {
 
 const NavItem = ({ label, link }: NavItemProps) => {
   return (
-    <DropdownMenuItem className='border-b border-gray-300 rounded-none' asChild>
+    <DropdownMenuItem className='border-gray-300 border-b rounded-none' asChild>
       <Link className='font-normal' href={link}>
-        <DropdownMenuLabel className='text-lg font-normal'>
+        <DropdownMenuLabel className='font-normal text-lg'>
           {label}
         </DropdownMenuLabel>
       </Link>

@@ -1,8 +1,8 @@
 import React from 'react';
-import Hero from '../../_components/Hero';
+import Hero from '../../../_components/Hero';
 import ComponentWrapper from '@/components/ComponentWrapper';
 import PricingTable from './_components/PricingTable';
-import FAQ from '../../_components/FAQ';
+import FAQ from '../../../_components/FAQ';
 
 const SpeedOptimization = () => {
   return (

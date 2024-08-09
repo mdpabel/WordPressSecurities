@@ -9,7 +9,7 @@ type Props = {
   image: { src: string; alt: string };
   buttonText: string;
   buttonLink: string;
-  className: string;
+  className?: string;
 };
 
 const Hero = ({
