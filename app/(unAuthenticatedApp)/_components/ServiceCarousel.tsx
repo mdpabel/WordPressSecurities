@@ -22,7 +22,74 @@ type PropTypes = {
   }[];
 };
 
-const ServiceCarousel = ({ services }: PropTypes) => {
+type services = {
+  id: number;
+  imgUrl: string;
+  imgWidth: number | undefined;
+  imgHeight: number | undefined;
+  title: string;
+  description: string;
+  slug: string;
+};
+
+const services: services[] = [
+  {
+    id: 1,
+    title: 'Fix your hacked site',
+    description:
+      "Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers. Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers. ",
+    imgHeight: 700,
+    imgUrl: '/hero.png',
+    imgWidth: 700,
+    slug: '/solutions/malware-removal',
+  },
+
+  {
+    id: 2,
+    title: 'Website maintenance',
+    description:
+      "Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers. Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers.",
+    imgHeight: 700,
+    imgUrl: '/hero/website-maintenance.png',
+    imgWidth: 700,
+    slug: '/solutions/website-maintenance',
+  },
+
+  {
+    id: 3,
+    title: 'Speed optimization',
+    description:
+      "Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers. Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers.",
+    imgHeight: 700,
+    imgUrl: '/hero/speed-optimization-2.png',
+    imgWidth: 700,
+    slug: '/solutions/speed-optimization',
+  },
+
+  {
+    id: 4,
+    title: 'WordPress security',
+    description:
+      "Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers. Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers.",
+    imgHeight: 700,
+    imgUrl: '/hero.png',
+    imgWidth: 700,
+    slug: '/solutions/wordpress-security',
+  },
+
+  {
+    id: 5,
+    title: 'Blacklist removal',
+    description:
+      "Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers. Hackers don't take vacations. Restore your peace of mind by securing your online presence with our expert engineers.",
+    imgHeight: 700,
+    imgUrl: '/hero.png',
+    imgWidth: 700,
+    slug: '/solutions/blacklist-removal',
+  },
+];
+
+const ServiceCarousel = () => {
   const sliderRef = useRef<Slider>(null);
   const [activeSlider, setActiveSlider] = useState(1);
 
@@ -42,7 +109,7 @@ const ServiceCarousel = ({ services }: PropTypes) => {
   };
 
   return (
-    <div className='space-y-8'>
+    <div className='space-y-10'>
       <TitleWithBottomBorder>
         Facing Website Security Concerns?
       </TitleWithBottomBorder>
@@ -52,7 +119,7 @@ const ServiceCarousel = ({ services }: PropTypes) => {
           `md:h-72`,
         )}>
         <ul
-          className={`w-full md:w-1/3 space-y-4 grid grid-rows-${services.length}`}>
+          className={`w-full md:w-1/3 space-y-2 grid grid-rows-${services.length}`}>
           {services?.map((service, index) => (
             <ServiceTitle
               onClick={(id) => {
@@ -164,13 +231,13 @@ const ServiceTitle = ({
   activeSlider,
 }: ServiceTitleTypes) => {
   const activeClasses =
-    activeSlider === serviceId ? 'bg_primary font-semibold text-gray-800' : '';
+    activeSlider === serviceId ? ' bg_primary font-medium text-gray-800' : '';
 
   return (
     <li
       onClick={() => onClick(serviceId)}
       className={cn(
-        `px-6 cursor-pointer flex items-center py-2 border border-black rounded h-11` +
+        `px-6 cursor-pointer flex items-center py-1 border border-black rounded h-11` +
           activeClasses,
       )}>
       {children}

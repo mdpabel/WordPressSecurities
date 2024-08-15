@@ -2,6 +2,7 @@ import { Button } from '@/components/Button';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import CallToAction from './CallToAction';
 
 type Props = {
   title: string;
@@ -39,9 +40,11 @@ const Hero = ({
           </h2>
         </div>
         <div className='flex space-x-4'>
-          <Button asChild className={className}>
-            <Link href={buttonLink}>{buttonText}</Link>
-          </Button>
+          <CallToAction
+            buttonLink={buttonLink}
+            buttonText={buttonText}
+            className={className}
+          />
           <Button className='border border-black' variant='outline' asChild>
             <Link href='/pricing'>Plans & Pricing</Link>
           </Button>
@@ -50,11 +53,11 @@ const Hero = ({
 
       <div className='md:flex justify-center items-center hidden'>
         <Image
-          src={image.src}
+          src={image.src || '/home.png'}
           alt={image.alt}
-          width={1200}
-          height={700}
-          className='p-8'
+          width={600}
+          height={400}
+          className='p-8 max-h-[400px]'
         />
       </div>
     </section>

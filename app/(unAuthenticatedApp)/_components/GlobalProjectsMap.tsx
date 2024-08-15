@@ -18,7 +18,7 @@ const VectorMap = dynamic(
 
 const GlobalProjectsMap = () => {
   return (
-    <div className='mb-6'>
+    <div className='mb-6 pt-10'>
       <SectionTitleWithSubTitle
         title='Our Milestones and Worldwide Impact'
         subTitle='Unveiling Project Success, Hacked Website Fixes, Client Relationships, Global Impact.'

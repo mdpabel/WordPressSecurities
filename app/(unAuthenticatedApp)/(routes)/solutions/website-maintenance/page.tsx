@@ -13,7 +13,7 @@ const WebsiteMaintenance = () => {
         buttonText='Get started'
         buttonLink='/ongoing-security'
         image={{
-          src: '/hero/website-maintenance.png',
+          src: '/hero/website-maintenance-2.png',
           alt: 'Ongoing WordPress security',
         }}
         className='website-maintenance'

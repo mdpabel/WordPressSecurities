@@ -20,35 +20,19 @@ const GlobalProjectsMap = lazy(
 export const dynamic = 'force-static';
 
 const page = async () => {
-  const subscriptionsProducts = await getSubscriptionsBasedProducts();
-  const standardProducts = await getStandardProducts();
-  const featuredServices = await getFeaturedServices();
-
   return (
     <ComponentWrapper>
       <Hero
-        title='Clean and Protect Your Website Now'
-        description=" Hackers don't take vacations. Restore your peace of mind by
-            securing your online presence with our expert engineers."
+        title='Transform Your WordPress Site with Expert Care'
+        description='From impenetrable security to lightning-fast speed, we bring you cutting-edge WordPress solutions to power your success.'
         buttonText='Fix hacked site'
         buttonLink='/'
         image={{
-          src: '/hero.png',
-          alt: 'Secure your website',
+          src: '/hero/home.png',
+          alt: 'Next Generation WordPress',
         }}
       />
-      <ServiceCarousel services={featuredServices} />
-      <div className='py-10 md:py-16'>
-        <SectionTitleWithSubTitle
-          title='Safely Empower Your Digital Business'
-          subTitle='Lock Down Your Digital Assets - Clearly Defined Subscription Tiers -
-        Engineered for Small to Large-scale Websites'
-        />
-        <PricingTable
-          services={standardProducts}
-          subscriptions={subscriptionsProducts}
-        />
-      </div>
+      <ServiceCarousel />
       <GlobalProjectsMap />
       <FAQ items={[7, 1, 4, 6, 10]} />
     </ComponentWrapper>

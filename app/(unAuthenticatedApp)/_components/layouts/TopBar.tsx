@@ -6,19 +6,14 @@ import { cn } from '@/lib/utils';
 // import dynamic from 'next/dynamic';
 import TextCarousel from './TextCarousel';
 import { usePathname } from 'next/navigation';
+import { useClassName } from '@/hooks/useClassName';
 
 // const TextCarousel = dynamic(() => import('./TextCarousel'));
 
 const classNames = '';
 
 const TopBar = () => {
-  const [className, setClassName] = useState('');
-  const pathName = usePathname();
-
-  useEffect(() => {
-    const className = pathName.replace('/solutions/', '');
-    setClassName(className);
-  }, [pathName]);
+  const className = useClassName();
 
   return (
     <div
