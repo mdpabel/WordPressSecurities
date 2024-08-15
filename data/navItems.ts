@@ -35,11 +35,11 @@ export const navItems = [
     label: 'Home',
     link: '/',
   },
-  {
-    id: 1,
-    label: 'Pricing',
-    link: '/pricing',
-  },
+  // {
+  //   id: 1,
+  //   label: 'Pricing',
+  //   link: '/pricing',
+  // },
   {
     id: 3,
     label: 'Solutions',
@@ -51,11 +51,11 @@ export const navItems = [
     label: 'Store',
     link: '/store',
   },
-  // {
-  //   id: 5,
-  //   label: 'Guides',
-  //   link: '/guides',
-  // },
+  {
+    id: 5,
+    label: 'Instant Consultation',
+    link: '/instant-consultation',
+  },
 ];
 
 export type SubMenu = typeof subMenus;
