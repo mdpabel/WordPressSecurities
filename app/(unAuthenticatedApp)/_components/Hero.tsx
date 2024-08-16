@@ -11,6 +11,7 @@ type Props = {
   buttonText: string;
   buttonLink: string;
   className?: string;
+  btnTarget?: '_blank' | '_self';
 };
 
 const Hero = ({
@@ -19,6 +20,7 @@ const Hero = ({
   description,
   image,
   title,
+  btnTarget,
   className,
 }: Props) => {
   return (
@@ -44,6 +46,7 @@ const Hero = ({
             buttonLink={buttonLink}
             buttonText={buttonText}
             className={className}
+            btnTarget={btnTarget}
           />
           <Button className='border border-black' variant='outline' asChild>
             <Link href='/pricing'>Plans & Pricing</Link>

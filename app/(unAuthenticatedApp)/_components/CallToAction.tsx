@@ -8,16 +8,20 @@ const CallToAction = ({
   buttonLink,
   className,
   buttonText,
+  btnTarget,
 }: {
   buttonLink: string;
   className?: string;
   buttonText: string;
+  btnTarget?: '_blank' | '_self';
 }) => {
   const btnClassName = useClassName();
 
   return (
     <Button asChild className={`${className} ${btnClassName}`}>
-      <Link href={buttonLink}>{buttonText}</Link>
+      <Link target={btnTarget ? btnTarget : '_self'} href={buttonLink}>
+        {buttonText}
+      </Link>
     </Button>
   );
 };
