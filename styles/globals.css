@@ -268,7 +268,7 @@ input[type='checkbox'] {
 .default-theme {
   background: linear-gradient(to right, #614385, #516395);
 }
-
+/* 
 .website-maintenance {
   background: linear-gradient(90deg, #b24592, #f15f79);
 }
@@ -279,4 +279,4 @@ input[type='checkbox'] {
 
 .malware-removal {
   background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
-}
+} */
