@@ -280,3 +280,9 @@ input[type='checkbox'] {
 .malware-removal {
   background: linear-gradient(to right, #1c4458, #3b6489, #3b7bb1);
 } */
+
+@keyframes toLeft {
+  to {
+    left: -200px;
+  }
+}

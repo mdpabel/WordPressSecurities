@@ -111,7 +111,7 @@ const ServiceCarousel = () => {
   return (
     <div className='space-y-10'>
       <TitleWithBottomBorder>
-        Facing Website Security Concerns?
+        Secure, Reliable, and Professional Services
       </TitleWithBottomBorder>
       <div
         className={cn(

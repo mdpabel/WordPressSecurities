@@ -13,6 +13,7 @@ import {
 } from '@/swell/product';
 import { Product } from 'swell-js';
 import { getFeaturedServices } from './_utils/services.util';
+import CompaniesLogo from './_components/CompaniesLogo';
 const GlobalProjectsMap = lazy(
   () => import('@/app/(unAuthenticatedApp)/_components/GlobalProjectsMap'),
 );
@@ -23,8 +24,8 @@ const page = async () => {
   return (
     <ComponentWrapper>
       <Hero
-        title='Transform Your WordPress Site with Expert Care'
-        description='From impenetrable security to lightning-fast speed, we bring you cutting-edge WordPress solutions to power your success.'
+        title='The Zero-Risk Solution for Your Business'
+        description='With 0 vulnerabilities, 0 downtime, and 0 errors, 3 Zero Tech ensures your business runs smoothly, securely, and without compromise'
         buttonText='Fix hacked site'
         buttonLink='/'
         image={{
@@ -33,6 +34,7 @@ const page = async () => {
         }}
       />
       <ServiceCarousel />
+      <CompaniesLogo />
       <GlobalProjectsMap />
       <FAQ items={[7, 1, 4, 6, 10]} />
     </ComponentWrapper>
